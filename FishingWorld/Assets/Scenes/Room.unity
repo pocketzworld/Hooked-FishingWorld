@@ -23280,7 +23280,7 @@ GameObject:
   - component: {fileID: 3612539098976354985}
   m_Layer: 0
   m_Name: Waterfall
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23424,7 +23424,7 @@ GameObject:
   - component: {fileID: 543450652332665815}
   m_Layer: 0
   m_Name: WaterMesh (1)
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23445,7 +23445,7 @@ GameObject:
   - component: {fileID: 3469287837086731378}
   m_Layer: 0
   m_Name: OceanMesh
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -23767,7 +23767,7 @@ GameObject:
   - component: {fileID: 6697621764721433712}
   m_Layer: 0
   m_Name: Lake
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23788,7 +23788,7 @@ GameObject:
   - component: {fileID: 7685259906987153105}
   m_Layer: 0
   m_Name: Lake
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23990,7 +23990,7 @@ GameObject:
   - component: {fileID: 7530847406813836984}
   m_Layer: 0
   m_Name: River
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24057,7 +24057,7 @@ GameObject:
   - component: {fileID: 8203806972052243244}
   m_Layer: 0
   m_Name: Ice
-  m_TagString: Water
+  m_TagString: UserTag1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

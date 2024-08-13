@@ -27,7 +27,7 @@ function TrackPlayers(game, characterCallback)
             Score = IntValue.new("PlayerScore" .. tostring(player.id), 0),
             isFishing = BoolValue.new("isFishing" .. tostring(player.id), false),
             fishingPoint = Vector3Value.new("fishingPoint" .. tostring(player.id), Vector3.new(0,0,0)),
-            playerInventory = TableValue.new("PlayerInventory" .. tostring(player.id), {}),
+            playerInventory = TableValue.new("PlayerInventory" .. tostring(player.id)),
             Tokens = IntValue.new("Tokens" .. tostring(player.id), 0),
             playerFishRecords = TableValue.new("PlayerFishRecords" .. tostring(player.id), {}),
             playerFishingPole = StringValue.new("PlayerFishingPole" .. tostring(player.id), "fishing_pole_1"),
@@ -129,7 +129,6 @@ function self:ClientAwake()
             end
         end)
         
-        -- Update the player inventory
         playerinfo.playerInventory.Changed:Connect(function(inventory, oldVal)
             if player == client.localPlayer then
 
@@ -192,10 +191,8 @@ function GetPole()
     return players[client.localPlayer].playerFishingPole.value
 end
 
-function ChangeBaitRequest(baitID : string, unEquip)
-    if unEquip == nil then unEquip = true end
-    print(tostring(unEquip))
-    changeBaitRequest:FireServer(baitID, unEquip)
+function ChangeBaitRequest(baitID : string)
+    changeBaitRequest:FireServer(baitID)
 end
 
 function GetBait()
@@ -353,14 +350,12 @@ function SetPoleServer(player, poleID)
     end
 end
 
-function SetBaitServer(player, baitID, unEquip)
+function SetBaitServer(player, baitID)
     if players[player].playerBait.value ~= baitID then 
         players[player].playerBait.value = baitID 
     else 
-        if unEquip then
             players[player].playerBait.value = "" 
         end
-    end
 end
 
 function UpdatePlayerFishRecords(player, fishRecord)
@@ -397,8 +392,8 @@ function self:ServerAwake()
         SetPoleServer(player, poleID)
     end)
 
-    changeBaitRequest:Connect(function(player, baitID, unEquip)
-        SetBaitServer(player, baitID, unEquip)
+    changeBaitRequest:Connect(function(player, baitID)
+        SetBaitServer(player, baitID)
     end)
     
     ---------------Token amd Scoring System----------------

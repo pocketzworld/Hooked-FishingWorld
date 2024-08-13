@@ -169,17 +169,10 @@ function CreateItemInfoPage(name: string, price: number, description: string, im
       end, true, true, true)
     else -- Use Cash to buy the item
       _BuyButton:RegisterPressCallback(function()
+        -- Purchase Item
+        inventoryManager.PurchaseItem(id, price)
 
         if playerTracker.GetTokens(client.localPlayer) >= price then
-
-          -- Purchase Item only if the player has enough cash
-          inventoryManager.PurchaseItem(id, price)
-
-          -- Equip the item if it is bait
-          if baitMetas[id] then
-            playerTracker.ChangeBaitRequest(id, false)
-          end
-
           -- remove buy button and replace with purchased
           -- Note: Do not remove this button unless the purchase is successful (Another way is if we check for the user balance and disable the button if they don't have enough cash to purchase the item)
           audioManager.PlaySound("coinsSound2", 1)
