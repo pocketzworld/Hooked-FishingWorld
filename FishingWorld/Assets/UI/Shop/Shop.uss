@@ -1,0 +1,540 @@
+:root {
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #f2e2e1;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+
+
+  --coin-icon: url("project://database/Assets/UI/Icons/icon_coins.png");
+  --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
+  --placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");
+  --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  bottom: 0;
+
+  padding: 10px;
+}
+
+.cash-container {
+  display: flex;
+  position: relative;
+
+  flex-direction: row;
+  align-self: flex-start;
+  
+  overflow: hidden;
+  bottom: 10px;
+  left: 0;
+
+  height: 47px;
+
+  border-radius: 12px;
+
+  padding: 0 5px;
+  -unity-font-definition: var(--font-inter-semi-bold);
+
+  background-image: var(--image-TanVignette_Light);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+.cash-content {
+  flex-direction: row;
+  color: var(--color-tertiary);
+  
+
+  align-items: center;
+  padding: 5px;
+  -unity-text-align: middle-center;
+
+  margin-right: 5px;
+}
+
+.cash-content Image {
+  width: 25px;
+  height: 25px;
+
+  --unity-image: var(--coin-icon);
+}
+
+.cash-label {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.add-cash {
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+}
+
+.add-cash-icon {
+  width: 28px;
+  height: 28px; 
+
+  --unity-image: var(--plus-icon);
+}
+
+.add-cash:hover {
+  opacity: 0.5;
+  scale: 0.9;
+}
+
+.shop__container {
+  display: flex;
+  overflow: hidden;
+
+  padding: 6px;
+  min-height: 250px;
+  min-width: 250px;
+
+  max-height: 800px;
+
+  width: 100%;
+  height: 100%;
+
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: var(--color-tertiary);
+  
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+}
+
+.shop__header {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  padding-bottom: 0px;
+  -unity-text-align: middle-center;
+
+  border-bottom-color: rgba(0, 0, 0, .3);
+  border-bottom-width: 2px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.shop__header__title {
+  font-size: 30px;
+  color: var(--color-tertiary);
+
+  align-self: center;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.shop .navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.nav-button--selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-bottom: 0px;
+
+  width: 100%;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: var(--color-secondary);
+  background-color: var(--color-primary);
+}
+
+.nav-button--deselected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-top: auto;
+  margin-bottom: 0px;
+
+  width: 100%;
+  height: 24px;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: var(--color-secondary);
+  border-color: var(--color-tertiary);
+}
+
+.nav-button.active:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nav-button:hover {
+  background-color: var(--color-primary);
+} 
+
+.shop__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.shop__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  width: 100%;
+  min-width: 250px;
+  margin-top: 10px;
+
+  overflow: scroll;
+  align-self: center;
+
+  padding: 2px 5px;
+}
+
+.scroll-view__content-viewport {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.scroll-view__content-container {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  padding: 0 5px;
+}
+
+.scroll-bar {
+  width: 5px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+
+  display: flex;
+}
+
+.scroll-bar__thumb {
+  background-color: var(--color-secondary);
+  border-radius: 2px;
+}
+
+.scroll-bar__thumb:active {
+  background-color: var(--color-primary);
+}
+
+.scroll-bar__thumb:hover {
+  background-color: var(--color-primary);
+}
+
+.shop__item {
+  width: 110px;
+  height: 147px;
+
+  align-items: center;
+  margin: 0 3px 5px 3px;
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Dark);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+  overflow: hidden;
+
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.shop__item-price {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  -unity-text-align: middle-center;
+  color: var(--color-white);
+
+  bottom: 0;
+  background-color: var(--color-tertiary);
+}
+
+.shop__item-price__icon {
+  width: 28px;
+  height: 28px;
+
+  --unity-image: var(--coin-icon);
+}
+.package__item-price__icon{
+  width: 24px;
+  height: 24px;
+
+  --unity-image: var(--golden-icon);
+}
+
+.shop__item-icon {
+  display: flex;
+  position: absolute;
+  top: 15px;
+
+  flex-direction: row;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.shop__item-icon Image {
+  width: 75px;
+  height: 75px;
+
+  --unity-image: var(--placeholder-icon);
+}
+
+.shop__item-price__label {
+  margin-left: 5px;
+  font-size: 16px;
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+
+.shop__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+
+.shop__item__info {
+  position: absolute;
+
+  width: 350px;
+  height: 300px;
+
+  padding: 10px;
+  align-self: center;
+  justify-content: center;
+
+  align-items: center;
+  flex-direction: column;
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  overflow: hidden;
+}
+
+.shop__item__info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 5px;
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.shop__item__info-name {
+  font-size: 27px;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  margin-bottom: 5px;
+
+  color: var(--color-tertiary);
+}
+
+.shop__item__info-icon {
+  width: 80px;
+  height: 80px;
+
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+
+  overflow: hidden;
+  padding: 3px;
+
+  background-color: var(--color-secondary);
+  background-image: var(--image-TanVignette_Dark);
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: rgba(23, 25, 35, 0.5);
+}
+
+.shop__item__info-amount {
+  position: absolute;
+
+  top: 2px;
+  right: 0;
+
+  -unity-text-align: middle-right;
+  color: var(--color-tertiary);
+
+  font-size: 20px;
+}
+
+.shop__item__info-icon UIImage {
+  width: 60px;
+  height: 60px;
+}
+
+.shop__item__info-description {
+  width: 100%;
+  height: 100px;
+
+  padding: 5px;
+  font-size: 14px;
+
+  overflow: scroll;
+  align-self: center;
+  -unity-text-align: middle-center;
+
+  flex-wrap: wrap;
+  white-space: normal;
+  flex-grow: 1;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.shop__item__info__description-label {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.shop__item__info__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.shop__item__info-buy,
+.shop__item__info-purchased {
+  display: flex;
+  padding: 5px;
+
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  font-size: 20px;
+  color: var(--color-white);
+
+  width: 100%;
+  height: 40px;
+
+  border-radius: 8px;
+  background-color: var(--color-tertiary);
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop__item__info__buy-label {
+  margin: 0 5px;
+}
+
+
+.shop__item__info-price {
+  flex-direction: row;
+  margin: 0 5px;
+}
+
+.shop__item__info-price__icon {
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+
+  --unity-image: var(--coin-icon);
+}
+
+.package__item__info-price__icon{
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+
+  --unity-image: var(--golden-icon);
+}
+
+.hidden {
+  display: none;
+}
+
+
+.shop__item__info__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}

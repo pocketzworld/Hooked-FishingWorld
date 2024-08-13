@@ -1,0 +1,123 @@
+.fishing-hud {
+    display: flex;
+    flex-grow: 1;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.fish-button {
+    
+    -unity-text-align: middle-center;
+    align-self: center;
+
+    overflow: hidden;
+
+    padding: 10px;
+    border-radius: 8px;
+
+    color: #000000;
+    font-size: 32px;
+    width: 64px;
+    height: 64px;
+}
+
+#actionLabel {
+}
+
+.button-content {
+    color: #ffffff;
+}
+
+.progress-bar {
+    width: 75%;
+    height: 25px;
+}
+.progress-bar__background {
+    background-color: #773920;
+    border-radius: 5px;
+    border-radius-bottom-left: 5px;
+    height: 15px;
+
+    border-width: 2px;
+    border-color: #ae6e34;
+}
+.progress-bar__progress {
+    background-color: #fff902;
+}
+
+.fish-container {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#fishSlider {
+  width: 75%;
+}
+
+#fishSlider .slider__knob {
+    width: 36px;
+    height: 36px;
+    top: 0;
+    bottom: 0;
+
+    background-color: rgba(0,0,0,0);
+
+    border-radius: 0%;
+    border-width: 0px;
+}
+
+#fishSlider .slider__background {
+    height: 36px;
+    top: 0;
+    background-color: rgba(0,0,0,0);
+    /*background-image: url("project://database/Assets/UI/Icons/Fishing_Outline.png");*/
+}
+
+#hookSlider {
+  width: 75%;
+  position: absolute;
+  top: 25px;
+  opacity: 1;
+
+  background-color: rgba(0,0,0,0);
+}
+
+#hookSlider .slider__background {
+    display: flex;
+    background-color: rgba(255,255,255,0);
+    background-image: url("project://database/Assets/UI/Icons/fishing_BG_2.png");
+    height: 36px;
+    top: 0;
+
+    border-width: 3px;
+    border-radius: 5px;
+    border-color: #87501f;
+}
+
+#hookSlider .slider__knob {
+    width: 72px;
+    height: 36px;
+    top: 0;
+    bottom: 0;
+
+    border-radius: 0%;
+    border-width: 0px;
+    background-color: rgba(0,0,0,.5);
+    background-image: url("project://database/Assets/UI/Icons/Fishing_Bar_Green.png");
+
+}
+
+.slider .slider__foreground {
+    display: none;
+}
+.slider .slider__dot {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}

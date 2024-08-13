@@ -1,0 +1,283 @@
+:root {
+  --font-default: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+  --shop-pic: url("project://database/Assets/UI/Icons/icon_pouch.png");
+  --journal-pic: url("project://database/Assets/UI/Icons/Journal_Icon.png");
+  --rank-pic: url("project://database/Assets/UI/Icons/Ranking_Icon.png");
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #f2e2e1;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+
+
+  --coin-icon: url("project://database/Assets/UI/Icons/icon_coins.png");
+  --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
+  --placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");
+  --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
+}
+
+.worldhud {
+  background-color: red;
+
+  width: 100%;
+}
+
+.world-overlay {
+  display: flex;
+  position: absolute;
+
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-black);
+  color: #684F36;
+
+  width: 100%;
+}
+
+.world-button {
+  display: flex;
+  position: absolute;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 64px;
+  height: 64px;
+
+  font-size: 14px;
+
+  transition-property: scale;
+  transition-duration: 0.2s;
+}
+
+.world-button:hover {
+  scale: 0.9;
+}
+
+.world-button.shop {
+  top: 85px;
+  right: 11px;
+}
+
+.world-button.ranking {
+  right: 11px;
+}
+
+.world-button.inventory {
+  right: 11px;
+}
+
+.button-icon {
+  align-items: center;
+  justify-content: flex-start;
+
+  --unity-image-tint-color: white;
+  scale: 0.8;
+}
+
+.button-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border-width: 4px;
+  display: none;
+}
+
+.button-circle.shop {
+  background-color: #6647cf;
+  border-color: #9374FD;
+}
+
+.button-circle.ranking {
+  background-color: #008355;
+  border-color: #00B072;
+}
+
+.button-circle.inventory {
+  background-color: #E9D39F;
+  border-color: #6b4625;
+}
+
+#_ShopIcon {
+  --unity-image: var(--shop-pic);
+}
+
+#_RankingIcon {
+  --unity-image: var(--rank-pic);
+}
+
+#_InventoryIcon {
+  --unity-image: var(--journal-pic);
+
+}
+
+.placeholder {
+  position: absolute;
+  top: 59px;
+
+  background-color: #f2e4c6;
+  border-width: 2px;
+  border-color: #bfa27d;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 18px;
+}
+
+.placeholder.shop {
+}
+
+.placeholder.ranking {
+}
+
+.placeholder.inventory {
+}
+
+.inventory-text{
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.cash-container {
+  display: flex;
+  position: relative;
+
+  flex-direction: row;
+  align-self: flex-start;
+  
+  overflow: hidden;
+  left: 11px;
+
+  height: 40px;
+
+  border-radius: 12px;
+
+  padding: 5px;
+  -unity-font-definition: var(--font-inter-semi-bold);
+
+  background-image: var(--image-TanVignette_Light);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+.cash-content {
+  flex-direction: row;
+  color: var(--color-tertiary);
+  
+
+  align-items: center;
+  padding: 0px;
+  -unity-text-align: middle-center;
+
+  margin-right: 5px;
+}
+
+.cash-content Image {
+  width: 25px;
+  height: 25px;
+
+  --unity-image: var(--coin-icon);
+}
+
+.cash-label {
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.add-cash {
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+}
+
+.add-cash-icon {
+  width: 28px;
+  height: 28px; 
+
+  --unity-image: var(--plus-icon);
+}
+
+.add-cash:hover {
+  opacity: 0.5;
+  scale: 0.9;
+}
+
+.equipped-container {
+  display: flex;
+  position: relative;
+
+  flex-direction: row;
+  align-self: flex-start;
+  
+  overflow: hidden;
+  margin-top: 5px;
+  left: 11px;
+
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.equipped-content {
+  flex-direction: row;
+  color: var(--color-tertiary);
+
+  width: 42px;
+  height: 42px;
+  
+
+  align-items: center;
+  -unity-text-align: middle-center;
+
+  margin-right: 5px;
+
+  background-image: var(--image-TanVignette_Light);
+  border-width: 2px;
+  border-radius: 5px;
+
+  border-color: var(--color-tertiary);
+}
+
+.bait-amount {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  font-size: 10px;
+  color: var(--color-tertiary);
+  background-color: var(--color-primary);
+
+  border-radius: 2px;
+
+  margin: 1px;
+  padding: 0px;
+}
+
+.hidden {
+  display: none;
+}

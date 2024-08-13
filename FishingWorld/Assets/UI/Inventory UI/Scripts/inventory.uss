@@ -1,0 +1,443 @@
+:root {
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #E8ECF4;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+}
+
+.inventory {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  bottom: 0;
+
+  padding: 30px;
+}
+
+.inventory__container {
+  display: flex;
+  overflow: hidden;
+
+  padding: 2px;
+  min-height: 300px;
+  min-width: 300px;
+  max-height: 500px;
+  max-width: 1000px;
+
+  width: 100%;
+  height: 100%;
+
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: var(--color-tertiary);
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+
+}
+
+.inventory__header {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  padding-bottom: 0px;
+  -unity-text-align: middle-center;
+
+  border-bottom-color: var(--color-tertiary);
+  border-bottom-width: 2px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  margin-bottom: 3px;
+}
+
+.inventory__header__pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.inventory__header__page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-bottom: 0px;
+
+  width: 100%;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: var(--color-secondary);
+  background-color: var(--color-primary);
+}
+
+.inventory__header__page--deselected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-top: auto;
+  margin-bottom: 0px;
+
+  width: 100%;
+  height: 24px;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: var(--color-secondary);
+  border-color: var(--color-tertiary);
+}
+
+.inventory__header__title {
+  font-size: 24px;
+  color: #684F36;
+
+  align-self: center;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.inventory__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.inventory__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  width: 100%;
+  min-width: 300px;
+  margin-top: 10px;
+
+  overflow: scroll;
+  align-self: center;
+
+  padding: 10px;
+}
+
+.scroll-view__content-viewport {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.scroll-view__content-container {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+}
+
+.scroll-bar {
+  width: 5px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+
+  display: flex;
+}
+
+.scroll-bar__thumb {
+  background-color: var(--color-secondary);
+  border-radius: 2px;
+}
+
+.scroll-bar__thumb:active {
+  background-color: var(--color-primary);
+}
+
+.scroll-bar__thumb:hover {
+  background-color: var(--color-primary);
+}
+
+.inventory__item {
+  width: 64px;
+  height: 64px;
+
+  margin: 1px;
+
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+
+  -unity-font-definition: var(--font-inter-semi-bold);
+  
+}
+
+.equiped {
+  border-color: var(--color-tertiary);
+  border-width: 3px;
+  border-radius: 5px;
+}
+
+/*
+.inventory__item:hover {
+  opacity: 0.8;
+  scale: 0.9;
+
+  background-color: var(--color-secondary);
+}
+*/
+
+.inventory__item-amount {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  font-size: 16px;
+  color: var(--color-tertiary);
+}
+
+.hidden {
+  display: none;
+}
+
+.inventory__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.inventory__item-icon UIImage {
+  width: 64px;
+  height: 64px;
+
+  align-self: center;
+}
+
+.locked {
+  --unity-image-tint-color: black;
+  opacity: 0.25;
+}
+
+.inventory__item-icon-plus UIImage{
+  width: 30px;
+  height: 30px;
+
+  align-self: center;
+  opacity: 0.5;
+}
+
+.inventory__item__info {
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  padding: 10px;
+  align-self: center;
+  justify-content: center;
+
+  align-items: center;
+  flex-direction: column;
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: rgba(23, 25, 35, 0.5);
+
+  overflow: hidden;
+}
+
+.inventory__item__info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 5px;
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.inventory__item__info-name {
+  font-size: 27px;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  margin-bottom: 5px;
+
+  color: var(--color-tertiary);
+}
+
+.inventory__item__info-icon {
+  width: 80px;
+  height: 80px;
+
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+
+  overflow: hidden;
+
+  background-color: var(--color-secondary);
+  background-image: var(--image-TanVignette_Dark);
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: rgba(23, 25, 35, 0.5);
+}
+
+.inventory__item__info-amount {
+  position: absolute;
+
+  top: 2px;
+  right: 0;
+
+  -unity-text-align: middle-right;
+  color: var(--color-tertiary);
+
+  font-size: 20px;
+
+}
+
+.inventory__item__info-icon UIImage {
+  width: 72px;
+  height: 72px;
+}
+
+.inventory__item__info-description {
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+  font-size: 16px;
+
+  overflow: scroll;
+  align-self: center;
+  -unity-text-align: middle-center;
+
+  flex-wrap: wrap;
+  white-space: normal;
+  flex-grow: 1;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.inventory__item__info__description-label {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.inventory__item__info-stats {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  padding: 10px;
+  color: var(--color-tertiary);
+
+  width: 100%;
+  align-items: center;
+  border-width: 2px;
+  border-top-color: rgba(0, 0, 0, .3);
+  background-color: rgba(104, 79, 54, 0.1);
+}
+
+.inventory__item__info__stat-label {
+  margin: 2px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.inventory__item__info-rarity {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.inventory__item__info__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+
+.inventory__item__info__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+.inventory__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+
+.rarity__Common {
+  color: #615F71;
+  -unity-background-image-tint-color: rgba(97, 95, 113, 0.3);
+}
+.rarity__Uncommon {
+  color: #00B072;
+  -unity-background-image-tint-color: rgba(0, 176, 114, 0.3);
+}
+.rarity__Rare {
+  color: #008BE8;
+  -unity-background-image-tint-color: rgba(0, 139, 232, 0.3);
+}
+.rarity__Legendary {
+  color: #eabd35;
+  -unity-background-image-tint-color: rgba(234, 189, 53, 0.3);
+}
+.rarity__Mythical {
+  color: #f87ceb;
+  -unity-background-image-tint-color: rgba(248, 124, 235, 0.3);
+}

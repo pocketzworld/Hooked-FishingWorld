@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="fishing-hud">
+
+    <VisualElement name="FishingElement" class="fish-container">
+      <hr:UIProgressBar name="fishProgressBar" class="progress-bar"/>
+      <hr:UISlider name="hookSlider" class="slider"/>
+      <hr:UISlider name="fishSlider" class="slider"/>
+    </VisualElement>
+
+    <VisualElement name="actionButton" class="fish-button">
+      <hr:UIBlur class="overlay"/>
+      <VisualElement class="button-content">
+        <hr:UILabel name="actionLabel"/>
+      </VisualElement>
+    </VisualElement>
+    
+  </hr:UILuaView>
+
+</UXML>

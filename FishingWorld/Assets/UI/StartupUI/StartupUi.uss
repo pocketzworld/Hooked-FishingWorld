@@ -1,0 +1,18 @@
+.startup-ui {
+    height: 100%;
+    width: 100%;
+}
+.startup-ui__container {
+    margin: auto;
+
+    width: 95%;
+    height: 95%;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+}
+
+.startup-ui__image {
+}

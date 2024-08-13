@@ -1,0 +1,120 @@
+:root {
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #E8ECF4;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_Dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+}
+
+.item-popup {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    align-self: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 15px;
+}
+
+.item-popup-container {
+  display: flex;
+  overflow: hidden;
+  margin-top: auto;
+
+  padding: 2px;
+  min-height: 200px;
+  min-width: 300px;
+
+  max-height: 210px;
+  max-width: 450px;
+
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: var(--color-tertiary);
+
+  color: var(--color-tertiary);
+
+  background-image: var(--image-TanVignette_Light);
+}
+
+.item-popup-header {
+  display: flex;
+  flex-direction: row;
+  flex-direction: column;
+  padding-top: 10px;
+
+  -unity-text-align: middle-center;
+}
+
+.item-popup-title {
+  font-size: 24px;
+  margin: 0px;
+  padding: 0px;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.item-popup-subtitle {
+  font-size: 14px;
+  color: var(--color-tertiary);
+  bottom: 0px;
+
+  align-self: center;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-italic);
+}
+
+.item-popup-stas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.item-popup-description {
+  margin: 4px;
+  font-size: 12px;
+  color: var(--color-tertiary);
+
+  white-space: normal;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.hidden {
+  display: none;
+}
+
+.rarity__Common {
+  color: #615F71;
+}
+.rarity__Uncommon {
+  color: #00B072;
+}
+.rarity__Rare {
+  color: #008BE8;
+}
+.rarity__Legendary {
+  color: #eabd35;
+}
+.rarity__Mythical {
+  color: #f87ceb;
+}

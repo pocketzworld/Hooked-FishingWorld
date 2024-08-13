@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView name="root" class="item-popup">
+    <VisualElement name="item_popup" class="item-popup-container">
+      <VisualElement name="item_popup_header" class="item-popup-header">
+          <Label name="popup_header" class="item-popup-title"/>
+          <Label name="fish_label" class="item-popup-title" text="Black Crappie"/>
+          <VisualElement name="item_popup_stats" class="item-popup-stas">
+              <Label name="fish_size" class="item-popup-subtitle"/>
+              <Label name="fish_rarity" class="item-popup-subtitle"/>
+          </VisualElement>
+          <Label name="fish_price" class="item-popup-subtitle"/>
+      </VisualElement>
+      
+      <VisualElement name="item_popup_content" class="item-popup-content">
+          <Label name="fish_description" class="item-popup-description" text="This is a description of the fish with some fun details. This is a description of the fish with some fun details."/>
+          <Label name="confirmText" class="item-popup-subtitle"/>
+      </VisualElement>
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

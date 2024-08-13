@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="worldhud">
+    <VisualElement class="world-overlay" picking-mode="Ignore">
+
+      <!-- Container for the Cash Info -->
+      <VisualElement class="cash-container">
+        <VisualElement class="cash-content">
+          <Image class="cash-icon" />
+          <Label name="cash_text" class="cash-label" text="0" />
+        </VisualElement>
+
+        <VisualElement name="add_cash_button" class="add-cash">
+          <Image class="add-cash-icon" />
+        </VisualElement>
+      </VisualElement>
+
+      <!-- Container for the Equipped Pole and Bait UIs -->
+      <VisualElement class="equipped-container">
+        <VisualElement name="pole_slot" class="equipped-content">
+          <Image name="poleIcon" class="pole-icon" />
+        </VisualElement>
+
+        <VisualElement name="bait_slot" class="equipped-content">
+          <Image name="baitIcon" class="bait-icon" />
+          <Label name="bait_text" class="bait-amount" text="" />
+        </VisualElement>
+      </VisualElement>
+
+      <!-- Container for the shop, inventory, and leaderboard buttons -->
+      <VisualElement class="world-button inventory" name="_InventoryButton">
+        <!-- <Image class="button-icon inventory" name="_InventoryIcon"/> -->
+
+        <hr:UIImage class="button-icon" name="_InventoryIcon"/>
+
+        <VisualElement class="placeholder inventory" picking-mode="Ignore">
+          <Label class="inventory-text" text="Journal"/>
+        </VisualElement>
+        
+      </VisualElement>
+
+      <VisualElement class="world-button shop" name="_ShopButton">
+        <!-- <Image class="button-icon inventory" name="_InventoryIcon"/> -->
+
+        <hr:UIImage class="button-icon" name="_ShopIcon"/>
+
+        <VisualElement class="placeholder shop" picking-mode="Ignore">
+          <Label class="inventory-text" text="Shop"/>
+        </VisualElement>
+        
+      </VisualElement>
+
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>
