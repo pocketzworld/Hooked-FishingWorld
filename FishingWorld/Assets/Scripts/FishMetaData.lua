@@ -1457,7 +1457,6 @@ function GetRandomFish(Biome, Bait)
             -- if the fish matches the chosen bait add it in the table again to increase its odds
             if CheckBait(fishName, Bait) then
                 table.insert(fishList, fishName)
-                table.insert(fishList, fishName)
             end
         end
     end
