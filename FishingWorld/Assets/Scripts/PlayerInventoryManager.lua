@@ -75,8 +75,10 @@ function self:ServerAwake()
     --takeItemReq:Connect(TakePlayerItem)
 
     ClientJoinRequest:Connect(function(player)
-        TakePlayerItem(player,"fishing_pole_1", 1)
-        GivePlayerItem(player, "fishing_pole_1", 1)
+        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_1") > 0
+        if not hasBegginerPole then
+            GivePlayerItem(player, "fishing_pole_1", 1)
+        end
     end)
 
     purchaseItemReq:Connect(function(player: Player, id: string, price: number)

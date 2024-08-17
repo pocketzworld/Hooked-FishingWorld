@@ -129,6 +129,7 @@ function self:ClientAwake()
             end
         end)
         
+        -- Update the player inventory
         playerinfo.playerInventory.Changed:Connect(function(inventory, oldVal)
             if player == client.localPlayer then
 
@@ -191,8 +192,10 @@ function GetPole()
     return players[client.localPlayer].playerFishingPole.value
 end
 
-function ChangeBaitRequest(baitID : string)
-    changeBaitRequest:FireServer(baitID)
+function ChangeBaitRequest(baitID : string, unEquip)
+    if unEquip == nil then unEquip = true end
+    print(tostring(unEquip))
+    changeBaitRequest:FireServer(baitID, unEquip)
 end
 
 function GetBait()
@@ -350,12 +353,14 @@ function SetPoleServer(player, poleID)
     end
 end
 
-function SetBaitServer(player, baitID)
+function SetBaitServer(player, baitID, unEquip)
     if players[player].playerBait.value ~= baitID then 
         players[player].playerBait.value = baitID 
     else 
+        if unEquip then
             players[player].playerBait.value = "" 
         end
+    end
 end
 
 function UpdatePlayerFishRecords(player, fishRecord)
@@ -392,8 +397,8 @@ function self:ServerAwake()
         SetPoleServer(player, poleID)
     end)
 
-    changeBaitRequest:Connect(function(player, baitID)
-        SetBaitServer(player, baitID)
+    changeBaitRequest:Connect(function(player, baitID, unEquip)
+        SetBaitServer(player, baitID, unEquip)
     end)
     
     ---------------Token amd Scoring System----------------
