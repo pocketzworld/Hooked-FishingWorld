@@ -8,7 +8,7 @@ local cash_text : Label = nil -- Cash text for the shop UI
 --!Bind
 local add_cash_button : VisualElement = nil -- Add cash button for the shop UI
 --!Bind
-local _ShopContent : UIScrollView = nil -- Important do not remove
+local _ShopContent : VisualElement = nil -- Important do not remove
 
 --!Bind
 local _itemInfo : VisualElement = nil -- Important do not remove
@@ -26,6 +26,11 @@ local _PolesButton : VisualElement = nil -- Poles button for the shop UI
 local _BaitButton : VisualElement = nil -- Bait button for the shop UI
 --!Bind
 local _DealsButton : VisualElement = nil -- Backgrounds button for the shop UI
+
+--!Bind
+local _contentHeaderIcon : VisualElement = nil
+--!Bind
+local _contentHeaderLabel : UILabel = nil -- Content header label for the shop UI
 
 local purchaseTimer = nil
 
@@ -47,6 +52,7 @@ end, true, true, true)
 
 -- Register a callback to close the item info UI
 _closeInfoButton:RegisterPressCallback(function()
+  _itemInfo:RemoveFromClassList("open")
   _itemInfo:AddToClassList("hidden")
 end, true, true, true)
 
@@ -57,11 +63,23 @@ function UpdateCashUI()
 end
 
 -- Function to create an item in the shop
-function CreateItem(price: number, image: Texture, useGold)
+function CreateItem(price: number, image: Texture, useGold, item_type: string, item_name: string)
   useGold = useGold or false
 
   local _ShopItem = VisualElement.new()
   _ShopItem:AddToClassList("shop__item")
+
+  --if item_type and item_type == "item_bait" then
+  local _itemName = VisualElement.new()
+  _itemName:AddToClassList("shop__item-name")
+
+  local _itemNameText = Label.new()
+  _itemNameText:AddToClassList("shop__item__name-label")
+  _itemNameText.text = item_name
+
+  _itemName:Add(_itemNameText)
+  _ShopItem:Add(_itemName)
+  --end
 
   local _shopIcon = VisualElement.new()
   _shopIcon:AddToClassList("shop__item-icon")
@@ -91,7 +109,146 @@ function CreateItem(price: number, image: Texture, useGold)
   return _ShopItem
 end
 
-function CreateItemInfoPage(name: string, price: number, description: string, image: Texture, is_purchased: boolean, id: string, useGold, autoHide)  
+function CreateDealItem(deal_name: string, deal_price: number, deal_description: string, deal_image: Texture, useGold: boolean)
+  local _DealItem = VisualElement.new()
+  _DealItem:AddToClassList("deal__item")
+
+  local _DealHeader = VisualElement.new()
+  _DealHeader:AddToClassList("deal__item-header")
+
+  local _DealHeaderLeft = VisualElement.new()
+  _DealHeaderLeft:AddToClassList("deal__item-header-left")
+
+  local _DealHeaderIcon = Image.new()
+  _DealHeaderIcon:AddToClassList("deal__item-header__icon")
+  _DealHeaderIcon.image = deal_image
+
+  _DealHeaderLeft:Add(_DealHeaderIcon)
+
+  local _DealHeaderRight = VisualElement.new()
+  _DealHeaderRight:AddToClassList("deal__item-header-right")
+
+  local _DealHeaderLabel = UILabel.new()
+  _DealHeaderLabel:AddToClassList("deal__item-header__label")
+  _DealHeaderLabel.text = deal_description
+
+  _DealHeaderRight:Add(_DealHeaderLabel)
+
+  _DealHeader:Add(_DealHeaderLeft)
+  _DealHeader:Add(_DealHeaderRight)
+
+  local _DealContent = VisualElement.new()
+  _DealContent:AddToClassList("deal__item-content")
+  
+  local _DealName = Label.new()
+  _DealName:AddToClassList("deal__item__name-label")
+  _DealName.text = deal_name
+
+  local _DealBuyButton = VisualElement.new()
+  _DealBuyButton:AddToClassList("deal__item-buy")
+
+  local _DealPrice = VisualElement.new()
+  _DealPrice:AddToClassList("deal__item-price")
+
+  local _DealPriceText = Label.new()
+  _DealPriceText:AddToClassList("deal__item-price__label")
+  _DealPriceText.text = tostring(deal_price)
+
+  local _DealPriceIcon = Image.new()
+  if not useGold then _DealPriceIcon:AddToClassList("deal__item-price__icon") else _DealPriceIcon:AddToClassList("package__item-price__icon") end
+  _DealPrice:Add(_DealPriceIcon)
+
+  _DealPrice:Add(_DealPriceText)
+
+  _DealBuyButton:Add(_DealPrice)
+
+  _DealContent:Add(_DealName)
+  _DealContent:Add(_DealBuyButton)
+
+  _DealItem:Add(_DealHeader)
+  _DealItem:Add(_DealContent)
+
+  _ShopContent:Add(_DealItem)
+  return _DealItem
+end
+
+-- Function to create item count modal
+local item_quantity = 1 -- Default item quantity
+function CreateItemCountModal(item_price: number, item_price_text: UILabel, item_quantity_text: UILabel)
+  item_quantity = 1 -- Always reset quantity when a new item is selected
+
+  local _ItemCountModal = VisualElement.new()
+  _ItemCountModal:AddToClassList("item-quantity-modal")
+
+  -- Decrement Button
+  local _DecrementButton = Label.new()
+  _DecrementButton:AddToClassList("item-quantity-modal__decrement")
+  _DecrementButton.text = "-"
+  if item_quantity == 1 then _DecrementButton:AddToClassList("item-quantity-modal__decrement--disabled") end
+
+  -- Item Count
+  local _ItemCount = VisualElement.new()
+  _ItemCount:AddToClassList("item-quantity-modal__count")
+
+  local _ItemCountText = Label.new()
+  _ItemCountText:AddToClassList("item-quantity-modal__count__label")
+  _ItemCountText.text = tostring(item_quantity)
+
+  _ItemCount:Add(_ItemCountText)
+
+  -- Increment Button
+  local _IncrementButton = Label.new()
+  _IncrementButton:AddToClassList("item-quantity-modal__increment")
+  _IncrementButton.text = "+"
+  
+  local function UpdateButtons()
+    if item_quantity == 1 then
+      _DecrementButton:AddToClassList("item-quantity-modal__decrement--disabled")
+    else
+      _DecrementButton:RemoveFromClassList("item-quantity-modal__decrement--disabled")
+    end
+
+    if item_quantity == 100 then
+      _IncrementButton:AddToClassList("item-quantity-modal__increment--disabled")
+    else
+      _IncrementButton:RemoveFromClassList("item-quantity-modal__increment--disabled")
+    end
+  end
+
+  local IncrementItemQuantity = _IncrementButton:RegisterPressCallback(function()
+    if item_quantity < 100 then
+      item_quantity = item_quantity + 1
+      _ItemCountText.text = tostring(item_quantity)
+      UpdateButtons()
+
+      -- Update the price
+      item_price_text.text = tostring(item_price * item_quantity)
+      item_quantity_text.text = "Buy x" .. tostring(item_quantity) .. " for: "
+    end
+  end, true, true, true)
+
+  local DecrementItemQuantity = _DecrementButton:RegisterPressCallback(function()
+    if item_quantity > 1 then
+      item_quantity = item_quantity - 1
+      _ItemCountText.text = tostring(item_quantity)
+      UpdateButtons()
+
+      -- Update the price
+      item_price_text.text = tostring(item_price * item_quantity)
+      item_quantity_text.text = "Buy x" .. tostring(item_quantity) .. " for: "
+    end
+  end, true, true, true)
+
+  _ItemCountModal:Add(_DecrementButton)
+  _ItemCountModal:Add(_ItemCount)
+  _ItemCountModal:Add(_IncrementButton)
+
+  return _ItemCountModal
+end
+
+function CreateItemInfoPage(name: string, price: number, description: string, image: Texture, is_purchased: boolean, id: string, useGold: boolean, autoHide: boolean, item_type: string, allow_quantity: boolean)
+  _itemInfo:EnableInClassList("open", true)
+  
   _itemInfo:RemoveFromClassList("hidden")
   _ItemInfoContent:Clear()
 
@@ -142,20 +299,29 @@ function CreateItemInfoPage(name: string, price: number, description: string, im
 
     _BuyButtonText = UILabel.new()
     _BuyButtonText:AddToClassList("shop__item__info__buy-label")
-    _BuyButtonText:SetPrelocalizedText("Buy")
 
     local _ItemPrice = VisualElement.new()
     _ItemPrice:AddToClassList("shop__item__info-price")
-  
-    local _ItemPriceIcon = Image.new()
-    _ItemPriceIcon:AddToClassList("shop__item__info-price__icon")
-    if not useGold then _ItemPriceIcon:AddToClassList("shop__item__info-price__icon") else _ItemPriceIcon:AddToClassList("package__item__info-price__icon") end
-    _ItemPrice:Add(_ItemPriceIcon)
-  
+    
     local _ItemPriceText = UILabel.new()
     _ItemPriceText:AddToClassList("shop__item__info__price-label")
     _ItemPriceText.text = tostring(price)
     _ItemPrice:Add(_ItemPriceText)
+
+    if allow_quantity then
+      _BuyButtonText:SetEmojiPrelocalizedText("Buy x1 for: ")
+
+      local _ItemQuantityModal = CreateItemCountModal(price, _ItemPriceText, _BuyButtonText)
+      _ItemInfoContent:Add(_ItemQuantityModal)
+      
+    else
+      _BuyButtonText:SetPrelocalizedText("Buy for: ")
+    end
+
+    local _ItemPriceIcon = Image.new()
+    _ItemPriceIcon:AddToClassList("shop__item__info-price__icon")
+    if not useGold then _ItemPriceIcon:AddToClassList("shop__item__info-price__icon") else _ItemPriceIcon:AddToClassList("package__item__info-price__icon") end
+    _ItemPrice:Add(_ItemPriceIcon)
 
     _BuyButton:Add(_BuyButtonText)
     _BuyButton:Add(_ItemPrice)
@@ -256,7 +422,14 @@ function PopulateShop(items)
   _ShopContent:Clear()
   if items == nil then return end
 
+  -- Clearn _contentHeaderIcon class list
+  _contentHeaderIcon:ClearClassList()
+  _contentHeaderIcon:AddToClassList("content-header__left")
+
   if state == 0 then -- check if items are poles
+    _contentHeaderLabel:SetPrelocalizedText("Special Fishing Poles let you fish in unique locations around the world.")
+    _contentHeaderIcon:AddToClassList("pole-icon")
+
     for i = 1, #items do
       if poleMetas[items[i].id] then
         -- Create Item Meta Data based on ID
@@ -269,7 +442,7 @@ function PopulateShop(items)
 
         local useGold = false
     
-        local item = CreateItem(itemPrice, itemImage, useGold)
+        local item = CreateItem(itemPrice, itemImage, useGold, "item_pole", Utils.TrimText(itemName, 9))
       
         item:RegisterPressCallback(function()
           --Show Item Info
@@ -283,13 +456,16 @@ function PopulateShop(items)
             end
           end
 
-          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, is_purchased, items[i].id, useGold)
+          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, is_purchased, items[i].id, useGold, true, "item_pole", false)
           if purchaseTimer then purchaseTimer:Stop(); purchaseTimer = nil end
         end, true, true, true)
     
       end
     end
   elseif state == 1 then -- check if items are bait
+    _contentHeaderLabel:SetPrelocalizedText("Bait is used to attract fish to your hook. Different fish are attracted to different bait.")
+    _contentHeaderIcon:AddToClassList("bait-icon")
+
     for i = 1, #items do
       if baitMetas[items[i].id] then
         -- Create Item Meta Data based on ID
@@ -302,17 +478,20 @@ function PopulateShop(items)
 
         local useGold = false
     
-        local item = CreateItem(itemPrice, itemImage, useGold)
+        local item = CreateItem(itemPrice, itemImage, useGold, "item_bait", Utils.TrimText(itemName, 9))
       
         item:RegisterPressCallback(function()
           --Show Item Info
-          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, false, items[i].id, useGold, true)
+          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, false, items[i].id, useGold, true, "item_bait", true)
           if purchaseTimer then purchaseTimer:Stop(); purchaseTimer = nil end
         end, true, true, true)
     
       end
     end
   elseif state == 2 then -- check if items are deals
+    _contentHeaderLabel:SetPrelocalizedText("Special deals to help you get started on your fishing journey.")
+    _contentHeaderIcon:AddToClassList("deals-icon")
+
     for i = 1, #items do
       if dealMetas[items[i].id] then
         -- Create Item Meta Data based on ID
@@ -325,11 +504,12 @@ function PopulateShop(items)
 
         local useGold = true
     
-        local item = CreateItem(itemPrice, itemImage, useGold)
-      
+        --local item = CreateItem(itemPrice, itemImage, useGold, "item_coins", Utils.TrimText(itemName, 9))
+        local item = CreateDealItem(itemName, itemPrice, itemDescription, itemImage, useGold)
+
         item:RegisterPressCallback(function()
           --Show Item Info
-          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, false, items[i].id, useGold)
+          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, false, items[i].id, useGold, true, "item_coins", false)
           if purchaseTimer then purchaseTimer:Stop(); purchaseTimer = nil end
         end, true, true, true)
     
