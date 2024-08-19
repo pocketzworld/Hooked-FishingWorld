@@ -15,13 +15,10 @@ helpCallback = function()
     Timer.After(0.5, function() Chat:DisplayTextMessage(info, client.localPlayer, printcommands) end)
 end
 
-claimCallback = function()
-    DailyRewards.RequestDailyReward()
-end
-
 commands = {
     help = helpCallback,
-    claimdaily = claimCallback
+    claimdaily = DailyRewards.RequestDailyReward,
+    resetschedule = DailyRewards.ResetRewardsScheduleRequest
 }
 
 function self:ClientAwake()

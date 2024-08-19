@@ -2,15 +2,16 @@
 
 local dailyRewardEvent = Event.new("dailyRewardEvent")
 local claimDailyRewardRequest = Event.new("claimDailyRewardRequest")
+local resetRewardsRequest = Event.new("resetRewardsRequest")
 
 local RewardSchedule = {
     day_1 = {itemID = "item1", itemAmount = 1},
     day_2 = {itemID = "item2", itemAmount = 2},
-    day_3 = {itemID = "item3", itemAmount = 1},
-    day_4 = {itemID = "item4", itemAmount = 3},
-    day_5 = {itemID = "item5", itemAmount = 1},
-    day_6 = {itemID = "item6", itemAmount = 4},
-    day_7 = {itemID = "item7", itemAmount = 1},
+    day_3 = {itemID = "item3", itemAmount = 3},
+    day_4 = {itemID = "item4", itemAmount = 4},
+    day_5 = {itemID = "item5", itemAmount = 5},
+    day_6 = {itemID = "item6", itemAmount = 6},
+    day_7 = {itemID = "item7", itemAmount = 7}
 }
 
 local CLAIM_INTERVAL_MINUTES = .5  -- Set the interval for claiming rewards (in minutes)
@@ -28,7 +29,9 @@ function RequestDailyReward()
     claimDailyRewardRequest:FireServer(os.time())
 end
 
-
+function ResetRewardsScheduleRequest()
+    resetRewardsRequest:FireServer()
+end
 
 ------------- SERVER -------------
 
@@ -59,6 +62,23 @@ local function LoadPlayerClaimData(player, callback)
             end
         end)
     end)
+end
+
+local function LoadRewardSchedule(callback)
+    Storage.GetValue("RewardSchedule", function(schedule)
+        if schedule then
+            RewardSchedule = schedule
+            print("Reward schedule loaded successfully.")
+        else
+            print("Failed to load reward schedule. Ensure it is set in storage.")
+        end
+        callback()
+    end)
+end
+
+local function SaveRewardSchedule()
+    Storage.SetValue("RewardSchedule", RewardSchedule)
+    print("Reward schedule saved successfully.")
 end
 
 local function ClaimDailyReward(player, currentTime)
@@ -99,8 +119,17 @@ local function ClaimDailyReward(player, currentTime)
 end
 
 function self:ServerAwake()
-    -- Listen for reward claim request from player
-    claimDailyRewardRequest:Connect(function(player, playerTime)
-        ClaimDailyReward(player, playerTime)
+    -- Load the reward schedule from storage before starting any operations
+    LoadRewardSchedule(function()
+        -- Listen for reward claim request from player
+        claimDailyRewardRequest:Connect(function(player, playerTime)
+            ClaimDailyReward(player, playerTime)
+        end)
     end)
+    -- Listen for reset rewards request
+    resetRewardsRequest:Connect(function(player)
+        SaveRewardSchedule()
+    end)
+    
+    LoadRewardSchedule(function()end)
 end
