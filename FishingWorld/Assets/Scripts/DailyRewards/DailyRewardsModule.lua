@@ -14,7 +14,7 @@ local RewardSchedule = {
     day_7 = {itemID = "item7", itemAmount = 7}
 }
 
-local CLAIM_INTERVAL_MINUTES = .5  -- Set the interval for claiming rewards (in minutes)
+local CLAIM_INTERVAL_MINUTES = 1440  -- Set the interval for claiming rewards (in minutes)
 
 ------------- CLIENT -------------
 
@@ -34,6 +34,14 @@ function ResetRewardsScheduleRequest()
 end
 
 ------------- SERVER -------------
+
+local function convertMinutesToHoursAndMinutes(timeRemaining)
+    local minutesRemaining = math.floor(timeRemaining / 60)
+
+    local hours = math.floor(minutesRemaining / 60)
+    local minutes = minutesRemaining % 60
+    return (hours .. " hrs and " .. minutes .. " minutes")
+end
 
 local function GiveReward(player, reward)
     if reward and reward.itemID then
@@ -89,11 +97,8 @@ local function ClaimDailyReward(player, currentTime)
 
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
-            local minutesRemaining = math.floor(timeRemaining / 60)
-            local secondsRemaining = timeRemaining % 60
-
             -- Print how much time is remaining
-            print("You must wait " .. tostring(minutesRemaining) .. " minutes and " .. tostring(secondsRemaining) .. " seconds to claim the next reward.")
+            print("You must wait " .. convertMinutesToHoursAndMinutes(timeRemaining) .. " to claim the next reward.")
             return
         end
 
@@ -130,6 +135,6 @@ function self:ServerAwake()
     resetRewardsRequest:Connect(function(player)
         SaveRewardSchedule()
     end)
-    
+
     LoadRewardSchedule(function()end)
 end
