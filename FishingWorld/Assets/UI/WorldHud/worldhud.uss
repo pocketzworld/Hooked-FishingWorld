@@ -22,6 +22,7 @@
   --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
   --placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
+  --gem-icon: url("project://database/Assets/UI/Icons/icon_gem_2_blue.png");
 }
 
 .worldhud {
@@ -75,6 +76,11 @@
   right: 11px;
 }
 
+.world-button.dailies {
+  top: 100px;
+  left: 11px;
+}
+
 .button-icon {
   align-items: center;
   justify-content: flex-start;
@@ -116,8 +122,12 @@
 
 #_InventoryIcon {
   --unity-image: var(--journal-pic);
-
 }
+
+#_DailiesIcon {
+  --unity-image: var(--gem-icon);
+}
+
 
 .placeholder {
   position: absolute;
