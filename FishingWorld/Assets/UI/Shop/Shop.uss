@@ -18,6 +18,7 @@
   --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
   /*--placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");*/
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
+  --sad-fish-icon: url("project://database/Assets/UI/Icons/Sad_Fish.png");
 
   --image-icon-pole: url("project://database/Assets/UI/Icons/Poles/Pole_Lvl_4.png");
   --image-icon-bait: url("project://database/Assets/UI/Icons/Bait/bait-worm@2x.png");
@@ -570,6 +571,26 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+
+#_closeButtonImage{
+  width: 30px;
+  height: 30px;
+}
+
 .shop__item__info__close {
   position: absolute;
   top: 2px;
@@ -851,4 +872,211 @@
   height: 23px;
 
   align-self: center;
+}
+
+/* Missing Coins Modal */
+
+.missing-coins-modal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+
+  min-width: 300px;
+  max-width: 350px;
+
+  min-height: 400px;
+  max-height: 500px;
+
+  width: 100%;
+  height: 100%;
+
+  align-self: center;
+
+  border-radius: 8px;
+  border-width: 3px;
+  border-color: var(--color-tertiary);
+
+  overflow: hidden;
+
+  transition: all 0.2s ease-in-out;
+  scale: 0;
+}
+
+.missing-coins-modal.open {
+  scale: 1;
+}
+
+.missing-coins-modal__upper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-secondary);
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 100% 100%;
+}
+
+.missing-coins-modal__upper Image {
+  width: 200px;
+  height: 200px;
+
+  --unity-image: var(--sad-fish-icon);
+}
+
+.missing-coins-modal__lower {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-primary);
+
+  padding: 10px;
+}
+
+.missing-coins-modal__lower-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  padding: 5px;
+}
+
+.missing-coins-modal__lower__text {
+  top: 0;
+
+  font-size: 30px;
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-bold);
+
+  margin-bottom: 3px;
+}
+
+.missing-coins-modal__lower__deals {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.missing-coins-modal__lower__deal {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  height: 50px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5px;
+  margin: 5px;
+
+  background-color: var(--color-secondary);
+  
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 5px;
+
+  border-color: var(--color-tertiary);
+
+  background-image: var(--image-TanVignette_Dark);
+}
+
+.missing-coins-modal__lower__deal Image {
+  width: 33px;
+  height: 33px;
+}
+
+.missing-coins-modal__lower__deal__text {
+  flex-grow: 1;
+  margin-left: 10px;
+  
+  font-size: 20px;
+  color: var(--color-tertiary);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+.missing-coins-modal__lower__purchase {
+  display: flex;
+  flex-direction: row;
+
+  width: 75px;
+  height: 30px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px;
+  margin: 5px;
+
+  background-color: var(--color-tertiary);
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  -unity-text-align: middle-center;
+}
+
+.missing-coins-modal__lower__purchase Image {
+  width: 18px;
+  height: 18px;
+
+  --unity-image: var(--golden-icon);
+}
+
+.missing-coins-modal__lower__purchase__text {
+  font-size: 16px;
+  color: var(--color-white);
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+/* Close Button */
+.missing-coins-modal__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.missing-coins-modal__close-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+.missing-coins-modal__close-content Image {
+  width: 30px;
+  height: 30px;
+
+  --unity-image: var(--image-icon-close);
 }

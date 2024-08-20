@@ -7,7 +7,7 @@
     xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
 >
 
-  <hr:UILuaView class="shop">
+  <hr:UILuaView class="shop" name="_Shop">
     <VisualElement class="cash-container">
 
       <VisualElement class="cash-content">
@@ -45,7 +45,7 @@
         </VisualElement>
       </VisualElement>
 
-      <hr:UIScrollView class="shop__content__container">
+      <hr:UIScrollView class="shop__content__container" name="_ShopContentContainer">
         <VisualElement class="content-header">
           <VisualElement class="content-header__left" name="_contentHeaderIcon">
             <Image class="content-header__left__icon" />
