@@ -155,7 +155,7 @@ end
     return combinedTable
   end
 
-  -- Function to trim text and replace it with an ellipsis if it exceeds the specified length
+-- Function to trim text and replace it with an ellipsis if it exceeds the specified length
 function TrimText(text: string, maxLength: number)
     if text:len() > maxLength then
         return text:sub(1, maxLength - 3) .. "..."
