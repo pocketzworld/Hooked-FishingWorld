@@ -18,7 +18,7 @@
         </VisualElement>
 
         <Label class="dailyrewards__header__title" text="Daily Rewards" />
-        <Label class="dailyrewards__header__subtitle" text="Claim your daily rewards!" />
+        <hr:UILabel class="dailyrewards__header__subtitle" text="Claim your daily rewards!" name="_header" />
       </VisualElement>
 
       <VisualElement class="dailyrewards__progress">
@@ -28,7 +28,7 @@
       </VisualElement>
 
       <VisualElement class="dailyrewards__content">
-        <VisualElement class="dailyrewards__content__container">
+        <VisualElement class="dailyrewards__content__container" name="_content">
           <!-- Three rewards on row1 and row2, day 7 reward on row3 to maintain responsive style-->
           <VisualElement class="dailyrewards__content__row1">
             <VisualElement class="dailyrewards__item claimed coins">
