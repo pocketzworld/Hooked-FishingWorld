@@ -14,6 +14,8 @@ local FishingHudObject : GameObject = nil
 local ItemPopupObject : GameObject = nil
 --!SerializeField
 local RewardPopupObject : GameObject = nil
+--!SerializeField
+local DailiesUIObject : GameObject = nil
 
 local Utils = require("Utils")
 local gameManager = require("GameManager")
@@ -27,6 +29,7 @@ ShopUI = nil
 WorldHUD = nil
 itemPopup = nil
 RewardPopup = nil
+DailiesScript = nil
 
 local uiMap = {
     Inventory = InventoryObject,
@@ -34,7 +37,8 @@ local uiMap = {
     Shop = ShopObject,
     WorldHUD = WorldHudObject,
     itemPopup = ItemPopupObject,
-    RewardPopup = RewardPopupObject
+    RewardPopup = RewardPopupObject,
+    Dailies = DailiesUIObject
 }
 
 ToggleInventory = function()
@@ -134,7 +138,13 @@ ButtonPressed = function(btn)
         ShopUI.OpenShop()
         ShopUI.ButtonPressed("deals")
         audioManager.PlaySound("coinsSound1", 1)
-    
+
+    elseif btn == "Dailies" then
+        ToggleAll(false)
+        ToggleUI("Dailies", true)
+
+        audioManager.PlaySound("paperSound1", 1.1)
+
     elseif btn == "Close" then
         -- This works for all UIs (leaderboard, inventory, etc.)
         ToggleAll(false)
