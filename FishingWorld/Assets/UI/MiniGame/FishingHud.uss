@@ -1,57 +1,93 @@
+:root {
+    --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+    --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+    --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+    --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+    --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+  
+    --color-primary: #F2E4C6;
+    --color-secondary: #b08b5e;
+    --color-tertiary: #684F36;
+    --color-white: #f2e2e1;
+  
+    --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+    --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+
+    --fishing-bg: url("project://database/Assets/UI/Icons/fishing_BG_2.png");
+  }
+
 .fishing-hud {
     display: flex;
     flex-grow: 1;
 
     position: absolute;
     bottom: 0;
+    
     width: 100%;
 }
 
 .fish-button {
-    
-    -unity-text-align: middle-center;
+    display: flex;
+
     align-self: center;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
     padding: 10px;
     border-radius: 8px;
+    border-width: 2px;
+    border-color: var(--color-tertiary);
 
-    color: #000000;
-    font-size: 32px;
-    width: 64px;
-    height: 64px;
-}
+    width: 70px;
+    height: 40px;
 
-#actionLabel {
+    background-color: var(--color-tertiary);
+    background-image: var(--image-TanVignette_Dark);
 }
 
 .button-content {
-    color: #ffffff;
+    display: flex;
+
+    font-size: 20px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: var(--font-inter-semi-bold);
+
+    color: var(--color-white);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
 }
 
 .progress-bar {
     width: 75%;
     height: 25px;
 }
+
 .progress-bar__background {
     background-color: #773920;
-    border-radius: 5px;
-    border-radius-bottom-left: 5px;
+
     height: 15px;
+    overflow: hidden;
 
     border-width: 2px;
-    border-color: #ae6e34;
+    border-color: var(--color-tertiary);
+
+    border-radius: 8px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    background-image: var(--image-TanVignette_Light);
 }
+
 .progress-bar__progress {
-    background-color: #fff902;
+    background-image: var(--image-TanVignette_Dark);
 }
 
 .fish-container {
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #fishSlider {
@@ -61,6 +97,7 @@
 #fishSlider .slider__knob {
     width: 36px;
     height: 36px;
+    
     top: 0;
     bottom: 0;
 
@@ -74,7 +111,6 @@
     height: 36px;
     top: 0;
     background-color: rgba(0,0,0,0);
-    /*background-image: url("project://database/Assets/UI/Icons/Fishing_Outline.png");*/
 }
 
 #hookSlider {
@@ -88,27 +124,33 @@
 
 #hookSlider .slider__background {
     display: flex;
-    background-color: rgba(255,255,255,0);
-    background-image: url("project://database/Assets/UI/Icons/fishing_BG_2.png");
+
+    background-image: var(--image-TanVignette_Light);
     height: 36px;
     top: 0;
 
-    border-width: 3px;
-    border-radius: 5px;
-    border-color: #87501f;
+    border-width: 2px;
+    border-radius: 8px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-color: var(--color-tertiary);
+
+    overflow: hidden;
 }
 
 #hookSlider .slider__knob {
     width: 72px;
-    height: 36px;
+    height: 100%;
+    
     top: 0;
     bottom: 0;
 
-    border-radius: 0%;
-    border-width: 0px;
-    background-color: rgba(0,0,0,.5);
-    background-image: url("project://database/Assets/UI/Icons/Fishing_Bar_Green.png");
+    border-radius: 0;
+    border-width: 1px;
 
+    border-color: var(--color-tertiary);
+
+    background-image: var(--image-TanVignette_Dark);
 }
 
 .slider .slider__foreground {
