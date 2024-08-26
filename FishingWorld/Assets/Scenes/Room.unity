@@ -10660,6 +10660,7 @@ MonoBehaviour:
   m_pitch: 30
   m_yaw: 45
   m_centerOnCharacterWhenSpawned: 1
+  m_centerOnCharacterWhenMovingSpeed: 0
   m_keepPlayerInView: 0
   m_keepPlayerInViewPanDuration: 0.5
   references:

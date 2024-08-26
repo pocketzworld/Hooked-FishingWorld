@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/pnoty")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0xea44b03c618a01fb, typeof(LuaBehaviour))]
     public class pnoty : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "fc332a31903ab8c489bdbdd464d8ade4";

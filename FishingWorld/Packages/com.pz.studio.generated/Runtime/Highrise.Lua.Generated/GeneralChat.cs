@@ -13,17 +13,24 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/GeneralChat")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x7f9a01ee37e562d5, typeof(LuaBehaviour))]
     public class GeneralChat : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "9f704bff1826b43a3834478cd1499710";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public System.String m_channelName = "All";
+        [SerializeField] public System.Boolean m_enableVoice = true;
+        [SerializeField] public System.Boolean m_enableProximityChat = true;
+        [Tooltip("The distance between players where their voice starts to get softer")]
         [SerializeField] public System.Double m_maxVolumeDistance = 15;
+        [Tooltip("The distance between players where you can no longer hear them")]
         [SerializeField] public System.Double m_minVolumeDistance = 30;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -33,8 +40,11 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_maxVolumeDistance),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_minVolumeDistance),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_channelName),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_enableVoice),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_enableProximityChat),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_maxVolumeDistance),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_minVolumeDistance),
             };
         }
     }

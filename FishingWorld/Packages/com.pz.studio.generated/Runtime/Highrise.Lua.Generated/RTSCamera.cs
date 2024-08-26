@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/RTSCamera")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x98701db57e52a0cf, typeof(LuaBehaviour))]
     public class RTSCamera : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "5bf9b46e92aad47ed9faec56891fc6e3";
@@ -32,6 +34,9 @@ namespace Highrise.Lua.Generated
         [SerializeField] public System.Double m_pitch = 30;
         [SerializeField] public System.Double m_yaw = 45;
         [SerializeField] public System.Boolean m_centerOnCharacterWhenSpawned = true;
+        [Tooltip("Set how fast the camera cneters on the player when moving 0=none 1=instant")]
+        [Range(0,1)]
+        [SerializeField] public System.Double m_centerOnCharacterWhenMovingSpeed = 0;
         [SerializeField] public System.Boolean m_keepPlayerInView = false;
         [SerializeField] public System.Double m_keepPlayerInViewPanDuration = 0.5;
 
@@ -49,8 +54,9 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(4), m_pitch),
                 CreateSerializedProperty(_script.GetPropertyAt(5), m_yaw),
                 CreateSerializedProperty(_script.GetPropertyAt(6), m_centerOnCharacterWhenSpawned),
-                CreateSerializedProperty(_script.GetPropertyAt(7), m_keepPlayerInView),
-                CreateSerializedProperty(_script.GetPropertyAt(8), m_keepPlayerInViewPanDuration),
+                CreateSerializedProperty(_script.GetPropertyAt(7), m_centerOnCharacterWhenMovingSpeed),
+                CreateSerializedProperty(_script.GetPropertyAt(8), m_keepPlayerInView),
+                CreateSerializedProperty(_script.GetPropertyAt(9), m_keepPlayerInViewPanDuration),
             };
         }
     }

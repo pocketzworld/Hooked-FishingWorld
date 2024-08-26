@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/SideScrollerCamera")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x570572a7a0683513, typeof(LuaBehaviour))]
     public class SideScrollerCamera : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "dcb0c85ded312444d85ab35cbc44e4f6";
