@@ -226,7 +226,7 @@ function self:ClientUpdate()
 
         -- Hook Slider
         decreaseValue()
-        uiManager.FishingUI.UpdateHook(currentValue, linedUp)
+        uiManager.FishingUIScript.UpdateHook(currentValue, linedUp)
         if currentSpeed < Speed * FishMod then
             currentSpeed = currentSpeed + Time.deltaTime * 50 * FishMod
             if currentSpeed > Speed * FishMod then currentSpeed = Speed * FishMod end
@@ -241,7 +241,7 @@ function self:ClientUpdate()
             end
         end
 
-        uiManager.FishingUI.UpdateFish(fishvalue)
+        uiManager.FishingUIScript.UpdateFish(fishvalue)
         
         -- Calculate progress as a ratio of elapsedTime to duration
         linedUp = math.abs((currentValue-36) - fishvalue) < 200
@@ -259,7 +259,7 @@ function self:ClientUpdate()
         end
         
         -- Update the progress bar visual (this is pseudocode)
-        uiManager.FishingUI.UpdateProgressBar(progress)
+        uiManager.FishingUIScript.UpdateProgressBar(progress)
     end
 end
 

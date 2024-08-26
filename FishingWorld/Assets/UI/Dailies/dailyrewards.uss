@@ -181,9 +181,9 @@
   padding: 5px;
 }
 
-.dailyrewards__content__row1,
-.dailyrewards__content__row2,
-.dailyrewards__content__row3 {
+.dailyrewards__content__row,
+.dailyrewards__content__row,
+.dailyrewards__content__row {
   display: flex;
   flex-direction: row;
 
@@ -252,6 +252,7 @@
   top: 2px;
 }
 
+/*
 .dailyrewards__item.coins Image {
   --unity-image: var(--coin-icon);
 }
@@ -259,6 +260,7 @@
 .dailyrewards__item.baits Image {
   --unity-image: var(--image-icon-bait);
 }
+*/
 
 .dailyrewards__item.special .dailyrewards__item__content {
   display: flex;
@@ -271,6 +273,7 @@
   height: 100%;
 }
 
+/*
 .dailyrewards__item__content_info.one Image {
   --unity-image: var(--image-icon-deals);
 }
@@ -282,6 +285,7 @@
 .dailyrewards__item__content_info.three Image {
   --unity-image: var(--image-icon-deals);
 }
+*/
 
 .dailyrewards__item__content_info {
   display: flex;

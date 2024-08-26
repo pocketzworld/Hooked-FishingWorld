@@ -30,7 +30,9 @@
       <VisualElement class="dailyrewards__content">
         <VisualElement class="dailyrewards__content__container" name="_content">
           <!-- Three rewards on row1 and row2, day 7 reward on row3 to maintain responsive style-->
-          <VisualElement class="dailyrewards__content__row1">
+          
+          <!--
+          <VisualElement class="dailyrewards__content__row one">
             <VisualElement class="dailyrewards__item claimed coins">
               <VisualElement class="dailyrewards__item__header">
                 <Label class="dailyrewards__item__header__title" text="Day 1" />
@@ -62,7 +64,7 @@
             </VisualElement>
           </VisualElement>
 
-          <VisualElement class="dailyrewards__content__row2">
+          <VisualElement class="dailyrewards__content__row two">
             <VisualElement class="dailyrewards__item baits">
               <VisualElement class="dailyrewards__item__header">
                 <Label class="dailyrewards__item__header__title" text="Day 4" />
@@ -94,7 +96,7 @@
             </VisualElement>
           </VisualElement>
 
-          <VisualElement class="dailyrewards__content__row3">
+          <VisualElement class="dailyrewards__content__row three">
             <VisualElement class="dailyrewards__item special">
               <VisualElement class="dailyrewards__item__header">
                 <Label class="dailyrewards__item__header__title" text="Day 7" />
@@ -116,6 +118,8 @@
               </VisualElement>
             </VisualElement>
           </VisualElement>
+          -->
+
         </VisualElement>
       </VisualElement>
 
