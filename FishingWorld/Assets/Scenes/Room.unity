@@ -516,14 +516,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 806688072}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cba4e90d02f8c045bf2f7dcd61108e9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 806688071}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cba4e90d02f8c045bf2f7dcd61108e9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 806688070}
   m_SourcePrefab: {fileID: 100100000, guid: 0cba4e90d02f8c045bf2f7dcd61108e9, type: 3}
 --- !u!4 &32519387 stripped
 Transform:
@@ -9502,35 +9494,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 32519386}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &806688070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806688067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1504843577, guid: 5e99434f214126023bd8db55a8296c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _url: https://high.rs/shop?type=ic&id=66c8c5f68c40d2272638542e
---- !u!114 &806688071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806688067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 881728705, guid: 5e99434f214126023bd8db55a8296c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _checkDistance: 1
-  _distance: 2.5
-  _moveTo: 1
-  _moveTarget: {fileID: 0}
 --- !u!65 &806688072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16250,14 +16213,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1552147538}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 609c376140dd1a44784eae779880a72b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1552147537}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 609c376140dd1a44784eae779880a72b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1552147536}
   m_SourcePrefab: {fileID: 100100000, guid: 609c376140dd1a44784eae779880a72b, type: 3}
 --- !u!4 &1545637182 stripped
 Transform:
@@ -16271,35 +16226,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1545637181}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1552147536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552147533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 881728705, guid: 5e99434f214126023bd8db55a8296c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _checkDistance: 1
-  _distance: 1.5
-  _moveTo: 1
-  _moveTarget: {fileID: 0}
---- !u!114 &1552147537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552147533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1504843577, guid: 5e99434f214126023bd8db55a8296c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _url: https://high.rs/shop?type=ic&id=66c8c60be8802aa53b10ec52
 --- !u!65 &1552147538
 BoxCollider:
   m_ObjectHideFlags: 0
