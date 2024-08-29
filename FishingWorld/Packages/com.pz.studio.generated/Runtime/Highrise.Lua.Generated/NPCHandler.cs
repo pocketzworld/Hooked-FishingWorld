@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/NPCHandler")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0xdd107d797c408f4c, typeof(LuaBehaviour))]
     public class NPCHandler : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "34d5f890dd33002429a3276eb1a52432";

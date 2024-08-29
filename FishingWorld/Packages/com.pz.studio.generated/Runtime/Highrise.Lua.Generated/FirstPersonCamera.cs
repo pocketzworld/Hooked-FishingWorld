@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/FirstPersonCamera")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x9631f869664812d3, typeof(LuaBehaviour))]
     public class FirstPersonCamera : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "c09406aec98e45e4dbd229bb77b59aa6";

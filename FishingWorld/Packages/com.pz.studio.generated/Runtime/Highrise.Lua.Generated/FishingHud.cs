@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/FishingHud")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x907dc809236ce3f6, typeof(LuaBehaviour))]
     public class FishingHud : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "cb68b03ded226f546b1155d7a06f09d0";

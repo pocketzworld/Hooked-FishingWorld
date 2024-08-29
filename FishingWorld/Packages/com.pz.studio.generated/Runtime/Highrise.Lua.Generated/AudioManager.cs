@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/AudioManager")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x54ef1694c40a5ef8, typeof(LuaBehaviour))]
     public class AudioManager : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "8f64230ed94678b4a93d9ee72a289fc1";

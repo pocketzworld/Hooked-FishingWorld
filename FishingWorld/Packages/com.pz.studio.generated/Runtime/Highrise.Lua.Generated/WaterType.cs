@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/WaterType")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0xa3b876eb76148c78, typeof(LuaBehaviour))]
     public class WaterType : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "dfee82da9d8c2d34a8bd872e26f9239e";
