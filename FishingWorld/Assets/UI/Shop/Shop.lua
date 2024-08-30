@@ -346,10 +346,13 @@ function CreateItemInfoPage(name: string, price: number, description: string, im
     else -- Use Cash to buy the item
       _BuyButton:RegisterPressCallback(function()
 
-        if playerTracker.GetTokens(client.localPlayer) >= price then
+        print("BUYING " .. tostring(item_quantity) .. " " .. name .. " for " .. tostring(price * item_quantity) .. " coins")
+        
+        local totalPrice = price * item_quantity
+        if playerTracker.GetTokens(client.localPlayer) >= totalPrice then
 
           -- Purchase Item only if the player has enough cash
-          inventoryManager.PurchaseItem(id, price)
+          inventoryManager.PurchaseItem(id, totalPrice, item_quantity)
 
           -- Equip the item if it is bait
           if baitMetas[id] then

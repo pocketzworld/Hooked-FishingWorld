@@ -29,8 +29,8 @@ function TakeItemClient(id: string, amount: number)
     --takeItemReq:FireServer(id, amount)
 end
 
-function PurchaseItem(id : string, price : number)
-    purchaseItemReq:FireServer(id, price)
+function PurchaseItem(id : string, price : number, quantity : number)
+    purchaseItemReq:FireServer(id, price, quantity)
 end
 
 function self:ClientAwake()
@@ -84,10 +84,10 @@ function self:ServerAwake()
         end
     end)
 
-    purchaseItemReq:Connect(function(player: Player, id: string, price: number)
+    purchaseItemReq:Connect(function(player: Player, id: string, price: number, quantity: number)
         local transaction = InventoryTransaction.new()
         :TakePlayer(player, "Tokens", price)
-        :GivePlayer(player, id, 1)
+        :GivePlayer(player, id, quantity)
         Inventory.CommitTransaction(transaction)
 
         GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
