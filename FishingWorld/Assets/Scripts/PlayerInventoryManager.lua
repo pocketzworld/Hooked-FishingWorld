@@ -141,12 +141,12 @@ end
 
 function GivePlayerItem(player : Player, itemId : string, amount : number)
     itemChangedEvent:FireClient(player, itemId)
-    table.insert(GiveTransactionsToCommit, {player = player, itemId = itemId, amount = amount})
+    table.insert(GiveTransactionsToCommit, {playerID = player.user.id, itemId = itemId, amount = amount})
 
     UpdatePlayerInventory_Temporary(player, itemId, amount)
 end
 function TakePlayerItem(player : Player, itemId : string, amount : number)
-    table.insert(TakeTransactionsToCommit, {player = player, itemId = itemId, amount = amount})
+    table.insert(TakeTransactionsToCommit, {playerID = player.user.id, itemId = itemId, amount = amount})
     UpdatePlayerInventory_Temporary(player, itemId, -amount)
 end
 
@@ -161,10 +161,10 @@ function CommitQueuedTransactions()
     local compiledTransaction = InventoryTransaction.new()
 
     for index, transaction in GiveTransactionsToCommit do
-        compiledTransaction:GivePlayer(transaction.player, transaction.itemId, transaction.amount)
+        compiledTransaction:Give(transaction.playerID, transaction.itemId, transaction.amount)
     end
     for index, transaction in TakeTransactionsToCommit do
-        compiledTransaction:TakePlayer(transaction.player, transaction.itemId, transaction.amount)
+        compiledTransaction:Take(transaction.playerID, transaction.itemId, transaction.amount)
     end
 
     Inventory.CommitTransaction(compiledTransaction)
