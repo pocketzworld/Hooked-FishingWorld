@@ -57,6 +57,15 @@
         
       </VisualElement>
 
+      <VisualElement class="world-button dailies" name="_DailiesButton">
+        <hr:UIImage class="button-icon" name="_DailiesIcon"/>
+
+        <VisualElement class="placeholder dailies" picking-mode="Ignore">
+          <Label class="inventory-text" text="Dailies"/>
+        </VisualElement>
+        
+      </VisualElement>
+
     </VisualElement>
   </hr:UILuaView>
 

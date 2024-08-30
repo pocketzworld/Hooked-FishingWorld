@@ -10,6 +10,8 @@ local _InventoryButton : VisualElement = nil
 --!Bind 
 local _ShopButton : VisualElement = nil
 --!Bind
+local _DailiesButton : VisualElement = nil
+--!Bind
 local add_cash_button : VisualElement = nil
 --!Bind
 local cash_text : Label = nil
@@ -36,6 +38,10 @@ end, true, true, true)
 
 _ShopButton:RegisterPressCallback(function()
     UIManager.ButtonPressed("Shop")
+end, true, true, true)
+
+_DailiesButton:RegisterPressCallback(function()
+    UIManager.ButtonPressed("Dailies")
 end, true, true, true)
 
 add_cash_button:RegisterPressCallback(function()

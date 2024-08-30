@@ -1,0 +1,372 @@
+:root {
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #f2e2e1;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+
+  --coin-icon: url("project://database/Assets/UI/Icons/icon_coins.png");
+  --image-icon-pole: url("project://database/Assets/UI/Icons/Poles/Pole_Lvl_4.png");
+  --image-icon-bait: url("project://database/Assets/UI/Icons/Bait/bait-worm@2x.png");
+  --image-icon-deals: url("project://database/Assets/UI/Icons/icon_coins_pouch.png");
+}
+
+.dailyrewards {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  bottom: 0;
+
+  padding: 10px;
+}
+
+.dailyrewards__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  max-width: 600px;
+  max-height: 800px;
+
+  top: 0;
+  bottom: 0;
+
+  border-radius: 10px;
+
+  padding: 10px;
+  overflow: hidden;
+}
+
+.dailyrewards__header {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100px;
+
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-inter-black);
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+
+  padding: 5px;
+}
+
+.dailyrewards__header__title {
+  font-size: 26px;
+  color: var(--color-primary);
+
+  text-shadow: 0px 0px 5px var(--color-tertiary);
+}
+
+.dailyrewards__header__subtitle {
+  font-size: 12px;
+  color: var(--color-primary);
+
+  text-shadow: 0px 0px 5px var(--color-tertiary);
+  margin-bottom: 5px;
+}
+
+.dailyrewards__progress {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 50px;
+
+  padding: 5px;
+}
+
+.dailyrewards__progress__container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+}
+
+.streaks {
+  display: flex;
+  position: absolute;
+  
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+}
+
+.streak {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border-color: var(--color-tertiary);
+  border-width: 2px;
+
+  margin: 10px;
+}
+
+.streak.claimed {
+  background-color: var(--color-tertiary);
+}
+
+.progress-bar__background {
+  background-color: var(--color-tertiary);
+}
+
+.progress-bar__progress {
+  background-color: var(--color-primary);
+}
+
+.dailyrewards__content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.dailyrewards__content__container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+}
+
+.dailyrewards__content__row,
+.dailyrewards__content__row,
+.dailyrewards__content__row {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+  margin: 3px 0;
+}
+
+.dailyrewards__item {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+  margin: 5px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-color: var(--color-secondary);
+
+  overflow: hidden;
+}
+
+.dailyrewards__item__content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.dailyrewards__item__content__text {
+  position: absolute;
+  font-size: 20px;
+
+  color: var(--color-primary);
+  text-shadow: 0px 0px 5px var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-semi-bold);
+
+  bottom: 0;
+}
+
+.dailyrewards__item.claimed {
+  background-image: var(--image-TanVignette_Light);
+  opacity: 0.5;
+}
+
+.dailyrewards__item.special {
+  width: 100%;
+}
+
+.dailyrewards__item__content__icon {
+  width: 55px;
+  height: 55px;
+
+  top: 2px;
+}
+
+/*
+.dailyrewards__item.coins Image {
+  --unity-image: var(--coin-icon);
+}
+
+.dailyrewards__item.baits Image {
+  --unity-image: var(--image-icon-bait);
+}
+*/
+
+.dailyrewards__item.special .dailyrewards__item__content {
+  display: flex;
+  flex-direction: row;
+  
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+/*
+.dailyrewards__item__content_info.one Image {
+  --unity-image: var(--image-icon-deals);
+}
+
+.dailyrewards__item__content_info.two Image {
+  --unity-image: var(--image-icon-deals);
+}
+
+.dailyrewards__item__content_info.three Image {
+  --unity-image: var(--image-icon-deals);
+}
+*/
+
+.dailyrewards__item__content_info {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.dailyrewards__item__header {
+  display: flex;
+  align-items: center;
+
+  -unity-text-align: middle-center;
+
+  background-color: var(--color-tertiary);
+  width: 100%;
+  height: 40px;
+}
+
+.dailyrewards__item__header__title {
+  font-size: 16px;
+  color: var(--color-primary);
+
+  text-shadow: 0px 0px 5px var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.dailyrewards__footer {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 50px;
+
+  padding: 5px;
+  -unity-text-align: middle-center;
+}
+
+.dailyrewards__footer__button {
+  color: var(--color-primary);
+  font-size: 20px;
+
+  text-shadow: 0px 0px 5px var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.dailyrewards__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.dailyrewards__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+#_closeButtonImage{
+  width: 30px;
+  height: 30px;
+}

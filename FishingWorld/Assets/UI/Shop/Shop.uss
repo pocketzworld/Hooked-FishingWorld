@@ -16,8 +16,13 @@
 
   --coin-icon: url("project://database/Assets/UI/Icons/icon_coins.png");
   --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
-  --placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");
+  /*--placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");*/
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
+  --sad-fish-icon: url("project://database/Assets/UI/Icons/Sad_Fish.png");
+
+  --image-icon-pole: url("project://database/Assets/UI/Icons/Poles/Pole_Lvl_4.png");
+  --image-icon-bait: url("project://database/Assets/UI/Icons/Bait/bait-worm@2x.png");
+  --image-icon-deals: url("project://database/Assets/UI/Icons/icon_coins_pouch.png");
 }
 
 .shop {
@@ -233,6 +238,16 @@
   right: 2px;
 }
 
+.shop__content__container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
+}
+
 .shop__content {
   display: flex;
   flex-direction: row;
@@ -241,13 +256,12 @@
   justify-content: center;
 
   width: 100%;
+  height: auto;
+
+  padding: 0 10px;
+
   min-width: 250px;
-  margin-top: 10px;
-
-  overflow: scroll;
   align-self: center;
-
-  padding: 2px 5px;
 }
 
 .scroll-view__content-viewport {
@@ -256,43 +270,39 @@
 }
 
 .scroll-view__content-container {
-
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
 
   width: 100%;
-  height: auto;
 
-  padding: 0 5px;
+  padding: 0 0 50px 0;
 }
 
 .scroll-bar {
-  width: 5px;
-
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-
   display: flex;
+
+  width: 5px;
+  border-radius: 2px;
 }
 
 .scroll-bar__thumb {
-  background-color: var(--color-secondary);
   border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .scroll-bar__thumb:active {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .scroll-bar__thumb:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .shop__item {
   width: 110px;
-  height: 147px;
+  height: 150px;
 
   align-items: center;
   margin: 0 3px 5px 3px;
@@ -308,6 +318,27 @@
   overflow: hidden;
 
   -unity-font-definition: var(--font-inter-semi-bold);
+}
+
+.shop__item-name {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 30px;
+
+  margin-bottom: 5px;
+
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-inter-semi-bold);
+
+  background-color: var(--color-secondary);
+}
+
+.shop__item__name-label {
+  font-size: 16px;
+  color: var(--color-tertiary);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
 }
 
 .shop__item-price {
@@ -331,6 +362,7 @@
 
   --unity-image: var(--coin-icon);
 }
+
 .package__item-price__icon{
   width: 24px;
   height: 24px;
@@ -340,10 +372,9 @@
 
 .shop__item-icon {
   display: flex;
-  position: absolute;
-  top: 15px;
+  align-self: center;
 
-  flex-direction: row;
+  top: 0;
   width: 100%;
 
   align-items: center;
@@ -351,8 +382,8 @@
 }
 
 .shop__item-icon Image {
-  width: 75px;
-  height: 75px;
+  width: 70px;
+  height: 70px;
 
   --unity-image: var(--placeholder-icon);
 }
@@ -376,7 +407,9 @@
   position: absolute;
 
   width: 350px;
-  height: 300px;
+  height: auto;
+
+  min-height: 300px;
 
   padding: 10px;
   align-self: center;
@@ -392,6 +425,9 @@
   border-color: var(--color-tertiary);
 
   overflow: hidden;
+
+  transition: all 0.3s ease-in-out;
+  scale: 0;
 }
 
 .shop__item__info-content {
@@ -448,11 +484,16 @@
 .shop__item__info-icon UIImage {
   width: 60px;
   height: 60px;
+
+  align-self: center;
 }
 
 .shop__item__info-description {
   width: 100%;
-  height: 100px;
+  height: auto;
+
+  min-height: 50px;
+  max-height: 100px;
 
   padding: 5px;
   font-size: 14px;
@@ -474,6 +515,82 @@
   white-space: normal;
 }
 
+.item-quantity-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 60px;
+
+  margin: 10px 0;
+}
+
+.item-quantity-modal__decrement,
+.item-quantity-modal__increment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 53px;
+  height: 53px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-inter-semi-bold);
+
+  color: var(--color-tertiary);
+  font-size: 30px;
+  align-self: center;
+}
+
+.item-quantity-modal__count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  border-bottom-color: var(--color-tertiary);
+  border-bottom-width: 2px;
+}
+
+
+.item-quantity-modal__count__label {
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-bold);
+  font-size: 23px;
+  align-self: center;
+}
+
+.item-quantity-modal__decrement--disabled,
+.item-quantity-modal__increment--disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+
+#_closeButtonImage{
+  width: 30px;
+  height: 30px;
+}
+
 .shop__item__info__close {
   position: absolute;
   top: 2px;
@@ -484,6 +601,7 @@
 .shop__item__info-purchased {
   display: flex;
   padding: 5px;
+  margin-top: 10px;
 
   -unity-text-align: middle-center;
   -unity-font-definition: var(--font-inter-semi-bold);
@@ -501,21 +619,18 @@
   justify-content: center;
 }
 
-.shop__item__info__buy-label {
-  margin: 0 5px;
-}
-
 
 .shop__item__info-price {
   flex-direction: row;
-  margin: 0 5px;
+  margin: 0 3px;
 }
 
 .shop__item__info-price__icon {
-  margin-right: 5px;
-  width: 24px;
-  height: 24px;
+  margin-left: 5px;
+  width: 23px;
+  height: 23px;
 
+  align-self: center;
   --unity-image: var(--coin-icon);
 }
 
@@ -537,4 +652,431 @@
 
   width: 37px;
   height: 37px;
+}
+
+/* Content Header */
+
+.content-header {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 93%;
+  height: 70px;
+
+  background-color: var(--color-primary);
+
+  padding: 0 30px 0 15px;
+  margin: 5px 0;
+
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  margin-bottom: 20px;
+}
+
+.content-header__left {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+
+  width: 50px;
+  height: 50px;
+
+  margin-right: 7px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-size: 100% 100%;
+  border-width: 1px;
+  border-color: var(--color-tertiary);
+}
+
+.content-header__left Image {
+  width: 35px;
+  height: 35px;
+}
+
+.content-header__left.pole-icon Image {
+  --unity-image: var(--image-icon-pole);
+}
+
+.content-header__left.bait-icon Image {
+  --unity-image: var(--image-icon-bait);
+}
+
+.content-header__left.deals-icon Image {
+  --unity-image: var(--image-icon-deals);
+}
+
+.content-header__right {
+  color: var(--color-tertiary);
+  flex-grow: 1;
+}
+
+.content-header__right__label {
+  white-space: normal;
+}
+
+/* Transition */
+
+.shop__item__info.open {
+  scale: 1;
+}
+
+.shop__item__info.close {
+  opacity: 0;
+}
+
+/* Deals */
+.deal__item {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: auto;
+
+  margin: 5px;
+
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  background-color: rgba(0, 0, 0, 0.1);
+
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 100% 100%;
+}
+
+.deal__item-header {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100px;
+
+  padding: 0 30px 0 15px;
+
+  margin-bottom: 5px;
+}
+
+.deal__item-header-left  {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+
+  width: 65px;
+  height: 65px;
+
+  margin-right: 7px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-size: 100% 100%;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+  
+}
+
+.deal__item-header-left Image {
+  width: 50px;
+  height: 50px;
+}
+
+.deal__item-header-right {
+  display: flex;
+  
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-tertiary);
+  flex-grow: 1;
+}
+
+.deal__item-header__label {
+  white-space: normal;
+  justify-content: flex-start;
+  -unity-text-align: middle-left;
+}
+
+.deal__item-content {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+
+  padding: 5px;
+
+}
+
+.deal__item__name-label {
+  margin-left: 5px;
+
+  font-size: 16px;
+  color: var(--color-tertiary);
+  -unity-text-align: middle-left;
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+.deal__item-buy {
+  display: flex;
+  padding: 5px;
+
+  width: 100px;
+  height: 40px;
+
+  background-color: var(--color-tertiary);
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+}
+
+.deal__item-buy:hover {
+  opacity: 0.5;
+  scale: 0.9;
+}
+
+.deal__item-price {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  -unity-text-align: middle-center;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  color: var(--color-white);
+}
+
+.deal__item-price Image {
+  width: 23px;
+  height: 23px;
+
+  align-self: center;
+}
+
+/* Missing Coins Modal */
+
+.missing-coins-modal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+
+  min-width: 300px;
+  max-width: 350px;
+
+  min-height: 400px;
+  max-height: 500px;
+
+  width: 100%;
+  height: 100%;
+
+  align-self: center;
+
+  border-radius: 8px;
+  border-width: 3px;
+  border-color: var(--color-tertiary);
+
+  overflow: hidden;
+
+  transition: all 0.2s ease-in-out;
+  scale: 0;
+}
+
+.missing-coins-modal.open {
+  scale: 1;
+}
+
+.missing-coins-modal__upper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-secondary);
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 100% 100%;
+}
+
+.missing-coins-modal__upper Image {
+  width: 200px;
+  height: 200px;
+
+  --unity-image: var(--sad-fish-icon);
+}
+
+.missing-coins-modal__lower {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-primary);
+
+  padding: 10px;
+}
+
+.missing-coins-modal__lower-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  padding: 5px;
+}
+
+.missing-coins-modal__lower__text {
+  top: 0;
+
+  font-size: 30px;
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-bold);
+
+  margin-bottom: 3px;
+}
+
+.missing-coins-modal__lower__deals {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.missing-coins-modal__lower__deal {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  height: 50px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5px;
+  margin: 5px;
+
+  background-color: var(--color-secondary);
+  
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 5px;
+
+  border-color: var(--color-tertiary);
+
+  background-image: var(--image-TanVignette_Dark);
+}
+
+.missing-coins-modal__lower__deal Image {
+  width: 33px;
+  height: 33px;
+}
+
+.missing-coins-modal__lower__deal__text {
+  flex-grow: 1;
+  margin-left: 10px;
+  
+  font-size: 20px;
+  color: var(--color-tertiary);
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+.missing-coins-modal__lower__purchase {
+  display: flex;
+  flex-direction: row;
+
+  width: 75px;
+  height: 30px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px;
+  margin: 5px;
+
+  background-color: var(--color-tertiary);
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  -unity-text-align: middle-center;
+}
+
+.missing-coins-modal__lower__purchase Image {
+  width: 18px;
+  height: 18px;
+
+  --unity-image: var(--golden-icon);
+}
+
+.missing-coins-modal__lower__purchase__text {
+  font-size: 16px;
+  color: var(--color-white);
+  -unity-font-definition: var(--font-inter-bold);
+}
+
+/* Close Button */
+.missing-coins-modal__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.missing-coins-modal__close-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+.missing-coins-modal__close-content Image {
+  width: 30px;
+  height: 30px;
+
+  --unity-image: var(--image-icon-close);
 }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="dailyrewards">
+    <VisualElement class="dailyrewards__container">
+      <hr:UIBlur class="overlay" />
+      <VisualElement class="dailyrewards__header">
+        <VisualElement class="dailyrewards__close" name="_closeButton">
+          <VisualElement class="button-content">
+            <Image name="_closeButtonImage" class="dailyrewards__close_icon" />
+          </VisualElement>
+        </VisualElement>
+
+        <Label class="dailyrewards__header__title" text="Daily Rewards" />
+        <hr:UILabel class="dailyrewards__header__subtitle" text="Claim your daily rewards!" name="_header" />
+      </VisualElement>
+
+      <VisualElement class="dailyrewards__progress">
+        <VisualElement class="dailyrewards__progress__container">
+          <hr:UIProgressBar class="dailyrewards__progress__bar" name="_progressBar" />
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement class="dailyrewards__content">
+        <VisualElement class="dailyrewards__content__container" name="_content">
+          <!-- Three rewards on row1 and row2, day 7 reward on row3 to maintain responsive style-->
+          
+          <!--
+          <VisualElement class="dailyrewards__content__row one">
+            <VisualElement class="dailyrewards__item claimed coins">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 1" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+
+            <VisualElement class="dailyrewards__item coins">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 2" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+
+            <VisualElement class="dailyrewards__item coins">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 3" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+          </VisualElement>
+
+          <VisualElement class="dailyrewards__content__row two">
+            <VisualElement class="dailyrewards__item baits">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 4" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+
+            <VisualElement class="dailyrewards__item baits">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 5" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+
+            <VisualElement class="dailyrewards__item baits">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 6" />
+              </VisualElement>
+              <VisualElement class="dailyrewards__item__content">
+                <Image class="dailyrewards__item__content__icon" />
+                <Label class="dailyrewards__item__content__text" text="10" />
+              </VisualElement>
+            </VisualElement>
+          </VisualElement>
+
+          <VisualElement class="dailyrewards__content__row three">
+            <VisualElement class="dailyrewards__item special">
+              <VisualElement class="dailyrewards__item__header">
+                <Label class="dailyrewards__item__header__title" text="Day 7" />
+              </VisualElement>
+
+              <VisualElement class="dailyrewards__item__content">
+                <VisualElement class="dailyrewards__item__content_info one">
+                  <Image class="dailyrewards__item__content__icon" />
+                  <Label class="dailyrewards__item__content__text" text="10" />
+                </VisualElement>
+                <VisualElement class="dailyrewards__item__content_info two">
+                  <Image class="dailyrewards__item__content__icon" />
+                  <Label class="dailyrewards__item__content__text" text="10" />
+                </VisualElement>
+                <VisualElement class="dailyrewards__item__content_info three">
+                  <Image class="dailyrewards__item__content__icon" />
+                  <Label class="dailyrewards__item__content__text" text="10" />
+                </VisualElement>
+              </VisualElement>
+            </VisualElement>
+          </VisualElement>
+          -->
+
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement class="dailyrewards__footer">
+        <Label class="dailyrewards__footer__button" text="Tap to collect" />
+      </VisualElement>
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

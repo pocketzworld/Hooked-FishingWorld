@@ -26,12 +26,12 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public UnityEngine.GameObject m_InventoryObject = default;
-        [SerializeField] public UnityEngine.GameObject m_LeaderboardObject = default;
         [SerializeField] public UnityEngine.GameObject m_ShopObject = default;
         [SerializeField] public UnityEngine.GameObject m_WorldHudObject = default;
         [SerializeField] public UnityEngine.GameObject m_FishingHudObject = default;
         [SerializeField] public UnityEngine.GameObject m_ItemPopupObject = default;
         [SerializeField] public UnityEngine.GameObject m_RewardPopupObject = default;
+        [SerializeField] public UnityEngine.GameObject m_DailiesUIObject = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -41,12 +41,12 @@ namespace Highrise.Lua.Generated
             return new SerializedPropertyValue[]
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_InventoryObject),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_LeaderboardObject),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_ShopObject),
-                CreateSerializedProperty(_script.GetPropertyAt(3), m_WorldHudObject),
-                CreateSerializedProperty(_script.GetPropertyAt(4), m_FishingHudObject),
-                CreateSerializedProperty(_script.GetPropertyAt(5), m_ItemPopupObject),
-                CreateSerializedProperty(_script.GetPropertyAt(6), m_RewardPopupObject),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_ShopObject),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_WorldHudObject),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_FishingHudObject),
+                CreateSerializedProperty(_script.GetPropertyAt(4), m_ItemPopupObject),
+                CreateSerializedProperty(_script.GetPropertyAt(5), m_RewardPopupObject),
+                CreateSerializedProperty(_script.GetPropertyAt(6), m_DailiesUIObject),
             };
         }
     }

@@ -7,7 +7,7 @@
     xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
 >
 
-  <hr:UILuaView class="shop">
+  <hr:UILuaView class="shop" name="_Shop">
     <VisualElement class="cash-container">
 
       <VisualElement class="cash-content">
@@ -45,21 +45,31 @@
         </VisualElement>
       </VisualElement>
 
-      <hr:UIScrollView name="_ShopContent" class="shop__content">
-        <!-- Shop Content -->
-        <!--
-        <VisualElement class="shop__item" name="_ShopItem">
-          <VisualElement class="shop__item-icon">
-            <Image class="shop__item-icon__image" />
+      <hr:UIScrollView class="shop__content__container" name="_ShopContentContainer">
+        <VisualElement class="content-header">
+          <VisualElement class="content-header__left" name="_contentHeaderIcon">
+            <Image class="content-header__left__icon" />
           </VisualElement>
-
-          <VisualElement class="shop__item-price">
-            <Image class="shop__item-price__icon" />
-            <Label class="shop__item-price__label" text="499" />
+          <VisualElement class="content-header__right">
+            <hr:UILabel class="content-header__right__label" name="_contentHeaderLabel"/>
           </VisualElement>
-
         </VisualElement>
-        -->
+        <VisualElement name="_ShopContent" class="shop__content">
+          <!-- Shop Content -->
+          <!--
+          <VisualElement class="shop__item" name="_ShopItem">
+            <VisualElement class="shop__item-icon">
+              <Image class="shop__item-icon__image" />
+            </VisualElement>
+
+            <VisualElement class="shop__item-price">
+              <Image class="shop__item-price__icon" />
+              <Label class="shop__item-price__label" text="499" />
+            </VisualElement>
+
+          </VisualElement>
+          -->
+        </VisualElement>
       </hr:UIScrollView>
     </VisualElement>
   

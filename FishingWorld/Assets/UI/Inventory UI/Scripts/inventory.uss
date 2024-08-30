@@ -179,25 +179,23 @@
 }
 
 .scroll-bar {
-  width: 5px;
-
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-
   display: flex;
+  
+  width: 5px;
+  border-radius: 2px;
 }
 
 .scroll-bar__thumb {
-  background-color: var(--color-secondary);
   border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .scroll-bar__thumb:active {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .scroll-bar__thumb:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 .inventory__item {
