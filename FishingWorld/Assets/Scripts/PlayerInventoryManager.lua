@@ -82,7 +82,6 @@ function self:ServerAwake()
         if not hasBegginerPole then
             GivePlayerItem(player, "fishing_pole_1", 1)
         end
-        GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
     end)
 
     purchaseItemReq:Connect(function(player: Player, id: string, price: number)
