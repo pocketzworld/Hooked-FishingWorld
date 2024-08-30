@@ -21,7 +21,7 @@ local CLAIM_INTERVAL_MINUTES = 1440  -- Set the interval for claiming rewards (i
 function self:ClientAwake()
     -- Listen for daily reward event
     dailyRewardEvent:Connect(function(reward)
-        print("You have claimed a reward: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
+        --print("You have claimed a reward: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
     end)
 end
 
@@ -51,7 +51,7 @@ local function GiveReward(player, reward)
         Inventory.CommitTransaction(transaction, function(transID, err) if err then print("Transaction Error: " .. tostring(err)) end end)
 
         -- Notify the player
-        print("Reward given: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
+        --print("Reward given: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
     end
 end
 
@@ -76,9 +76,9 @@ local function LoadRewardSchedule(callback)
     Storage.GetValue("RewardSchedule", function(schedule)
         if schedule then
             RewardSchedule = schedule
-            print("Reward schedule loaded successfully.")
+            --print("Reward schedule loaded successfully.")
         else
-            print("Failed to load reward schedule. Ensure it is set in storage.")
+            --print("Failed to load reward schedule. Ensure it is set in storage.")
         end
         callback()
     end)
@@ -86,7 +86,7 @@ end
 
 local function SaveRewardSchedule()
     Storage.SetValue("RewardSchedule", RewardSchedule)
-    print("Reward schedule saved successfully.")
+    --print("Reward schedule saved successfully.")
 end
 
 local function ClaimDailyReward(player, currentTime)
@@ -98,7 +98,7 @@ local function ClaimDailyReward(player, currentTime)
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
             -- Print how much time is remaining
-            print("You must wait " .. convertMinutesToHoursAndMinutes(timeRemaining) .. " to claim the next reward.")
+            --print("You must wait " .. convertMinutesToHoursAndMinutes(timeRemaining) .. " to claim the next reward.")
             return
         end
 

@@ -51,7 +51,7 @@ _closeInfoButton:RegisterPressCallback(function()
 end, true, true, true)
 
 function UpdateCashUI()
-  print("SHOPUI: UpdateCashUI")
+  --print("SHOPUI: UpdateCashUI")
   local cash = playerTracker.GetTokens(client.localPlayer)
   cash_text.text = Utils.FormatNumberWithCommas(cash)
 end

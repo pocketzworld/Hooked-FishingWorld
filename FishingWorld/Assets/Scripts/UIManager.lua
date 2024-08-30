@@ -41,14 +41,14 @@ ToggleInventory = function()
     if InventoryUI then
         InventoryUI.ToggleVisible()
     else
-        print("[ShowInventory] InventoryUI is not set")
+        --print("[ShowInventory] InventoryUI is not set")
     end
 end
 
 ToggleUI = function(ui: string, visible: boolean)
     local uiComponent = uiMap[ui]
     if uiComponent == nil then
-        print("[ToggleUI] UI component not found: " .. ui)
+        --print("[ToggleUI] UI component not found: " .. ui)
         return
     end
 
@@ -142,12 +142,12 @@ ButtonPressed = function(btn)
         audioManager.PlaySound("paperSound1", 0.98)
     end
 
-    --print("Button Pressed: " .. btn)
+    ----print("Button Pressed: " .. btn)
 end
 
 UpdateCash = function()
     local ShopUI = ShopObject.gameObject:GetComponent(Shop)
-    if ShopUI ~= nil then if ShopUI.UpdateCashUI ~= nil then ShopUI.UpdateCashUI() else print("No ShopUI") end end
+    if ShopUI ~= nil then if ShopUI.UpdateCashUI ~= nil then ShopUI.UpdateCashUI() else end end
     WorldHUD.UpdateCash()
 end
 

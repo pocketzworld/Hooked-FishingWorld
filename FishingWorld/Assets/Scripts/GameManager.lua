@@ -58,7 +58,7 @@ function CatchFish()
     end
 
     -- Fire the event to the server to give the player the fish
-    print("CATCH!" .. currentFish)
+    --print("CATCH!" .. currentFish)
     catchFishReq:FireServer(currentFish, fishMetaData.GetFishData(currentFish).Worth)
 
     Timer.After(1, function() playerController.options.enabled = true end)
@@ -279,10 +279,10 @@ function self:ServerAwake()
         if itemMetaData.bait_metadata[baitID] then 
             playerInventory.TakePlayerItem(player, baitID, 1)
             -- Check if the players bait is 0
-            if playerTracker.GetPlayerItemCount(player, baitID) <= 1 then print("OUT OF BAIT"); playerTracker.SetBaitServer(player, "none") end
+            if playerTracker.GetPlayerItemCount(player, baitID) <= 0 then playerTracker.SetBaitServer(player, "none") end
         end
 
-        print("Start fishing! " .. fishID)
+        --print("Start fishing! " .. fishID)
     end)
 
     -- When the player catches a fish, check if the fish their client claims to have caught is the one they were supposed to catch

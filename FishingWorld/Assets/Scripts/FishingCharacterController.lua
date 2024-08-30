@@ -616,7 +616,7 @@ end
 --- Handle client awake
 ---
 function self:ClientAwake()
-	print("PlayerController:ClientAwake")
+	--print("PlayerController:ClientAwake")
 	-- Listen for an emote being selected in the UI and request the emote from the server
 	UI.EmoteSelected:Connect(function(emote, loop)
 		emoteRequest:FireServer(emote, loop)

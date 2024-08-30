@@ -59,7 +59,7 @@ function self:ClientAwake()
     getMyScoreRequest:FireServer()
 
     ServerLeaderboard.Changed:Connect(function(iTopScores)
-        print("Updating Leaderboard " .. tostring(#iTopScores))
+        --print("Updating Leaderboard " .. tostring(#iTopScores))
         --uiManager.UpdateLeaderboard(iTopScores)
     end)
 
@@ -74,7 +74,7 @@ function self:ClientAwake()
         -- Local player score update
         playerinfo.Score.Changed:Connect(function(score, oldVal)
             if player == client.localPlayer then
-                print("Score: " .. tostring(score))
+                --print("Score: " .. tostring(score))
                 --uiManager.UpdateLocalPlayer(score)
             end
         end)
@@ -82,7 +82,7 @@ function self:ClientAwake()
         -- local playerTokensChange
         playerinfo.Tokens.Changed:Connect(function(tokens, oldVal)
             if player == client.localPlayer then
-                print("Tokens: " .. tostring(tokens))
+                --print("Tokens: " .. tostring(tokens))
                 uiManager.UpdateCash(tokens)
             end
         end)
@@ -90,7 +90,7 @@ function self:ClientAwake()
         if pole_metas[playerinfo.playerFishingPole.value] then character:AddOutfit(pole_metas[playerinfo.playerFishingPole.value].Outfit) end
         playerinfo.playerFishingPole.Changed:Connect(function(poleID, oldVal)
             --Give player their selected fishing pole
-            print("Pole Changed: " .. poleID)
+            --print("Pole Changed: " .. poleID)
             if pole_metas[oldVal] then character:RemoveOutfit(pole_metas[oldVal].Outfit) end
             if pole_metas[poleID] then character:AddOutfit(pole_metas[poleID].Outfit) end
 
@@ -103,7 +103,7 @@ function self:ClientAwake()
         playerinfo.playerBait.Changed:Connect(function(baitID, oldVal)
             --Give player their selected bait
             if player == client.localPlayer then
-                print("Bait Changed: " .. baitID)
+                --print("Bait Changed: " .. baitID)
 
                 -- Get the amount of the current bait
                 local inv = playerinfo.playerInventory.value
@@ -194,7 +194,7 @@ end
 
 function ChangeBaitRequest(baitID : string, unEquip)
     if unEquip == nil then unEquip = true end
-    print(tostring(unEquip))
+    --print(tostring(unEquip))
     changeBaitRequest:FireServer(baitID, unEquip)
 end
 
@@ -204,15 +204,15 @@ end
 
 function PromtTokenPurchase(id : string)
 
-    print(tostring(Payments))
+    --print(tostring(Payments))
     Payments:PromptPurchase(id, function(paid)
         if paid then
             -- Player has purchased the product, server PurchaseHandler will be called soon
             -- Do not give the product here, as the server may not have processed the purchase yet
-            print("(Client) Purchase successful!")
+            --print("(Client) Purchase successful!")
         else
             -- Purchase failed, player closed the purchase dialog or something went wrong
-            print("(Client) Purchase failed!" .. tostring(paid))
+            --print("(Client) Purchase failed!" .. tostring(paid))
         end
     end)
 end
@@ -372,7 +372,6 @@ end
 
 function self:ServerAwake()
     TrackPlayers(server)
-    for k, v in players do print("players " .. k) end
 
     -- Fetch the top scores from storage
     Storage.GetValue("TopScores", function(value)
@@ -419,10 +418,10 @@ function GetPlayerTokensServer(player)
             players[player].Tokens.value = item.amount
         end
     end)
-    print("Player " .. player.name .. " has " .. tostring(players[player].Tokens.value) .. " tokens")
+    --print("Player " .. player.name .. " has " .. tostring(players[player].Tokens.value) .. " tokens")
 end
 function IncrementTokensServer(player, amount)
-    --print("Incrementing tokens for player " .. player.name .. " by " .. tostring(amount))
+    ----print("Incrementing tokens for player " .. player.name .. " by " .. tostring(amount))
     if amount < 0 then
         -- TAKE TOKENS
         local transaction = InventoryTransaction.new()
@@ -446,30 +445,34 @@ function UpdatePlayerInventoryNetworkValue(player, clientItems)
     players[player].playerInventory.value = clientItems
 end
 
+function GetPlayerInventoryNetworkValue(player)
+    return players[player].playerInventory.value
+end
+
 function PrintPurchasesForPlayer(player: Player)
     local limit = 100
     local productId = nil
     local cursorId = nil
     
-    print("(Server) Getting purchases for player " .. tostring(player))
+    --print("(Server) Getting purchases for player " .. tostring(player))
     Payments.GetPurchases(player, productId, limit, cursorId, function(purchases, nextCursorId, getPurchasesErr)
         if getPurchasesErr ~= PaymentsError.None then
             error("(Server) Failed to get player purchases: " .. getPurchasesErr)
             return
         end
-        print("(Server) Player purchases:")
+        --print("(Server) Player purchases:")
         for _, purchase in ipairs(purchases) do
-            print("Purchase ID: " .. tostring(purchase.id))
-            print("Product ID: " .. tostring(purchase.product_id))
-            print("User ID: " .. tostring(purchase.user_id))
-            print("Purchase Date: " .. tostring(purchase.purchase_date))
+            --print("Purchase ID: " .. tostring(purchase.id))
+            --print("Product ID: " .. tostring(purchase.product_id))
+            --print("User ID: " .. tostring(purchase.user_id))
+            --print("Purchase Date: " .. tostring(purchase.purchase_date))
         end
     end)
 end
 
 function ServerHandlePurchase(purchase, player: Player)
     local productId = purchase.product_id
-    print("(Server) Purchase made by player " .. tostring(player) .. " for product " .. tostring(productId))
+    --print("(Server) Purchase made by player " .. tostring(player) .. " for product " .. tostring(productId))
     
     local amountToGive = 0
     if productId == "fishing_token_1" then
@@ -480,7 +483,7 @@ function ServerHandlePurchase(purchase, player: Player)
         amountToGive = 500
     else
         Payments.AcknowledgePurchase(purchase, false) -- Reject the purchase, it will be retried at a later time and eventually refunded
-        print("(Server) Purchase for unknown product ID: " .. productId)
+        --print("(Server) Purchase for unknown product ID: " .. productId)
         return
     end
 
@@ -489,7 +492,7 @@ function ServerHandlePurchase(purchase, player: Player)
             error("(Server) Something went wrong while acknowledging purchase: " .. ackErr)
             return
         end
-        print("(Server) Purchase acknowledged")
+        --print("(Server) Purchase acknowledged")
         PrintPurchasesForPlayer(player)
         IncrementTokensServer(player, amountToGive)
     end)

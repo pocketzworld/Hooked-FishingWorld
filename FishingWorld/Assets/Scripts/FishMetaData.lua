@@ -1365,12 +1365,12 @@ fish_keys = {
 -- Function to roll for rarity based on weights
 local function rollForRarity(rarityWeights, bait)
     if itemMetaData.bait_metadata[bait] == nil or bait == nil then
-        print("Bait is nil so defaulting to Common")
+        --print("Bait is nil so defaulting to Common")
         return "Common"  -- Default to common
     end
     -- Get the bait's rarity from the metadata
     local baitRarity = itemMetaData.bait_metadata[bait].ItemRarity
-    print("Bait Rarity: " .. baitRarity)
+    --print("Bait Rarity: " .. baitRarity)
     
     -- Define an ordered list of rarities
     local rarityOrder = {"Common", "Uncommon", "Rare", "Legendary", "Mythical"}
@@ -1380,11 +1380,11 @@ local function rollForRarity(rarityWeights, bait)
     for _, rarity in ipairs(rarityOrder) do
         if rarity == baitRarity then
             filteredRarityWeights[rarity] = rarityWeights[rarity]
-            print("Adding rarity (final): " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print the final rarity added
+            --print("Adding rarity (final): " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print the final rarity added
             break
         elseif rarityWeights[rarity] then
             filteredRarityWeights[rarity] = rarityWeights[rarity]
-            print("Adding rarity: " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print each rarity as it is added
+            --print("Adding rarity: " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print each rarity as it is added
         end
     end
 
@@ -1394,19 +1394,19 @@ local function rollForRarity(rarityWeights, bait)
     for _, weight in pairs(filteredRarityWeights) do
         totalWeight = totalWeight + weight
     end
-    print("Total Weight: " .. tostring(totalWeight))
+    --print("Total Weight: " .. tostring(totalWeight))
     
     -- Generate the roll
     local roll = math.random(0, totalWeight-1) + math.random()  -- Add a random decimal to the roll for unpredictability
     local cumulativeWeight = 0
-    print("Roll: " .. tostring(roll))
+    --print("Roll: " .. tostring(roll))
     
     -- Determine the rarity based on the roll using the correct order
     for _, rarity in ipairs(rarityOrder) do
         if filteredRarityWeights[rarity] then
             cumulativeWeight = cumulativeWeight + filteredRarityWeights[rarity]
             if roll <= cumulativeWeight then
-                print("Selected Rarity: " .. rarity)
+                --print("Selected Rarity: " .. rarity)
                 return rarity
             end
         end
@@ -1447,7 +1447,7 @@ function GetRandomFish(Biome, Bait)
     
     -- Determine rarity based on weighted roll
     local chosenRarity = rollForRarity(rarityWeights, Bait)
-    print("Chosen Rarity: " .. chosenRarity)
+    --print("Chosen Rarity: " .. chosenRarity)
     local fishList = {}
     
     -- Gather fish matching the chosen Rartiy, Biome, and Bait
@@ -1463,13 +1463,13 @@ function GetRandomFish(Biome, Bait)
 
     --Print the fishList
     for i, fish in ipairs(fishList) do
-        print("FishList[" .. i .. "]: " .. fish)
+        --print("FishList[" .. i .. "]: " .. fish)
     end
     
     -- If no fish match the chosen rarity, Biome, and Bait, then pick any common fish that matches the chosen biome and bait
     if #fishList == 0 then
 
-        print("[ERROR] No fish found for: " .. chosenRarity .. " in " .. Biome .. ".Defaulting to Common fish that doesnt need bait.")
+        --print("[ERROR] No fish found for: " .. chosenRarity .. " in " .. Biome .. ".Defaulting to Common fish that doesnt need bait.")
 
         for fishName, fishData in fish_metadata do
             if CheckBiome(fishName, Biome) and (fishData.Rarity == "Common") then
@@ -1477,14 +1477,14 @@ function GetRandomFish(Biome, Bait)
             end
         end
         if #fishList == 0 then
-            print("[ERROR] No Common fish found for: " .. Biome)
+            --print("[ERROR] No Common fish found for: " .. Biome)
             table.insert(fishList, "blue_gill") -- Default to boot fish if no common fish are found
         end
     end
 
     -- Select a random fish from the filtered list
     local randomFish = fishList[math.random(1, #fishList)]
-    print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
+    --print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
     return randomFish
 end
 

@@ -77,7 +77,7 @@ function SetFish(popupTitle : string, size, rarity, description : string, image,
         local worldIconUI = popupIconOBJ:GetComponent(FishIconWorld)
         worldIconUI.SetIcon(image)
     else
-        print("No image for the fish")
+        --print("No image for the fish")
     end
 end
 

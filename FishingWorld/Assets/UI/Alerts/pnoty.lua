@@ -91,67 +91,67 @@ function DisplayNotification(options)
 
   if options.type then
     if not types[options.type] then
-      print("Invalid notification type. Please provide a valid type. (default, success, error, warning, info)")
+      --print("Invalid notification type. Please provide a valid type. (default, success, error, warning, info)")
       return
     end
   end
 
   if options.timeout then 
     if type(options.timeout) ~= "number" then
-      print("Timeout must be a number. Please provide a valid number in seconds.")
+      --print("Timeout must be a number. Please provide a valid number in seconds.")
       return
     end
 
     if options.timeout < 0 then
-      print("Timeout must be a positive number. Please provide a valid number in seconds.")
+      --print("Timeout must be a positive number. Please provide a valid number in seconds.")
       return
     end
 
     if options.timeout > 320 then
-      print("Timeout must be less than 320 seconds. Please provide a valid number in seconds.")
+      --print("Timeout must be less than 320 seconds. Please provide a valid number in seconds.")
       return
     end
   end
 
   if options.audio then
     if type(options.audio) ~= "boolean" then
-      print("Audio must be a boolean. Please provide a valid boolean value.")
+      --print("Audio must be a boolean. Please provide a valid boolean value.")
       return
     end
 
     if not options.audioShader then
-      print("Audio shader not found. Please provide an audio shader to play the alert sound.")
+      --print("Audio shader not found. Please provide an audio shader to play the alert sound.")
       return
     end
   end
 
   if options.autoHide then
     if type(options.autoHide) ~= "boolean" then
-      print("AutoHide must be a boolean. Please provide a valid boolean value.")
+      --print("AutoHide must be a boolean. Please provide a valid boolean value.")
       return
     end
   end
 
   if options.scope then
     if options.scope ~= "local" and options.scope ~= "global" then
-      print("Invalid scope. Please provide a valid scope. (local, global)")
+      --print("Invalid scope. Please provide a valid scope. (local, global)")
       return
     end
 
     if options.scope == "global" then
       if options.player then
-        print("Player is not required for global scope. Please remove the player from the options.")
+        --print("Player is not required for global scope. Please remove the player from the options.")
         return
       end
     end
 
     if options.scope == "local" then
       if not options.player then
-        print("Player is required for local scope. Please provide a player in the options.")
+        --print("Player is required for local scope. Please provide a player in the options.")
         return
       else
         if options.player ~= client.localPlayer then
-          print("Player is not the local player. Please provide the local player in the options.")
+          --print("Player is not the local player. Please provide the local player in the options.")
           return
         end
       end

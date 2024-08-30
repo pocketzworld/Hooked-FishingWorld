@@ -22,11 +22,11 @@ Notify = function(options)
   if pNotifyScript.Notify(options) then
     if options.audio then
       if not options.audioShader then
-        print("[WARNING] Alert sound not found. Please provide an audio shader to play the alert sound.")
+        --print("[WARNING] Alert sound not found. Please provide an audio shader to play the alert sound.")
       else
         local audio = audioShaders[options.audioShader]
         if not audio then
-          print("[WARNING] Invalid audio shader provided. Please provide a valid audio shader.")
+          --print("[WARNING] Invalid audio shader provided. Please provide a valid audio shader.")
           return
         end
 
@@ -34,7 +34,7 @@ Notify = function(options)
       end
     end
   else
-    print("[WARNING] pNotify script not found on the object.")
+    --print("[WARNING] pNotify script not found on the object.")
   end
 end
 
@@ -44,6 +44,6 @@ function self:ClientAwake()
   end
   
   if not pNotifyScript then
-    print("[WARNING] pnotify script not found on the object.")
+    --print("[WARNING] pnotify script not found on the object.")
   end
 end
