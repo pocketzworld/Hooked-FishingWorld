@@ -82,9 +82,7 @@ function self:ServerAwake()
         if not hasBegginerPole then
             GivePlayerItem(player, "fishing_pole_1", 1)
         end
-        Timer.Every(10, function()
-            GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
-        end)
+        GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
     end)
 
     purchaseItemReq:Connect(function(player: Player, id: string, price: number)
@@ -96,7 +94,6 @@ function self:ServerAwake()
         GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
         playerTracker.GetPlayerTokensServer(player)
     end)
-
     scene.PlayerJoined:Connect(function(scene, player)
         GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
     end)
