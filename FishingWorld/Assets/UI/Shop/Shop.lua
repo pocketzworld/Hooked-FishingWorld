@@ -513,7 +513,7 @@ function CreatePurhcasedButton(autoHide, buyButton)
 
   if autoHide then
     -- Hide the purchased button after 1 seconds
-    purchaseTimer = Timer.After(1, function()
+    purchaseTimer = Timer.After(2, function()
       _ItemInfoContent:Remove(_Purchased)
       _ItemInfoContent:Add(buyButton)
     end)
