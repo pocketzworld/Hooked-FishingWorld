@@ -6,6 +6,8 @@ local default_fish : Texture2D = nil
 --!Bind
 local actionButton : VisualElement = nil
 --!Bind
+local actionLabel : UILabel = nil
+--!Bind
 local fishSlider : UISlider = nil
 --!Bind
 local hookSlider : UISlider = nil
@@ -19,6 +21,7 @@ local gameManager = require("GameManager")
 local FishMetaData = require("FishMetaData")
 local fish_metadata = FishMetaData.fish_metadata
 
+actionLabel:SetPrelocalizedText("Tap!")
 actionButton:RegisterPressCallback(function()
     gameManager.increaseValueOnPress()
 end, true, true, true)

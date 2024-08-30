@@ -16,8 +16,9 @@
     </VisualElement>
 
     <VisualElement name="actionButton" class="fish-button">
+      <hr:UIBlur class="overlay"/>
       <VisualElement class="button-content">
-        <Label name="actionLabel" text="Tap!"/>
+        <hr:UILabel name="actionLabel"/>
       </VisualElement>
     </VisualElement>
     
