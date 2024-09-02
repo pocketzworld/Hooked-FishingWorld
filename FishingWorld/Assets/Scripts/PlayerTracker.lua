@@ -31,7 +31,13 @@ function TrackPlayers(game, characterCallback)
             Tokens = IntValue.new("Tokens" .. tostring(player.id), 0),
             playerFishRecords = TableValue.new("PlayerFishRecords" .. tostring(player.id), {}),
             playerFishingPole = StringValue.new("PlayerFishingPole" .. tostring(player.id), "fishing_pole_1"),
-            playerBait = StringValue.new("PlayerBait" .. tostring(player.id), "none")
+            playerBait = StringValue.new("PlayerBait" .. tostring(player.id), "none"),
+            playerXP = IntValue.new("PlayerXP" .. tostring(player.id), 0),
+            playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), 1),
+            playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), 1),
+            playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), 1),
+            playerHookSpeed = IntValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
+            playerReelSpeed = IntValue.new("PlayerReelSpeed" .. tostring(player.id), 1)
         }
 
         player.CharacterChanged:Connect(function(player, character) 

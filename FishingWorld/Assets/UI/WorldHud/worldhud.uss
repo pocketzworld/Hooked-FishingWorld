@@ -77,7 +77,7 @@
 }
 
 .world-button.dailies {
-  top: 100px;
+  top: 85px;
   left: 11px;
 }
 
