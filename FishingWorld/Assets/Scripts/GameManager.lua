@@ -290,9 +290,12 @@ function self:ServerAwake()
     catchFishReq:Connect(function(player, requestedFishID, worth)
         local expectedFish = activeFishIDs[player] == requestedFishID
         -- Give the player the fish if the client isnt lying
-        if expectedFish then playerInventory.GivePlayerItem(player, requestedFishID, 1) end
-        -- Give the player coins for the fish if the client isnt lying
-        if expectedFish then playerTracker.IncrementTokensServer(player, worth) end
+        if expectedFish then 
+            playerInventory.GivePlayerItem(player, requestedFishID, 1) 
+            playerTracker.IncrementTokensServer(player, worth)
+            playerTracker.AwardXP(player, worth)
+        end
+
 
         activeFishIDs[player] = "" -- Remove the active fish ID for that player on Server
     end)

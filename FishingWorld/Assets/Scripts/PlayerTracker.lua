@@ -1,14 +1,13 @@
 --!Type(Module)
 
-local getMyScoreRequest = Event.new("getMyScoreRequest")
+local clientJoinRequets = Event.new("ClientJoinRequest")
+
 local ServerLeaderboard = TableValue.new("ServerLeaderboard")
 local playMoneySoundEvent = Event.new("playMoneySoundEvent")
 
 local isFishingRequest = Event.new("isFishingRequest")
 local changePoleRequest = Event.new("changePoleRequest")
 local changeBaitRequest = Event.new("changeBaitRequest")
-
-local getTokenRequest = Event.new("GetTokenRequest")
 
 local audioManager = require("AudioManager")
 local utils = require("Utils")
@@ -61,8 +60,7 @@ end
 function self:ClientAwake()
 
     -------- Scoring --------
-    getTokenRequest:FireServer()
-    getMyScoreRequest:FireServer()
+    clientJoinRequets:FireServer()
 
     ServerLeaderboard.Changed:Connect(function(iTopScores)
         --print("Updating Leaderboard " .. tostring(#iTopScores))
@@ -348,13 +346,21 @@ function self:ServerAwake()
     -- Register the PurchaseHandler function to be called when a purchase is made
     Payments.PurchaseHandler = ServerHandlePurchase
 
-    getTokenRequest:Connect(GetPlayerTokensServer)
-    getMyScoreRequest:Connect(UpdatePlayerScore)
+    clientJoinRequets:Connect(function(player)
+        GetPlayerStatsFromStorage(player)
+        GetPlayerTokensServer(player)
+        UpdatePlayerScore(player)
+    end)
 end
 
 ----------------- Player Stats -----------------
 -- Store player Stats with Storage API
 function StorePlayerStats(player)
+    if players[player] == nil then
+        print("Error: Player not found.")
+        return
+    end
+
     local playerInfo = players[player]
     local playerStats = {
         playerXP = playerInfo.playerXP.value,
@@ -365,13 +371,21 @@ function StorePlayerStats(player)
         playerReelSpeed = playerInfo.playerReelSpeed.value
     }
 
-    Storage.SetPlayerValue(player, "PlayerStats", playerStats)
+    Storage.SetPlayerValue(player, "PlayerStats", playerStats, function(err)
+        if err ~= StorageError.None then print("Error: " .. err) end
+    end)
 end
 
 -- Get player Stats from Storage API
 function GetPlayerStatsFromStorage(player)
+    if players[player] == nil then
+        print("Error: Player not found.")
+        return
+    end
+
     Storage.GetPlayerValue(player, "PlayerStats", function(playerStats)
         if playerStats == nil then
+            -- Default values if no data found
             playerStats = {
                 playerXP = 0,
                 playerLevel = 1,
@@ -382,6 +396,7 @@ function GetPlayerStatsFromStorage(player)
             }
         end
 
+        -- Ensure all stats exist and default to valid values
         players[player].playerXP.value = playerStats.playerXP or 0
         players[player].playerLevel.value = playerStats.playerLevel or 1
         players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
@@ -400,6 +415,52 @@ function GetPlayerStatsFromStorage(player)
     end)
 end
 
+----------------- Leveling System -----------------
+-- Function to award XP to the player
+function AwardXP(player, xpAmount)
+    local playerInfo = players[player]
+    
+    -- Add the XP to the player's current XP
+    playerInfo.playerXP.value = playerInfo.playerXP.value + xpAmount
+    print(player.name .. " has been awarded " .. tostring(xpAmount) .. " XP!")
+
+    -- Check if the player can level up
+    CheckLevelUp(player)
+end
+
+-- Define XP required for each level
+function GetXPForLevel(level)
+    -- Example formula: each level requires 100 + (level - 1) * 50 XP to level up
+    return 100 + (level - 1) * 50
+end
+
+-- Function to handle leveling up
+function CheckLevelUp(player)
+    local playerInfo = players[player]
+    local currentXP = playerInfo.playerXP.value
+    local currentLevel = playerInfo.playerLevel.value
+
+    --Print current XP and level
+    print(player.name .. " has " .. tostring(currentXP) .. " XP and is level " .. tostring(currentLevel))
+
+    -- Loop to level up if enough XP is accumulated for multiple levels
+    while currentXP >= GetXPForLevel(currentLevel) do
+        currentXP = currentXP - GetXPForLevel(currentLevel)
+        currentLevel = currentLevel + 1
+        print(player.name .. " leveled up to " .. tostring(currentLevel) .. "!")
+    end
+
+    -- Update player stats with new level and remaining XP
+    playerInfo.playerXP.value = currentXP
+    playerInfo.playerLevel.value = currentLevel
+
+    -- Store the updated stats after leveling up
+    StorePlayerStats(player)
+end
+--[[
+If a player has enough XP to jump from level 3 to level 5 in a single action, 
+this function will automatically handle both level-ups instead of stopping at the first one.
+]]
 
 
 ----------------- Server Purchase Handler and Inventory -----------------
