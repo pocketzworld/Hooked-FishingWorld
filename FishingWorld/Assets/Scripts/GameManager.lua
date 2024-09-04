@@ -282,7 +282,7 @@ function self:ClientUpdate()
             CatchFish()
         elseif progress <= 0 then
             progress = 0
-            --Loose()
+            Loose()
         end
         
         
