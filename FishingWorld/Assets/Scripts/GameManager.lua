@@ -293,7 +293,7 @@ function self:ServerAwake()
         if expectedFish then 
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
             playerTracker.IncrementTokensServer(player, worth)
-            playerTracker.AwardXP(player, worth)
+            playerTracker.AwardXP(player, worth*10)
         end
 
 

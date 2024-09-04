@@ -431,7 +431,7 @@ end
 -- Define XP required for each level
 function GetXPForLevel(level)
     -- Example formula: each level requires 100 + (level - 1) * 50 XP to level up
-    return 100 + (level - 1) * 50
+    return 100 + (level - 1) * 100
 end
 
 -- Function to handle leveling up
@@ -453,6 +453,9 @@ function CheckLevelUp(player)
     -- Update player stats with new level and remaining XP
     playerInfo.playerXP.value = currentXP
     playerInfo.playerLevel.value = currentLevel
+
+    --LEVEL UP OTHER STATS
+    playerInfo.playerStrength.value = currentLevel
 
     --Print percentage to next level
     print("Percentage to next level: " .. tostring(currentXP / GetXPForLevel(currentLevel) * 100) .. "%")
