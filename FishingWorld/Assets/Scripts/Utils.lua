@@ -189,3 +189,20 @@ function SortScores(topScoreTable)
 
   return topScores, iTopScores;
 end
+
+function findMaxKey(tbl)
+  local maxKey = nil
+  local maxValue = -math.huge -- Start with negative infinity as initial maximum value
+
+  for key, value in pairs(tbl) do
+      if value > maxValue then
+          maxValue = value
+          maxKey = key
+      elseif value == maxValue then
+          maxValue = value
+          maxKey = nil
+      end
+  end
+
+  return maxKey
+end
