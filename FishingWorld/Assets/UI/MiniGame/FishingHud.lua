@@ -26,8 +26,8 @@ actionButton:RegisterPressCallback(function()
     gameManager.increaseValueOnPress()
 end, true, true, true)
 
-fishSlider.highValue = 1000
-hookSlider.highValue = 1000
+fishSlider.highValue = 350
+hookSlider.highValue = 350
 
 function UpdateHook(arg)
     hookSlider:SetValueWithoutNotify(arg)
@@ -55,7 +55,7 @@ function HideMiniGame()
     FishingElement:EnableInClassList("hidden", true)
     actionButton:EnableInClassList("hidden", true)
 end
-function ShowMiniGame(fishName : string)
+function ShowMiniGame(fishName : string, playerStrength : number)
     FishingElement:EnableInClassList("hidden", false)
     actionButton:EnableInClassList("hidden", false)
     CreatFishBarIcon(fishName)

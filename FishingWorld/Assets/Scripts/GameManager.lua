@@ -97,8 +97,8 @@ end
 function MoveFish()
     local roll = math.random(1,10)
     if roll > 4 then
-        targeValue = targeValue + math.random(-(targeValue - 100), (900 - targeValue))
-        targetValue = math.clamp(targeValue, 100, 900)
+        targeValue = targeValue + math.random(-(targeValue - 10), (300 - targeValue))
+        targetValue = math.clamp(targeValue, 10, 350)
     end
 end
 
@@ -150,7 +150,7 @@ function StartGame(biome : string)
 
     -- Set the initial values
     progress = .4
-    targeValue = math.random(100, 900)
+    targeValue = math.random(50, 300)
     currentValue = targeValue
     fishMoveTimer = Timer.Every(1, MoveFish)
 
@@ -168,7 +168,7 @@ end
 -- Function to increase the value based on its distance from 0.5
 function increaseValueOnPress()
     currentSpeed = -jumpFactor * FishMod
-    if currentValue > 1000 then currentValue = 1000; end --Loose() end
+    if currentValue > 350 then currentValue = 350; end --Loose() end
 end
 
 function MovedToWater(point : Vector3, water : GameObject)
@@ -233,7 +233,7 @@ function self:ClientUpdate()
         end
 
         -- Fish Slider
-        if math.abs(fishvalue - targeValue) > 10 then
+        if math.abs(fishvalue - targeValue) > 1 then
             if fishvalue < targeValue then
                 fishvalue = fishvalue + Time.deltaTime * 100 * (math.abs(targeValue - fishvalue) / 100)
             elseif fishvalue > targeValue then
@@ -244,19 +244,23 @@ function self:ClientUpdate()
         uiManager.FishingUIScript.UpdateFish(fishvalue)
         
         -- Calculate progress as a ratio of elapsedTime to duration
-        linedUp = math.abs((currentValue-36) - fishvalue) < 200
+        linedUp = math.abs(currentValue - fishvalue) < (36+18) -- half the wook slider width + half the fish slider width regestering any overlap
+        print(tostring(linedUp))
         if linedUp then
             progress = progress + Time.deltaTime * progressSpeed / FishDifficulty
         else
             progress = progress - Time.deltaTime * progressSpeed * 1.5 / FishDifficulty
         end
 
+        
         -- Win when the prgress is full
         if progress >= 1 then
             CatchFish()
         elseif progress <= 0 then
-            Loose()
+            progress = 0
+            --Loose()
         end
+        
         
         -- Update the progress bar visual (this is pseudocode)
         uiManager.FishingUIScript.UpdateProgressBar(progress)
