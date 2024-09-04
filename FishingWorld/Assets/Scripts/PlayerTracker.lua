@@ -454,6 +454,9 @@ function CheckLevelUp(player)
     playerInfo.playerXP.value = currentXP
     playerInfo.playerLevel.value = currentLevel
 
+    --Print percentage to next level
+    print("Percentage to next level: " .. tostring(currentXP / GetXPForLevel(currentLevel) * 100) .. "%")
+
     -- Store the updated stats after leveling up
     StorePlayerStats(player)
 end
