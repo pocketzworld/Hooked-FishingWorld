@@ -89,7 +89,7 @@ function self:ClientAwake()
         playerinfo.Tokens.Changed:Connect(function(tokens, oldVal)
             if player == client.localPlayer then
                 --print("Tokens: " .. tostring(tokens))
-                uiManager.UpdateCash(tokens)
+                --uiManager.UpdateTokens(tokens)
             end
         end)
 
@@ -351,6 +351,56 @@ function self:ServerAwake()
     getTokenRequest:Connect(GetPlayerTokensServer)
     getMyScoreRequest:Connect(UpdatePlayerScore)
 end
+
+----------------- Player Stats -----------------
+-- Store player Stats with Storage API
+function StorePlayerStats(player)
+    local playerInfo = players[player]
+    local playerStats = {
+        playerXP = playerInfo.playerXP.value,
+        playerLevel = playerInfo.playerLevel.value,
+        playerPoleLevel = playerInfo.playerPoleLevel.value,
+        playerStrength = playerInfo.playerStrength.value,
+        playerHookSpeed = playerInfo.playerHookSpeed.value,
+        playerReelSpeed = playerInfo.playerReelSpeed.value
+    }
+
+    Storage.SetPlayerValue(player, "PlayerStats", playerStats)
+end
+
+-- Get player Stats from Storage API
+function GetPlayerStatsFromStorage(player)
+    Storage.GetPlayerValue(player, "PlayerStats", function(playerStats)
+        if playerStats == nil then
+            playerStats = {
+                playerXP = 0,
+                playerLevel = 1,
+                playerPoleLevel = 1,
+                playerStrength = 1,
+                playerHookSpeed = 1,
+                playerReelSpeed = 1
+            }
+        end
+
+        players[player].playerXP.value = playerStats.playerXP or 0
+        players[player].playerLevel.value = playerStats.playerLevel or 1
+        players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
+        players[player].playerStrength.value = playerStats.playerStrength or 1
+        players[player].playerHookSpeed.value = playerStats.playerHookSpeed or 1
+        players[player].playerReelSpeed.value = playerStats.playerReelSpeed or 1
+
+        --Print all player Stats
+        print("Player Stats for " .. player.name .. ":")
+        print("XP: " .. tostring(players[player].playerXP.value))
+        print("Level: " .. tostring(players[player].playerLevel.value))
+        print("Pole Level: " .. tostring(players[player].playerPoleLevel.value))
+        print("Strength: " .. tostring(players[player].playerStrength.value))
+        print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
+        print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
+    end)
+end
+
+
 
 ----------------- Server Purchase Handler and Inventory -----------------
 function GetPlayerTokensServer(player)
