@@ -208,8 +208,8 @@ end
 
 --- Shows the fishing mini-game
 -- @param fishName The name of the fish
-function ShowMiniGame(fishName: string, playerStrength: number)
-    FishingUIScript.ShowMiniGame(fishName, playerStrength)
+function ShowMiniGame(fishName: string, hookwidth: number)
+    FishingUIScript.ShowMiniGame(fishName, hookwidth)
 end
 
 --- Hides the fishing mini-game

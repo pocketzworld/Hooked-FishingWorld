@@ -16,6 +16,8 @@ local currentFish = ""
 local baitTimer = nil
 
 local linedUp = false
+local playerStrength = 1
+local HookWidth = 72
 
 -- Fish movement
 local fishMoveTimer = nil
@@ -39,6 +41,11 @@ local playerInventory = require("PlayerInventoryManager")
 local itemMetaData = require("ItemMetaData")
 local fishMetaData = require("FishMetaData")
 local utility = require("Utils")
+
+-- Function to calculate Tap Meter Width Modifier based on the player's strength
+function GetHookBarWidth(strength)
+    return 72 * ((100 + 6.25 * (strength - 1))/100)
+end
 
 -- Function to handle catching the fish
 function CatchFish()
@@ -144,8 +151,12 @@ function StartGame(biome : string)
     -- Set the player to a fishing state
     playerController.options.enabled = false
 
+    -- Get Player Stats
+    playerStrength = playerTracker.GetPlayerStrength()
+    HookWidth = GetHookBarWidth(playerStrength)
+
     -- Show the MiniGame UI
-    uiManager.ShowMiniGame(currentFish)
+    uiManager.ShowMiniGame(currentFish, HookWidth)
     active = true
 
     -- Set the initial values
@@ -220,6 +231,14 @@ function MovedToWater(point : Vector3, water : GameObject)
     end
 end
 
+function proximity_to_middle(percentage)
+    -- Clamp percentage between 0 and 100
+    if percentage < 0 then percentage = 0 end
+    if percentage > 100 then percentage = 100 end
+    
+    -- Scale percentage to be between 1 at 0, 0 at 50, and -1 at 100
+    return 1 - (percentage / 50)
+end
 
 function self:ClientUpdate()
     if active then
@@ -244,8 +263,13 @@ function self:ClientUpdate()
         uiManager.FishingUIScript.UpdateFish(fishvalue)
         
         -- Calculate progress as a ratio of elapsedTime to duration
-        linedUp = math.abs(currentValue - fishvalue) < (36+18) -- half the wook slider width + half the fish slider width regestering any overlap
+        local offsetHookValue = currentValue + (HookWidth * proximity_to_middle((currentValue/350)*100))/2
+        linedUp = math.abs(offsetHookValue - fishvalue) < ((HookWidth/2)+18) -- half the wook slider width + half the fish slider width regestering any overlap
+    
         print(tostring(linedUp))
+        print(tostring(proximity_to_middle((currentValue/350)*100)))
+        print("Current Value: " .. tostring(currentValue) .. " Hook Width: " .. tostring(HookWidth) .. " Center Of Hook Value: " .. tostring(offsetHookValue) .. " Fish Value: " .. tostring(fishvalue))
+
         if linedUp then
             progress = progress + Time.deltaTime * progressSpeed / FishDifficulty
         else

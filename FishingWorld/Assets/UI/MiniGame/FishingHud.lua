@@ -55,10 +55,13 @@ function HideMiniGame()
     FishingElement:EnableInClassList("hidden", true)
     actionButton:EnableInClassList("hidden", true)
 end
-function ShowMiniGame(fishName : string, playerStrength : number)
+function ShowMiniGame(fishName : string, hookwidth : number)
     FishingElement:EnableInClassList("hidden", false)
     actionButton:EnableInClassList("hidden", false)
     CreatFishBarIcon(fishName)
+
+    local HookBar = hookSlider:Q("_knob")
+    HookBar.style.width = StyleLength.new(hookwidth)
 end
 
 HideMiniGame()

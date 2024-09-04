@@ -157,6 +157,11 @@ function self:ClientAwake()
     TrackPlayers(client, OnCharacterInstantiate)
 end
 
+-- Function to get the player's strength
+function GetPlayerStrength()
+    return players[client.localPlayer].playerStrength.value
+end
+
 function GetPlayerInventory()
     return players[client.localPlayer].playerInventory.value
 end
