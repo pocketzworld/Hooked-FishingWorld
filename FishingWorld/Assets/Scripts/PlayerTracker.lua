@@ -164,6 +164,16 @@ function GetPlayerStrength()
     return players[client.localPlayer].playerStrength.value
 end
 
+-- Function to get the player's hook speed
+function GetPlayerHookSpeed()
+    return players[client.localPlayer].playerHookSpeed.value
+end
+
+-- Function to get the player's reel speed
+function GetPlayerReelSpeed()
+    return players[client.localPlayer].playerReelSpeed.value
+end
+
 function GetPlayerInventory()
     return players[client.localPlayer].playerInventory.value
 end
@@ -393,10 +403,11 @@ function GetPlayerStatsFromStorage(player)
     Storage.GetPlayerValue(player, "PlayerStats", function(playerStats)
         if playerStats == nil then
             -- Default values if no data found
+            print("No player stats found for " .. player.name .. ". Defaulting to level 1.")
             playerStats = {
                 playerXP = 0,
                 playerLevel = 1,
-                playerPoleLevel = 1,
+                playerPoleLevel = 4,
                 playerStrength = 1,
                 playerHookSpeed = 1,
                 playerReelSpeed = 1
@@ -407,19 +418,19 @@ function GetPlayerStatsFromStorage(player)
         players[player].playerXP.value = playerStats.playerXP or 0
         players[player].playerLevel.value = playerStats.playerLevel or 1
         players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
-        players[player].playerStrength.value = playerStats.playerStrength or 1
-        players[player].playerHookSpeed.value = playerStats.playerHookSpeed or 1
-        players[player].playerReelSpeed.value = playerStats.playerReelSpeed or 1
+        SetStatsPerLevel(player)
 
-        --Print all player Stats
-        print("Player Stats for " .. player.name .. ":")
+        -- Print the player's stats
+        print(player.name .. "'s stats: ")
         print("XP: " .. tostring(players[player].playerXP.value))
         print("Level: " .. tostring(players[player].playerLevel.value))
         print("Pole Level: " .. tostring(players[player].playerPoleLevel.value))
         print("Strength: " .. tostring(players[player].playerStrength.value))
-        print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
-        print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
+        print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value/10))
+        print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value/10))
+
     end)
+    
 end
 
 ----------------- Leveling System -----------------
@@ -464,17 +475,26 @@ function CheckLevelUp(player)
     -- Update player stats with new level and remaining XP
     playerInfo.playerXP.value = currentXP
     playerInfo.playerLevel.value = currentLevel
-
-    --LEVEL UP OTHER STATS
-    playerInfo.playerStrength.value = currentLevel
-
-    --Print percentage to next level
-    print("Percentage to next level: " .. tostring(currentXP / GetXPForLevel(currentLevel) * 100) .. "%")
+    SetStatsPerLevel(player)
 
     -- Store the updated stats after leveling up
     StorePlayerStats(player)
 end
 
+--[[
+Set the Strength, Hook Speed, and Reel Speed based on the player's level
+]]
+function SetStatsPerLevel(player)
+    local playerInfo = players[player]
+    local currentXP = playerInfo.playerXP.value
+    local currentLevel = playerInfo.playerLevel.value
+    local currentPoleLevel = playerInfo.playerPoleLevel.value
+
+    --LEVEL UP STATS
+    playerInfo.playerStrength.value = currentLevel
+    playerInfo.playerHookSpeed.value = (1 + (currentPoleLevel - 1) / 9)*10
+    playerInfo.playerReelSpeed.value = (1 + (currentPoleLevel - 1) / 9)*10
+end
 
 ----------------- Server Purchase Handler and Inventory -----------------
 function GetPlayerTokensServer(player)

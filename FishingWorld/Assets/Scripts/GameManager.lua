@@ -110,9 +110,11 @@ function MoveFish()
 end
 
 function StartBaiting(biome : string)
+    local playerHookSpeed = playerTracker.GetPlayerHookSpeed()
+    print("Player Hookspeed modifier: " .. tostring(playerHookSpeed))
     baitTimer = Timer.After(1, function() 
-        local roll = math.random(1,10) + (math.random() * math.random(-1,1))
-        if roll > 8 then 
+        local roll = math.random(1,100)
+        if roll > 80 then
             StartGame(biome) 
         else 
             StartBaiting(biome)
