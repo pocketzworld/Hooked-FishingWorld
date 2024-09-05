@@ -87,7 +87,7 @@ function self:ClientAwake()
         playerinfo.Tokens.Changed:Connect(function(tokens, oldVal)
             if player == client.localPlayer then
                 --print("Tokens: " .. tostring(tokens))
-                --uiManager.UpdateTokens(tokens)
+                uiManager.UpdateCash()
             end
         end)
 
@@ -107,7 +107,7 @@ function self:ClientAwake()
         playerinfo.playerBait.Changed:Connect(function(baitID, oldVal)
             --Give player their selected bait
             if player == client.localPlayer then
-                --print("Bait Changed: " .. baitID)
+
 
                 -- Get the amount of the current bait
                 local inv = playerinfo.playerInventory.value
@@ -136,6 +136,8 @@ function self:ClientAwake()
         -- Update the player inventory
         playerinfo.playerInventory.Changed:Connect(function(inventory, oldVal)
             if player == client.localPlayer then
+
+                print("Inventory Changed: " .. tostring(#inventory))
 
                 -- Get the curretn Pole and update the UI
                 uiManager.UpdateSelectedPole(playerinfo.playerFishingPole.value)
@@ -439,6 +441,10 @@ function GetXPForLevel(level)
     return 100 + (level - 1) * 100
 end
 
+--[[
+If a player has enough XP to jump from level 3 to level 5 in a single action, 
+this function will automatically handle both level-ups instead of stopping at the first one.
+]]
 -- Function to handle leveling up
 function CheckLevelUp(player)
     local playerInfo = players[player]
@@ -468,10 +474,6 @@ function CheckLevelUp(player)
     -- Store the updated stats after leveling up
     StorePlayerStats(player)
 end
---[[
-If a player has enough XP to jump from level 3 to level 5 in a single action, 
-this function will automatically handle both level-ups instead of stopping at the first one.
-]]
 
 
 ----------------- Server Purchase Handler and Inventory -----------------
@@ -503,7 +505,8 @@ function IncrementTokensServer(player, amount)
     else
         return
     end
-    GetPlayerTokensServer(player)
+    players[player].Tokens.value = players[player].Tokens.value + amount
+    --GetPlayerTokensServer(player)
 end
 
 function UpdatePlayerInventoryNetworkValue(player, clientItems)

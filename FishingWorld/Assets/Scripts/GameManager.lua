@@ -266,10 +266,6 @@ function self:ClientUpdate()
         local offsetHookValue = currentValue + (HookWidth * proximity_to_middle((currentValue/350)*100))/2
         linedUp = math.abs(offsetHookValue - fishvalue) < ((HookWidth/2)+18) -- half the wook slider width + half the fish slider width regestering any overlap
     
-        print(tostring(linedUp))
-        print(tostring(proximity_to_middle((currentValue/350)*100)))
-        print("Current Value: " .. tostring(currentValue) .. " Hook Width: " .. tostring(HookWidth) .. " Center Of Hook Value: " .. tostring(offsetHookValue) .. " Fish Value: " .. tostring(fishvalue))
-
         if linedUp then
             progress = progress + Time.deltaTime * progressSpeed / FishDifficulty
         else
