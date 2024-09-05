@@ -136,12 +136,12 @@ function UpdatePlayerInventory_Temporary(player, itemId, amount)
                 table.remove(Player_Inventory_Table_Value, index)
             end
             itemExists = true
-            --break
+            break
         end
     end
-    --if not itemExists and amount > 0 then
-    --    table.insert(Player_Inventory_Table_Value, {id = itemId, amount = amount})
-    --end
+    if not itemExists and amount > 0 then
+        table.insert(Player_Inventory_Table_Value, {id = itemId, amount = amount})
+    end
 
     --Set the players Items on Server via Player Tracker
     playerTracker.UpdatePlayerInventoryNetworkValue(player, Player_Inventory_Table_Value)
