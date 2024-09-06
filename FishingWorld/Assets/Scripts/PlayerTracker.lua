@@ -550,6 +550,19 @@ function calculateXPMultiplier(prestige)
     return xpMultiplier
 end
 
+-- Function to calculate the Upgrade Cost for the pole per prestige
+function calculatePoleUpgradeCost(prestige)
+    -- Base cost for upgrading the pole at prestige 1
+    local baseUpgradeCost = 100
+    -- Cost increase per prestige level
+    local upgradeCostIncreasePerPrestige = 100
+
+    -- Calculate the upgrade cost based on the prestige level
+    local upgradeCost = baseUpgradeCost + ((prestige - 1) * upgradeCostIncreasePerPrestige)
+
+    return upgradeCost
+end
+
 ----------------- Server Purchase Handler and Inventory -----------------
 function GetPlayerTokensServer(player)
     Inventory.GetPlayerItem(player, "Tokens", function(item)
