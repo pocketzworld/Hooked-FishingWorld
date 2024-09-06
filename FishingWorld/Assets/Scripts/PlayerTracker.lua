@@ -34,9 +34,11 @@ function TrackPlayers(game, characterCallback)
             playerXP = IntValue.new("PlayerXP" .. tostring(player.id), 0),
             playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), 1),
             playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), 1),
+            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), 1),
             playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), 1),
-            playerHookSpeed = IntValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
-            playerReelSpeed = IntValue.new("PlayerReelSpeed" .. tostring(player.id), 1)
+            playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
+            playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), 1),
+            playerXPModifier = NumberValue.new("PlayerXPModifier" .. tostring(player.id), 1)
         }
 
         player.CharacterChanged:Connect(function(player, character) 
@@ -383,9 +385,7 @@ function StorePlayerStats(player)
         playerXP = playerInfo.playerXP.value,
         playerLevel = playerInfo.playerLevel.value,
         playerPoleLevel = playerInfo.playerPoleLevel.value,
-        playerStrength = playerInfo.playerStrength.value,
-        playerHookSpeed = playerInfo.playerHookSpeed.value,
-        playerReelSpeed = playerInfo.playerReelSpeed.value
+        playerPolePrestige = playerInfo.playerPolePrestige.value
     }
 
     Storage.SetPlayerValue(player, "PlayerStats", playerStats, function(err)
@@ -407,10 +407,8 @@ function GetPlayerStatsFromStorage(player)
             playerStats = {
                 playerXP = 0,
                 playerLevel = 1,
-                playerPoleLevel = 4,
-                playerStrength = 1,
-                playerHookSpeed = 1,
-                playerReelSpeed = 1
+                playerPoleLevel = 1,
+                playerPolePrestige = 0
             }
         end
 
@@ -418,6 +416,7 @@ function GetPlayerStatsFromStorage(player)
         players[player].playerXP.value = playerStats.playerXP or 0
         players[player].playerLevel.value = playerStats.playerLevel or 1
         players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
+        players[player].playerPolePrestige.value = playerStats.playerPolePrestige or 1
         SetStatsPerLevel(player)
 
         -- Print the player's stats
@@ -426,8 +425,9 @@ function GetPlayerStatsFromStorage(player)
         print("Level: " .. tostring(players[player].playerLevel.value))
         print("Pole Level: " .. tostring(players[player].playerPoleLevel.value))
         print("Strength: " .. tostring(players[player].playerStrength.value))
-        print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value/10))
-        print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value/10))
+        print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
+        print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
+        print("XP Modifier: " .. tostring(players[player].playerXPModifier.value))
 
     end)
     
@@ -489,11 +489,65 @@ function SetStatsPerLevel(player)
     local currentXP = playerInfo.playerXP.value
     local currentLevel = playerInfo.playerLevel.value
     local currentPoleLevel = playerInfo.playerPoleLevel.value
+    local currentPolePrestige = playerInfo.playerPolePrestige.value
 
     --LEVEL UP STATS
     playerInfo.playerStrength.value = currentLevel
-    playerInfo.playerHookSpeed.value = (1 + (currentPoleLevel - 1) / 9)*10
-    playerInfo.playerReelSpeed.value = (1 + (currentPoleLevel - 1) / 9)*10
+    playerInfo.playerHookSpeed.value = calculateHookSpeed(currentPoleLevel, currentPolePrestige)
+    playerInfo.playerReelSpeed.value = calculateReelSpeed(currentPoleLevel, currentPolePrestige)
+    playerInfo.playerXPModifier.value = calculateXPMultiplier(currentPolePrestige)
+end
+
+-- Function to calculate Hook Speed based on Rod Level and Prestige
+function calculateHookSpeed(level, prestige)
+    -- Base hook speed factor for level 1 at prestige 1
+    local baseHookSpeed = 1.0
+    -- Hook speed reduction per level within each prestige
+    local hookSpeedFactorPerLevel = 0.05
+    -- Hook speed improvement per prestige (slight improvement from previous prestige)
+    local hookSpeedImprovementPerPrestige = 0.02
+    -- Adjust base hook speed with prestige improvement
+    local prestigeAdjustedBaseHookSpeed = baseHookSpeed - ((prestige - 1) * hookSpeedImprovementPerPrestige)
+
+    -- Calculate hook speed factor based on the current level within prestige
+    local hookSpeedFactor = prestigeAdjustedBaseHookSpeed - ((level - 1) * hookSpeedFactorPerLevel)
+
+    -- Ensure that hook speed doesn't drop below a certain threshold (e.g., 0.2x)
+    if hookSpeedFactor < 0.2 then
+        hookSpeedFactor = 0.2
+    end
+
+    return hookSpeedFactor
+end
+
+-- Function to calculate Reel Speed based on Rod Level and Prestige
+function calculateReelSpeed(level, prestige)
+    -- Base reeling speed modifier for level 1 at prestige 1
+    local baseReelSpeed = 1.0
+    -- Reel speed increase per level within each prestige
+    local reelSpeedFactorPerLevel = 0.05
+    -- Reel speed improvement per prestige (slight improvement from previous prestige)
+    local reelSpeedImprovementPerPrestige = 0.02
+    -- Adjust base reel speed with prestige improvement
+    local prestigeAdjustedBaseReelSpeed = baseReelSpeed + ((prestige - 1) * reelSpeedImprovementPerPrestige)
+
+    -- Calculate reel speed factor based on the current level within prestige
+    local reelSpeedFactor = prestigeAdjustedBaseReelSpeed + ((level - 1) * reelSpeedFactorPerLevel)
+
+    return reelSpeedFactor
+end
+
+-- Function to calculate XP Multiplier based on Prestige
+function calculateXPMultiplier(prestige)
+    -- Base XP multiplier for Prestige 1
+    local baseXPMultiplier = 1.0
+    -- XP multiplier increase per prestige level
+    local xpMultiplierIncreasePerPrestige = 0.5
+
+    -- Calculate the XP multiplier based on the prestige level
+    local xpMultiplier = baseXPMultiplier + ((prestige - 1) * xpMultiplierIncreasePerPrestige)
+
+    return xpMultiplier
 end
 
 ----------------- Server Purchase Handler and Inventory -----------------
