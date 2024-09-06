@@ -278,7 +278,7 @@ function CreateItemInfoPage(name: string, price: number, description: string, im
   _ItemInfoAmountText:AddToClassList("shop__item__info__amount-label")
   _ItemInfoAmountText:SetPrelocalizedText(tostring(amount))
   _ItemInfoAmount:Add(_ItemInfoAmountText)
-  --]]
+  ]]
 
   _ItemInfoIcon:Add(_ItemInfoImage)
   --_ItemInfoIcon:Add(_ItemInfoAmount)

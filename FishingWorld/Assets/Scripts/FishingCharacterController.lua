@@ -10,7 +10,7 @@
 	including commercial applications, and to alter it and redistribute it
 	freely.
 	
---]] 
+]] 
 
 -------------------------------------------------------------------------------
 -- Types

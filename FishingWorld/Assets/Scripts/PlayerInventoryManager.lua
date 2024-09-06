@@ -65,7 +65,7 @@ function self:ClientAwake()
     for key, value in pairs(itemMetaData.pole_keys) do
         GiveItemClient(value, 1)
     end
-    ---]]
+    -]]
 
 end
 ----------------- Server -----------------

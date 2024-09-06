@@ -482,7 +482,7 @@ function CheckLevelUp(player)
 end
 
 --[[
-Set the Strength, Hook Speed, and Reel Speed based on the player's level
+Set the Strength, Hook Speed, Reel Speed, and XP Modifier based on the player's level
 ]]
 function SetStatsPerLevel(player)
     local playerInfo = players[player]
@@ -498,7 +498,9 @@ function SetStatsPerLevel(player)
     playerInfo.playerXPModifier.value = calculateXPMultiplier(currentPolePrestige)
 end
 
--- Function to calculate Hook Speed based on Rod Level and Prestige
+--[[
+Function to calculate Hook Speed based on Rod Level and Prestige
+]]
 function calculateHookSpeed(level, prestige)
     -- Base hook speed factor for level 1 at prestige 1
     local baseHookSpeed = 1.0
@@ -520,7 +522,9 @@ function calculateHookSpeed(level, prestige)
     return hookSpeedFactor
 end
 
--- Function to calculate Reel Speed based on Rod Level and Prestige
+--[[
+Function to calculate Reel Speed based on Rod Level and Prestige
+]]
 function calculateReelSpeed(level, prestige)
     -- Base reeling speed modifier for level 1 at prestige 1
     local baseReelSpeed = 1.0
@@ -537,7 +541,9 @@ function calculateReelSpeed(level, prestige)
     return reelSpeedFactor
 end
 
--- Function to calculate XP Multiplier based on Prestige
+--[[
+Function to calculate XP Multiplier based on Prestige
+]]
 function calculateXPMultiplier(prestige)
     -- Base XP multiplier for Prestige 1
     local baseXPMultiplier = 1.0
@@ -550,7 +556,9 @@ function calculateXPMultiplier(prestige)
     return xpMultiplier
 end
 
--- Function to calculate the Upgrade Cost for the pole per prestige
+--[[
+Function to calculate the Upgrade Cost for the pole per prestige
+]]
 function calculatePoleUpgradeCost(prestige)
     -- Base cost for upgrading the pole at prestige 1
     local baseUpgradeCost = 100
