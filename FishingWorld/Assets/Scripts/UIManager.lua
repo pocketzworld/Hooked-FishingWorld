@@ -50,8 +50,6 @@ function ToggleInventory()
 end
 
 --- Toggles the visibility of a specific UI component
--- @param ui The UI component name
--- @param visible Boolean indicating whether to show or hide the UI
 local function ToggleUI(ui: string, visible: boolean)
     local uiComponent = uiMap[ui]
     if not uiComponent then
@@ -67,8 +65,6 @@ local function ToggleUI(ui: string, visible: boolean)
 end
 
 --- Toggles visibility for multiple UI components
--- @param uiList Table of UI component names to toggle
--- @param visible Boolean indicating whether to show or hide the UIs
 local function ToggleUIs(uiList, visible: boolean)
     for _, ui in ipairs(uiList) do
         ToggleUI(ui, visible)
@@ -76,8 +72,6 @@ local function ToggleUIs(uiList, visible: boolean)
 end
 
 --- Toggles visibility for all UI components, with an optional exclusion list
--- @param visible Boolean indicating whether to show or hide the UIs
--- @param except Table of UI component names to exclude from toggling
 local function ToggleAll(visible: boolean, except)
     for ui, component in pairs(uiMap) do
         if not (except and except[ui]) then
@@ -91,7 +85,6 @@ local function ToggleAll(visible: boolean, except)
 end
 
 --- Handles button press actions
--- @param btn The button name
 function ButtonPressed(btn: string)
     if btn == "Inventory" then
         ToggleAll(false)
@@ -180,8 +173,6 @@ function UpdateCash()
 end
 
 --- Opens the shop and displays a specific page and item
--- @param page The shop page to open
--- @param itemID The item ID to display
 function OpenShopPage(page: string, itemID: string)
     ToggleAll(false)
     ToggleUI("Shop", true)
@@ -194,20 +185,16 @@ function OpenShopPage(page: string, itemID: string)
 end
 
 --- Updates the selected bait in the HUD
--- @param baitID The bait ID
--- @param amount The amount of bait
 function UpdateSelectedBait(baitID: string, amount)
     WorldHUDScript.UpdateBaitSlot(baitID, amount)
 end
 
 --- Updates the selected pole in the HUD
--- @param poleID The pole ID
 function UpdateSelectedPole(poleID: string)
     WorldHUDScript.UpdatePoleSlot(poleID)
 end
 
 --- Shows the fishing mini-game
--- @param fishName The name of the fish
 function ShowMiniGame(fishName: string, hookwidth: number)
     FishingUIScript.ShowMiniGame(fishName, hookwidth)
 end
@@ -218,13 +205,6 @@ function HideMiniGame()
 end
 
 --- Shows a popup for the caught fish
--- @param fishID The fish ID
--- @param size The size of the fish
--- @param rarity The rarity of the fish
--- @param description The description of the fish
--- @param image The image of the fish
--- @param worth The worth of the fish
--- @param headerOverride Optional header override
 function ShowFishPopup(fishID: string, size, rarity, description: string, image: Texture, worth, headerOverride)
     if not ItemPopupScript then
         ItemPopupScript = ItemPopupObject:GetComponent(ItemPopup)

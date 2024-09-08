@@ -26,6 +26,11 @@ local baitIcon : Image = nil
 --!Bind
 local bait_text : Label = nil
 
+--!Bind
+local _ProfileThumbnail : UIUserThumbnail = nil
+
+_ProfileThumbnail:Load(client.localPlayer)
+
 local gameManager = require("GameManager")
 local playerTracker = require("PlayerTracker")
 local UIManager = require("UIManager")

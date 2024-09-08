@@ -10574,7 +10574,6 @@ MonoBehaviour:
   _uiOutputSettings:
     rid: -2
   m_InventoryObject: {fileID: 1769165504}
-  m_LeaderboardObject: {fileID: 0}
   m_ShopObject: {fileID: 1952634969}
   m_WorldHudObject: {fileID: 1889734950}
   m_FishingHudObject: {fileID: 1931763414}
