@@ -34,9 +34,11 @@ function TrackPlayers(game, characterCallback)
             playerXP = IntValue.new("PlayerXP" .. tostring(player.id), 0),
             playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), 1),
             playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), 1),
+            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), 1),
             playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), 1),
-            playerHookSpeed = IntValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
-            playerReelSpeed = IntValue.new("PlayerReelSpeed" .. tostring(player.id), 1)
+            playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
+            playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), 1),
+            playerXPModifier = NumberValue.new("PlayerXPModifier" .. tostring(player.id), 1)
         }
 
         player.CharacterChanged:Connect(function(player, character) 
@@ -87,7 +89,7 @@ function self:ClientAwake()
         playerinfo.Tokens.Changed:Connect(function(tokens, oldVal)
             if player == client.localPlayer then
                 --print("Tokens: " .. tostring(tokens))
-                --uiManager.UpdateTokens(tokens)
+                uiManager.UpdateCash()
             end
         end)
 
@@ -107,7 +109,7 @@ function self:ClientAwake()
         playerinfo.playerBait.Changed:Connect(function(baitID, oldVal)
             --Give player their selected bait
             if player == client.localPlayer then
-                --print("Bait Changed: " .. baitID)
+
 
                 -- Get the amount of the current bait
                 local inv = playerinfo.playerInventory.value
@@ -137,6 +139,8 @@ function self:ClientAwake()
         playerinfo.playerInventory.Changed:Connect(function(inventory, oldVal)
             if player == client.localPlayer then
 
+                print("Inventory Changed: " .. tostring(#inventory))
+
                 -- Get the curretn Pole and update the UI
                 uiManager.UpdateSelectedPole(playerinfo.playerFishingPole.value)
 
@@ -160,6 +164,16 @@ end
 -- Function to get the player's strength
 function GetPlayerStrength()
     return players[client.localPlayer].playerStrength.value
+end
+
+-- Function to get the player's hook speed
+function GetPlayerHookSpeed()
+    return players[client.localPlayer].playerHookSpeed.value
+end
+
+-- Function to get the player's reel speed
+function GetPlayerReelSpeed()
+    return players[client.localPlayer].playerReelSpeed.value
 end
 
 function GetPlayerInventory()
@@ -371,9 +385,7 @@ function StorePlayerStats(player)
         playerXP = playerInfo.playerXP.value,
         playerLevel = playerInfo.playerLevel.value,
         playerPoleLevel = playerInfo.playerPoleLevel.value,
-        playerStrength = playerInfo.playerStrength.value,
-        playerHookSpeed = playerInfo.playerHookSpeed.value,
-        playerReelSpeed = playerInfo.playerReelSpeed.value
+        playerPolePrestige = playerInfo.playerPolePrestige.value
     }
 
     Storage.SetPlayerValue(player, "PlayerStats", playerStats, function(err)
@@ -391,13 +403,12 @@ function GetPlayerStatsFromStorage(player)
     Storage.GetPlayerValue(player, "PlayerStats", function(playerStats)
         if playerStats == nil then
             -- Default values if no data found
+            print("No player stats found for " .. player.name .. ". Defaulting to level 1.")
             playerStats = {
                 playerXP = 0,
                 playerLevel = 1,
                 playerPoleLevel = 1,
-                playerStrength = 1,
-                playerHookSpeed = 1,
-                playerReelSpeed = 1
+                playerPolePrestige = 0
             }
         end
 
@@ -405,19 +416,21 @@ function GetPlayerStatsFromStorage(player)
         players[player].playerXP.value = playerStats.playerXP or 0
         players[player].playerLevel.value = playerStats.playerLevel or 1
         players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
-        players[player].playerStrength.value = playerStats.playerStrength or 1
-        players[player].playerHookSpeed.value = playerStats.playerHookSpeed or 1
-        players[player].playerReelSpeed.value = playerStats.playerReelSpeed or 1
+        players[player].playerPolePrestige.value = playerStats.playerPolePrestige or 1
+        SetStatsPerLevel(player)
 
-        --Print all player Stats
-        print("Player Stats for " .. player.name .. ":")
+        -- Print the player's stats
+        print(player.name .. "'s stats: ")
         print("XP: " .. tostring(players[player].playerXP.value))
         print("Level: " .. tostring(players[player].playerLevel.value))
         print("Pole Level: " .. tostring(players[player].playerPoleLevel.value))
         print("Strength: " .. tostring(players[player].playerStrength.value))
         print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
         print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
+        print("XP Modifier: " .. tostring(players[player].playerXPModifier.value))
+
     end)
+    
 end
 
 ----------------- Leveling System -----------------
@@ -439,6 +452,10 @@ function GetXPForLevel(level)
     return 100 + (level - 1) * 100
 end
 
+--[[
+If a player has enough XP to jump from level 3 to level 5 in a single action, 
+this function will automatically handle both level-ups instead of stopping at the first one.
+]]
 -- Function to handle leveling up
 function CheckLevelUp(player)
     local playerInfo = players[player]
@@ -458,21 +475,101 @@ function CheckLevelUp(player)
     -- Update player stats with new level and remaining XP
     playerInfo.playerXP.value = currentXP
     playerInfo.playerLevel.value = currentLevel
-
-    --LEVEL UP OTHER STATS
-    playerInfo.playerStrength.value = currentLevel
-
-    --Print percentage to next level
-    print("Percentage to next level: " .. tostring(currentXP / GetXPForLevel(currentLevel) * 100) .. "%")
+    SetStatsPerLevel(player)
 
     -- Store the updated stats after leveling up
     StorePlayerStats(player)
 end
---[[
-If a player has enough XP to jump from level 3 to level 5 in a single action, 
-this function will automatically handle both level-ups instead of stopping at the first one.
-]]
 
+--[[
+Set the Strength, Hook Speed, Reel Speed, and XP Modifier based on the player's level
+]]
+function SetStatsPerLevel(player)
+    local playerInfo = players[player]
+    local currentXP = playerInfo.playerXP.value
+    local currentLevel = playerInfo.playerLevel.value
+    local currentPoleLevel = playerInfo.playerPoleLevel.value
+    local currentPolePrestige = playerInfo.playerPolePrestige.value
+
+    --LEVEL UP STATS
+    playerInfo.playerStrength.value = currentLevel
+    playerInfo.playerHookSpeed.value = calculateHookSpeed(currentPoleLevel, currentPolePrestige)
+    playerInfo.playerReelSpeed.value = calculateReelSpeed(currentPoleLevel, currentPolePrestige)
+    playerInfo.playerXPModifier.value = calculateXPMultiplier(currentPolePrestige)
+end
+
+--[[
+Function to calculate Hook Speed based on Rod Level and Prestige
+]]
+function calculateHookSpeed(level, prestige)
+    -- Base hook speed factor for level 1 at prestige 1
+    local baseHookSpeed = 1.0
+    -- Hook speed reduction per level within each prestige
+    local hookSpeedFactorPerLevel = 0.05
+    -- Hook speed improvement per prestige (slight improvement from previous prestige)
+    local hookSpeedImprovementPerPrestige = 0.02
+    -- Adjust base hook speed with prestige improvement
+    local prestigeAdjustedBaseHookSpeed = baseHookSpeed - ((prestige - 1) * hookSpeedImprovementPerPrestige)
+
+    -- Calculate hook speed factor based on the current level within prestige
+    local hookSpeedFactor = prestigeAdjustedBaseHookSpeed - ((level - 1) * hookSpeedFactorPerLevel)
+
+    -- Ensure that hook speed doesn't drop below a certain threshold (e.g., 0.2x)
+    if hookSpeedFactor < 0.2 then
+        hookSpeedFactor = 0.2
+    end
+
+    return hookSpeedFactor
+end
+
+--[[
+Function to calculate Reel Speed based on Rod Level and Prestige
+]]
+function calculateReelSpeed(level, prestige)
+    -- Base reeling speed modifier for level 1 at prestige 1
+    local baseReelSpeed = 1.0
+    -- Reel speed increase per level within each prestige
+    local reelSpeedFactorPerLevel = 0.05
+    -- Reel speed improvement per prestige (slight improvement from previous prestige)
+    local reelSpeedImprovementPerPrestige = 0.02
+    -- Adjust base reel speed with prestige improvement
+    local prestigeAdjustedBaseReelSpeed = baseReelSpeed + ((prestige - 1) * reelSpeedImprovementPerPrestige)
+
+    -- Calculate reel speed factor based on the current level within prestige
+    local reelSpeedFactor = prestigeAdjustedBaseReelSpeed + ((level - 1) * reelSpeedFactorPerLevel)
+
+    return reelSpeedFactor
+end
+
+--[[
+Function to calculate XP Multiplier based on Prestige
+]]
+function calculateXPMultiplier(prestige)
+    -- Base XP multiplier for Prestige 1
+    local baseXPMultiplier = 1.0
+    -- XP multiplier increase per prestige level
+    local xpMultiplierIncreasePerPrestige = 0.5
+
+    -- Calculate the XP multiplier based on the prestige level
+    local xpMultiplier = baseXPMultiplier + ((prestige - 1) * xpMultiplierIncreasePerPrestige)
+
+    return xpMultiplier
+end
+
+--[[
+Function to calculate the Upgrade Cost for the pole per prestige
+]]
+function calculatePoleUpgradeCost(prestige)
+    -- Base cost for upgrading the pole at prestige 1
+    local baseUpgradeCost = 100
+    -- Cost increase per prestige level
+    local upgradeCostIncreasePerPrestige = 100
+
+    -- Calculate the upgrade cost based on the prestige level
+    local upgradeCost = baseUpgradeCost + ((prestige - 1) * upgradeCostIncreasePerPrestige)
+
+    return upgradeCost
+end
 
 ----------------- Server Purchase Handler and Inventory -----------------
 function GetPlayerTokensServer(player)
@@ -503,7 +600,8 @@ function IncrementTokensServer(player, amount)
     else
         return
     end
-    GetPlayerTokensServer(player)
+    players[player].Tokens.value = players[player].Tokens.value + amount
+    --GetPlayerTokensServer(player)
 end
 
 function UpdatePlayerInventoryNetworkValue(player, clientItems)

@@ -65,7 +65,7 @@ function self:ClientAwake()
     for key, value in pairs(itemMetaData.pole_keys) do
         GiveItemClient(value, 1)
     end
-    ---]]
+    -]]
 
 end
 ----------------- Server -----------------
@@ -126,15 +126,23 @@ function UpdatePlayerInventory(player, items)
 end
 
 function UpdatePlayerInventory_Temporary(player, itemId, amount)
+
     local Player_Inventory_Table_Value = playerTracker.GetPlayerInventoryNetworkValue(player)
+    local itemExists = false
     for index, item in Player_Inventory_Table_Value do
         if item.id == itemId then
             item.amount = item.amount + amount
             if item.amount <= 0 then
                 table.remove(Player_Inventory_Table_Value, index)
             end
+            itemExists = true
+            break
         end
     end
+    if not itemExists and amount > 0 then
+        table.insert(Player_Inventory_Table_Value, {id = itemId, amount = amount})
+    end
+
     --Set the players Items on Server via Player Tracker
     playerTracker.UpdatePlayerInventoryNetworkValue(player, Player_Inventory_Table_Value)
 end

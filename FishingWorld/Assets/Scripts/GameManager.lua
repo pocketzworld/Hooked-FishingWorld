@@ -27,6 +27,7 @@ local fishvalue = 500
 -- Timer Visuals
 local progress = 0
 local progressSpeed = 0.2
+local ReelSpeed = 1
 
 local startFishingReq = Event.new("StartFishingRequest")
 local catchFishReq = Event.new("CatchFishRequest")
@@ -110,9 +111,13 @@ function MoveFish()
 end
 
 function StartBaiting(biome : string)
-    baitTimer = Timer.After(1, function() 
-        local roll = math.random(1,10) + (math.random() * math.random(-1,1))
-        if roll > 8 then 
+    local playerHookSpeed = playerTracker.GetPlayerHookSpeed()
+    local BaitTime = 1.5 * playerHookSpeed
+
+    print("Baiting for " .. tostring(BaitTime) .. " seconds")
+    baitTimer = Timer.After(BaitTime, function() 
+        local roll = math.random(1,100)
+        if roll > 80 then
             StartGame(biome) 
         else 
             StartBaiting(biome)
@@ -138,6 +143,9 @@ function InitiateFishing(point : Vector3, biome : string, bait : string)
 end
 
 function StartGame(biome : string)
+
+    -- Fetch the players reel speed
+    ReelSpeed = playerTracker.GetPlayerReelSpeed()
 
     -- Stop the bait timer
     if baitTimer ~= nil then 
@@ -262,16 +270,12 @@ function self:ClientUpdate()
 
         uiManager.FishingUIScript.UpdateFish(fishvalue)
         
-        -- Calculate progress as a ratio of elapsedTime to duration
+        -- Increase progress if the sliders are lined up
         local offsetHookValue = currentValue + (HookWidth * proximity_to_middle((currentValue/350)*100))/2
         linedUp = math.abs(offsetHookValue - fishvalue) < ((HookWidth/2)+18) -- half the wook slider width + half the fish slider width regestering any overlap
     
-        print(tostring(linedUp))
-        print(tostring(proximity_to_middle((currentValue/350)*100)))
-        print("Current Value: " .. tostring(currentValue) .. " Hook Width: " .. tostring(HookWidth) .. " Center Of Hook Value: " .. tostring(offsetHookValue) .. " Fish Value: " .. tostring(fishvalue))
-
         if linedUp then
-            progress = progress + Time.deltaTime * progressSpeed / FishDifficulty
+            progress = progress + Time.deltaTime * progressSpeed * ReelSpeed / FishDifficulty
         else
             progress = progress - Time.deltaTime * progressSpeed * 1.5 / FishDifficulty
         end

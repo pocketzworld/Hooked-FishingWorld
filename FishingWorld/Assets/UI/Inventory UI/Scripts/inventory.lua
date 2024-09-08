@@ -228,7 +228,7 @@ function UpdateInventory(items)
   -- Populate the inventory with with Items depending on the Sate
   if state == 0 then
     -- Fish
-    --[[ -- Add all existing fish to the journal defaulted to unowned --]]
+    --[[ -- Add all existing fish to the journal defaulted to unowned ]]
     for i in ipairs(fishKeys) do
       local fishID = fishKeys[i]
 
@@ -271,7 +271,7 @@ function UpdateInventory(items)
     end
   elseif state == 1 then
     -- Bait
-    --[[ -- Add all existing poles to the journal defaulted to unowned --]]
+    --[[ -- Add all existing poles to the journal defaulted to unowned ]]
     for i in ipairs(baitKeys) do
       local itemID = baitKeys[i]
 
@@ -322,7 +322,7 @@ function UpdateInventory(items)
     return
   elseif state == 2 then
     -- Poles
-    --[[ -- Add all existing poles to the journal defaulted to unowned --]]
+    --[[ -- Add all existing poles to the journal defaulted to unowned ]]
     for i in ipairs(poleKeys) do
       local itemID = poleKeys[i]
 
