@@ -727,7 +727,8 @@ local FishSpecialAttributes = {
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
 }
 
-local FishDifficulty = {
+--[[ Empty FishTable
+local EmptyFishDataTable = {
     ["black_crappie"] = 1,
     ["yellow_perch"] = 1,
     ["blue_gill"] = 1,
@@ -813,9 +814,9 @@ local FishDifficulty = {
     ["walley_fish"] = 1,
     ["albino_catfish"] = 1,
     ["yellow_watchman"] = 1,
-}
+}]]
 
-local FishMod = {
+local HookSensitivity = {
     ["black_crappie"] = 1,
     ["yellow_perch"] = 1,
     ["blue_gill"] = 1,
@@ -1079,6 +1080,30 @@ local FishBaits = {
     ["yellow_watchman"] = {"donut_bait"},
 }
 
+local RarityReelResistances = {
+    ["Common"] = 1,
+    ["Uncommon"] = 1.1,
+    ["Rare"] = 1.2,
+    ["Legendary"] = 1.3,
+    ["Mythical"] = 1.4,
+}
+
+local RarityStrengthResistances = {
+    ["Common"] = 1,
+    ["Uncommon"] = 1.05,
+    ["Rare"] = 1.1,
+    ["Legendary"] = 1.15,
+    ["Mythical"] = 1.2,
+}
+
+local RarityExperianceValue = {
+    ["Common"] = 10,
+    ["Uncommon"] = 50,
+    ["Rare"] = 100,
+    ["Legendary"] = 250,
+    ["Mythical"] = 1000,
+}
+
 fish_keys = {
     -- Common
     "jogger_fish",        -- Common
@@ -1185,8 +1210,7 @@ for _, fishKey in ipairs(fish_keys) do
         Rarity = FishRarity[fishKey],
         Biomes = FishBiomes[fishKey],
         Baits = FishBaits[fishKey],
-        fishDifficulty = FishDifficulty[fishKey],
-        FishMod = FishMod[fishKey],
+        HookSensitivity = HookSensitivity[fishKey],
         FishImage = FishImage[fishKey],
         Worth = FishWorth[fishKey],
         Quest_ID = FishQuestID[fishKey],
@@ -1346,4 +1370,25 @@ function GetFishSize(fishName : string)
     local roundedSize = math.floor(size * 10 + 0.5) / 10
 
     return roundedSize
+end
+
+function GetFishReelResistance(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local reelResistance = RarityReelResistances[fishRarity]
+
+    return reelResistance
+end
+
+function GetFishStrengthResistance(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local strengthResistance = RarityStrengthResistances[fishRarity]
+
+    return strengthResistance
+end
+
+function GetFishExperianceValue(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local experianceValue = RarityExperianceValue[fishRarity]
+
+    return experianceValue
 end

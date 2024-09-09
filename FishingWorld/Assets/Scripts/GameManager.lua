@@ -6,8 +6,9 @@ local lockedImage : Texture = nil
 local Speed = 1.75
 local currentSpeed = 1.75
 local jumpFactor = 7
-local FishMod = 1
-local FishDifficulty = 1
+local HookSensitivity = 1
+local ReelResistance = 1
+local StrengthResistance = 1
 
 -- Initialize game state
 local currentValue = 500
@@ -18,6 +19,7 @@ local baitTimer = nil
 local linedUp = false
 local playerStrength = 1
 local HookWidth = 72
+local playerHookSpeed = 1
 
 -- Fish movement
 local fishMoveTimer = nil
@@ -45,7 +47,9 @@ local utility = require("Utils")
 
 -- Function to calculate Tap Meter Width Modifier based on the player's strength
 function GetHookBarWidth(strength)
-    return 72 * ((100 + 6.25 * (strength - 1))/100)
+    print("Strength: " .. tostring(strength) .. " Strength Resistance: " .. tostring(StrengthResistance))
+    print("Hook Width: " .. tostring((72 * ((100 + 6.25 * (strength - 1))/100)) / StrengthResistance))
+    return (72 * ((100 + 6.25 * (strength - 1))/100)) / StrengthResistance
 end
 
 -- Function to handle catching the fish
@@ -111,7 +115,6 @@ function MoveFish()
 end
 
 function StartBaiting(biome : string)
-    local playerHookSpeed = playerTracker.GetPlayerHookSpeed()
     local BaitTime = 1.5 * playerHookSpeed
 
     print("Baiting for " .. tostring(BaitTime) .. " seconds")
@@ -129,8 +132,18 @@ function InitiateFishing(point : Vector3, biome : string, bait : string)
     -- Get Fish Data
     currentFish = fishMetaData.GetRandomFish(biome, bait)
     local fishData = fishMetaData.GetFishData(currentFish)
-    FishMod = fishData.FishMod
-    FishDifficulty = fishMetaData.FishDifficulties[fishData.Rarity]
+    HookSensitivity = fishData.HookSensitivity
+    ReelResistance = fishMetaData.GetFishReelResistance(currentFish)
+    StrengthResistance = fishMetaData.GetFishStrengthResistance(currentFish)
+
+    -- Get Player Stats --
+    -- Fetch the players strength
+    playerStrength = playerTracker.GetPlayerStrength()
+    HookWidth = GetHookBarWidth(playerStrength)
+    -- Fetch the players reel speed
+    ReelSpeed = playerTracker.GetPlayerReelSpeed()
+    -- Fetch the players hook speed
+    playerHookSpeed = playerTracker.GetPlayerHookSpeed()
 
     playerController.ShowFishingIndicator(point)
     audioManager.PlaySound("splashSound1", 1)
@@ -143,10 +156,6 @@ function InitiateFishing(point : Vector3, biome : string, bait : string)
 end
 
 function StartGame(biome : string)
-
-    -- Fetch the players reel speed
-    ReelSpeed = playerTracker.GetPlayerReelSpeed()
-
     -- Stop the bait timer
     if baitTimer ~= nil then 
         baitTimer:Stop()
@@ -158,10 +167,6 @@ function StartGame(biome : string)
 
     -- Set the player to a fishing state
     playerController.options.enabled = false
-
-    -- Get Player Stats
-    playerStrength = playerTracker.GetPlayerStrength()
-    HookWidth = GetHookBarWidth(playerStrength)
 
     -- Show the MiniGame UI
     uiManager.ShowMiniGame(currentFish, HookWidth)
@@ -186,7 +191,7 @@ end
 
 -- Function to increase the value based on its distance from 0.5
 function increaseValueOnPress()
-    currentSpeed = -jumpFactor * FishMod
+    currentSpeed = -jumpFactor * HookSensitivity
     if currentValue > 350 then currentValue = 350; end --Loose() end
 end
 
@@ -254,9 +259,9 @@ function self:ClientUpdate()
         -- Hook Slider
         decreaseValue()
         uiManager.FishingUIScript.UpdateHook(currentValue, linedUp)
-        if currentSpeed < Speed * FishMod then
-            currentSpeed = currentSpeed + Time.deltaTime * 50 * FishMod
-            if currentSpeed > Speed * FishMod then currentSpeed = Speed * FishMod end
+        if currentSpeed < Speed * HookSensitivity then
+            currentSpeed = currentSpeed + Time.deltaTime * 50 * HookSensitivity
+            if currentSpeed > Speed * HookSensitivity then currentSpeed = Speed * HookSensitivity end
         end
 
         -- Fish Slider
@@ -275,9 +280,9 @@ function self:ClientUpdate()
         linedUp = math.abs(offsetHookValue - fishvalue) < ((HookWidth/2)+18) -- half the wook slider width + half the fish slider width regestering any overlap
     
         if linedUp then
-            progress = progress + Time.deltaTime * progressSpeed * ReelSpeed / FishDifficulty
+            progress = progress + Time.deltaTime * progressSpeed * ReelSpeed / ReelResistance
         else
-            progress = progress - Time.deltaTime * progressSpeed * 1.5 / FishDifficulty
+            progress = progress - Time.deltaTime * progressSpeed * .8
         end
 
         
@@ -322,10 +327,10 @@ function self:ServerAwake()
     catchFishReq:Connect(function(player, requestedFishID, worth)
         local expectedFish = activeFishIDs[player] == requestedFishID
         -- Give the player the fish if the client isnt lying
-        if expectedFish then 
+        if expectedFish and worth == fishMetaData.GetFishData(requestedFishID).Worth then 
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
-            playerTracker.IncrementTokensServer(player, worth)
-            playerTracker.AwardXP(player, worth*10)
+            playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
+            playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID))
         end
 
 
