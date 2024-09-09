@@ -27,15 +27,17 @@ local baitIcon : Image = nil
 local bait_text : Label = nil
 
 --!Bind
-local _ProfileThumbnail : UIUserThumbnail = nil
-
-_ProfileThumbnail:Load(client.localPlayer)
+local _playerLevelContainer : VisualElement = nil
 
 local gameManager = require("GameManager")
 local playerTracker = require("PlayerTracker")
 local UIManager = require("UIManager")
 local Utils = require("Utils")
 local itemMetaData = require("ItemMetaData")
+
+_playerLevelContainer:RegisterPressCallback(function()
+    UIManager.ButtonPressed("PlayerCard")
+end, true, true, true)
 
 _InventoryButton:RegisterPressCallback(function()
     UIManager.ButtonPressed("Inventory")

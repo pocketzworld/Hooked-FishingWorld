@@ -15,6 +15,8 @@ local ItemPopupObject : GameObject = nil
 local RewardPopupObject : GameObject = nil
 --!SerializeField
 local DailiesUIObject : GameObject = nil
+--!SerializeField
+local PlayerCardObject : GameObject = nil
 
 -- Required modules
 local Utils = require("Utils")
@@ -29,6 +31,7 @@ ShopUIScript = nil
 WorldHUDScript = nil
 ItemPopupScript = nil
 DailiesScript = nil
+PlayerCardScript = nil
 
 -- UI map for quick access
 local uiMap = {
@@ -37,7 +40,8 @@ local uiMap = {
     WorldHUD = WorldHudObject,
     ItemPopup = ItemPopupObject,
     RewardPopup = RewardPopupObject,
-    Dailies = DailiesUIObject
+    Dailies = DailiesUIObject,
+    PlayerCard = PlayerCardObject
 }
 
 --- Toggles the visibility of the Inventory UI
@@ -145,7 +149,15 @@ function ButtonPressed(btn: string)
         end
         DailiesScript.PopulateRewards()
         AudioManager.PlaySound("paperSound1", 1.1)
+    
+    elseif btn == "Card" then
+        ToggleAll(false)
+        ToggleUI("PlayerCard", true)
+        if not PlayerCardScript then
+            PlayerCardScript = PlayerCardObject:GetComponent(PlayerCard)
+        end
 
+        AudioManager.PlaySound("paperSound1", 1.1)
     elseif btn == "Close" then
         ToggleAll(false)
         ToggleUIs({"WorldHUD"}, true)
