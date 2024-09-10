@@ -83,24 +83,24 @@ local bait_names = {
     ["donut_bait"] = "Donut"
 }
 
--- Table for bait descriptions
+-- Table for bait descriptions with luck boost
 local bait_descriptions = {
-    ["sadworm_bait"] = "The trusty Worm, perfect for catching Uncommon fish. It's a little sad, but it gets the job done and is easy to find.",
-    ["corn_bait"] = "A piece of corn, perfect for catching up to Uncommon fish.",
-    ["plastic_bait"] = "A piece of plastic, perfect for catching up to Uncommon fish.",
-    ["maggot_bait"] = "A maggot, perfect for catching up to Uncommon fish.",
-    ["grub_bait"] = "A grub, perfect for catching up to Uncommon fish.",
-    ["toast_bait"] = "A piece of toast, perfect for catching up to Rare fish.",
-    ["bacon_bait"] = "A strip of bacon, perfect for catching up to Rare fish.",
-    ["broccoli_bait"] = "A piece of broccoli, perfect for catching up to Rare fish.",
-    ["chicken_bait"] = "A piece of chicken, perfect for catching up to Rare fish.",
-    ["egg_bait"] = "An egg, perfect for catching up to Rare fish.",
-    ["hotdog_bait"] = "A hotdog, perfect for catching up to Legendary fish.",
-    ["pizza_bait"] = "A slice of pizza, perfect for catching up to Legendary fish.",
-    ["shrimp_bait"] = "A shrimp, perfect for catching up to Mythical fish.",
-    ["squid_bait"] = "A squid, perfect for catching up to Mythical fish.",
-    ["steak_bait"] = "A steak, perfect for catching up to Mythical fish.",
-    ["donut_bait"] = "A donut, perfect for catching up to Mythical fish."
+    ["sadworm_bait"] = "The trusty Worm. Provides a 1.25x luck boost! Poor guy is a bit sad, but still gets the job done.",
+    ["corn_bait"] = "A piece of corn. Provides a 1.5x luck boost! Fish can't resist the kernels, who knew?",
+    ["plastic_bait"] = "A piece of plastic. Provides a 1.75x luck boost! Recycling at its finest... for fishing!",
+    ["maggot_bait"] = "A maggot. Provides a 2x luck boost! Gross to you, but gourmet to the fish.",
+    ["grub_bait"] = "A grub. Provides a 2.3x luck boost! The wriggliest bait you'll ever use.",
+    ["toast_bait"] = "A piece of toast. Provides a 2.6x luck boost! Fish appreciate a good breakfast, too.",
+    ["bacon_bait"] = "A strip of bacon. Provides a 3x luck boost! Even fish can’t say no to bacon.",
+    ["broccoli_bait"] = "A piece of broccoli. Provides a 3.5x luck boost! Even fish need their greens sometimes.",
+    ["chicken_bait"] = "A piece of chicken. Provides a 4x luck boost! A true feast for the fanciest of fish.",
+    ["egg_bait"] = "An egg. Provides a 4.5x luck boost! Fish go wild for this eggcellent bait.",
+    ["hotdog_bait"] = "A hotdog. Provides a 5x luck boost! For fish that enjoy a classic snack by the lake.",
+    ["pizza_bait"] = "A slice of pizza. Provides a 6x luck boost! Fish can't resist the cheesy goodness.",
+    ["shrimp_bait"] = "A shrimp. Provides a 7x luck boost! It's like fine dining underwater.",
+    ["squid_bait"] = "A squid. Provides an 8x luck boost! Fancy bait for the pickiest of fish.",
+    ["steak_bait"] = "A steak. Provides a 9x luck boost! The ultimate bait for fish with a taste for luxury.",
+    ["donut_bait"] = "A donut. Provides a 10x luck boost! Because who doesn't love a good donut, even fish?"
 }
 
 -- Table for bait images
@@ -125,22 +125,22 @@ local bait_images = {
 
 -- Table for bait worth (value)
 local bait_worth = {
-    ["sadworm_bait"] = 5,
-    ["corn_bait"] = 5,
-    ["plastic_bait"] = 5,
-    ["maggot_bait"] = 5,
-    ["grub_bait"] = 5,
-    ["toast_bait"] = 10,
-    ["bacon_bait"] = 10,
-    ["broccoli_bait"] = 10,
-    ["chicken_bait"] = 10,
-    ["egg_bait"] = 10,
-    ["hotdog_bait"] = 15,
-    ["pizza_bait"] = 15,
-    ["shrimp_bait"] = 20,
-    ["squid_bait"] = 20,
-    ["steak_bait"] = 20,
-    ["donut_bait"] = 20
+    ["sadworm_bait"] = 100,
+    ["corn_bait"] = 200,
+    ["plastic_bait"] = 300,
+    ["maggot_bait"] = 400,
+    ["grub_bait"] = 500,
+    ["toast_bait"] = 600,
+    ["bacon_bait"] = 700,
+    ["broccoli_bait"] = 800,
+    ["chicken_bait"] = 900,
+    ["egg_bait"] = 1000,
+    ["hotdog_bait"] = 1200,
+    ["pizza_bait"] = 1400,
+    ["shrimp_bait"] = 1600,
+    ["squid_bait"] = 1800,
+    ["steak_bait"] = 2000,
+    ["donut_bait"] = 2200
 }
 
 -- Table for bait rarity
