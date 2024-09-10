@@ -10,6 +10,7 @@ FishDifficulties = {
     ["Common"] = 1,
     ["Uncommon"] = 1.5,
     ["Rare"] = 2,
+    ["Epic"] = 2.25,
     ["Legendary"] = 2.5,
     ["Mythical"] = 3
 }
@@ -22,6 +23,95 @@ Q60xx - Mythical
 ]]
 
 -- Separated tables for each attribute, keyed by fish ID
+
+--[[ Empty FishTable
+local EmptyFishDataTable = {
+    ["black_crappie"] = 1,
+    ["yellow_perch"] = 1,
+    ["blue_gill"] = 1,
+    ["pumpkinseed"] = 1,
+    ["boot_fish"] = 1,
+    ["can_fish"] = 1,
+    ["long_mouth_bass"] = 1,
+    ["salmon"] = 1,
+    ["crystal_fairy_fish"] = 1,
+    ["dragon_fish"] = 1,
+    ["unicorn_fish"] = 1,
+    ["anchovi_fish"] = 1,
+    ["angler_fish"] = 1,
+    ["arowana_fish"] = 1,
+    ["barred_knife_fish"] = 1,
+    ["beach_shark_fish"] = 1,
+    ["begginers_luck_fish"] = 1,
+    ["betta_fish"] = 1,
+    ["black_ghostshark"] = 1,
+    ["black_drum_fish"] = 1,
+    ["blue_whale"] = 1,
+    ["blue_tang"] = 1,
+    ["alley_cat_fish"] = 1,
+    ["catfish"] = 1,
+    ["chum_salmon_fish"] = 1,
+    ["clown_fish"] = 1,
+    ["coho_salmon_fish"] = 1,
+    ["common_carp_fish"] = 1,
+    ["crab"] = 1,
+    ["dolphin"] = 1,
+    ["rasta_drum_fish"] = 1,
+    ["dumbo_octopus"] = 1,
+    ["electric_eel"] = 1,
+    ["flounder_fish"] = 1,
+    ["tourist_fish"] = 1,
+    ["gold_fish"] = 1,
+    ["goliath_tiger_fish"] = 1,
+    ["jelly_fish"] = 1,
+    ["jogger_fish"] = 1,
+    ["killer_whale"] = 1,
+    ["king_catfish"] = 1,
+    ["king_mackerel"] = 1,
+    ["king_salmon"] = 1,
+    ["king_seahorse"] = 1,
+    ["koi_fish_samurai"] = 1,
+    ["koi_fish_large"] = 1,
+    ["large_stripped_bass"] = 1,
+    ["lion_fish"] = 1,
+    ["freindly_local_fish"] = 1,
+    ["mouse_fish"] = 1,
+    ["newborn_salmon"] = 1,
+    ["nomadic_trout"] = 1,
+    ["northern_pike"] = 1,
+    ["octopus"] = 1,
+    ["oil_eater_fish"] = 1,
+    ["omnipotent_squid"] = 1,
+    ["pearl_perch_fish"] = 1,
+    ["peasant_fish"] = 1,
+    ["pink_salmon"] = 1,
+    ["piranha"] = 1,
+    ["red_snapper_fish"] = 1,
+    ["rock_bass_fish"] = 1,
+    ["royal_lake_fish"] = 1,
+    ["salt_trader_fish"] = 1,
+    ["saw_fish"] = 1,
+    ["seahorse"] = 1,
+    ["servant_fish"] = 1,
+    ["small_common_trout"] = 1,
+    ["rainbow_trout"] = 1,
+    ["spotted_bass_fish"] = 1,
+    ["squid"] = 1,
+    ["squirrel_fish"] = 1,
+    ["star_fish"] = 1,
+    ["sting_ray"] = 1,
+    ["sun_fish"] = 1,
+    ["surffer_fish"] = 1,
+    ["sword_fish"] = 1,
+    ["tiger_pistol_shrimp"] = 1,
+    ["transparent_head_fish"] = 1,
+    ["buisness_fish"] = 1,
+    ["derp_fish"] = 1,
+    ["king_fish"] = 1,
+    ["walley_fish"] = 1,
+    ["albino_catfish"] = 1,
+    ["yellow_watchman"] = 1,
+}]]
 
 local FishBiomes = {
     ["black_crappie"] = {"Lake", "River"},
@@ -212,11 +302,11 @@ local FishRarity = {
     ["dragon_fish"] = "Mythical",
     ["unicorn_fish"] = "Mythical",
     ["anchovi_fish"] = "Common",
-    ["angler_fish"] = "Legendary",
+    ["angler_fish"] = "Epic",
     ["arowana_fish"] = "Uncommon",
     ["barred_knife_fish"] = "Rare",
-    ["beach_shark_fish"] = "Legendary",
-    ["begginers_luck_fish"] = "Legendary",
+    ["beach_shark_fish"] = "Epic",
+    ["begginers_luck_fish"] = "Epic",
     ["betta_fish"] = "Rare",
     ["black_ghostshark"] = "Mythical",
     ["black_drum_fish"] = "Uncommon",
@@ -229,7 +319,7 @@ local FishRarity = {
     ["coho_salmon_fish"] = "Uncommon",
     ["common_carp_fish"] = "Common",
     ["crab"] = "Common",
-    ["dolphin"] = "Legendary",
+    ["dolphin"] = "Epic",
     ["rasta_drum_fish"] = "Mythical",
     ["dumbo_octopus"] = "Rare",
     ["electric_eel"] = "Uncommon",
@@ -239,10 +329,10 @@ local FishRarity = {
     ["goliath_tiger_fish"] = "Uncommon",
     ["jelly_fish"] = "Mythical",
     ["jogger_fish"] = "Common",
-    ["killer_whale"] = "Legendary",
+    ["killer_whale"] = "Epic",
     ["king_catfish"] = "Legendary",
-    ["king_mackerel"] = "Legendary",
-    ["king_salmon"] = "Legendary",
+    ["king_mackerel"] = "Epic",
+    ["king_salmon"] = "Epic",
     ["king_seahorse"] = "Legendary",
     ["koi_fish_samurai"] = "Mythical",
     ["koi_fish_large"] = "Rare",
@@ -251,7 +341,7 @@ local FishRarity = {
     ["freindly_local_fish"] = "Legendary",
     ["mouse_fish"] = "Rare",
     ["newborn_salmon"] = "Rare",
-    ["nomadic_trout"] = "Legendary",
+    ["nomadic_trout"] = "Epic",
     ["northern_pike"] = "Uncommon",
     ["octopus"] = "Mythical",
     ["oil_eater_fish"] = "Rare",
@@ -281,7 +371,7 @@ local FishRarity = {
     ["transparent_head_fish"] = "Mythical",
     ["buisness_fish"] = "Legendary",
     ["derp_fish"] = "Rare",
-    ["king_fish"] = "Uncommon",
+    ["king_fish"] = "Epic",
     ["walley_fish"] = "Uncommon",
     ["albino_catfish"] = "Rare",
     ["yellow_watchman"] = "Mythical",
@@ -727,95 +817,7 @@ local FishSpecialAttributes = {
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
 }
 
-local FishDifficulty = {
-    ["black_crappie"] = 1,
-    ["yellow_perch"] = 1,
-    ["blue_gill"] = 1,
-    ["pumpkinseed"] = 1,
-    ["boot_fish"] = 1,
-    ["can_fish"] = 1,
-    ["long_mouth_bass"] = 1,
-    ["salmon"] = 1,
-    ["crystal_fairy_fish"] = 1,
-    ["dragon_fish"] = 1,
-    ["unicorn_fish"] = 1,
-    ["anchovi_fish"] = 1,
-    ["angler_fish"] = 1,
-    ["arowana_fish"] = 1,
-    ["barred_knife_fish"] = 1,
-    ["beach_shark_fish"] = 1,
-    ["begginers_luck_fish"] = 1,
-    ["betta_fish"] = 1,
-    ["black_ghostshark"] = 1,
-    ["black_drum_fish"] = 1,
-    ["blue_whale"] = 1,
-    ["blue_tang"] = 1,
-    ["alley_cat_fish"] = 1,
-    ["catfish"] = 1,
-    ["chum_salmon_fish"] = 1,
-    ["clown_fish"] = 1,
-    ["coho_salmon_fish"] = 1,
-    ["common_carp_fish"] = 1,
-    ["crab"] = 1,
-    ["dolphin"] = 1,
-    ["rasta_drum_fish"] = 1,
-    ["dumbo_octopus"] = 1,
-    ["electric_eel"] = 1,
-    ["flounder_fish"] = 1,
-    ["tourist_fish"] = 1,
-    ["gold_fish"] = 1,
-    ["goliath_tiger_fish"] = 1,
-    ["jelly_fish"] = 1,
-    ["jogger_fish"] = 1,
-    ["killer_whale"] = 1,
-    ["king_catfish"] = 1,
-    ["king_mackerel"] = 1,
-    ["king_salmon"] = 1,
-    ["king_seahorse"] = 1,
-    ["koi_fish_samurai"] = 1,
-    ["koi_fish_large"] = 1,
-    ["large_stripped_bass"] = 1,
-    ["lion_fish"] = 1,
-    ["freindly_local_fish"] = 1,
-    ["mouse_fish"] = 1,
-    ["newborn_salmon"] = 1,
-    ["nomadic_trout"] = 1,
-    ["northern_pike"] = 1,
-    ["octopus"] = 1,
-    ["oil_eater_fish"] = 1,
-    ["omnipotent_squid"] = 1,
-    ["pearl_perch_fish"] = 1,
-    ["peasant_fish"] = 1,
-    ["pink_salmon"] = 1,
-    ["piranha"] = 1,
-    ["red_snapper_fish"] = 1,
-    ["rock_bass_fish"] = 1,
-    ["royal_lake_fish"] = 1,
-    ["salt_trader_fish"] = 1,
-    ["saw_fish"] = 1,
-    ["seahorse"] = 1,
-    ["servant_fish"] = 1,
-    ["small_common_trout"] = 1,
-    ["rainbow_trout"] = 1,
-    ["spotted_bass_fish"] = 1,
-    ["squid"] = 1,
-    ["squirrel_fish"] = 1,
-    ["star_fish"] = 1,
-    ["sting_ray"] = 1,
-    ["sun_fish"] = 1,
-    ["surffer_fish"] = 1,
-    ["sword_fish"] = 1,
-    ["tiger_pistol_shrimp"] = 1,
-    ["transparent_head_fish"] = 1,
-    ["buisness_fish"] = 1,
-    ["derp_fish"] = 1,
-    ["king_fish"] = 1,
-    ["walley_fish"] = 1,
-    ["albino_catfish"] = 1,
-    ["yellow_watchman"] = 1,
-}
-
-local FishMod = {
+local HookSensitivity = {
     ["black_crappie"] = 1,
     ["yellow_perch"] = 1,
     ["blue_gill"] = 1,
@@ -1079,6 +1081,33 @@ local FishBaits = {
     ["yellow_watchman"] = {"donut_bait"},
 }
 
+local RarityReelResistances = {
+    ["Common"] = 1,
+    ["Uncommon"] = 1.1,
+    ["Rare"] = 1.2,
+    ["Epic"] = 1.3,
+    ["Legendary"] = 1.4,
+    ["Mythical"] = 1.45,
+}
+
+local RarityStrengthResistances = {
+    ["Common"] = 1,
+    ["Uncommon"] = 1.05,
+    ["Rare"] = 1.1,
+    ["Epic"] = 1.15,
+    ["Legendary"] = 1.2,
+    ["Mythical"] = 1.225,
+}
+
+local RarityExperianceValue = {
+    ["Common"] = 10,
+    ["Uncommon"] = 50,
+    ["Rare"] = 100,
+    ["Epic"] = 250,
+    ["Legendary"] = 500,
+    ["Mythical"] = 1000,
+}
+
 fish_keys = {
     -- Common
     "jogger_fish",        -- Common
@@ -1135,16 +1164,18 @@ fish_keys = {
     "blue_tang",          -- Rare
     "chum_salmon_fish",   -- Rare
 
+    -- Epic
+    "dolphin",            -- Epic
+    "king_mackerel",      -- Epic
+    "killer_whale",       -- Epic
+    "king_fish",          -- Epic
+    "begginers_luck_fish",-- Epic
+    "king_salmon",        -- Epic
+    "beach_shark_fish",   -- Epic
+    "angler_fish",        -- Epic
+    "nomadic_trout",      -- Epic
+    
     -- Legendary
-    "dolphin",            -- Legendary
-    "king_mackerel",      -- Legendary
-    "killer_whale",       -- Legendary
-    "king_fish",          -- Legendary
-    "begginers_luck_fish",-- Legendary
-    "king_salmon",        -- Legendary
-    "beach_shark_fish",   -- Legendary
-    "angler_fish",        -- Legendary
-    "nomadic_trout",      -- Legendary
     "tiger_pistol_shrimp",-- Legendary
     "surffer_fish",       -- Legendary
     "freindly_local_fish",-- Legendary
@@ -1185,8 +1216,7 @@ for _, fishKey in ipairs(fish_keys) do
         Rarity = FishRarity[fishKey],
         Biomes = FishBiomes[fishKey],
         Baits = FishBaits[fishKey],
-        fishDifficulty = FishDifficulty[fishKey],
-        FishMod = FishMod[fishKey],
+        HookSensitivity = HookSensitivity[fishKey],
         FishImage = FishImage[fishKey],
         Worth = FishWorth[fishKey],
         Quest_ID = FishQuestID[fishKey],
@@ -1195,57 +1225,80 @@ for _, fishKey in ipairs(fish_keys) do
     }
 end
 
--- Function to roll for rarity based on weights
-local function rollForRarity(rarityWeights, bait)
-    if itemMetaData.bait_metadata[bait] == nil or bait == nil then
-        --print("Bait is nil so defaulting to Common")
-        return "Common"  -- Default to common
-    end
-    -- Get the bait's rarity from the metadata
-    local baitRarity = itemMetaData.bait_metadata[bait].ItemRarity
-    --print("Bait Rarity: " .. baitRarity)
-    
-    -- Define an ordered list of rarities
-    local rarityOrder = {"Common", "Uncommon", "Rare", "Legendary", "Mythical"}
-    
-    -- Filter the rarityWeights to include only rarities up to the bait's rarity
-    local filteredRarityWeights = {}
-    for _, rarity in ipairs(rarityOrder) do
-        if rarity == baitRarity then
-            filteredRarityWeights[rarity] = rarityWeights[rarity]
-            --print("Adding rarity (final): " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print the final rarity added
+--[[
+ Function to roll for rarity based on a range of chances with a rarity cap
+]]
+-- @param luck - a float between 1 (min chance) and 10 (max chance)
+-- @param cap - a string that represents the highest rarity allowed (e.g., "Epic")
+function rollRarity(luck, cap)
+    luck = luck or 1
+    cap = cap or "Mythical"
+    -- Clamp luck to be at least 1 (or you could define specific behavior for luck = 0)
+    luck = math.max(luck, 1)
+    print("Luck: " .. tostring(luck))
+    -- Define the minimum and maximum chances for each rarity
+    local rarities = {
+        {name = "Common", minChance = 70, maxChance = 15},
+        {name = "Uncommon", minChance = 20, maxChance = 20},
+        {name = "Rare", minChance = 7, maxChance = 30},
+        {name = "Epic", minChance = 2, maxChance = 20},
+        {name = "Legendary", minChance = 0.9, maxChance = 10},
+        {name = "Mythical", minChance = 0.1, maxChance = 5},
+    }
+
+    -- Map the cap to a maximum index
+    local capIndex = #rarities  -- Default to Mythical (highest)
+    for i, rarity in ipairs(rarities) do
+        if rarity.name == cap then
+            capIndex = i
             break
-        elseif rarityWeights[rarity] then
-            filteredRarityWeights[rarity] = rarityWeights[rarity]
-            --print("Adding rarity: " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print each rarity as it is added
         end
     end
 
+    -- Normalize luck to a range between 0 (for luck = 1) and 1 (for luck = 10)
+    local luckFactor = (luck - 1) / 9  -- 9 because the range is from 1 to 10
 
-    -- Calculate the total weight of the filtered rarities
-    local totalWeight = 0
-    for _, weight in pairs(filteredRarityWeights) do
-        totalWeight = totalWeight + weight
+    -- Calculate adjusted chances based on luckFactor (interpolating between min and max)
+    local totalChance = 0
+    for i, rarity in ipairs(rarities) do
+        if i <= capIndex then
+            rarity.adjustedChance = rarity.minChance + luckFactor * (rarity.maxChance - rarity.minChance)
+            totalChance = totalChance + rarity.adjustedChance
+        else
+            rarity.adjustedChance = 0  -- Set chances to 0 for rarities above the cap
+        end
+        print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
     end
-    --print("Total Weight: " .. tostring(totalWeight))
-    
-    -- Generate the roll
-    local roll = math.random(0, totalWeight-1) + math.random()  -- Add a random decimal to the roll for unpredictability
-    local cumulativeWeight = 0
-    --print("Roll: " .. tostring(roll))
-    
-    -- Determine the rarity based on the roll using the correct order
-    for _, rarity in ipairs(rarityOrder) do
-        if filteredRarityWeights[rarity] then
-            cumulativeWeight = cumulativeWeight + filteredRarityWeights[rarity]
-            if roll <= cumulativeWeight then
-                --print("Selected Rarity: " .. rarity)
-                return rarity
+
+    -- Normalize adjusted chances to ensure the total remains 100 for allowed rarities
+    for i, rarity in ipairs(rarities) do
+        if i <= capIndex then
+            rarity.finalChance = (rarity.adjustedChance / totalChance) * 100
+        else
+            rarity.finalChance = 0  -- No chance for rarities above the cap
+        end
+    end
+
+    -- Roll a random number between 0 and 100 to pick a rarity
+    local roll = math.random() * 100
+    print("Roll: " .. tostring(roll))
+    local cumulative = 0
+
+    for i, rarity in ipairs(rarities) do
+        cumulative = cumulative + rarity.finalChance
+        if roll <= cumulative then
+            -- If a rarity higher than the cap is selected, return the cap rarity
+            if i > capIndex then
+                print("Rarity rolled above cap: " .. rarities[capIndex].name)
+                return rarities[capIndex].name
+            else
+                print("Rarity rolled: " .. rarity.name)
+                return rarity.name
             end
         end
     end
-    
-    return "Common"  -- Default to common if something goes wrong
+
+    return rarities[1].name -- Fallback, should not reach here
 end
 
 local function CheckBiome(fishName, Biome)
@@ -1269,17 +1322,12 @@ end
 function GetRandomFish(Biome, Bait)
     math.randomseed(os.time())
     Biome = Biome or "Any"
-    Bait = Bait or "nil"
-    local rarityWeights = {
-        ["Common"] = 54.5,  -- 54.5% chance
-        ["Uncommon"] = 25, -- 25% chance
-        ["Rare"] = 15, -- 15% chance
-        ["Legendary"] = 5, -- 5% chance
-        ["Mythical"] = .5, -- .5% chance
-    }
-    
+    Bait = Bait or "none"
+
+    local Luck = 1
+    if Bait ~= "none" then Luck = itemMetaData.GetItemData(Bait).ItemLuck end
     -- Determine rarity based on weighted roll
-    local chosenRarity = rollForRarity(rarityWeights, Bait)
+    local chosenRarity = rollRarity(Luck, "Mythical")
     --print("Chosen Rarity: " .. chosenRarity)
     local fishList = {}
     
@@ -1346,4 +1394,25 @@ function GetFishSize(fishName : string)
     local roundedSize = math.floor(size * 10 + 0.5) / 10
 
     return roundedSize
+end
+
+function GetFishReelResistance(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local reelResistance = RarityReelResistances[fishRarity]
+
+    return reelResistance
+end
+
+function GetFishStrengthResistance(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local strengthResistance = RarityStrengthResistances[fishRarity]
+
+    return strengthResistance
+end
+
+function GetFishExperianceValue(fishName : string)
+    local fishRarity = fish_metadata[fishName].Rarity
+    local experianceValue = RarityExperianceValue[fishRarity]
+
+    return experianceValue
 end

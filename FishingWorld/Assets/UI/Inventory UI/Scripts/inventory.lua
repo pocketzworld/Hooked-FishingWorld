@@ -278,7 +278,7 @@ function UpdateInventory(items)
       local itemName = baitMetas[itemID].Name
       local itemDescription = baitMetas[itemID].Description
       local itemImage = baitMetas[itemID].ItemImage or defaultImage
-      local itemLevel = baitMetas[itemID].ItemLevel
+      local itemLevel = baitMetas[itemID].ItemLuck
       local itemWorth = baitMetas[itemID].ItemWorth
       local itemRarity = baitMetas[itemID].ItemRarity
       local itemBiomes = baitMetas[itemID].ItemBiomes

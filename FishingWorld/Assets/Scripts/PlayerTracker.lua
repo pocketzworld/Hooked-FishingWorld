@@ -408,7 +408,7 @@ function GetPlayerStatsFromStorage(player)
                 playerXP = 0,
                 playerLevel = 1,
                 playerPoleLevel = 1,
-                playerPolePrestige = 0
+                playerPolePrestige = 1
             }
         end
 
@@ -424,6 +424,7 @@ function GetPlayerStatsFromStorage(player)
         print("XP: " .. tostring(players[player].playerXP.value))
         print("Level: " .. tostring(players[player].playerLevel.value))
         print("Pole Level: " .. tostring(players[player].playerPoleLevel.value))
+        print("Pole Prestige: " .. tostring(players[player].playerPolePrestige.value))
         print("Strength: " .. tostring(players[player].playerStrength.value))
         print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
         print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
