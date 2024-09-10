@@ -34,7 +34,7 @@ namespace Highrise.Lua.Generated
         [SerializeField] public System.Double m_pitch = 30;
         [SerializeField] public System.Double m_yaw = 45;
         [SerializeField] public System.Boolean m_centerOnCharacterWhenSpawned = true;
-        [Tooltip("Set how fast the camera cneters on the player when moving 0=none 1=instant")]
+        [Tooltip("0 means no centering, as you approach 1 the centering will get faster, 1 means immediate centering")]
         [Range(0,1)]
         [SerializeField] public System.Double m_centerOnCharacterWhenMovingSpeed = 0;
         [SerializeField] public System.Boolean m_keepPlayerInView = false;
