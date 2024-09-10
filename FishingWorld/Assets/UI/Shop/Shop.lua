@@ -666,7 +666,7 @@ function PopulateShop(items)
   _contentHeaderIcon:AddToClassList("content-header__left")
 
   if state == 0 then -- check if items are poles
-    _contentHeaderLabel:SetPrelocalizedText("Special Fishing Poles let you fish in unique locations around the world.")
+    _contentHeaderLabel:SetPrelocalizedText("Upgrade your fishing pole to increase your fishing capabilities.")
     _contentHeaderIcon:AddToClassList("pole-icon")
 
     local HardCodedRode = {

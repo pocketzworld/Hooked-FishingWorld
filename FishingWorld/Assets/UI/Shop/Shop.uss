@@ -1135,8 +1135,8 @@
 }
 
 .rod__item-header__left Image {
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
 
   --unity-image: var(--image-icon-pole);
 }
@@ -1191,7 +1191,7 @@
 .rod__item-header__stats__bar {
   display: flex;
 
-  width: 250px;
+  width: 100%;
   height: 45px;
 
   background-image: var(--image-TanVignette_Dark);
@@ -1225,7 +1225,7 @@
   flex-direction: column;
   padding: 5px;
 
-  width: 100px;
+  width: 120px;
   height: 45px;
 
   background-image: var(--image-TanVignette_Dark);
