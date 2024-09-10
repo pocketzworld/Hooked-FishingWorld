@@ -91,6 +91,11 @@
 .player-info {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
 }
 
 .player-avatar-container {
@@ -101,33 +106,25 @@
   flex-direction: column;
   justify-content: space-between;
 
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
+
+  margin-bottom: 20px;
 }
 
 .player-avatar-container #_PlayerIcon {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 
   border-width: 3px;
   border-color: var(--color-tertiary);
   border-radius: 20px;
-}
 
-.user-thumbnail {
- 
-}
-
-.user-thumbnail__image-container {
-
-}
-
-.user-thumbnail__image-container .unity-image {
-
+  margin-bottom: 5px;
 }
 
 .player-name {
-  font-size: 24px;
+  font-size: 20px;
   -unity-font-definition: var(--font-inter-semi-bold);
   color: var(--color-tertiary);
   -unity-text-align: middle-center;
@@ -137,21 +134,80 @@
   display: flex;
   flex-direction: row;
   
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  height: 100px;
+  height: 120px;
+  width: 100%;
 
   border-width: 2px;
   border-color: var(--color-tertiary);
   border-radius: 8px;
 
-  
+  padding: 5px;
+}
+
+.player-sub-stats .scroll-view__content-viewport {
+  display: flex;
+
+  justify-content: center;
+  flex-direction: row;
+}
+
+.player-sub-stats .scroll-view__content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-bar {
+  display: flex;
+
+  height: 5px;
+  border-radius: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-bar__thumb {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-bar__thumb:hover {
+  background-color: var(--color-secondary);
 }
 
 .player-sub-stats__item {
+  width: 130px;
+  height: 120px;
+
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 3px 5px 3px;
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Dark);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  -unity-font-definition: var(--font-inter-semi-bold);
+  overflow: hidden;
+}
+
+.player-sub-stats__item__header {
+  display: flex;
+  width: 100%;
+  height: 50px;
+
+  -unity-text-align: middle-center;
+  background-color: var(--color-secondary);
+}
+
+.player-sub-stats__item__content {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  height: 100%;
 
   align-items: center;
   justify-content: center;
@@ -166,9 +222,10 @@
 }
 
 .player-sub-stats__item__value {
-  font-size: 16px;
+  font-size: 35px;
   -unity-font-definition: var(--font-inter-bold-italic);
   color: var(--color-tertiary);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .levels-container {
@@ -176,6 +233,9 @@
   flex-direction: row;
 
   justify-content: space-between;
+
+  width: 100%;
+  height: 100px;
 }
 
 .level-item, .rod-item {
@@ -186,7 +246,11 @@
   align-items: center;
 
   width: 100%;
-  height: 60px;
+  height: 90px;
+
+  padding: 0 0 10px 0;
+
+  overflow: hidden;
 }
 
 .level-item__bar, .rod-item__bar {
@@ -205,12 +269,15 @@
   border-radius: 8px;
 
   justify-content: center;
+  align-self: center;
+
+  margin-top: 20px;
 }
 
 .level-item__bar__fill, .rod-item__bar__fill {
   display: flex;
 
-  width: 50%;
+  width: 0%;
   height: 100%;
 
   background-image: var(--image-TanVignette_Light);
@@ -230,5 +297,16 @@
 
   -unity-font-definition: var(--font-inter-bold-italic);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  color: var(--color-tertiary);
+}
+
+.level-item__label, .rod-item__label {
+  position: absolute;
+
+  top: 0;
+  align-self: center;
+
+  font-size: 16px;
+  -unity-font-definition: var(--font-inter-bold-italic);
   color: var(--color-tertiary);
 }

@@ -198,8 +198,10 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
   if rode_progress == rode_max_progress then
     _rod_item_upgrade_button_label.text = "PRESTIGE"
+    -- Logic for prestige
   else
     _rod_item_upgrade_button_label.text = "UPGRADE"
+    -- Logic for upgrade
   end
 
   _button_lower:Add(_rod_item_upgrade_button_label)

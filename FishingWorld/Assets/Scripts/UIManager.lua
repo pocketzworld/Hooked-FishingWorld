@@ -157,6 +157,7 @@ function ButtonPressed(btn: string)
             PlayerCardScript = PlayerCardObject:GetComponent(playercard)
         end
 
+        PlayerCardScript.Initialize() -- #TODO: add paramater to pass in player data
         AudioManager.PlaySound("paperSound1", 1.1)
     elseif btn == "Close" then
         ToggleAll(false)

@@ -66,22 +66,18 @@
   scale: 0.9;
 }
 
-.world-button.shop {
-  top: 140px;
-  right: 11px;
-}
-
-.world-button.ranking {
-  right: 11px;
-}
-
 .world-button.inventory {
   right: 11px;
-  top: 60px;
+  top: 20px;
+}
+
+.world-button.shop {
+  top: 100px;
+  right: 11px;
 }
 
 .world-button.dailies {
-  top: 220px;
+  top: 180px;
   right: 11px;
 }
 
@@ -296,6 +292,8 @@
 
   overflow: hidden;
   left: 11px;
+
+  top: -55px;
 }
 
 .player-level-content {
@@ -379,7 +377,7 @@
 
 .player-xp-fill {
   position: absolute;
-  width: 30%;
+  width: 0%;
 
   height: 21px;
 
