@@ -112,6 +112,9 @@
 .rarity__Rare {
   color: #008BE8;
 }
+.rarity__Epic {
+  color: #8f33f7;
+}
 .rarity__Legendary {
   color: #eabd35;
 }

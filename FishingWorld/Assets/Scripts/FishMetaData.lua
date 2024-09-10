@@ -10,6 +10,7 @@ FishDifficulties = {
     ["Common"] = 1,
     ["Uncommon"] = 1.5,
     ["Rare"] = 2,
+    ["Epic"] = 2.25,
     ["Legendary"] = 2.5,
     ["Mythical"] = 3
 }
@@ -301,11 +302,11 @@ local FishRarity = {
     ["dragon_fish"] = "Mythical",
     ["unicorn_fish"] = "Mythical",
     ["anchovi_fish"] = "Common",
-    ["angler_fish"] = "Legendary",
+    ["angler_fish"] = "Epic",
     ["arowana_fish"] = "Uncommon",
     ["barred_knife_fish"] = "Rare",
-    ["beach_shark_fish"] = "Legendary",
-    ["begginers_luck_fish"] = "Legendary",
+    ["beach_shark_fish"] = "Epic",
+    ["begginers_luck_fish"] = "Epic",
     ["betta_fish"] = "Rare",
     ["black_ghostshark"] = "Mythical",
     ["black_drum_fish"] = "Uncommon",
@@ -318,7 +319,7 @@ local FishRarity = {
     ["coho_salmon_fish"] = "Uncommon",
     ["common_carp_fish"] = "Common",
     ["crab"] = "Common",
-    ["dolphin"] = "Legendary",
+    ["dolphin"] = "Epic",
     ["rasta_drum_fish"] = "Mythical",
     ["dumbo_octopus"] = "Rare",
     ["electric_eel"] = "Uncommon",
@@ -328,10 +329,10 @@ local FishRarity = {
     ["goliath_tiger_fish"] = "Uncommon",
     ["jelly_fish"] = "Mythical",
     ["jogger_fish"] = "Common",
-    ["killer_whale"] = "Legendary",
+    ["killer_whale"] = "Epic",
     ["king_catfish"] = "Legendary",
-    ["king_mackerel"] = "Legendary",
-    ["king_salmon"] = "Legendary",
+    ["king_mackerel"] = "Epic",
+    ["king_salmon"] = "Epic",
     ["king_seahorse"] = "Legendary",
     ["koi_fish_samurai"] = "Mythical",
     ["koi_fish_large"] = "Rare",
@@ -340,7 +341,7 @@ local FishRarity = {
     ["freindly_local_fish"] = "Legendary",
     ["mouse_fish"] = "Rare",
     ["newborn_salmon"] = "Rare",
-    ["nomadic_trout"] = "Legendary",
+    ["nomadic_trout"] = "Epic",
     ["northern_pike"] = "Uncommon",
     ["octopus"] = "Mythical",
     ["oil_eater_fish"] = "Rare",
@@ -370,7 +371,7 @@ local FishRarity = {
     ["transparent_head_fish"] = "Mythical",
     ["buisness_fish"] = "Legendary",
     ["derp_fish"] = "Rare",
-    ["king_fish"] = "Uncommon",
+    ["king_fish"] = "Epic",
     ["walley_fish"] = "Uncommon",
     ["albino_catfish"] = "Rare",
     ["yellow_watchman"] = "Mythical",
@@ -1084,23 +1085,26 @@ local RarityReelResistances = {
     ["Common"] = 1,
     ["Uncommon"] = 1.1,
     ["Rare"] = 1.2,
-    ["Legendary"] = 1.3,
-    ["Mythical"] = 1.4,
+    ["Epic"] = 1.3,
+    ["Legendary"] = 1.4,
+    ["Mythical"] = 1.45,
 }
 
 local RarityStrengthResistances = {
     ["Common"] = 1,
     ["Uncommon"] = 1.05,
     ["Rare"] = 1.1,
-    ["Legendary"] = 1.15,
-    ["Mythical"] = 1.2,
+    ["Epic"] = 1.15,
+    ["Legendary"] = 1.2,
+    ["Mythical"] = 1.225,
 }
 
 local RarityExperianceValue = {
     ["Common"] = 10,
     ["Uncommon"] = 50,
     ["Rare"] = 100,
-    ["Legendary"] = 250,
+    ["Epic"] = 250,
+    ["Legendary"] = 500,
     ["Mythical"] = 1000,
 }
 
@@ -1160,16 +1164,18 @@ fish_keys = {
     "blue_tang",          -- Rare
     "chum_salmon_fish",   -- Rare
 
+    -- Epic
+    "dolphin",            -- Epic
+    "king_mackerel",      -- Epic
+    "killer_whale",       -- Epic
+    "king_fish",          -- Epic
+    "begginers_luck_fish",-- Epic
+    "king_salmon",        -- Epic
+    "beach_shark_fish",   -- Epic
+    "angler_fish",        -- Epic
+    "nomadic_trout",      -- Epic
+    
     -- Legendary
-    "dolphin",            -- Legendary
-    "king_mackerel",      -- Legendary
-    "killer_whale",       -- Legendary
-    "king_fish",          -- Legendary
-    "begginers_luck_fish",-- Legendary
-    "king_salmon",        -- Legendary
-    "beach_shark_fish",   -- Legendary
-    "angler_fish",        -- Legendary
-    "nomadic_trout",      -- Legendary
     "tiger_pistol_shrimp",-- Legendary
     "surffer_fish",       -- Legendary
     "freindly_local_fish",-- Legendary

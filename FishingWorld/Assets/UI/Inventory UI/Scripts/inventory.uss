@@ -431,6 +431,10 @@
   color: #008BE8;
   -unity-background-image-tint-color: rgba(0, 139, 232, 0.3);
 }
+.rarity__Epic {
+  color: #8f33f7;
+  -unity-background-image-tint-color: rgba(162, 0, 232, 0.3);
+}
 .rarity__Legendary {
   color: #eabd35;
   -unity-background-image-tint-color: rgba(234, 189, 53, 0.3);
