@@ -10581,6 +10581,7 @@ MonoBehaviour:
   m_ItemPopupObject: {fileID: 520967628}
   m_RewardPopupObject: {fileID: 691507374}
   m_DailiesUIObject: {fileID: 2018073741}
+  m_PlayerCardObject: {fileID: 1872090755}
   references:
     version: 2
     RefIds:

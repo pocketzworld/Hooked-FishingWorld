@@ -9,7 +9,59 @@
 
   <hr:UILuaView class="playercard">
     <VisualElement class="playercard-container">
-      <VisualElement class="playercard-content"> 
+       <VisualElement class="card__close" name="_closeButton">
+        <VisualElement class="button-content">
+          <Image name="_closeButtonImage" class="card__close__icon" />
+        </VisualElement>
+      </VisualElement>
+      <VisualElement class="playercard-content">
+
+         <VisualElement class="player-info">
+          <VisualElement class="player-avatar-container">
+           <hr:UIUserThumbnail class="player-icon" name="_PlayerIcon" picking-mode="Ignore" online-indicator="false"/>
+           <hr:UILabel class="player-name" name="_PlayerName"/>
+          </VisualElement>
+  
+          <VisualElement class="player-sub-stats">
+  
+           <VisualElement class="player-sub-stats__item">
+             <Label class="player-sub-stats__item__label" text="Level"/>
+             <Label class="player-sub-stats__item__value" name="_PlayerLevel" text="23"/>
+           </VisualElement>
+  
+           <VisualElement class="player-sub-stats__item">
+             <Label class="player-sub-stats__item__label" text="Strength"/>
+             <Label class="player-sub-stats__item__value" name="_PlayerStrength" text="1"/>
+           </VisualElement>
+  
+           <VisualElement class="player-sub-stats__item">
+             <Label class="player-sub-stats__item__label" text="Hook Speed"/>
+             <Label class="player-sub-stats__item__value" name="_PlayerHookSpeed" text="1"/>
+           </VisualElement>
+  
+           <VisualElement class="player-sub-stats__item">
+             <Label class="player-sub-stats__item__label" text="Reel Speed"/>
+             <Label class="player-sub-stats__item__value" name="_PlayerReelSpeed" text="1"/>
+           </VisualElement>
+  
+          </VisualElement>
+         </VisualElement>
+
+         <VisualElement class="levels-container">
+            <VisualElement class="level-item">
+              <VisualElement class="level-item__bar">
+                <VisualElement class="level-item__bar__fill" name="_PlayerStrengthBar"/>
+                <Label class="level-item__bar__label" text="20.3k/25k" />
+              </VisualElement>
+            </VisualElement>
+            <VisualElement class="rod-item">
+              <VisualElement class="rod-item__bar">
+                <VisualElement class="rod-item__bar__fill" name="_PlayerHookSpeedBar"/>
+                <Label class="rod-item__bar__label" text="20.3k/25k" />
+              </VisualElement>
+            </VisualElement>
+         </VisualElement>
+
       </VisualElement>
     </VisualElement>
   </hr:UILuaView>

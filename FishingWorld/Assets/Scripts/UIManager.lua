@@ -150,11 +150,11 @@ function ButtonPressed(btn: string)
         DailiesScript.PopulateRewards()
         AudioManager.PlaySound("paperSound1", 1.1)
     
-    elseif btn == "Card" then
+    elseif btn == "PlayerCard" then
         ToggleAll(false)
         ToggleUI("PlayerCard", true)
         if not PlayerCardScript then
-            PlayerCardScript = PlayerCardObject:GetComponent(PlayerCard)
+            PlayerCardScript = PlayerCardObject:GetComponent(playercard)
         end
 
         AudioManager.PlaySound("paperSound1", 1.1)
