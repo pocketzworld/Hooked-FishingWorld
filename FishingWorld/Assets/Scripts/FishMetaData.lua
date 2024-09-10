@@ -1219,57 +1219,79 @@ for _, fishKey in ipairs(fish_keys) do
     }
 end
 
--- Function to roll for rarity based on weights
-local function rollForRarity(rarityWeights, bait)
-    if itemMetaData.bait_metadata[bait] == nil or bait == nil then
-        --print("Bait is nil so defaulting to Common")
-        return "Common"  -- Default to common
-    end
-    -- Get the bait's rarity from the metadata
-    local baitRarity = itemMetaData.bait_metadata[bait].ItemRarity
-    --print("Bait Rarity: " .. baitRarity)
-    
-    -- Define an ordered list of rarities
-    local rarityOrder = {"Common", "Uncommon", "Rare", "Legendary", "Mythical"}
-    
-    -- Filter the rarityWeights to include only rarities up to the bait's rarity
-    local filteredRarityWeights = {}
-    for _, rarity in ipairs(rarityOrder) do
-        if rarity == baitRarity then
-            filteredRarityWeights[rarity] = rarityWeights[rarity]
-            --print("Adding rarity (final): " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print the final rarity added
+--[[
+ Function to roll for rarity based on a range of chances with a rarity cap
+]]
+-- @param luck - a float between 1 (min chance) and 10 (max chance)
+-- @param cap - a string that represents the highest rarity allowed (e.g., "Epic")
+function rollRarity(luck, cap)
+    luck = luck or 1
+    cap = cap or "Mythical"
+    -- Clamp luck to be at least 1 (or you could define specific behavior for luck = 0)
+    luck = math.max(luck, 1)
+    -- Define the minimum and maximum chances for each rarity
+    local rarities = {
+        {name = "Common", minChance = 70, maxChance = 15},
+        {name = "Uncommon", minChance = 20, maxChance = 20},
+        {name = "Rare", minChance = 7, maxChance = 30},
+        {name = "Epic", minChance = 2, maxChance = 20},
+        {name = "Legendary", minChance = 0.9, maxChance = 10},
+        {name = "Mythical", minChance = 0.1, maxChance = 5},
+    }
+
+    -- Map the cap to a maximum index
+    local capIndex = #rarities  -- Default to Mythical (highest)
+    for i, rarity in ipairs(rarities) do
+        if rarity.name == cap then
+            capIndex = i
             break
-        elseif rarityWeights[rarity] then
-            filteredRarityWeights[rarity] = rarityWeights[rarity]
-            --print("Adding rarity: " .. rarity .. " with weight: " .. tostring(rarityWeights[rarity]))  -- Print each rarity as it is added
         end
     end
 
+    -- Normalize luck to a range between 0 (for luck = 1) and 1 (for luck = 10)
+    local luckFactor = (luck - 1) / 9  -- 9 because the range is from 1 to 10
 
-    -- Calculate the total weight of the filtered rarities
-    local totalWeight = 0
-    for _, weight in pairs(filteredRarityWeights) do
-        totalWeight = totalWeight + weight
+    -- Calculate adjusted chances based on luckFactor (interpolating between min and max)
+    local totalChance = 0
+    for i, rarity in ipairs(rarities) do
+        if i <= capIndex then
+            rarity.adjustedChance = rarity.minChance + luckFactor * (rarity.maxChance - rarity.minChance)
+            totalChance = totalChance + rarity.adjustedChance
+        else
+            rarity.adjustedChance = 0  -- Set chances to 0 for rarities above the cap
+        end
+        print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
     end
-    --print("Total Weight: " .. tostring(totalWeight))
-    
-    -- Generate the roll
-    local roll = math.random(0, totalWeight-1) + math.random()  -- Add a random decimal to the roll for unpredictability
-    local cumulativeWeight = 0
-    --print("Roll: " .. tostring(roll))
-    
-    -- Determine the rarity based on the roll using the correct order
-    for _, rarity in ipairs(rarityOrder) do
-        if filteredRarityWeights[rarity] then
-            cumulativeWeight = cumulativeWeight + filteredRarityWeights[rarity]
-            if roll <= cumulativeWeight then
-                --print("Selected Rarity: " .. rarity)
-                return rarity
+
+    -- Normalize adjusted chances to ensure the total remains 100 for allowed rarities
+    for i, rarity in ipairs(rarities) do
+        if i <= capIndex then
+            rarity.finalChance = (rarity.adjustedChance / totalChance) * 100
+        else
+            rarity.finalChance = 0  -- No chance for rarities above the cap
+        end
+    end
+
+    -- Roll a random number between 0 and 100 to pick a rarity
+    local roll = math.random() * 100
+    print("Roll: " .. tostring(roll))
+    local cumulative = 0
+
+    for i, rarity in ipairs(rarities) do
+        cumulative = cumulative + rarity.finalChance
+        if roll <= cumulative then
+            -- If a rarity higher than the cap is selected, return the cap rarity
+            if i > capIndex then
+                print("Rarity rolled above cap: " .. rarities[capIndex].name)
+                return rarities[capIndex].name
+            else
+                print("Rarity rolled: " .. rarity.name)
+                return rarity.name
             end
         end
     end
-    
-    return "Common"  -- Default to common if something goes wrong
+
+    return rarities[1].name -- Fallback, should not reach here
 end
 
 local function CheckBiome(fishName, Biome)
@@ -1294,16 +1316,9 @@ function GetRandomFish(Biome, Bait)
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "nil"
-    local rarityWeights = {
-        ["Common"] = 54.5,  -- 54.5% chance
-        ["Uncommon"] = 25, -- 25% chance
-        ["Rare"] = 15, -- 15% chance
-        ["Legendary"] = 5, -- 5% chance
-        ["Mythical"] = .5, -- .5% chance
-    }
-    
+
     -- Determine rarity based on weighted roll
-    local chosenRarity = rollForRarity(rarityWeights, Bait)
+    local chosenRarity = rollRarity()
     --print("Chosen Rarity: " .. chosenRarity)
     local fishList = {}
     
