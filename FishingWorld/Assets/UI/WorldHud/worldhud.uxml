@@ -16,7 +16,7 @@
           <Label name="player_xp_text" class="player-xp-text" text="23.75k/25k" />
           <VisualElement class="player-xp-bar">
             <VisualElement class="player-xp-background" />
-            <VisualElement class="player-xp-fill" />
+            <VisualElement class="player-xp-fill" name="player_level_progress_bar" />
           </VisualElement>
 
           <VisualElement class="player-level">

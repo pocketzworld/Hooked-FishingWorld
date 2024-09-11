@@ -27,6 +27,13 @@ local baitIcon : Image = nil
 local bait_text : Label = nil
 
 --!Bind
+local player_xp_text : Label = nil -- Example: 23.7k/100k
+--!Bind
+local player_level_text : Label = nil -- Example: 23
+--!Bind
+local player_level_progress_bar : VisualElement = nil -- Modify the width of this element to change the progress
+
+--!Bind
 local _playerLevelContainer : VisualElement = nil
 
 local gameManager = require("GameManager")
@@ -75,6 +82,7 @@ function UpdateBaitSlot(baitID : string, amount)
         bait_text:AddToClassList("hidden")
     end
 end
+
 function UpdatePoleSlot(poleID : string)
     if itemMetaData.pole_metadata[poleID] then
         poleIcon.image = itemMetaData.pole_metadata[poleID].ItemImage
@@ -88,3 +96,16 @@ function UpdateCash()
     local cash = playerTracker.GetTokens(client.localPlayer)
     cash_text.text = (cash > 999 and string.format("%.1fk", cash / 1000) or tostring(cash))
 end
+
+local HardcodedPlayer = {
+    level = 2,
+    currentXP = 1050,
+    totalXP = 10250,
+}
+function Initialize()
+    player_level_text.text = HardcodedPlayer.level
+    player_xp_text.text = HardcodedPlayer.currentXP .. "/" .. HardcodedPlayer.totalXP
+    player_level_progress_bar.style.width = StyleLength.new(Length.Percent(HardcodedPlayer.currentXP / HardcodedPlayer.totalXP * 100))
+end
+
+Initialize()

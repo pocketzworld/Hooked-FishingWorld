@@ -164,7 +164,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   local _rod_item_header_stats_bar_fill = VisualElement.new()
   _rod_item_header_stats_bar_fill:AddToClassList("rod__item-header__stats__bar__fill")
   local ProgressWidth = (rode_progress / rode_max_progress) * 100
-  _rod_item_header_stats_bar_fill.style.width = StyleLength.new(ProgressWidth)
+  _rod_item_header_stats_bar_fill.style.width = StyleLength.new(Length.Percent(ProgressWidth))
 
   _rod_item_header_stats_bar:Add(_rod_item_header_stats_bar_fill)
 

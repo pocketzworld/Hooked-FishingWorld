@@ -162,7 +162,7 @@
   
   overflow: hidden;
   left: 11px;
-  top: 0px;
+  top: 0;
 
   height: 40px;
 
@@ -333,8 +333,10 @@
   display: flex;
   position: absolute;
 
+  align-items: center;
+  justify-content: center;
+
   top: 33px;
-  left: 14px;
 
   font-size: 16px;
   -unity-font-definition: var(--font-inter-bold);
@@ -345,6 +347,8 @@
 
   margin: 0;
   padding: 0;
+
+  width: 50px;
 }
 
 .player-xp-bar {
@@ -382,6 +386,7 @@
   height: 21px;
 
   top: 2px;
+  left: -1px;
 
   border-radius: 6px;
   background-image: var(--image-TanVignette_Light);

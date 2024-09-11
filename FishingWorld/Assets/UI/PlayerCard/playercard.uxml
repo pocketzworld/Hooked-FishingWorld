@@ -8,81 +8,48 @@
 >
 
   <hr:UILuaView class="playercard">
-    <VisualElement class="playercard-container">
-      <VisualElement class="playercard-content">
-         <VisualElement class="player-info">
-          <VisualElement class="card__close" name="_closeButton">
-            <VisualElement class="button-content">
-              <Image name="_closeButtonImage" class="card__close__icon" />
-            </VisualElement>
+    <!-- Container -->
+    <VisualElement class="playercard__container" name="_PlayerCardContainer">
+      <!-- Header -->
+      <VisualElement class="playercard__header">
+        <Label class="playercard__header-title" name="_HeaderTitle" />
+        <!-- Navigations -->
+        <VisualElement class="navigation">
+          <VisualElement class="nav-button active" name="_ProgressButton">
+            <Label class="nav-text" text="Progress" />
           </VisualElement>
-
-          <VisualElement class="player-avatar-container">
-           <hr:UIUserThumbnail class="player-icon" name="_PlayerIcon" picking-mode="Ignore" online-indicator="false"/>
-           <hr:UILabel class="player-name" name="_PlayerName"/>
+          <VisualElement class="nav-button" name="_StatsButton">
+            <Label class="nav-text" text="Stats" />
           </VisualElement>
-  
-          <hr:UIScrollView class="player-sub-stats" name="_substats" mode="Horizontal"> 
-  
-           <VisualElement class="player-sub-stats__item">
-            <VisualElement class="player-sub-stats__item__header">
-              <Label class="player-sub-stats__item__label" text="LEVEL"/>
-            </VisualElement>
-            <VisualElement class="player-sub-stats__item__content">
-              <Label class="player-sub-stats__item__value" name="_PlayerLevel" text="0"/>
-            </VisualElement>
-           </VisualElement>
-  
-           <VisualElement class="player-sub-stats__item">
-             <VisualElement class="player-sub-stats__item__header">
-              <Label class="player-sub-stats__item__label" text="STRENGTH"/>
-             </VisualElement>
-             <VisualElement class="player-sub-stats__item__content">
-              <Label class="player-sub-stats__item__value" name="_PlayerStrength" text="0"/>
-            </VisualElement>
-           </VisualElement>
-
-           <VisualElement class="player-sub-stats__item">
-             <VisualElement class="player-sub-stats__item__header">
-              <Label class="player-sub-stats__item__label" text="HOOK SPEED"/>
-             </VisualElement>
-             <VisualElement class="player-sub-stats__item__content">
-             <Label class="player-sub-stats__item__value" name="_PlayerHookSpeed" text="0"/>
-            </VisualElement>
-           </VisualElement>
-  
-           <VisualElement class="player-sub-stats__item">
-             <VisualElement class="player-sub-stats__item__header">
-              <Label class="player-sub-stats__item__label" text="REEL SPEED"/>
-             </VisualElement>
-             <VisualElement class="player-sub-stats__item__content">
-              <Label class="player-sub-stats__item__value" name="_PlayerReelSpeed" text="0"/>
-            </VisualElement>
-           </VisualElement>
-  
-          </hr:UIScrollView>
-
-
-         </VisualElement>
-
-         <VisualElement class="levels-container">
-            <VisualElement class="level-item">
-              <Label class="level-item__label" text="Player Level"/>
-              <VisualElement class="level-item__bar">
-                <VisualElement class="level-item__bar__fill" name="_PlayerLevelBar"/>
-                <Label class="level-item__bar__label" text="0/0" name="_LevelProgress"/>
-              </VisualElement>
-            </VisualElement>
-            <VisualElement class="rod-item">
-              <Label class="rod-item__label" text="Rod Level"/>
-              <VisualElement class="rod-item__bar">
-                <VisualElement class="rod-item__bar__fill" name="_RodLevelBar"/>
-                <Label class="rod-item__bar__label" text="0/0" name="_RodProgress"/>
-              </VisualElement>
-            </VisualElement>
-         </VisualElement>
-
+          <VisualElement class="nav-button" name="_QuestsButton">
+            <Label class="nav-text" text="Quests" />
+          </VisualElement>
+        </VisualElement>
       </VisualElement>
+      <!-- Close Button -->
+      <VisualElement class="playercard__close" name="_CloseButton">
+        <VisualElement class="button-content">
+          <Image class="playercard__close-icon" name="_CloseIcon" />
+        </VisualElement>
+      </VisualElement>
+
+      <hr:UIScrollView class="playercard__content-container" name="_PlayerCardContentContainer">
+        <!-- Content Header -->
+        <VisualElement class="content-header">
+          <VisualElement class="content-header__left">
+            <Image class="content-header__left-icon" />
+          </VisualElement>
+          <VisualElement class="content-header__right">
+            <hr:UILabel class="content-header__right-title" name="_ContentHeaderTitle" />
+          </VisualElement>
+        </VisualElement>
+
+        <!-- Content -->
+        <VisualElement class="playercard__content" name="_PlayerCardContent">
+        </VisualElement>
+
+      </hr:UIScrollView>
+
     </VisualElement>
   </hr:UILuaView>
 
