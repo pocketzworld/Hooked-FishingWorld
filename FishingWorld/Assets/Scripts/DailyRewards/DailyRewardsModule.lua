@@ -3,15 +3,17 @@
 local dailyRewardEvent = Event.new("dailyRewardEvent")
 local claimDailyRewardRequest = Event.new("claimDailyRewardRequest")
 local resetRewardsRequest = Event.new("resetRewardsRequest")
+local playerinventoryManager = require("PlayerInventoryManager")
+local playerTracker = require("PlayerTracker")
 
 local RewardSchedule = {
-    day_1 = {itemID = "item1", itemAmount = 1},
-    day_2 = {itemID = "item2", itemAmount = 2},
-    day_3 = {itemID = "item3", itemAmount = 3},
-    day_4 = {itemID = "item4", itemAmount = 4},
-    day_5 = {itemID = "item5", itemAmount = 5},
-    day_6 = {itemID = "item6", itemAmount = 6},
-    day_7 = {itemID = "item7", itemAmount = 7}
+    day_1 = {itemID = "Tokens", itemAmount = 1},
+    day_2 = {itemID = "Tokens", itemAmount = 2},
+    day_3 = {itemID = "Tokens", itemAmount = 3},
+    day_4 = {itemID = "Tokens", itemAmount = 4},
+    day_5 = {itemID = "Tokens", itemAmount = 5},
+    day_6 = {itemID = "Tokens", itemAmount = 6},
+    day_7 = {itemID = "Tokens", itemAmount = 7}
 }
 
 local CLAIM_INTERVAL_MINUTES = 1440  -- Set the interval for claiming rewards (in minutes)
@@ -35,23 +37,27 @@ end
 
 ------------- SERVER -------------
 
-local function convertMinutesToHoursAndMinutes(timeRemaining)
+local function convertMinutesToHoursAndMinutesAndSeconds(timeRemaining)
     local minutesRemaining = math.floor(timeRemaining / 60)
 
     local hours = math.floor(minutesRemaining / 60)
     local minutes = minutesRemaining % 60
-    return (hours .. " hrs and " .. minutes .. " minutes")
+    local seconds = timeRemaining % 60
+    return (hours .. " hrs and " .. minutes .. " minutes" .. " and " .. seconds .. " seconds")
 end
 
 local function GiveReward(player, reward)
     if reward and reward.itemID then
-        -- Give the player the reward
-        local transaction = InventoryTransaction.new()
-            :GivePlayer(player, reward.itemID, reward.itemAmount)
-        Inventory.CommitTransaction(transaction, function(transID, err) if err then print("Transaction Error: " .. tostring(err)) end end)
+
+        -- Check if it is a Token or an Item
+        if reward.itemID == "Tokens" then
+            playerTracker.IncrementTokensServer(player, reward.itemAmount)
+        else
+            playerinventoryManager.GivePlayerItem(player, reward.itemID, reward.itemAmount)
+        end
 
         -- Notify the player
-        --print("Reward given: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
+        print("Reward given: " .. reward.itemID .. " x" .. tostring(reward.itemAmount))
     end
 end
 
@@ -76,9 +82,9 @@ local function LoadRewardSchedule(callback)
     Storage.GetValue("RewardSchedule", function(schedule)
         if schedule then
             RewardSchedule = schedule
-            --print("Reward schedule loaded successfully.")
+            print("Reward schedule loaded successfully.")
         else
-            --print("Failed to load reward schedule. Ensure it is set in storage.")
+            print("Failed to load reward schedule. Ensure it is set in storage.")
         end
         callback()
     end)
@@ -86,7 +92,7 @@ end
 
 local function SaveRewardSchedule()
     Storage.SetValue("RewardSchedule", RewardSchedule)
-    --print("Reward schedule saved successfully.")
+    print("Reward schedule saved successfully.")
 end
 
 local function ClaimDailyReward(player, currentTime)
@@ -97,14 +103,14 @@ local function ClaimDailyReward(player, currentTime)
 
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
-            -- Print how much time is remaining
-            --print("You must wait " .. convertMinutesToHoursAndMinutes(timeRemaining) .. " to claim the next reward.")
+            --Print how much time is remaining
+            print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining) .. " to claim the next reward.")
             return
         end
 
         -- Determine the next streak day (1 to 7)
-        if elapsedTime >= claimIntervalInSeconds * 7 then
-            streak = 1 -- Reset streak if more than a full week has passed
+        if elapsedTime >= claimIntervalInSeconds * 2 then
+            streak = 1 -- Reset streak if more than 2 intervals have passed
         else
             streak = streak % 7 + 1
         end
@@ -113,6 +119,7 @@ local function ClaimDailyReward(player, currentTime)
         local reward = RewardSchedule[rewardKey]
 
         -- Give the reward
+        print("Claimed daily reward: " .. reward.itemID .. " x" .. tostring(reward.itemAmount) .. "with streak " .. tostring(streak))
         GiveReward(player, reward)
 
         -- Update and save player claim timestamp and streak
@@ -135,6 +142,4 @@ function self:ServerAwake()
     resetRewardsRequest:Connect(function(player)
         SaveRewardSchedule()
     end)
-
-    LoadRewardSchedule(function()end)
 end
