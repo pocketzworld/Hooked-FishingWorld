@@ -56,7 +56,7 @@ add_cash_button:RegisterPressCallback(function()
 end, true, true, true)
 
 pole_slot:RegisterPressCallback(function()
-    UIManager.ButtonPressed("PlayerCard")
+    UIManager.ButtonPressed("Poles")
 end, true, true, true)
 
 bait_slot:RegisterPressCallback(function()
