@@ -9,7 +9,7 @@
 
   <hr:UILuaView class="dailyrewards">
     <VisualElement class="dailyrewards__container">
-      <hr:UIBlur class="overlay" />
+      <!--<hr:UIBlur class="overlay" />-->
       <VisualElement class="dailyrewards__header">
         <VisualElement class="dailyrewards__close" name="_closeButton">
           <VisualElement class="button-content">

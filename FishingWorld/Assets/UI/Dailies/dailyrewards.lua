@@ -54,6 +54,10 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
 
   if is_claimed then
     dailyrewards__item:AddToClassList("claimed")
+  else
+    if not can_claim then
+      dailyrewards__item:AddToClassList("locked")
+    end
   end
 
   local dailyrewards__item__header = VisualElement.new()
@@ -116,6 +120,10 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
     dailyrewards__item:RegisterPressCallback(function()
       --#TODO: Claim the daily reward
       dailyRewardsModule.RequestDailyReward()
+      dailyrewards__item:AddToClassList("claimed")
+      Timer.After(1, function()
+        PopulateRewards()
+      end)
     end, true, true, true)
   end
 
@@ -136,9 +144,9 @@ function PopulateRewards()
 
   local dailyRewards = dailyRewardsModule.GetDailyRewardSchedule()
 
-  for _, key in ipairs(ordered_keys) do
+  for i, key in ipairs(ordered_keys) do
       local value = dailyRewards[key]
-      local is_claimed = false
+      local is_claimed = dailyRewardsModule.GetClaimStreak() > i
       local can_claim = false
       local is_special = #value > 1
 
