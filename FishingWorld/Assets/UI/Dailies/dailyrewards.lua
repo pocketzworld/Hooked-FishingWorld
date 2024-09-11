@@ -115,7 +115,7 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
   if can_claim then
     dailyrewards__item:RegisterPressCallback(function()
       --#TODO: Claim the daily reward
-      print("Claimed daily reward: " .. title)
+      dailyRewardsModule.RequestDailyReward()
     end, true, true, true)
   end
 

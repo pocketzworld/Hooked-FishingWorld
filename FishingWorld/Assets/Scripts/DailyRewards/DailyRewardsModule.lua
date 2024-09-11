@@ -19,7 +19,7 @@ RewardSchedule = TableValue.new("RewardSchedule", {
 }
 )
 
-local CLAIM_INTERVAL_MINUTES = .1  -- Set the interval for claiming rewards (in minutes)
+CLAIM_INTERVAL_MINUTES = .1  -- Set the interval for claiming rewards (in minutes)
 
 players = {}
 ------------ Player Tracking ------------
@@ -28,7 +28,8 @@ function TrackPlayers(game, characterCallback)
         players[player] = {
             player = player,
             playerLastClaimTime = IntValue.new("PlayerLastClaimTime" .. tostring(player.id), 0),
-            playerClaimStreak = IntValue.new("PlayerClaimStreak" .. tostring(player.id), 1)
+            playerClaimStreak = IntValue.new("PlayerClaimStreak" .. tostring(player.id), 1),
+            playerCanClaim = BoolValue.new("PlayerCanClaim" .. tostring(player.id), true)
         }
 
         player.CharacterChanged:Connect(function(player, character) 
@@ -81,7 +82,7 @@ function GetDailyRewardSchedule()
         local item = {
             item_name = itemMetaData.GetItemData(rewardSched["day_" .. i].item_name).Name,
             item_amount = rewardSched["day_" .. i].item_amount,
-            item_icon = itemMetaData.GetItemData(rewardSched["day_" .. i].item_name).ItemImage,
+            item_icon = itemMetaData.GetItemData(rewardSched["day_" .. i].item_name, rewardSched["day_" .. i].item_amount).ItemImage,
             item_type = "item"
         }
         Dailies["day_" .. i] = {item}
@@ -93,9 +94,11 @@ end
 function GetClaimStreak()
     return players[client.localPlayer].playerClaimStreak.value
 end
-
 function GetLastClaimTime()
     return players[client.localPlayer].playerLastClaimTime.value
+end
+function GetCanClaim()
+    return players[client.localPlayer].playerCanClaim.value
 end
 
 ------------- SERVER -------------
