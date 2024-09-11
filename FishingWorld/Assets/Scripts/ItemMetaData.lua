@@ -9,6 +9,19 @@ local baitIcons : {Texture} = nil
 --!SerializeField
 local dealsIcons : {Texture} = nil
 
+--!SerializeField
+local coinIcons : {Texture} = nil
+
+function AssignCoinIcon(amount: number)
+  if amount <= 49 then
+    return coinIcons[1]
+  elseif amount <= 99 then
+    return coinIcons[2]
+  else
+    return coinIcons[3]
+  end
+end
+
 pole_metadata = 
 {
     ["fishing_pole_1"] = {

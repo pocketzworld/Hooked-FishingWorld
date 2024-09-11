@@ -12,7 +12,13 @@ local _closeButton : VisualElement = nil -- Close button for the daily rewards U
 local _content : VisualElement = nil
 
 local UIManager = require("UIManager")
-local MetaData = require("DailyMetaData")
+local dailyRewardsModule = require("DailyRewardsModule")
+
+
+function FormatTitle(title: string)
+  local formatted_title = title:gsub("_", " ")
+  return formatted_title:gsub("^%l", string.upper)
+end
 
 -- Register a callback to close the daily rewards UI
 _closeButton:RegisterPressCallback(function()
@@ -55,7 +61,7 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
 
   local dailyrewards__item__header__title = Label.new()
   dailyrewards__item__header__title:AddToClassList("dailyrewards__item__header__title")
-  dailyrewards__item__header__title.text = MetaData.FormatTitle(title)
+  dailyrewards__item__header__title.text = FormatTitle(title)
   dailyrewards__item__header:Add(dailyrewards__item__header__title)
 
   local dailyrewards__item__content = VisualElement.new()
@@ -128,13 +134,15 @@ function PopulateRewards()
   -- Define the correct order of days
   local ordered_keys = {"day_1", "day_2", "day_3", "day_4", "day_5", "day_6", "day_7"}
 
+  local dailyRewards = dailyRewardsModule.GetDailyRewardSchedule()
+
   for _, key in ipairs(ordered_keys) do
-      local value = MetaData.Dailies[key]
+      local value = dailyRewards[key]
       local is_claimed = false
       local can_claim = false
       local is_special = #value > 1
 
-      if key == "day_1" then
+      if key == "day_" .. dailyRewardsModule.GetClaimStreak() then
           can_claim = true
       end
 
