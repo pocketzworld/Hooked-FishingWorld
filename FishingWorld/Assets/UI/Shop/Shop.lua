@@ -114,6 +114,107 @@ function CreateItem(price: number, image: Texture, useGold, item_type: string, i
   return _ShopItem
 end
 
+function CreateRodItem(rode_level: number, prestive_level: number, rode_progress: number, rode_max_progress: number, rode_upgrade_price: number, rode_image: Texture)
+  local _rod_item = VisualElement.new()
+  _rod_item:AddToClassList("rod__item")
+
+  local _rod_item_header = VisualElement.new()
+  _rod_item_header:AddToClassList("rod__item-header")
+
+  local _rod_item_header_left = VisualElement.new()
+  _rod_item_header_left:AddToClassList("rod__item-header__left")
+
+  local _rod_item_header_left_icon = Image.new()
+  _rod_item_header_left_icon:AddToClassList("rod__item-header__left__icon")
+  _rod_item_header_left:Add(_rod_item_header_left_icon)
+  _rod_item_header_left_icon.image = rode_image
+
+  _rod_item_header:Add(_rod_item_header_left)
+
+  local _rod_item_header_right = VisualElement.new()
+  _rod_item_header_right:AddToClassList("rod__item-header__right")
+
+  local _rod_item_header_stats = Label.new()
+  _rod_item_header_stats:AddToClassList("rod__item-header__stats")
+  _rod_item_header_stats.text = "Rod Stats:"
+  _rod_item_header_right:Add(_rod_item_header_stats)
+
+  local _rod_item_header_stats_content = VisualElement.new()
+  _rod_item_header_stats_content:AddToClassList("rod__item-header__stats__content")
+
+  local _rod_item_header_stats_content_label = Label.new()
+  _rod_item_header_stats_content_label:AddToClassList("rod__item-header__stats__content__label")
+  _rod_item_header_stats_content_label.text = "Level: " .. tostring(rode_level)
+  _rod_item_header_stats_content:Add(_rod_item_header_stats_content_label)
+
+  local _rod_item_header_stats_content_label = Label.new()
+  _rod_item_header_stats_content_label:AddToClassList("rod__item-header__stats__content__label")
+  _rod_item_header_stats_content_label.text = "Prestige: " .. tostring(prestive_level)
+  _rod_item_header_stats_content:Add(_rod_item_header_stats_content_label)
+  _rod_item_header_right:Add(_rod_item_header_stats_content)
+  _rod_item_header:Add(_rod_item_header_right)
+  _rod_item:Add(_rod_item_header)
+
+  local _rod_item_content = VisualElement.new()
+  _rod_item_content:AddToClassList("rod__item-content")
+
+  local _rod_item_header_stats_bar = VisualElement.new()
+  _rod_item_header_stats_bar:AddToClassList("rod__item-header__stats__bar")
+
+  local _rod_item_header_stats_bar_fill = VisualElement.new()
+  _rod_item_header_stats_bar_fill:AddToClassList("rod__item-header__stats__bar__fill")
+  local ProgressWidth = (rode_progress / rode_max_progress) * 100
+  _rod_item_header_stats_bar_fill.style.width = StyleLength.new(ProgressWidth)
+
+  _rod_item_header_stats_bar:Add(_rod_item_header_stats_bar_fill)
+
+  local _rod_item_content_progress = Label.new()
+  _rod_item_content_progress:AddToClassList("rod__item-content__progress")
+  _rod_item_content_progress.text = tostring(rode_progress) .. "/" .. tostring(rode_max_progress)
+  _rod_item_header_stats_bar:Add(_rod_item_content_progress)
+  _rod_item_content:Add(_rod_item_header_stats_bar)
+
+  local _rod_item_upgrade_button = VisualElement.new()
+  _rod_item_upgrade_button:AddToClassList("rod__item-upgrade-button")
+
+  local _button_upper = VisualElement.new()
+  _button_upper:AddToClassList("button-upper")
+
+  local _rod_item_upgrade_button_icon = Image.new()
+  _rod_item_upgrade_button_icon:AddToClassList("rod__item-upgrade-button__icon")
+  _button_upper:Add(_rod_item_upgrade_button_icon)
+
+  local _rod_item_upgrade_button_label = Label.new()
+  _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
+  _rod_item_upgrade_button_label.text = tostring(rode_upgrade_price)
+
+  _button_upper:Add(_rod_item_upgrade_button_label)
+  _rod_item_upgrade_button:Add(_button_upper)
+
+  local _button_lower = VisualElement.new()
+  _button_lower:AddToClassList("button-lower")
+
+  local _rod_item_upgrade_button_label = Label.new()
+  _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
+  if rode_progress == rode_max_progress then
+    _rod_item_upgrade_button_label.text = "PRESTIGE"
+    -- Logic for prestige
+  else
+    _rod_item_upgrade_button_label.text = "UPGRADE"
+    -- Logic for upgrade
+  end
+
+  _button_lower:Add(_rod_item_upgrade_button_label)
+
+  _rod_item_upgrade_button:Add(_button_lower)
+
+  _rod_item_content:Add(_rod_item_upgrade_button)
+  _rod_item:Add(_rod_item_content)
+
+  _ShopContent:Add(_rod_item)
+  return _rod_item
+end
+
 function CreateDealItem(deal_name: string, deal_price: number, deal_description: string, deal_image: Texture, useGold: boolean, prompt_id: string)
   local _DealItem = VisualElement.new()
   _DealItem:AddToClassList("deal__item")
@@ -567,9 +668,20 @@ function PopulateShop(items)
   _contentHeaderIcon:AddToClassList("content-header__left")
 
   if state == 0 then -- check if items are poles
-    _contentHeaderLabel:SetPrelocalizedText("Special Fishing Poles let you fish in unique locations around the world.")
+    _contentHeaderLabel:SetPrelocalizedText("Upgrade your fishing pole to increase your fishing capabilities.")
     _contentHeaderIcon:AddToClassList("pole-icon")
 
+    local HardCodedRode = {
+      rode_level = 1, -- Rod Level
+      prestive_level = 0, -- Prestige Level
+      rode_progress = 30, -- Has to be % of rode_max_progress
+      rode_max_progress = 100, -- Max progress
+      rode_upgrade_price = 100, -- Upgrade price
+      rode_image = testImage -- Rod Image
+    }
+
+    CreateRodItem(HardCodedRode.rode_level, HardCodedRode.prestive_level, HardCodedRode.rode_progress, HardCodedRode.rode_max_progress, HardCodedRode.rode_upgrade_price, HardCodedRode.rode_image)
+    --[[
     for i = 1, #items do
       if poleMetas[items[i].id] then
         -- Create Item Meta Data based on ID
@@ -602,6 +714,7 @@ function PopulateShop(items)
     
       end
     end
+    ]]--
   elseif state == 1 then -- check if items are bait
     _contentHeaderLabel:SetPrelocalizedText("Bait is used to attract fish to your hook. Different fish are attracted to different bait.")
     _contentHeaderIcon:AddToClassList("bait-icon")

@@ -18,15 +18,13 @@ using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
-    [AddComponentMenu("Lua/worldhud")]
-    [LuaRegisterType(0x9268b3b8c7e46248, typeof(LuaBehaviour))]
-    public class worldhud : LuaBehaviourThunk
+    [AddComponentMenu("Lua/playercard")]
+    [LuaRegisterType(0x6f16cb3217ca8a9e, typeof(LuaBehaviour))]
+    public class playercard : LuaBehaviourThunk
     {
-        private const string s_scriptGUID = "7252a39f037c9d94880a19af629a0163";
+        private const string s_scriptGUID = "c4fe01a09160fd542a6cfe7c69e1e829";
         public override string ScriptGUID => s_scriptGUID;
 
-        [SerializeField] public UnityEngine.Texture m_emptyPoleIcon = default;
-        [SerializeField] public UnityEngine.Texture m_emptyBaitIcon = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -35,8 +33,8 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_emptyPoleIcon),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_emptyBaitIcon),
+                CreateSerializedProperty(_script.GetPropertyAt(0), null),
+                CreateSerializedProperty(_script.GetPropertyAt(1), null),
                 CreateSerializedProperty(_script.GetPropertyAt(2), null),
                 CreateSerializedProperty(_script.GetPropertyAt(3), null),
                 CreateSerializedProperty(_script.GetPropertyAt(4), null),
@@ -46,8 +44,6 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(8), null),
                 CreateSerializedProperty(_script.GetPropertyAt(9), null),
                 CreateSerializedProperty(_script.GetPropertyAt(10), null),
-                CreateSerializedProperty(_script.GetPropertyAt(11), null),
-                CreateSerializedProperty(_script.GetPropertyAt(12), null),
             };
         }
     }

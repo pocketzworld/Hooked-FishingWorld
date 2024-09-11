@@ -26,11 +26,18 @@ local baitIcon : Image = nil
 --!Bind
 local bait_text : Label = nil
 
+--!Bind
+local _playerLevelContainer : VisualElement = nil
+
 local gameManager = require("GameManager")
 local playerTracker = require("PlayerTracker")
 local UIManager = require("UIManager")
 local Utils = require("Utils")
 local itemMetaData = require("ItemMetaData")
+
+_playerLevelContainer:RegisterPressCallback(function()
+    UIManager.ButtonPressed("PlayerCard")
+end, true, true, true)
 
 _InventoryButton:RegisterPressCallback(function()
     UIManager.ButtonPressed("Inventory")
@@ -49,7 +56,7 @@ add_cash_button:RegisterPressCallback(function()
 end, true, true, true)
 
 pole_slot:RegisterPressCallback(function()
-    UIManager.ButtonPressed("Poles")
+    UIManager.ButtonPressed("PlayerCard")
 end, true, true, true)
 
 bait_slot:RegisterPressCallback(function()

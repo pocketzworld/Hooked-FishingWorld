@@ -32,6 +32,7 @@ namespace Highrise.Lua.Generated
         [SerializeField] public UnityEngine.GameObject m_ItemPopupObject = default;
         [SerializeField] public UnityEngine.GameObject m_RewardPopupObject = default;
         [SerializeField] public UnityEngine.GameObject m_DailiesUIObject = default;
+        [SerializeField] public UnityEngine.GameObject m_PlayerCardObject = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -47,6 +48,7 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(4), m_ItemPopupObject),
                 CreateSerializedProperty(_script.GetPropertyAt(5), m_RewardPopupObject),
                 CreateSerializedProperty(_script.GetPropertyAt(6), m_DailiesUIObject),
+                CreateSerializedProperty(_script.GetPropertyAt(7), m_PlayerCardObject),
             };
         }
     }

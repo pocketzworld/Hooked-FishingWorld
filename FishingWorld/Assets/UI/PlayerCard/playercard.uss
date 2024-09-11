@@ -1,0 +1,312 @@
+:root {
+  --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
+  --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
+  --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
+  --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
+  --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+  --font-inter-regular: url("project://database/Assets/UI/Fonts/Inter-Regular SDF.asset");
+  --font-inter-medium: url("project://database/Assets/UI/Fonts/Inter-Medium SDF.asset");
+
+  --color-primary: #F2E4C6;
+  --color-secondary: #b08b5e;
+  --color-tertiary: #684F36;
+  --color-white: #f2e2e1;
+
+  --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
+  --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+
+}
+
+
+.card__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.card__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+}
+
+.playercard {
+  display: flex;
+  flex-direction: column;
+
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 20px;
+}
+
+.playercard-container {
+  display: flex;
+  overflow: hidden;
+
+  padding: 6px;
+
+  min-height: 250px;
+  min-width: 350px;
+
+  max-height: 800px;
+  max-width: 800px;
+
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: var(--color-tertiary);
+
+  background-color: var(--color-primary);
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 100% 100%;
+}
+
+.playercard-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
+}
+
+.player-avatar-container {
+  display: flex;
+
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100px;
+  height: 100px;
+
+  margin-bottom: 20px;
+}
+
+.player-avatar-container #_PlayerIcon {
+  width: 80px;
+  height: 80px;
+
+  border-width: 3px;
+  border-color: var(--color-tertiary);
+  border-radius: 20px;
+
+  margin-bottom: 5px;
+}
+
+.player-name {
+  font-size: 20px;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  color: var(--color-tertiary);
+  -unity-text-align: middle-center;
+}
+
+.player-sub-stats {
+  display: flex;
+  flex-direction: row;
+  
+  height: 120px;
+  width: 100%;
+
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+  border-radius: 8px;
+
+  padding: 5px;
+}
+
+.player-sub-stats .scroll-view__content-viewport {
+  display: flex;
+
+  justify-content: center;
+  flex-direction: row;
+}
+
+.player-sub-stats .scroll-view__content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-bar {
+  display: flex;
+
+  height: 5px;
+  border-radius: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-bar__thumb {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-bar__thumb:hover {
+  background-color: var(--color-secondary);
+}
+
+.player-sub-stats__item {
+  width: 130px;
+  height: 120px;
+
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 3px 5px 3px;
+
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Dark);
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  -unity-font-definition: var(--font-inter-semi-bold);
+  overflow: hidden;
+}
+
+.player-sub-stats__item__header {
+  display: flex;
+  width: 100%;
+  height: 50px;
+
+  -unity-text-align: middle-center;
+  background-color: var(--color-secondary);
+}
+
+.player-sub-stats__item__content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  -unity-text-align: middle-center;
+}
+
+.player-sub-stats__item__label {
+  font-size: 18px;
+  -unity-font-definition: var(--font-inter-bold);
+  color: var(--color-tertiary);
+}
+
+.player-sub-stats__item__value {
+  font-size: 35px;
+  -unity-font-definition: var(--font-inter-bold-italic);
+  color: var(--color-tertiary);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.levels-container {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100px;
+}
+
+.level-item, .rod-item {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 90px;
+
+  padding: 0 0 10px 0;
+
+  overflow: hidden;
+}
+
+.level-item__bar, .rod-item__bar {
+  display: flex;
+
+  width: 100%;
+  height: 40px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-size: 100% 100%;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  margin: 0 5px;
+
+  border-radius: 8px;
+
+  justify-content: center;
+  align-self: center;
+
+  margin-top: 20px;
+}
+
+.level-item__bar__fill, .rod-item__bar__fill {
+  display: flex;
+
+  width: 0%;
+  height: 100%;
+
+  background-image: var(--image-TanVignette_Light);
+  background-size: cover;
+  border-radius: 5px;
+
+  border-right-width: 1px;
+  border-color: var(--color-tertiary);
+}
+
+.level-item__bar__label, .rod-item__bar__label {
+  position: absolute;
+  width: 100%;
+
+  -unity-text-align: middle-center;
+  font-size: 16px;
+
+  -unity-font-definition: var(--font-inter-bold-italic);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  color: var(--color-tertiary);
+}
+
+.level-item__label, .rod-item__label {
+  position: absolute;
+
+  top: 0;
+  align-self: center;
+
+  font-size: 16px;
+  -unity-font-definition: var(--font-inter-bold-italic);
+  color: var(--color-tertiary);
+}

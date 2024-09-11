@@ -13,11 +13,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Highrise.Client;
+using Highrise.Studio;
+using Highrise.Lua;
 
 namespace Highrise.Lua.Generated
 {
     [AddComponentMenu("Lua/ChatCommandModule")]
-    [LuaBehaviourScript(s_scriptGUID)]
+    [LuaRegisterType(0x53e9304dd9f28e20, typeof(LuaBehaviour))]
     public class ChatCommandModule : LuaBehaviourThunk
     {
         private const string s_scriptGUID = "15f73f650f97e544dbd90e72e687839c";

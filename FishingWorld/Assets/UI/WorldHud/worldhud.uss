@@ -2,7 +2,6 @@
   --font-default: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
   --shop-pic: url("project://database/Assets/UI/Icons/icon_pouch.png");
   --journal-pic: url("project://database/Assets/UI/Icons/Journal_Icon.png");
-  --rank-pic: url("project://database/Assets/UI/Icons/Ranking_Icon.png");
   --font-inter-black: url("project://database/Assets/UI/Fonts/Inter-Black SDF.asset");
   --font-inter-black-italic: url("project://database/Assets/UI/Fonts/Inter-BlackItalic SDF.asset");
   --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
@@ -20,14 +19,18 @@
 
   --coin-icon: url("project://database/Assets/UI/Icons/icon_coins.png");
   --golden-icon: url("project://database/Assets/UI/Icons/gold_thumbnail.png");
-  --placeholder-icon: url("project://database/Assets/UI/Icons/placeholder.png");
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
   --gem-icon: url("project://database/Assets/UI/Icons/icon_gem_2_blue.png");
+  --star-icon: url("project://database/Assets/UI/Icons/star.png");
+
+  /* Leveling & XP */
+  --xp-bar-fill: #F28C28;
+  --xp-bar-background: #2E2E2E;
+  --xp-bar-text: #E0E0C7;
+  --xp-bar-border: #754C24;
 }
 
 .worldhud {
-  background-color: red;
-
   width: 100%;
 }
 
@@ -63,22 +66,19 @@
   scale: 0.9;
 }
 
-.world-button.shop {
-  top: 85px;
-  right: 11px;
-}
-
-.world-button.ranking {
-  right: 11px;
-}
-
 .world-button.inventory {
+  right: 11px;
+  top: 20px;
+}
+
+.world-button.shop {
+  top: 100px;
   right: 11px;
 }
 
 .world-button.dailies {
-  top: 85px;
-  left: 11px;
+  top: 180px;
+  right: 11px;
 }
 
 .button-icon {
@@ -144,16 +144,7 @@
   height: 18px;
 }
 
-.placeholder.shop {
-}
-
-.placeholder.ranking {
-}
-
-.placeholder.inventory {
-}
-
-.inventory-text{
+.inventory-text {
   margin-top: 2px;
   margin-left: 2px;
   margin-right: 2px;
@@ -171,6 +162,7 @@
   
   overflow: hidden;
   left: 11px;
+  top: 0px;
 
   height: 40px;
 
@@ -246,8 +238,8 @@
   align-self: flex-start;
   
   overflow: hidden;
-  margin-top: 5px;
-  left: 11px;
+  left: 12px;
+  top: 5px;
 
   -unity-font-definition: var(--font-inter-semi-bold);
 }
@@ -290,4 +282,123 @@
 
 .hidden {
   display: none;
+}
+
+.player-leveling-container {
+  display: flex;
+
+  flex-direction: column;
+  align-self: flex-start;
+
+  overflow: hidden;
+  left: 11px;
+
+  top: -55px;
+}
+
+.player-level-content {
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: flex-start;
+  
+  -unity-text-align: middle-center;
+
+  width: 160px;
+  height: 80px;
+
+  overflow: hidden;
+}
+
+.player-level {
+  width: 50px;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  align-self: flex-start;
+
+  -unity-text-align: middle-center;
+}
+
+.player-level Image {
+  --unity-image: var(--star-icon);
+
+  width: 100%;
+  height: 100%;
+}
+
+.player-level-text {
+  display: flex;
+  position: absolute;
+
+  top: 33px;
+  left: 14px;
+
+  font-size: 16px;
+  -unity-font-definition: var(--font-inter-bold);
+  -unity-text-align: middle-center;
+  
+  color: var(--color-tertiary);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+  margin: 0;
+  padding: 0;
+}
+
+.player-xp-bar {
+  display: flex;
+  position: absolute;
+
+  align-self: flex-start;
+  overflow: hidden;
+
+  left: 15px;
+  top: 32px;
+
+  width: 140px;
+}
+
+.player-xp-background {
+  position: relative;
+  width: 100%;
+
+  height: 25px;
+
+  border-radius: 6px;
+  border-color: var(--xp-bar-border);
+  border-width: 2px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-size: 100% 100%;
+
+}
+
+.player-xp-fill {
+  position: absolute;
+  width: 0%;
+
+  height: 21px;
+
+  top: 2px;
+
+  border-radius: 6px;
+  background-image: var(--image-TanVignette_Light);
+  background-size: 100% 100%;
+  
+}
+
+.player-xp-text {
+  position: absolute;
+
+  top: 4px;
+  right: 5px;
+
+  -unity-text-align: middle-right;
+  font-size: 14px;
+
+  -unity-font-definition: var(--font-inter-bold-italic);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  color: var(--xp-bar-text);
 }
