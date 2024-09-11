@@ -3,6 +3,7 @@
 local dailyRewardEvent = Event.new("dailyRewardEvent")
 local claimDailyRewardRequest = Event.new("claimDailyRewardRequest")
 local resetRewardsRequest = Event.new("resetRewardsRequest")
+local syncRewardTimeRequest = Event.new("syncRewardTimeRequest")
 
 local playerinventoryManager = require("PlayerInventoryManager")
 local playerTracker = require("PlayerTracker")
@@ -19,7 +20,7 @@ RewardSchedule = TableValue.new("RewardSchedule", {
 }
 )
 
-CLAIM_INTERVAL_MINUTES = .1  -- Set the interval for claiming rewards (in minutes)
+CLAIM_INTERVAL_MINUTES = .5  -- Set the interval for claiming rewards (in minutes)
 
 players = {}
 ------------ Player Tracking ------------
@@ -28,6 +29,7 @@ function TrackPlayers(game, characterCallback)
         players[player] = {
             player = player,
             playerLastClaimTime = IntValue.new("PlayerLastClaimTime" .. tostring(player.id), 0),
+            playerTimeTillClaim = IntValue.new("PlayerTimeTillClaim" .. tostring(player.id), 0),
             playerClaimStreak = IntValue.new("PlayerClaimStreak" .. tostring(player.id), 1),
             playerCanClaim = BoolValue.new("PlayerCanClaim" .. tostring(player.id), true)
         }
@@ -57,9 +59,16 @@ function self:ClientAwake()
         --print("You have claimed a reward: " .. reward.item_name .. " x" .. tostring(reward.item_amount))
     end)
 
+    -- Sync the reward time with the server
+    syncRewardTimeRequest:FireServer(os.time())
+
     function OnCharacterInstantiate(playerinfo)
         local player = playerinfo.player
         local character = player.character
+
+        playerinfo.playerTimeTillClaim.Changed:Connect(function(newVal)
+            print("Time till claim: " .. convertMinutesToHoursAndMinutesAndSeconds(newVal))
+        end)
     end
 
     TrackPlayers(client, OnCharacterInstantiate)
@@ -103,7 +112,7 @@ end
 
 ------------- SERVER -------------
 
-local function convertMinutesToHoursAndMinutesAndSeconds(timeRemaining)
+function convertMinutesToHoursAndMinutesAndSeconds(timeRemaining)
     local minutesRemaining = math.floor(timeRemaining / 60)
 
     local hours = math.floor(minutesRemaining / 60)
@@ -138,9 +147,9 @@ local function LoadPlayerClaimData(player, callback)
             if lastClaimTimestamp and streak then
                 players[player].playerLastClaimTime.value = lastClaimTimestamp
                 players[player].playerClaimStreak.value = streak
-                callback()
+                if callback then callback() end
             else
-                callback()  -- Default values if no data is found
+                if callback then callback() end  -- Default values if no data is found
             end
         end)
     end)
@@ -175,7 +184,7 @@ local function ClaimDailyReward(player, currentTime)
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
             --Print how much time is remaining
-            print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining) .. " to claim the next reward.")
+            print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining))
             return
         end
 
@@ -196,6 +205,7 @@ local function ClaimDailyReward(player, currentTime)
 
         -- Update and save player claim timestamp and streak
         SavePlayerClaimData(player, currentTime, players[player].playerClaimStreak.value)
+        players[player].playerTimeTillClaim.value = CLAIM_INTERVAL_MINUTES * 60
 
         -- Notify the player
         dailyRewardEvent:FireClient(player, reward)
@@ -215,9 +225,31 @@ function self:ServerAwake()
         SaveRewardSchedule()
     end)
 
+    syncRewardTimeRequest:Connect(function(player, currentTime)
+        LoadPlayerClaimData(player, function()
+            local lastClaimTimestamp = players[player].playerLastClaimTime.value
+            local elapsedTime = currentTime - lastClaimTimestamp
+            local claimIntervalInSeconds = CLAIM_INTERVAL_MINUTES * 60
+            if elapsedTime < claimIntervalInSeconds then
+                players[player].playerCanClaim.value = false
+                local timeRemaining = claimIntervalInSeconds - elapsedTime
+                players[player].playerTimeTillClaim.value = timeRemaining
+            end
+        end)
+    end)
+
     TrackPlayers(server, function(playerInfo)
         local player = playerInfo.player
-        LoadPlayerClaimData(player, function()
+        
+        LoadPlayerClaimData(player)
+
+        Timer.Every(1, function()
+            if players[player].playerTimeTillClaim.value > 0 then
+                players[player].playerTimeTillClaim.value = players[player].playerTimeTillClaim.value - 1
+            else
+                players[player].playerCanClaim.value = true
+                players[player].playerTimeTillClaim.value = 0
+            end
         end)
     end)
 end

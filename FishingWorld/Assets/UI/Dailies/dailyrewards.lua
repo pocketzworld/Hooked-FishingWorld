@@ -119,9 +119,13 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
   if can_claim then
     dailyrewards__item:RegisterPressCallback(function()
       --#TODO: Claim the daily reward
+      if dailyRewardsModule.players[client.localPlayer].playerCanClaim.value == false then return end
       dailyRewardsModule.RequestDailyReward()
       dailyrewards__item:AddToClassList("claimed")
-      Timer.After(1, function()
+      Timer.After(.5, function()
+        PopulateRewards()
+      end)
+      Timer.After(3, function()
         PopulateRewards()
       end)
     end, true, true, true)
