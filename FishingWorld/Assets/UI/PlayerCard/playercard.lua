@@ -1,31 +1,40 @@
 --!Type(UI)
 
 --!Bind
-local _HeaderTitle : Label = nil
+local _PlayerIcon : UIUserThumbnail = nil
+--!Bind
+local _PlayerName : UILabel = nil
+--!Bind
+local _closeButton : VisualElement = nil
+
 
 --!Bind
-local _CloseButton : VisualElement = nil
+local _PlayerLevel : Label = nil
 --!Bind
-local _ProgressButton : VisualElement = nil
+local _PlayerStrength : Label = nil
 --!Bind
-local _StatsButton : VisualElement = nil
+local _PlayerHookSpeed : Label = nil
 --!Bind
-local _QuestsButton : VisualElement = nil
+local _PlayerReelSpeed : Label = nil
 
 --!Bind
-local _ContentHeaderTitle : UILabel = nil
+local _PlayerLevelBar : VisualElement = nil -- Modify the width of this element to change the progress
+--!Bind
+local _RodLevelBar : VisualElement = nil
+
+--!Bind
+local _LevelProgress : Label = nil -- Should be in this format (current/total)
+--!Bind
+local _RodProgress : Label = nil -- Should be in this format (current/total)
 
 local UIManager = require("UIManager")
 
-_CloseButton:RegisterPressCallback(function()
+_PlayerName.text = client.localPlayer.name
+_PlayerIcon:Load(client.localPlayer)
+
+_closeButton:RegisterPressCallback(function()
   UIManager.ButtonPressed("Close")
 end, true, true, true)
-
-local ToolTips = {
-  ["Progress"] = "View your level and rod progress",
-  ["Stats"] = "Display your player stats including level, strength, hook speed, and reel speed",
-  ["Quests"] = "View your current quests and rewards"
-}
 
 local HardCodedPlayer = {
   level = 2,
@@ -39,21 +48,14 @@ local HardCodedPlayer = {
 }
 
 function Initialize()
-  _HeaderTitle.text = "Player Profile"
-  _ContentHeaderTitle:SetPrelocalizedText(ToolTips["Progress"])
-end
-
---[[
-function Initialize()
   _PlayerLevel.text = HardCodedPlayer.level
   _PlayerStrength.text = HardCodedPlayer.strength
   _PlayerHookSpeed.text = HardCodedPlayer.hookSpeed
   _PlayerReelSpeed.text = HardCodedPlayer.reelSpeed
 
-  _PlayerLevelBar.style.width = StyleLength.new(Length.Percent(HardCodedPlayer.currentLevelProgress / HardCodedPlayer.totalLevelProgress * 100))
-  _RodLevelBar.style.width = StyleLength.new(Length.Percent(HardCodedPlayer.currentRodProgress / HardCodedPlayer.totalRodProgress * 100))
+  _PlayerLevelBar.style.width = StyleLength.new(HardCodedPlayer.currentLevelProgress / HardCodedPlayer.totalLevelProgress * 100)
+  _RodLevelBar.style.width = StyleLength.new(HardCodedPlayer.currentRodProgress / HardCodedPlayer.totalRodProgress * 100)
 
   _LevelProgress.text = HardCodedPlayer.currentLevelProgress .. "/" .. HardCodedPlayer.totalLevelProgress
   _RodProgress.text = HardCodedPlayer.currentRodProgress .. "/" .. HardCodedPlayer.totalRodProgress
 end
-]]--

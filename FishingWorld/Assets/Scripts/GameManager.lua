@@ -203,45 +203,8 @@ function MovedToWater(point : Vector3, water : GameObject)
     local _bait = playerTracker.GetBait()
 
     -- Check if the player has the correct pole for the biome
-    local playerPoleID = playerTracker.GetPole()
-    local poleData = itemMetaData.GetItemData(playerPoleID)
-    if poleData ~= nil then
-        local poleBiomes = poleData.ItemBiomes
-        local hasCorrectPole = false
-
-        for i, v in ipairs(poleBiomes) do
-            if v == _biome or v == "Any" then hasCorrectPole = true end
-        end
-
-        if hasCorrectPole then
-            -- Attempt to Start Fishing
-            InitiateFishing(point, _biome, _bait)
-        else
-            -- Display a message to the player that they need a different pole
-            uiManager.ShowFishPopup(_biome, 
-            nil, 
-            nil, 
-            _lockedAlert, 
-            lockedImage,
-            nil,
-            "Region Locked")
-
-            audioManager.PlaySound("splashSound1", 1)
-            audioManager.PlaySound("errorSound", 1)
-        end
-    else
-        -- Display a message to the player that they need a different pole
-        uiManager.ShowFishPopup(_biome, 
-        nil, 
-        nil, 
-        _lockedAlert, 
-        lockedImage,
-        nil,
-        "Region Locked")
-        
-        audioManager.PlaySound("splashSound1", 1)
-        audioManager.PlaySound("errorSound", 1)
-    end
+    -- Attempt to Start Fishing
+    InitiateFishing(point, _biome, _bait)
 end
 
 function proximity_to_middle(percentage)

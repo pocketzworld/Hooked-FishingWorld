@@ -9,6 +9,16 @@ local baitIcons : {Texture} = nil
 --!SerializeField
 local dealsIcons : {Texture} = nil
 
+function AssignCoinIcon(amount: number)
+  if amount <= 49 then
+    return dealsIcons[1]
+  elseif amount <= 99 then
+    return dealsIcons[2]
+  else
+    return dealsIcons[3]
+  end
+end
+
 pole_metadata = 
 {
     ["fishing_pole_1"] = {
@@ -271,10 +281,15 @@ deals_keys =
 }
 
 
-function GetItemData(itemID)
+function GetItemData(itemID, amount)
     if pole_metadata[itemID] then
         return pole_metadata[itemID]
     elseif bait_metadata[itemID] then
         return bait_metadata[itemID]
+    elseif itemID == "Tokens" then
+        return {
+            Name = "Coins",
+            ItemImage = AssignCoinIcon(amount or 1)
+        }
     end
 end

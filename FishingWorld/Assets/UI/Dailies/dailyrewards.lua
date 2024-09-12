@@ -7,12 +7,20 @@ local _header : UILabel = nil
 local _progressBar : UIProgressBar = nil
 --!Bind
 local _closeButton : VisualElement = nil -- Close button for the daily rewards UI
+--!Bind
+local _timerText : Label = nil
 
 --!Bind
 local _content : VisualElement = nil
 
 local UIManager = require("UIManager")
-local MetaData = require("DailyMetaData")
+local dailyRewardsModule = require("DailyRewardsModule")
+
+
+function FormatTitle(title: string)
+  local formatted_title = title:gsub("_", " ")
+  return formatted_title:gsub("^%l", string.upper)
+end
 
 -- Register a callback to close the daily rewards UI
 _closeButton:RegisterPressCallback(function()
@@ -48,6 +56,10 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
 
   if is_claimed then
     dailyrewards__item:AddToClassList("claimed")
+  else
+    if not can_claim then
+      dailyrewards__item:AddToClassList("locked")
+    end
   end
 
   local dailyrewards__item__header = VisualElement.new()
@@ -55,7 +67,7 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
 
   local dailyrewards__item__header__title = Label.new()
   dailyrewards__item__header__title:AddToClassList("dailyrewards__item__header__title")
-  dailyrewards__item__header__title.text = MetaData.FormatTitle(title)
+  dailyrewards__item__header__title.text = FormatTitle(title)
   dailyrewards__item__header:Add(dailyrewards__item__header__title)
 
   local dailyrewards__item__content = VisualElement.new()
@@ -109,7 +121,15 @@ function CreateDailyRewardItem(title: string, items, is_claimed: boolean, can_cl
   if can_claim then
     dailyrewards__item:RegisterPressCallback(function()
       --#TODO: Claim the daily reward
-      print("Claimed daily reward: " .. title)
+      if dailyRewardsModule.players[client.localPlayer].playerCanClaim.value == false then return end
+      dailyRewardsModule.RequestDailyReward()
+      dailyrewards__item:AddToClassList("claimed")
+      Timer.After(.5, function()
+        PopulateRewards()
+      end)
+      Timer.After(3, function()
+        PopulateRewards()
+      end)
     end, true, true, true)
   end
 
@@ -128,13 +148,15 @@ function PopulateRewards()
   -- Define the correct order of days
   local ordered_keys = {"day_1", "day_2", "day_3", "day_4", "day_5", "day_6", "day_7"}
 
-  for _, key in ipairs(ordered_keys) do
-      local value = MetaData.Dailies[key]
-      local is_claimed = false
+  local dailyRewards = dailyRewardsModule.GetDailyRewardSchedule()
+
+  for i, key in ipairs(ordered_keys) do
+      local value = dailyRewards[key]
+      local is_claimed = dailyRewardsModule.GetClaimStreak() > i
       local can_claim = false
       local is_special = #value > 1
 
-      if key == "day_1" then
+      if key == "day_" .. dailyRewardsModule.GetClaimStreak() then
           can_claim = true
       end
 
@@ -163,4 +185,19 @@ function PopulateRewards()
   if row_count > 0 then
       _content:Add(dailyrewards__content__row)
   end
+end
+
+function self:ClientAwake()
+  dailyRewardsModule.players[client.localPlayer].playerTimeTillClaim.Changed:Connect(function(newVal)
+    
+    if newVal <= 0 then
+      _timerText.text = "Tap to collect!"
+    else
+      _timerText.text = "Available in: " .. dailyRewardsModule.convertMinutesToHoursAndMinutesAndSeconds(newVal)
+    end
+
+  end)
+  dailyRewardsModule.players[client.localPlayer].playerClaimStreak.Changed:Connect(function(newVal)
+    PopulateRewards()
+  end)
 end

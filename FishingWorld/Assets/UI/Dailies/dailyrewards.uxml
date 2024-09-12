@@ -9,7 +9,7 @@
 
   <hr:UILuaView class="dailyrewards">
     <VisualElement class="dailyrewards__container">
-      <hr:UIBlur class="overlay" />
+      <!--<hr:UIBlur class="overlay" />-->
       <VisualElement class="dailyrewards__header">
         <VisualElement class="dailyrewards__close" name="_closeButton">
           <VisualElement class="button-content">
@@ -124,7 +124,7 @@
       </VisualElement>
 
       <VisualElement class="dailyrewards__footer">
-        <Label class="dailyrewards__footer__button" text="Tap to collect" />
+        <Label name="_timerText" class="dailyrewards__footer__button" text="Tap to collect!" />
       </VisualElement>
     </VisualElement>
   </hr:UILuaView>

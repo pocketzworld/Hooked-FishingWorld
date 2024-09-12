@@ -58,6 +58,10 @@
 
   padding: 10px;
   overflow: hidden;
+
+  background-image: var(--image-TanVignette_Light);
+  border-bottom-width: 8px;
+  border-color: var(--color-secondary);
 }
 
 .dailyrewards__header {
@@ -73,7 +77,7 @@
   -unity-text-align: middle-center;
   -unity-font-definition: var(--font-inter-black);
 
-  background-color: var(--color-secondary);
+  background-color: var(--color-tertiary);
   border-radius: 10px;
 
   padding: 5px;
@@ -209,8 +213,11 @@
   border-radius: 10px;
   margin: 5px;
 
-  background-image: var(--image-TanVignette_Dark);
+  background-image: var(--image-TanVignette_Light);
   background-color: var(--color-secondary);
+
+  border-width: 4px;
+  border-color: var(--color-tertiary);
 
   overflow: hidden;
 }
@@ -229,7 +236,7 @@
   position: absolute;
   font-size: 20px;
 
-  color: var(--color-primary);
+  color: var(--color-tertiary);
   text-shadow: 0px 0px 5px var(--color-tertiary);
   -unity-font-definition: var(--font-inter-semi-bold);
 
@@ -238,7 +245,16 @@
 
 .dailyrewards__item.claimed {
   background-image: var(--image-TanVignette_Light);
-  opacity: 0.5;
+  opacity: 0.25;
+  -unity-background-image-tint-color: #b38e5e;
+}
+
+.dailyrewards__item.locked {
+  background-image: var(--image-TanVignette_Dark);
+  opacity: .9;
+  -unity-background-image-tint-color: #D4C7B9;
+  border-width: 0px;
+  border-color: var(--color-tertiary);
 }
 
 .dailyrewards__item.special {
@@ -332,7 +348,7 @@
 }
 
 .dailyrewards__footer__button {
-  color: var(--color-primary);
+  color: #77583C;
   font-size: 20px;
 
   text-shadow: 0px 0px 5px var(--color-tertiary);
