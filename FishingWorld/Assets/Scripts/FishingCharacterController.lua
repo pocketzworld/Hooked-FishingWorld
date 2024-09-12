@@ -413,7 +413,6 @@ local function HandleTap(tap : TapEvent)
 	-- Attempt to move the local character
 	-- If the player tapped water handle the move differently
 	if hit.collider.gameObject.tag == "Water" then
-		--gameManager.MovedToWater(hit.point, hit.collider.gameObject)
 		
 		-- Check if the player is close enough to the water
 		if Vector3.Distance(character.transform.position, hit.point) > 6 then
