@@ -13,7 +13,11 @@ local _pageButtonFish : VisualElement = nil -- Important do not remove
 --!Bind
 local _pageButtonBait : VisualElement = nil -- Important do not remove
 --!Bind
-local _pageButtonPoles : VisualElement = nil -- Important do not remove
+local _pageButtonProgress : VisualElement = nil -- Important do not remove
+--!Bind
+local _pageButtonStats : VisualElement = nil -- Important do not remove
+--!Bind
+local _pageButtonQuests : VisualElement = nil -- Important do not remove
 
 --!SerializeField
 local defaultImage : Texture = nil
@@ -321,56 +325,12 @@ function UpdateInventory(items)
     end
     return
   elseif state == 2 then
-    -- Poles
-    --[[ -- Add all existing poles to the journal defaulted to unowned ]]
-    for i in ipairs(poleKeys) do
-      local itemID = poleKeys[i]
-
-      local itemName = poleMetas[itemID].Name
-      local itemDescription = poleMetas[itemID].Description
-      local itemImage = poleMetas[itemID].ItemImage or defaultImage
-      local itemLevel = poleMetas[itemID].ItemLevel
-      local itemWorth = poleMetas[itemID].ItemWorth
-      local itemRarity = poleMetas[itemID].ItemRarity
-      local itemBiomes = poleMetas[itemID].ItemBiomes
-
-      -- Check if the fish is in the player's inventory
-      if Utils.is_in_inventory_table(items, itemID) then
-        -- The player has this Fish
-        -- Get the fish's index in the player inventoy table
-        local i = Utils.find_inventory_index(items, itemID)
-
-        local item = CreateItem(items[i].amount, itemImage)
-
-        if itemID == playerTracker.GetPole() then item:EnableInClassList("equiped", true) else item:EnableInClassList("equiped", false) end
-        item:RegisterPressCallback(function()
-          -- EQUIP THE ITEM
-          for i, element in ipairs(inventoryItems) do if element ~= item then element:EnableInClassList("equiped", false) end end
-          item:ToggleInClassList("equiped")
-          playerTracker.ChangePoleRequest(itemID)
-          audioManager.PlaySound("equipSound", 1)
-        end, true, true, true)
-
-        item:RegisterLongPressCallback(function()
-          --Show Item Info
-          audioManager.PlaySound("paperSound1", 1)
-          CreateItemInfoPage(itemName, items[i].amount, itemDescription, itemImage, nil, nil, itemWorth, itemBiomes, nil, true)
-        end, true, true, true)
-
-      else
-        -- The player does not have this Item
-        local item = CreateItem(0, itemImage)
-        item:Children()[1]:Children()[1]:AddToClassList("locked")
-
-        item:RegisterPressCallback(function()
-          --Show Item Info
-          audioManager.PlaySound("paperSound1", 1)
-          CreateItemInfoPage(itemName, 0, itemDescription, itemImage, nil, nil, itemWorth, itemBiomes, nil, false)
-        end, true, true, true)
-        
-      end
-    end
-    return
+    -- Progress
+    
+  elseif state == 3 then
+    -- Stats
+  elseif state == 4 then
+    -- Quests
   end
   
 end
@@ -386,12 +346,11 @@ function ButtonPressed(btn: string)
     UIManager.ButtonPressed("Close")
     return true
   elseif btn == "fish" then
-    if state == 0 then return end -- Already in Poles
+    if state == 0 then return end -- Already in Fish
     state = 0
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", false)
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
@@ -401,17 +360,30 @@ function ButtonPressed(btn: string)
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", false)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
-  elseif btn == "poles" then
-    if state == 2 then return end -- Already in deals
+  elseif btn == "progress" then
+    if state == 2 then return end -- Already in Progress
     state = 2
-    Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", false)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page", true)
+    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page", true)
+    audioManager.PlaySound("paperSound1", 1)
+    UpdateInventory(playerInventory)
+    return true
+  elseif btn == "stats" then
+    if state == 3 then return end -- Already in Stats
+    state = 3
+    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page--deselected", true)
+    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page", true)
+    audioManager.PlaySound("paperSound1", 1)
+    UpdateInventory(playerInventory)
+    return true
+  elseif btn == "quests" then
+    if state == 4 then return end -- Already in Quests
+    state = 4
+    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page--deselected", true)
+    Utils.AddRemoveClass(_pageButtonQuests, "inventory__header__page", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
@@ -426,11 +398,6 @@ end, true, true, true)
 -- Register a callback to populate the inventory UI with Bait
 _pageButtonBait:RegisterPressCallback(function()
   ButtonPressed("bait")
-end, true, true, true)
-
--- Register a callback to populate the inventory UI with Poles
-_pageButtonPoles:RegisterPressCallback(function()
-  ButtonPressed("poles")
 end, true, true, true)
 
 -- Register a callback to close the inventory UI
