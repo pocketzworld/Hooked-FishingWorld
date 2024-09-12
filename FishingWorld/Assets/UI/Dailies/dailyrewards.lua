@@ -7,6 +7,8 @@ local _header : UILabel = nil
 local _progressBar : UIProgressBar = nil
 --!Bind
 local _closeButton : VisualElement = nil -- Close button for the daily rewards UI
+--!Bind
+local _timerText : Label = nil
 
 --!Bind
 local _content : VisualElement = nil
@@ -183,4 +185,13 @@ function PopulateRewards()
   if row_count > 0 then
       _content:Add(dailyrewards__content__row)
   end
+end
+
+function self:ClientAwake()
+  dailyRewardsModule.players[client.localPlayer].playerTimeTillClaim.Changed:Connect(function(newVal)
+    _timerText.text = "Time till claim: " .. dailyRewardsModule.convertMinutesToHoursAndMinutesAndSeconds(newVal)
+    if newVal <= 0 then
+      _timerText.text = "Tap to collect!"
+    end
+  end)
 end

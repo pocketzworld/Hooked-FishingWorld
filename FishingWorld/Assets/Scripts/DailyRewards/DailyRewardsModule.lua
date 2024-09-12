@@ -66,9 +66,11 @@ function self:ClientAwake()
         local player = playerinfo.player
         local character = player.character
 
+        --[[
         playerinfo.playerTimeTillClaim.Changed:Connect(function(newVal)
             print("Time till claim: " .. convertMinutesToHoursAndMinutesAndSeconds(newVal))
         end)
+        -]]
     end
 
     TrackPlayers(client, OnCharacterInstantiate)
@@ -118,7 +120,7 @@ function convertMinutesToHoursAndMinutesAndSeconds(timeRemaining)
     local hours = math.floor(minutesRemaining / 60)
     local minutes = minutesRemaining % 60
     local seconds = timeRemaining % 60
-    return (hours .. " hrs and " .. minutes .. " minutes" .. " and " .. seconds .. " seconds")
+    return (hours .. " : " .. minutes .. " : " .. seconds)
 end
 
 local function GiveReward(player, reward)
@@ -184,7 +186,7 @@ local function ClaimDailyReward(player, currentTime)
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
             --Print how much time is remaining
-            print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining))
+            --print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining))
             return
         end
 
@@ -243,8 +245,11 @@ function self:ServerAwake()
         
         LoadPlayerClaimData(player)
 
-        Timer.Every(1, function()
+        local claimTimer
+        claimTimer = Timer.Every(1, function()
+            if players[player] == nil then claimTimer:Stop(); claimTimer = nil; return end
             if players[player].playerTimeTillClaim.value > 0 then
+                players[player].playerCanClaim.value = false
                 players[player].playerTimeTillClaim.value = players[player].playerTimeTillClaim.value - 1
             else
                 players[player].playerCanClaim.value = true
