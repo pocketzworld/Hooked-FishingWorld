@@ -20,7 +20,7 @@ RewardSchedule = TableValue.new("RewardSchedule", {
 }
 )
 
-CLAIM_INTERVAL_MINUTES = .5  -- Set the interval for claiming rewards (in minutes)
+CLAIM_INTERVAL_MINUTES = .15  -- Set the interval for claiming rewards (in minutes)
 
 players = {}
 ------------ Player Tracking ------------
@@ -138,9 +138,9 @@ local function GiveReward(player, reward)
     end
 end
 
-local function SavePlayerClaimData(player, lastClaimTimestamp, streak)
-    Storage.SetPlayerValue(player, "LastClaimTimestamp", lastClaimTimestamp)
-    Storage.SetPlayerValue(player, "ClaimStreak", streak)
+local function SavePlayerClaimData(player : Player, lastClaimTimestamp : number | nil, streak : number | nil)
+    if lastClaimTimestamp then Storage.SetPlayerValue(player, "LastClaimTimestamp", lastClaimTimestamp, function(err) if err == 0 then print("player claim time saved") else print(err) end end) end
+    if streak then Storage.SetPlayerValue(player, "ClaimStreak", streak, function(err) if err == 0 then print("player claim streak saved") else print(err) end end) end
 end
 
 local function LoadPlayerClaimData(player, callback)
@@ -185,8 +185,6 @@ local function ClaimDailyReward(player, currentTime)
 
         if elapsedTime < claimIntervalInSeconds then
             local timeRemaining = claimIntervalInSeconds - elapsedTime
-            --Print how much time is remaining
-            --print("You must wait " .. convertMinutesToHoursAndMinutesAndSeconds(timeRemaining))
             return
         end
 
@@ -198,12 +196,7 @@ local function ClaimDailyReward(player, currentTime)
         GiveReward(player, reward)
 
         -- Determine the next streak day (1 to 7)
-        if elapsedTime >= claimIntervalInSeconds * 2 then
-            --players[player].playerClaimStreak.value = 1 -- Reset streak if more than 2 intervals have passed
-            players[player].playerClaimStreak.value = players[player].playerClaimStreak.value % 7 + 1
-        else
-            players[player].playerClaimStreak.value = players[player].playerClaimStreak.value % 7 + 1
-        end
+        players[player].playerClaimStreak.value = players[player].playerClaimStreak.value % 7 + 1
 
         -- Update and save player claim timestamp and streak
         SavePlayerClaimData(player, currentTime, players[player].playerClaimStreak.value)
@@ -232,10 +225,11 @@ function self:ServerAwake()
             local lastClaimTimestamp = players[player].playerLastClaimTime.value
             local elapsedTime = currentTime - lastClaimTimestamp
             local claimIntervalInSeconds = CLAIM_INTERVAL_MINUTES * 60
+
+            local timeRemaining = claimIntervalInSeconds - elapsedTime
+            players[player].playerTimeTillClaim.value = timeRemaining
             if elapsedTime < claimIntervalInSeconds then
                 players[player].playerCanClaim.value = false
-                local timeRemaining = claimIntervalInSeconds - elapsedTime
-                players[player].playerTimeTillClaim.value = timeRemaining
             end
         end)
     end)
@@ -248,12 +242,16 @@ function self:ServerAwake()
         local claimTimer
         claimTimer = Timer.Every(1, function()
             if players[player] == nil then claimTimer:Stop(); claimTimer = nil; return end
+            players[player].playerTimeTillClaim.value = players[player].playerTimeTillClaim.value - 1
             if players[player].playerTimeTillClaim.value > 0 then
                 players[player].playerCanClaim.value = false
-                players[player].playerTimeTillClaim.value = players[player].playerTimeTillClaim.value - 1
             else
                 players[player].playerCanClaim.value = true
-                players[player].playerTimeTillClaim.value = 0
+                if players[player].playerTimeTillClaim.value < -CLAIM_INTERVAL_MINUTES * 60 and players[player].playerClaimStreak.value > 1 then
+                    players[player].playerClaimStreak.value = 1
+                    SavePlayerClaimData(player, nil, 1)
+                    print(player.name .. " Missed a day")
+                end
             end
         end)
     end)
