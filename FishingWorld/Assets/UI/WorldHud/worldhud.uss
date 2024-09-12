@@ -162,7 +162,7 @@
   
   overflow: hidden;
   left: 11px;
-  top: 0px;
+  top: 0;
 
   height: 40px;
 
@@ -332,9 +332,11 @@
 .player-level-text {
   display: flex;
   position: absolute;
-
+  
+  justify-content: center;
+  align-items: center;
+  
   top: 33px;
-  left: 14px;
 
   font-size: 16px;
   -unity-font-definition: var(--font-inter-bold);
@@ -345,6 +347,8 @@
 
   margin: 0;
   padding: 0;
+
+  width: 50px;
 }
 
 .player-xp-bar {
