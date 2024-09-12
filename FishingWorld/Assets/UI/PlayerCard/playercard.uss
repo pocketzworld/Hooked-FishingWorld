@@ -15,6 +15,7 @@
   --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
   --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
 
+  --icon-idea: url("project://database/Assets/UI/Icons/idea.png");
 }
 
 /* Close Button */
@@ -48,4 +49,244 @@
 #_CloseIcon {
   width: 30px;
   height: 30px;
+}
+
+.playercard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  bottom: 0;
+
+  padding: 10px;
+}
+
+.playercard__container {
+  display: flex;
+  overflow: hidden;
+
+  padding: 6px;
+  min-height: 250px;
+  min-width: 250px;
+
+  max-height: 800px;
+
+  width: 100%;
+  height: 100%;
+
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: var(--color-tertiary);
+  
+  background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+}
+
+.playercard__header {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  padding-bottom: 0px;
+  -unity-text-align: middle-center;
+
+  border-bottom-color: rgba(0, 0, 0, .3);
+  border-bottom-width: 2px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.playercard__header-title {
+  font-size: 30px;
+  color: var(--color-tertiary);
+
+  align-self: center;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, .4);
+  -unity-font-definition: var(--font-inter-black);
+}
+
+.playercard .navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.nav-button.active {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-bottom: 0px;
+
+  width: 100%;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: var(--color-secondary);
+  background-color: var(--color-primary);
+}
+
+.nav-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  margin-top: auto;
+  margin-bottom: 0px;
+
+  width: 100%;
+  height: 24px;
+
+  color: var(--color-tertiary);
+  -unity-font-definition: var(--font-inter-black);
+
+  border-radius: 5px;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-color: var(--color-secondary);
+  border-color: var(--color-tertiary);
+}
+
+.playercard__content-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
+}
+
+.playercard__content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  width: 100%;
+  height: auto;
+
+  padding: 0 10px;
+
+  min-width: 250px;
+  align-self: center;
+}
+
+.scroll-view__content-viewport {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.scroll-view__content-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  padding: 0 0 50px 0;
+}
+
+.scroll-bar {
+  display: flex;
+
+  width: 5px;
+  border-radius: 2px;
+}
+
+.scroll-bar__thumb {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.scroll-bar__thumb:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Content Header */
+
+.content-header {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 93%;
+  height: 70px;
+
+  background-color: var(--color-primary);
+
+  padding: 0 30px 0 15px;
+  margin: 5px 0;
+
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: var(--color-tertiary);
+
+  margin-bottom: 20px;
+}
+
+.content-header__left {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+
+  width: 50px;
+  height: 50px;
+
+  margin-right: 7px;
+
+  background-image: var(--image-TanVignette_Dark);
+  background-size: 100% 100%;
+  border-width: 1px;
+  border-color: var(--color-tertiary);
+}
+
+.content-header__left Image {
+  width: 35px;
+  height: 35px;
+
+  --unity-image: var(--icon-idea);
+}
+
+.content-header__right {
+  color: var(--color-tertiary);
+  flex-grow: 1;
+}
+
+.content-header__right-title {
+  white-space: normal;
 }
