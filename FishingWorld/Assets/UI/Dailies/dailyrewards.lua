@@ -189,10 +189,11 @@ end
 
 function self:ClientAwake()
   dailyRewardsModule.players[client.localPlayer].playerTimeTillClaim.Changed:Connect(function(newVal)
-    _timerText.text = "Time till claim: " .. newVal --dailyRewardsModule.convertMinutesToHoursAndMinutesAndSeconds(newVal)
-
+    
     if newVal <= 0 then
       _timerText.text = "Tap to collect!"
+    else
+      _timerText.text = "Available in: " .. dailyRewardsModule.convertMinutesToHoursAndMinutesAndSeconds(newVal)
     end
 
   end)
