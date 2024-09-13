@@ -6,6 +6,8 @@ local emptyPoleIcon : Texture = nil
 local emptyBaitIcon : Texture = nil
 
 --!Bind
+local _levelbar : VisualElement = nil
+--!Bind
 local _InventoryButton : VisualElement = nil
 --!Bind 
 local _ShopButton : VisualElement = nil
@@ -87,4 +89,15 @@ end
 function UpdateCash()
     local cash = playerTracker.GetTokens(client.localPlayer)
     cash_text.text = (cash > 999 and string.format("%.1fk", cash / 1000) or tostring(cash))
+end
+
+function self:Start()
+    playerTracker.players[client.localPlayer].playerXP.Changed:Connect(function(xp)
+        playerTracker.players[client.localPlayer].playerLevel.Changed:Connect(function(playerLevel)
+            local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
+            local percent = (xp / nextLevelXP)*100
+            print("Lvl: ".. playerLevel .. "XP: " .. xp .. " Next Level: " .. nextLevelXP .. " Percent: " .. percent)
+            _levelbar.style.width = StyleLength.new(Length.Percent(percent))
+        end)
+    end)
 end

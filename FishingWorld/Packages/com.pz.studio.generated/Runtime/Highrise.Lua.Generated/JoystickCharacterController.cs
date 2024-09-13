@@ -37,8 +37,18 @@ namespace Highrise.Lua.Generated
         [Tooltip("You have to be within this distance of an off-mesh link endpoint to use it")]
         [SerializeField] public System.Double m_maxLinkDistance = 1;
         [Tooltip("The euler angle between your movement vector and the link vector has to be within this value to use it")]
-        [SerializeField] public System.Double m_maxLinkAngle = 90;
-        [SerializeField] public System.Double m_minLinkMoveStepChange = 0.5;
+        [SerializeField] public System.Double m_maxLinkAngle = 95;
+        [Tooltip("The difference between the requested step size and the actual step size. 0 means no change, 1 means the character couldn't move at all in that direction. If the difference is above this value and all the other criteria are met the off-mesh link will be used")]
+        [SerializeField] public System.Double m_minLinkMoveStepChange = 0.24;
+        [Header("Thumbstick Configuration")]
+        [Tooltip("Hides the thumbstick on desktop platforms")]
+        [SerializeField] public System.Boolean m_hideOnDesktop = false;
+        [Tooltip("Hides the thumbstick when keyboard or gamepad input is active")]
+        [SerializeField] public System.Boolean m_hideOnExternalInput = true;
+        [Tooltip("Makes the thumbstick stay in one spot on the screen")]
+        [SerializeField] public System.Boolean m_anchorThumbstick = false;
+        [Tooltip("Prevents the thumbstick from being dragged on screen")]
+        [SerializeField] public System.Boolean m_preventDraggingThumbstick = false;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -55,6 +65,10 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(5), m_maxLinkDistance),
                 CreateSerializedProperty(_script.GetPropertyAt(6), m_maxLinkAngle),
                 CreateSerializedProperty(_script.GetPropertyAt(7), m_minLinkMoveStepChange),
+                CreateSerializedProperty(_script.GetPropertyAt(8), m_hideOnDesktop),
+                CreateSerializedProperty(_script.GetPropertyAt(9), m_hideOnExternalInput),
+                CreateSerializedProperty(_script.GetPropertyAt(10), m_anchorThumbstick),
+                CreateSerializedProperty(_script.GetPropertyAt(11), m_preventDraggingThumbstick),
             };
         }
     }
