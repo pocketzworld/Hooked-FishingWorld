@@ -4,6 +4,8 @@
   --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
   --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
   --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+  --font-inter-regular: url("project://database/Assets/UI/Fonts/Inter-Regular SDF.asset");
+  --font-inter-medium: url("project://database/Assets/UI/Fonts/Inter-Medium SDF.asset");
 
   --color-primary: #F2E4C6;
   --color-secondary: #b08b5e;
@@ -12,6 +14,34 @@
 
   --image-TanVignette_Dark: url("project://database/Assets/UI/Icons/Slot_BG_Tan_dark.png");
   --image-TanVignette_Light: url("project://database/Assets/UI/Icons/Slot_BG_Tan_light.png");
+}
+
+/* Close Button */
+.inventory__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.inventory__close Image {
+  --unity-image: var(--image-icon-close);
+
+  width: 37px;
+  height: 37px;
+}
+
+.button-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  border-width: 2px;
+  border-color: var(--color-tertiary);
 }
 
 .inventory {
@@ -29,18 +59,18 @@
   top: 0;
   bottom: 0;
 
-  padding: 30px;
+  padding: 10px;
 }
 
 .inventory__container {
   display: flex;
   overflow: hidden;
 
-  padding: 2px;
-  min-height: 300px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 1000px;
+  padding: 6px;
+  min-height: 250px;
+  min-width: 250px;
+
+  max-height: 800px;
 
   width: 100%;
   height: 100%;
@@ -48,10 +78,9 @@
   border-width: 2px;
   border-radius: 8px;
   border-color: var(--color-tertiary);
-
+  
   background-color: var(--color-primary);
   background-image: var(--image-TanVignette_Light);
-
 }
 
 .inventory__header {
@@ -69,14 +98,12 @@
   border-bottom-width: 2px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-
-  margin-bottom: 3px;
 }
 
 .inventory__header__pages {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   width: 100%;
@@ -92,10 +119,8 @@
   margin: 5px;
   margin-bottom: 0px;
 
-  width: 100%;
-
-  color: var(--color-tertiary);
-  -unity-font-definition: var(--font-inter-black);
+  width: 70px;
+  height: 75px;
 
   border-radius: 5px;
   border-width: 2px;
@@ -104,6 +129,17 @@
   border-bottom-right-radius: 0px;
   border-color: var(--color-secondary);
   background-color: var(--color-primary);
+  background-image: var(--image-TanVignette_Light);
+}
+
+.inventory__header__page Image {
+  width: 50px;
+  height: 50px;
+}
+
+.inventory__header__page--deselected Image {
+  width: 35px;
+  height: 35px;
 }
 
 .inventory__header__page--deselected {
@@ -115,11 +151,8 @@
   margin-top: auto;
   margin-bottom: 0px;
 
-  width: 100%;
-  height: 24px;
-
-  color: var(--color-tertiary);
-  -unity-font-definition: var(--font-inter-black);
+  width: 70px;
+  height: 50px;
 
   border-radius: 5px;
   border-width: 2px;
@@ -127,6 +160,7 @@
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   background-color: var(--color-secondary);
+  background-image: var(--image-TanVignette_Dark);
   border-color: var(--color-tertiary);
 }
 
@@ -159,8 +193,6 @@
 
   overflow: scroll;
   align-self: center;
-
-  padding: 10px;
 }
 
 .scroll-view__content-viewport {
@@ -174,8 +206,12 @@
   flex-direction: row;
   flex-wrap: wrap;
 
+  justify-content: space-between;
+
   width: 100%;
   height: auto;
+
+  padding: 10px;
 }
 
 .scroll-bar {
@@ -199,10 +235,17 @@
 }
 
 .inventory__item {
-  width: 64px;
-  height: 64px;
+  min-height: 50px;
+  min-width: 50px;
+  
+  max-width: 70px;
+  max-height: 70px;
+
+  width: 100%;
+  height: 100%;
 
   margin: 1px;
+  flex-shrink: 0;
 
   transition-property: opacity, scale;
   transition-duration: 0.2s;
@@ -442,4 +485,142 @@
 .rarity__Mythical {
   color: #f87ceb;
   -unity-background-image-tint-color: rgba(248, 124, 235, 0.3);
+}
+
+#_pageButtonImageFish {
+  --unity-image: url("project://database/Assets/UI/Icons/Fish/crystal_fairy_fish_Icon.png");
+}
+
+#_pageButtonImageBait {
+  --unity-image: url("project://database/Assets/UI/Icons/Bait/bait-worm@2x.png");
+}
+
+#_pageButtonImageProgress {
+  --unity-image: url("project://database/Assets/UI/Icons/progress.png");
+}
+
+#_pageButtonImageQuests {
+  --unity-image: url("project://database/Assets/UI/Icons/quest.png");
+}
+
+#_pageButtonImageStats {
+  --unity-image: url("project://database/Assets/UI/Icons/stats.png");
+}
+
+.quest-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 130px;
+
+  margin: 5px;
+
+  border-radius: 10px;
+  background-color: var(--color-secondary);
+  background-image: var(--image-expensive-tip-glare);
+  background-size: cover;
+  
+  overflow: hidden;
+}
+
+.quest-item.completed {
+  opacity: 0.5;
+}
+
+.quest-item.completed .right-side {
+  display: none;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 10px;
+}
+
+.quest-title {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quest-title-text {
+  font-size: 18px;
+  color: white;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  -unity-text-align: middle-left;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, .8);
+
+  white-space: nowrap;
+}
+
+.quest-reward-text {
+  font-size: 16px;
+  color: #01c785;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  -unity-text-align: middle-right;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+
+  white-space: nowrap;
+}
+
+.quest-description {
+  flex-grow: 1;
+}
+
+.quest-description-text {
+  font-size: 14px;
+  color: white;
+  -unity-font-definition: var(--font-inter-regular);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+  -unity-text-align: middle-left;
+  white-space: normal;
+}
+
+.quest-progress {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 20px;
+
+  background-color: var(--color-tertiary);
+  border-radius: 8px;
+}
+
+.quest-progress-fill {
+  width: 30%;
+  height: 100%;
+
+  background-color: #01c785;
+  border-radius: 8px;
+
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 200px 100px;
+  background-position: center;
+}
+
+.right-side {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 30px;
+  height: 100%;
+}
+
+.right-side Image {
+  width: 27px;
+  height: 27px;
+
+  --unity-image: url("project://database/Assets/UI/Icons/next.png");
 }

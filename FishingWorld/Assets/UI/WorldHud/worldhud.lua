@@ -6,7 +6,7 @@ local emptyPoleIcon : Texture = nil
 local emptyBaitIcon : Texture = nil
 
 --!Bind
-local _levelbar : VisualElement = nil
+local player_level_progress_bar : VisualElement = nil
 --!Bind
 local _InventoryButton : VisualElement = nil
 --!Bind 
@@ -31,6 +31,14 @@ local bait_text : Label = nil
 --!Bind
 local _playerLevelContainer : VisualElement = nil
 
+--!Bind
+local player_xp_text : Label = nil -- Example: 23.7k/100k
+--!Bind
+local player_level_text : Label = nil -- Example: 23
+--!Bind
+local player_level_progress_bar : VisualElement = nil -- Modify the width of this element to change the progress
+
+
 local gameManager = require("GameManager")
 local playerTracker = require("PlayerTracker")
 local UIManager = require("UIManager")
@@ -38,7 +46,7 @@ local Utils = require("Utils")
 local itemMetaData = require("ItemMetaData")
 
 _playerLevelContainer:RegisterPressCallback(function()
-    UIManager.ButtonPressed("PlayerCard")
+    UIManager.ButtonPressed("Poles")
 end, true, true, true)
 
 _InventoryButton:RegisterPressCallback(function()
@@ -97,7 +105,7 @@ function self:Start()
             local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
             local percent = (xp / nextLevelXP)*100
             print("Lvl: ".. playerLevel .. "XP: " .. xp .. " Next Level: " .. nextLevelXP .. " Percent: " .. percent)
-            _levelbar.style.width = StyleLength.new(Length.Percent(percent))
+            player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
         end)
     end)
 end

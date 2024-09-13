@@ -13,7 +13,11 @@ local _pageButtonFish : VisualElement = nil -- Important do not remove
 --!Bind
 local _pageButtonBait : VisualElement = nil -- Important do not remove
 --!Bind
-local _pageButtonPoles : VisualElement = nil -- Important do not remove
+local _pageButtonProgress : VisualElement = nil -- Important do not remove
+--!Bind
+local _pageButtonStats : VisualElement = nil -- Important do not remove
+--!Bind
+local _pageButtonQuests : VisualElement = nil -- Important do not remove
 
 --!SerializeField
 local defaultImage : Texture = nil
@@ -39,7 +43,7 @@ local baitMetas = ItemMetaData.bait_metadata
 local baitKeys = ItemMetaData.bait_keys
 
 local inventoryItems = {}
-local state = 0
+local state = 10
 
 --[[
 Changable variables
@@ -87,6 +91,158 @@ function CreateItem(amount, image)
   table.insert(inventoryItems, item)
   return item
 end
+
+local HardcodedQuests = {
+  {
+    title = "Upgrade Fishing Pole to Level 2",
+    reward = 200,
+    description = "Visit the shop and upgrade your fishing pole to level 2 to improve your fishing skills.",
+    progress = 100,
+    completed = true
+  },
+  {
+    title = "Catch Your First Fish",
+    reward = 150,
+    description = "Head to the river and catch your first fish.",
+    progress = 100,
+    completed = true
+  },
+  {
+    title = "Catch 5 Fish",
+    reward = 300,
+    description = "Prove your skills by catching 5 fish from the river.",
+    progress = 60,
+    completed = false
+  },
+  {
+    title = "Sell a Fish at the Market",
+    reward = 100,
+    description = "Sell one of your freshly caught fish at the local market.",
+    progress = 0,
+    completed = false
+  },
+  {
+    title = "Catch a Rare Fish",
+    reward = 500,
+    description = "Find and catch a rare fish species in the river.",
+    progress = 0,
+    completed = false
+  },
+  {
+    title = "Upgrade Pole to Level 3",
+    reward = 300,
+    description = "Upgrade your fishing pole to level 3 for better performance.",
+    progress = 25,
+    completed = false
+  },
+  {
+    title = "Participate in a Fishing Contest",
+    reward = 400,
+    description = "Join the local fishing contest and compete with others.",
+    progress = 0,
+    completed = false
+  },
+  {
+    title = "Catch 10 Fish",
+    reward = 600,
+    description = "Demonstrate your expertise by catching a total of 10 fish.",
+    progress = 40,
+    completed = false
+  },
+  {
+    title = "Buy Bait from the Shop",
+    reward = 50,
+    description = "Purchase fishing bait from the shop to improve your chances of catching fish.",
+    progress = 0,
+    completed = false
+  },
+  {
+    title = "Catch a Legendary Fish",
+    reward = 1000,
+    description = "Become a fishing legend by catching the rarest fish in the river.",
+    progress = 0,
+    completed = false
+  }
+}
+
+
+function CreateQuestItem(quest_title: string, quest_reward: number, quest_description: string, quest_progress: number | nil, is_completed: boolean)
+  local _quest_item = VisualElement.new()
+  _quest_item:AddToClassList("quest-item")
+  if is_completed then _quest_item:AddToClassList("completed") end
+
+  local _left_side = VisualElement.new()
+  _left_side:AddToClassList("left-side")
+
+  local _quest_title = VisualElement.new()
+  _quest_title:AddToClassList("quest-title")
+
+  local _quest_title_text = Label.new()
+  _quest_title_text:AddToClassList("quest-title-text")
+  if quest_title then
+    _quest_title_text.text = "Upgrade pole to Level 2"
+  else
+    print("quest_title is nil")
+    _quest_title_text.text = "Quest Title"
+  end
+  _quest_title:Add(_quest_title_text)
+
+  local _quest_reward_text = Label.new()
+  _quest_reward_text:AddToClassList("quest-reward-text")
+  if quest_reward then
+    _quest_reward_text.text = "+" .. tostring(quest_reward) .. " XP"
+  else
+    print("quest_reward is nil")
+    _quest_reward_text.text = "+nil XP"
+  end
+
+  _quest_title:Add(_quest_reward_text)
+  _left_side:Add(_quest_title)
+
+  local _quest_description = VisualElement.new()
+  _quest_description:AddToClassList("quest-description")
+
+  local _quest_description_text = Label.new()
+  _quest_description_text:AddToClassList("quest-description-text")
+  if quest_description then
+    _quest_description_text.text = "Go to the shop and upgrade your fishing pole to level 2"
+  else
+    print("quest_description is nil")
+    _quest_description_text.text = "Quest Description"
+  end
+
+  _quest_description:Add(_quest_description_text)
+  _left_side:Add(_quest_description)
+
+  local _quest_progress = VisualElement.new()
+  _quest_progress:AddToClassList("quest-progress")
+
+  local _quest_progress_fill = VisualElement.new()
+  _quest_progress_fill:AddToClassList("quest-progress-fill")
+  if quest_progress then
+    local width = (quest_progress / 100) * 100
+    _quest_progress_fill.style.width = StyleLength.new(Length.Percent(width))
+  else
+    print("quest_progress is nil")
+    _quest_progress_fill.style.width = StyleLength.new(Length.Percent(1))
+  end
+
+  _quest_progress:Add(_quest_progress_fill)
+  _left_side:Add(_quest_progress)
+  _quest_item:Add(_left_side)
+
+  local _right_side = VisualElement.new()
+  _right_side:AddToClassList("right-side")
+
+  local _arrow_icon = Image.new()
+  _arrow_icon:AddToClassList("arrow-icon")
+  _right_side:Add(_arrow_icon)
+  _quest_item:Add(_right_side)
+
+  _InventoryContent:Add(_quest_item)
+  return _quest_item
+end
+
 
 function CreateItemInfoPage(name: string, amount: number, description: string, image, rarity, size, worth, biomes, baits, owned)  
   image = image or defaultImage
@@ -223,7 +379,13 @@ end
 
 -- Hardcode 2 items - Example of how to create items in the inventory
 function UpdateInventory(items)
+  if state == 10 then 
+    -- Testing purposes, edit inventory.uxml without clearing the inventory
+    return
+  end
+
   _InventoryContent:Clear()
+  _InventoryContent:ScrollToBeginning()
 
   -- Populate the inventory with with Items depending on the Sate
   if state == 0 then
@@ -321,56 +483,19 @@ function UpdateInventory(items)
     end
     return
   elseif state == 2 then
-    -- Poles
-    --[[ -- Add all existing poles to the journal defaulted to unowned ]]
-    for i in ipairs(poleKeys) do
-      local itemID = poleKeys[i]
+    -- Progress
+    
+  elseif state == 3 then
+    -- Stats
+  elseif state == 4 then
+    -- Quests
+    --Sort quests by completed and display not completed first
+    table.sort(HardcodedQuests, function(a, b) return not a.completed and b.completed end)
 
-      local itemName = poleMetas[itemID].Name
-      local itemDescription = poleMetas[itemID].Description
-      local itemImage = poleMetas[itemID].ItemImage or defaultImage
-      local itemLevel = poleMetas[itemID].ItemLevel
-      local itemWorth = poleMetas[itemID].ItemWorth
-      local itemRarity = poleMetas[itemID].ItemRarity
-      local itemBiomes = poleMetas[itemID].ItemBiomes
-
-      -- Check if the fish is in the player's inventory
-      if Utils.is_in_inventory_table(items, itemID) then
-        -- The player has this Fish
-        -- Get the fish's index in the player inventoy table
-        local i = Utils.find_inventory_index(items, itemID)
-
-        local item = CreateItem(items[i].amount, itemImage)
-
-        if itemID == playerTracker.GetPole() then item:EnableInClassList("equiped", true) else item:EnableInClassList("equiped", false) end
-        item:RegisterPressCallback(function()
-          -- EQUIP THE ITEM
-          for i, element in ipairs(inventoryItems) do if element ~= item then element:EnableInClassList("equiped", false) end end
-          item:ToggleInClassList("equiped")
-          playerTracker.ChangePoleRequest(itemID)
-          audioManager.PlaySound("equipSound", 1)
-        end, true, true, true)
-
-        item:RegisterLongPressCallback(function()
-          --Show Item Info
-          audioManager.PlaySound("paperSound1", 1)
-          CreateItemInfoPage(itemName, items[i].amount, itemDescription, itemImage, nil, nil, itemWorth, itemBiomes, nil, true)
-        end, true, true, true)
-
-      else
-        -- The player does not have this Item
-        local item = CreateItem(0, itemImage)
-        item:Children()[1]:Children()[1]:AddToClassList("locked")
-
-        item:RegisterPressCallback(function()
-          --Show Item Info
-          audioManager.PlaySound("paperSound1", 1)
-          CreateItemInfoPage(itemName, 0, itemDescription, itemImage, nil, nil, itemWorth, itemBiomes, nil, false)
-        end, true, true, true)
-        
-      end
+    -- Display all quests
+    for i, quest in ipairs(HardcodedQuests) do
+      local questItem = CreateQuestItem(quest.title, quest.reward, quest.description, quest.progress, quest.completed)
     end
-    return
   end
   
 end
@@ -386,12 +511,11 @@ function ButtonPressed(btn: string)
     UIManager.ButtonPressed("Close")
     return true
   elseif btn == "fish" then
-    if state == 0 then return end -- Already in Poles
+    if state == 0 then return end -- Already in Fish
     state = 0
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", false)
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
@@ -401,17 +525,30 @@ function ButtonPressed(btn: string)
     Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", false)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
-  elseif btn == "poles" then
-    if state == 2 then return end -- Already in deals
+  elseif btn == "progress" then
+    if state == 2 then return end -- Already in Progress
     state = 2
-    Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", true)
     Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page--deselected", false)
-    Utils.AddRemoveClass(_pageButtonPoles, "inventory__header__page", true)
+    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page", true)
+    audioManager.PlaySound("paperSound1", 1)
+    UpdateInventory(playerInventory)
+    return true
+  elseif btn == "stats" then
+    if state == 3 then return end -- Already in Stats
+    state = 3
+    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page--deselected", true)
+    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page", true)
+    audioManager.PlaySound("paperSound1", 1)
+    UpdateInventory(playerInventory)
+    return true
+  elseif btn == "quests" then
+    if state == 4 then return end -- Already in Quests
+    state = 4
+    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page--deselected", true)
+    Utils.AddRemoveClass(_pageButtonQuests, "inventory__header__page", true)
     audioManager.PlaySound("paperSound1", 1)
     UpdateInventory(playerInventory)
     return true
@@ -428,9 +565,8 @@ _pageButtonBait:RegisterPressCallback(function()
   ButtonPressed("bait")
 end, true, true, true)
 
--- Register a callback to populate the inventory UI with Poles
-_pageButtonPoles:RegisterPressCallback(function()
-  ButtonPressed("poles")
+_pageButtonQuests:RegisterPressCallback(function()
+  ButtonPressed("quests")
 end, true, true, true)
 
 -- Register a callback to close the inventory UI
