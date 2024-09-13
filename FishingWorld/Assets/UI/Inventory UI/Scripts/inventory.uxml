@@ -52,12 +52,6 @@
 
       <hr:UIScrollView name="_InventoryContent" class="inventory__content">
         <!-- Inventory Content -->
-        <VisualElement class="inventory__item plus" name="_InventoryPlus">
-          <VisualElement class="inventory__item-icon">
-            <Image class="inventory__item-icon__image" />
-          </VisualElement>
-        </VisualElement>
-
       </hr:UIScrollView>
     </VisualElement>
 

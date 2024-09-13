@@ -4,6 +4,8 @@
   --font-inter-bold: url("project://database/Assets/UI/Fonts/Inter-Bold SDF.asset");
   --font-inter-bold-italic: url("project://database/Assets/UI/Fonts/Inter-BoldItalic SDF.asset");
   --font-inter-semi-bold: url("project://database/Assets/UI/Fonts/Inter-SemiBold SDF.asset");
+  --font-inter-regular: url("project://database/Assets/UI/Fonts/Inter-Regular SDF.asset");
+  --font-inter-medium: url("project://database/Assets/UI/Fonts/Inter-Medium SDF.asset");
 
   --color-primary: #F2E4C6;
   --color-secondary: #b08b5e;
@@ -503,4 +505,122 @@
 
 #_pageButtonImageStats {
   --unity-image: url("project://database/Assets/UI/Icons/stats.png");
+}
+
+.quest-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 130px;
+
+  margin: 5px;
+
+  border-radius: 10px;
+  background-color: var(--color-secondary);
+  background-image: var(--image-expensive-tip-glare);
+  background-size: cover;
+  
+  overflow: hidden;
+}
+
+.quest-item.completed {
+  opacity: 0.5;
+}
+
+.quest-item.completed .right-side {
+  display: none;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 10px;
+}
+
+.quest-title {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quest-title-text {
+  font-size: 18px;
+  color: white;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  -unity-text-align: middle-left;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, .8);
+
+  white-space: nowrap;
+}
+
+.quest-reward-text {
+  font-size: 16px;
+  color: #01c785;
+  -unity-font-definition: var(--font-inter-semi-bold);
+  -unity-text-align: middle-right;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+
+  white-space: nowrap;
+}
+
+.quest-description {
+  flex-grow: 1;
+}
+
+.quest-description-text {
+  font-size: 14px;
+  color: white;
+  -unity-font-definition: var(--font-inter-regular);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+  -unity-text-align: middle-left;
+  white-space: normal;
+}
+
+.quest-progress {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 20px;
+
+  background-color: var(--color-tertiary);
+  border-radius: 8px;
+}
+
+.quest-progress-fill {
+  width: 30%;
+  height: 100%;
+
+  background-color: #01c785;
+  border-radius: 8px;
+
+  background-image: var(--image-expensive-tip-glare);
+  background-size: 200px 100px;
+  background-position: center;
+}
+
+.right-side {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 30px;
+  height: 100%;
+}
+
+.right-side Image {
+  width: 27px;
+  height: 27px;
+
+  --unity-image: url("project://database/Assets/UI/Icons/next.png");
 }
