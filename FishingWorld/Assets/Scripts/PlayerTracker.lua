@@ -109,8 +109,7 @@ function self:ClientAwake()
         playerinfo.playerBait.Changed:Connect(function(baitID, oldVal)
             --Give player their selected bait
             if player == client.localPlayer then
-
-
+                
                 -- Get the amount of the current bait
                 local inv = playerinfo.playerInventory.value
                 if utils.is_in_inventory_table(inv, baitID) then
@@ -118,8 +117,9 @@ function self:ClientAwake()
                     local amount = inv[itemIndex].amount
                     uiManager.UpdateSelectedBait(baitID, amount)
                 else
-                    uiManager.UpdateSelectedBait("", nil)
+                    uiManager.UpdateSelectedBait("none", nil)
                 end
+                print(baitID)
             end
         end)
 
@@ -318,7 +318,7 @@ function SetBaitServer(player, baitID, unEquip)
         players[player].playerBait.value = baitID 
     else 
         if unEquip then
-            players[player].playerBait.value = "" 
+            players[player].playerBait.value = "none"
         end
     end
 end

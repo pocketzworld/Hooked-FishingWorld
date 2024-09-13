@@ -128,9 +128,9 @@ function StartBaiting(biome : string)
     end)
 end
 
-function InitiateFishing(point : Vector3, biome : string, bait : string)
+function InitiateFishing(point : Vector3, biome : string, bait : string, rarity : string)
     -- Get Fish Data
-    currentFish = fishMetaData.GetRandomFish(biome, bait)
+    currentFish = fishMetaData.GetRandomFish(biome, bait, rarity)
     local fishData = fishMetaData.GetFishData(currentFish)
     HookSensitivity = fishData.HookSensitivity
     ReelResistance = fishMetaData.GetFishReelResistance(currentFish)
@@ -198,13 +198,14 @@ end
 function MovedToWater(point : Vector3, water : GameObject)
     -- Get the water Biome and Player Bait
     local _waterType = water:GetComponent(WaterType)
+    local _rarity = _waterType.GetRarity()
     local _biome = _waterType.GetBiome()
     local _lockedAlert = _waterType.GetLockedAlert()
     local _bait = playerTracker.GetBait()
 
     -- Check if the player has the correct pole for the biome
     -- Attempt to Start Fishing
-    InitiateFishing(point, _biome, _bait)
+    InitiateFishing(point, _biome, _bait, _rarity)
 end
 
 function proximity_to_middle(percentage)

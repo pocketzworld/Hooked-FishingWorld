@@ -25,6 +25,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "dfee82da9d8c2d34a8bd872e26f9239e";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public System.String m_waterRarity = "Mythical";
         [SerializeField] public System.String m_waterBiome = "any";
         [SerializeField] public System.String m_lockedAlert = "any";
 
@@ -35,8 +36,9 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_waterBiome),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_lockedAlert),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_waterRarity),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_waterBiome),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_lockedAlert),
             };
         }
     }

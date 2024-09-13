@@ -23870,6 +23870,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Mythical
   m_waterBiome: Ocean
   m_lockedAlert: You need to use a Deap Sea or Golden fishing pole to fish the Ocean!
     Try the Rivers and Lakes instead, check your journal to equip a different fishing
@@ -23912,6 +23913,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Mythical
   m_waterBiome: River
   m_lockedAlert: You need to use a Beginner or Journeyman fishing pole to fish here!
     Check your journal to equip a different fishing pole, or try the shop to buy
@@ -24056,6 +24058,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Epic
   m_waterBiome: Lake
   m_lockedAlert: You need to use a Beginner or Journeyman fishing pole to fish here!
     Check your journal to equip a different fishing pole, or try the shop to buy
@@ -24250,6 +24253,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Rare
   m_waterBiome: River
   m_lockedAlert: You need to use a Beginner or Journeyman fishing pole to fish here!
     Check your journal to equip a different fishing pole, or try the shop to buy
@@ -24332,6 +24336,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Mythical
   m_waterBiome: Lake
   m_lockedAlert: You need to use a Beginner or Journeyman fishing pole to fish here!
     Check your journal to equip a different fishing pole, or try the shop to buy
@@ -24447,6 +24452,7 @@ MonoBehaviour:
   _uiOutput: 0
   _uiOutputSettings:
     rid: -2
+  m_waterRarity: Mythical
   m_waterBiome: Ice
   m_lockedAlert: You need to use Journeyman or Deap Sea fishing pole to fish here!
     Check your journal to equip a different fishing pole, or try the shop to buy

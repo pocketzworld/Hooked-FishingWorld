@@ -1319,7 +1319,7 @@ local function CheckBait(fishName, Bait)
     return false
 end
 
-function GetRandomFish(Biome, Bait)
+function GetRandomFish(Biome, Bait, MaxRarity)
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "none"
@@ -1327,7 +1327,7 @@ function GetRandomFish(Biome, Bait)
     local Luck = 1
     if Bait ~= "none" then Luck = itemMetaData.GetItemData(Bait).ItemLuck end
     -- Determine rarity based on weighted roll
-    local chosenRarity = rollRarity(Luck, "Mythical")
+    local chosenRarity = rollRarity(Luck, MaxRarity)
     --print("Chosen Rarity: " .. chosenRarity)
     local fishList = {}
     
