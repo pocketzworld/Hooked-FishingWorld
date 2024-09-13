@@ -6,8 +6,6 @@ local emptyPoleIcon : Texture = nil
 local emptyBaitIcon : Texture = nil
 
 --!Bind
-local player_level_progress_bar : VisualElement = nil
---!Bind
 local _InventoryButton : VisualElement = nil
 --!Bind 
 local _ShopButton : VisualElement = nil
@@ -106,6 +104,8 @@ function self:Start()
             local percent = (xp / nextLevelXP)*100
             print("Lvl: ".. playerLevel .. "XP: " .. xp .. " Next Level: " .. nextLevelXP .. " Percent: " .. percent)
             player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
+            player_xp_text.text = xp .. "/" .. nextLevelXP
+            player_level_text.text = tostring(playerLevel)
         end)
     end)
 end
