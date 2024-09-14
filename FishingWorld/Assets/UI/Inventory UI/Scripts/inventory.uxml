@@ -11,7 +11,7 @@
     <VisualElement class="inventory__container" name="_InventoryContainer">
 
       <VisualElement class="inventory__header">
-        <Label class="inventory__header__title" text="Fisherman's Journal" />
+        <Label class="inventory__header__title" text="Fisherman's Journal" name="_headerTitle"/>
 
         <!-- Element to hold the page buttons -->
 

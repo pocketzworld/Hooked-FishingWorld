@@ -1,6 +1,9 @@
 --!Type(UI)
 
 --!Bind
+local _headerTitle : Label = nil -- Important do not remove
+
+--!Bind
 local _InventoryContent : UIScrollView = nil -- Important do not remove
 
 --!Bind
@@ -91,6 +94,31 @@ function CreateItem(amount, image)
   table.insert(inventoryItems, item)
   return item
 end
+
+--#TODO: Hard coded stuff needs to be changed.
+
+local HardcodedStats = {
+  {
+    name = "Level",
+    value = 1
+  },
+  {
+    name = "Experience",
+    value = 20000
+  },
+  {
+    name = "Strength",
+    value = 50
+  },
+  {
+    name = "Fish Caught",
+    value = 100
+  },
+  {
+    name = "Tickets Earned",
+    value = 1000
+  }
+}
 
 local HardcodedQuests = {
   {
@@ -367,6 +395,26 @@ function CreateItemInfoPage(name: string, amount: number, description: string, i
   _ItemInfoContent:Add(_ItemInfoStats)
 end
 
+function CreateStatsItem(name: string, value: number)
+  local _StatsItem = VisualElement.new()
+  _StatsItem:AddToClassList("stats-item")
+
+  local _StatsItemTitle = Label.new()
+  _StatsItemTitle:AddToClassList("stats-item__title")
+  _StatsItemTitle.text = name
+
+  local _StatsItemValue = Label.new()
+  _StatsItemValue:AddToClassList("stats-item__value")
+  _StatsItemValue.text = tostring(value)
+
+  _StatsItem:Add(_StatsItemTitle)
+  _StatsItem:Add(_StatsItemValue)
+
+  _InventoryContent:Add(_StatsItem)
+
+  return _StatsItem
+end
+
 -- Register a callback to close the item info UI
 _closeInfoButton:RegisterPressCallback(function()
   _itemInfo:AddToClassList("hidden")
@@ -487,6 +535,9 @@ function UpdateInventory(items)
     
   elseif state == 3 then
     -- Stats
+    for i, stat in ipairs(HardcodedStats) do
+      local statsItem = CreateStatsItem(stat.name, stat.value)
+    end
   elseif state == 4 then
     -- Quests
     --Sort quests by completed and display not completed first
@@ -500,58 +551,48 @@ function UpdateInventory(items)
   
 end
 
+
+-- An easier way to manage the buttons ^_^
+local buttons = {
+  fish = { element = _pageButtonFish, state = 0, title = "Fish Collection" },
+  bait = { element = _pageButtonBait, state = 1, title = "Owned Bait" },
+  progress = { element = _pageButtonProgress, state = 2, title = client.localPlayer.name .. "'s Progress" },
+  stats = { element = _pageButtonStats, state = 3, title = client.localPlayer.name .. "'s Stats" },
+  quests = { element = _pageButtonQuests, state = 4, title = "Quests" }
+}
+
 -- Function to make life easier :P
 function ButtonPressed(btn: string)
-
   -- Fetch the player's inventory
   local playerInventory = playerTracker.GetPlayerInventory()
 
   if btn == "close" then
-    --ToggleVisible()
-    UIManager.ButtonPressed("Close")
-    return true
-  elseif btn == "fish" then
-    if state == 0 then return end -- Already in Fish
-    state = 0
-    Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", false)
-    Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page", true)
-    Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    audioManager.PlaySound("paperSound1", 1)
-    UpdateInventory(playerInventory)
-    return true
-  elseif btn == "bait" then
-    if state == 1 then return end -- Already in Bait
-    state = 1
-    Utils.AddRemoveClass(_pageButtonFish, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", false)
-    Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page", true)
-    audioManager.PlaySound("paperSound1", 1)
-    UpdateInventory(playerInventory)
-    return true
-  elseif btn == "progress" then
-    if state == 2 then return end -- Already in Progress
-    state = 2
-    Utils.AddRemoveClass(_pageButtonBait, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page", true)
-    audioManager.PlaySound("paperSound1", 1)
-    UpdateInventory(playerInventory)
-    return true
-  elseif btn == "stats" then
-    if state == 3 then return end -- Already in Stats
-    state = 3
-    Utils.AddRemoveClass(_pageButtonProgress, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page", true)
-    audioManager.PlaySound("paperSound1", 1)
-    UpdateInventory(playerInventory)
-    return true
-  elseif btn == "quests" then
-    if state == 4 then return end -- Already in Quests
-    state = 4
-    Utils.AddRemoveClass(_pageButtonStats, "inventory__header__page--deselected", true)
-    Utils.AddRemoveClass(_pageButtonQuests, "inventory__header__page", true)
-    audioManager.PlaySound("paperSound1", 1)
-    UpdateInventory(playerInventory)
-    return true
+      --ToggleVisible()
+      UIManager.ButtonPressed("Close")
+      return true
+  end
+
+  -- Check if the button exists in the buttons table
+  local buttonInfo = buttons[btn]
+  if buttonInfo then
+      if state == buttonInfo.state then return end -- Already in the selected state
+
+      -- Update header title
+      _headerTitle.text = buttonInfo.title
+
+      -- Update state
+      state = buttonInfo.state
+
+      -- Update classes for all buttons
+      for key, info in pairs(buttons) do
+          Utils.AddRemoveClass(info.element, "inventory__header__page--deselected", key ~= btn)
+          Utils.AddRemoveClass(info.element, "inventory__header__page", key == btn)
+      end
+
+      -- Play sound and update inventory
+      audioManager.PlaySound("paperSound1", 1)
+      UpdateInventory(playerInventory)
+      return true
   end
 end
 
@@ -567,6 +608,10 @@ end, true, true, true)
 
 _pageButtonQuests:RegisterPressCallback(function()
   ButtonPressed("quests")
+end, true, true, true)
+
+_pageButtonStats:RegisterPressCallback(function()
+  ButtonPressed("stats")
 end, true, true, true)
 
 -- Register a callback to close the inventory UI
