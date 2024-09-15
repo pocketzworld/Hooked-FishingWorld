@@ -65,8 +65,27 @@
           <Image name="_closeButtonImage" class="inventory__item__info__close__icon" />
         </VisualElement>
       </VisualElement>
-
     </VisualElement>
+
+    <VisualElement class="tooltip hidden" name="_tooltip">
+      <VisualElement class="tooltip-content" name="_TooltipContent">
+        <!-- Tooltip Content -->
+        <VisualElement class="tooltip-title">
+          <Label class="tooltip-title-text" text="Title Placeholder" name="_tooltipTitle"/>
+        </VisualElement>
+
+        <VisualElement class="tooltip-description">
+          <Label class="tooltip-description-text" text="Description Placeholder" name="_tooltipDescription"/>
+        </VisualElement>
+      </VisualElement>
+
+      <VisualElement class="tooltip__close" name="_closeTooltipButton">
+        <VisualElement class="button-content">
+          <Image name="_closeButtonImage" class="tooltip__close__icon" />
+        </VisualElement>
+      </VisualElement>
+    </VisualElement>
+
   </hr:UILuaView>
 
 </UXML>

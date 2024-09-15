@@ -9,7 +9,11 @@ local _InventoryContent : UIScrollView = nil -- Important do not remove
 --!Bind
 local _itemInfo : VisualElement = nil -- Important do not remove
 --!Bind
+local _tooltip : VisualElement = nil -- Important do not remove
+--!Bind
 local _ItemInfoContent : VisualElement = nil -- Important do not remove
+--!Bind
+local _closeTooltipButton  : VisualElement = nil -- Important do not remove
 
 --!Bind
 local _pageButtonFish : VisualElement = nil -- Important do not remove
@@ -21,6 +25,11 @@ local _pageButtonProgress : VisualElement = nil -- Important do not remove
 local _pageButtonStats : VisualElement = nil -- Important do not remove
 --!Bind
 local _pageButtonQuests : VisualElement = nil -- Important do not remove
+
+--!Bind
+local _tooltipTitle : Label = nil -- Important do not remove
+--!Bind
+local _tooltipDescription : Label = nil -- Important do not remove
 
 --!SerializeField
 local defaultImage : Texture = nil
@@ -46,7 +55,7 @@ local baitMetas = ItemMetaData.bait_metadata
 local baitKeys = ItemMetaData.bait_keys
 
 local inventoryItems = {}
-local state = 10
+local state = 0
 
 --[[
 Changable variables
@@ -193,6 +202,113 @@ local HardcodedQuests = {
   }
 }
 
+function CreateToolTipItem(tooltip_title: string, tooltip_description: string)
+  _tooltip:RemoveFromClassList("hidden")
+
+  _tooltipTitle.text = tooltip_title
+  _tooltipDescription.text = tooltip_description
+end
+
+
+function CreateProgressItem(progress_title: string, progress_xp: number, progress_description: string, progress_progress: number | nil, max_progress: number, tooltipData: {title: string, description: string})
+  local _progress_item = VisualElement.new()
+  _progress_item:AddToClassList("progress-item")
+
+  local _progress_left_side = VisualElement.new()
+  _progress_left_side:AddToClassList("progress-left-side")
+
+  local _progress_title = VisualElement.new()
+  _progress_title:AddToClassList("progress-title")
+  
+  local _progress_title_text = Label.new()
+  _progress_title_text:AddToClassList("progress-title-text")
+  if progress_title then
+    _progress_title_text.text = progress_title
+  else
+    print("progress_title is nil")
+    _progress_title_text.text = "Level Placeholder"
+  end
+  _progress_title:Add(_progress_title_text)
+
+  local _progress_title_xp = Label.new()
+  _progress_title_xp:AddToClassList("progress-title-xp")
+  if progress_xp then
+    _progress_title_xp.text = progress_xp .. " XP"
+  else
+    print("progress_xp is nil")
+    _progress_title_xp.text = "Nil XP"
+  end
+
+  _progress_title:Add(_progress_title_xp)
+  _progress_left_side:Add(_progress_title)
+
+  local _progress_description = VisualElement.new()
+  _progress_description:AddToClassList("progress-description")
+
+  local _progress_description_text = Label.new()
+  _progress_description_text:AddToClassList("progress-description-text")
+  if progress_description then
+    _progress_description_text.text = progress_description
+  else
+    print("progress_description is nil")
+    _progress_description_text.text = "Description"
+  end
+  _progress_description:Add(_progress_description_text)
+  _progress_left_side:Add(_progress_description)
+
+  local _progress_bar = VisualElement.new()
+  _progress_bar:AddToClassList("progress-bar")
+
+  local _progress_bar_fill = VisualElement.new()
+  _progress_bar_fill:AddToClassList("progress-bar-fill")
+  if progress_progress then
+    local width = Length.Percent(progress_progress / max_progress * 100)
+    _progress_bar_fill.style.width = StyleLength.new(width)
+  else
+    print("progress_progress is nil")
+    _progress_bar_fill.style.width = StyleLength.new(Length.Percent(1))
+  end
+  
+  _progress_bar:Add(_progress_bar_fill)
+  _progress_left_side:Add(_progress_bar)
+  _progress_item:Add(_progress_left_side)
+
+  local _progress_right_side = VisualElement.new()
+  _progress_right_side:AddToClassList("progress-right-side")
+
+  local _tooltip_icon = Image.new()
+  _tooltip_icon:AddToClassList("tooltip-icon")
+
+  _tooltip_icon:RegisterPressCallback(function()
+    local tooltip_title = tooltipData.title
+    local tooltip_description = tooltipData.description
+
+    CreateToolTipItem(tooltip_title, tooltip_description)
+  end, true, true, true)
+
+  _progress_right_side:Add(_tooltip_icon)
+  _progress_item:Add(_progress_right_side)
+
+  _InventoryContent:Add(_progress_item)
+  return _progress_item
+end
+
+
+-- Descriptions are optional and based on the player level, to have a better design, you can add a description for each level
+local HardcodedPlayerData = {
+  level = 1,
+  experience = 45000,
+  xp_to_next_level = 50000,
+  description = "You are a beginner fisherman. Keep fishing to level up!"
+}
+
+local HardcodedRodData = {
+  level = 1,
+  experience = 20000,
+  xp_to_next_level = 50000,
+  description = "Your rod is getting rusty. Time to upgrade!"
+}
+
 
 function CreateQuestItem(quest_title: string, quest_reward: number, quest_description: string, quest_progress: number | nil, is_completed: boolean)
   local _quest_item = VisualElement.new()
@@ -248,8 +364,8 @@ function CreateQuestItem(quest_title: string, quest_reward: number, quest_descri
   local _quest_progress_fill = VisualElement.new()
   _quest_progress_fill:AddToClassList("quest-progress-fill")
   if quest_progress then
-    local width = (quest_progress / 100) * 100
-    _quest_progress_fill.style.width = StyleLength.new(Length.Percent(width))
+    local width = Length.Percent(quest_progress / 100 * 100)
+    _quest_progress_fill.style.width = StyleLength.new(width)
   else
     print("quest_progress is nil")
     _quest_progress_fill.style.width = StyleLength.new(Length.Percent(1))
@@ -421,6 +537,12 @@ _closeInfoButton:RegisterPressCallback(function()
   audioManager.PlaySound("paperSound1", 1)
 end, true, true, true)
 
+-- Register a callback to close the item info UI
+_closeTooltipButton:RegisterPressCallback(function()
+  _tooltip:AddToClassList("hidden")
+  audioManager.PlaySound("paperSound1", 1)
+end, true, true, true)
+
 function ToggleVisible()
   self.gameObject:SetActive(not self.gameObject.activeSelf)
 end
@@ -532,6 +654,14 @@ function UpdateInventory(items)
     return
   elseif state == 2 then
     -- Progress
+    local playerData = HardcodedPlayerData
+    local rodData = HardcodedRodData
+
+    local tooltipPlayerData = {title = "Player", description = "Player Progress"} -- Change this to teach the player more about the player progress
+    local tooltipRodData = {title = "Fishing Rod", description = "Fishing Rod Progress"} -- Change this to teach the player more about the rod progress
+
+    local playerProgress = CreateProgressItem("Player Level: " .. tostring(playerData.level), playerData.experience, playerData.description, playerData.experience, playerData.xp_to_next_level, {title = tooltipPlayerData.title, description = tooltipPlayerData.description})
+    local rodProgress = CreateProgressItem("Rod Level: " .. tostring(rodData.level), rodData.experience, rodData.description, rodData.experience, rodData.xp_to_next_level, {title = tooltipRodData.title, description = tooltipRodData.description})
     
   elseif state == 3 then
     -- Stats
@@ -612,6 +742,10 @@ end, true, true, true)
 
 _pageButtonStats:RegisterPressCallback(function()
   ButtonPressed("stats")
+end, true, true, true)
+
+_pageButtonProgress:RegisterPressCallback(function()
+  ButtonPressed("progress")
 end, true, true, true)
 
 -- Register a callback to close the inventory UI
