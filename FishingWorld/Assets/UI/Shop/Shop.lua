@@ -777,7 +777,7 @@ function ButtonPressed(btn: string)
     --ToggleVisible()
     UIManager.ButtonPressed("Close")
     return true
-  elseif btn == "Poles" then
+  elseif btn == "poles" then
     if state == 0 then return end -- Already in Poles
     state = 0
     Utils.AddRemoveClass(_PolesButton, "nav-button--deselected", false)
