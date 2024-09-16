@@ -654,7 +654,6 @@ function UpdateInventory(items)
     
   elseif state == 3 then
     -- Stats
-    print("Show Stats")
     for i, stat in ipairs(HardcodedStats) do
       local statsItem = CreateStatsItem(stat.name, stat.value)
     end
@@ -761,7 +760,6 @@ function self:Start()
 
   end)
   playerInfo.playerXP.Changed:Connect(function(xp)
-    print("XP Changed")
     HardcodedStats[2] = {name = "XP", value = xp}
 
     local lvl = playerTracker.players[client.localPlayer].playerLevel.value

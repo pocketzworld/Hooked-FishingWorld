@@ -82,6 +82,18 @@ function self:ServerAwake()
         if not hasBegginerPole then
             GivePlayerItem(player, "fishing_pole_1", 1)
         end
+        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_2") > 0
+        if not hasBegginerPole then
+            GivePlayerItem(player, "fishing_pole_2", 1)
+        end
+        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_3") > 0
+        if not hasBegginerPole then
+            GivePlayerItem(player, "fishing_pole_3", 1)
+        end
+        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_5") > 0
+        if not hasBegginerPole then
+            GivePlayerItem(player, "fishing_pole_5", 1)
+        end
     end)
 
     purchaseItemReq:Connect(function(player: Player, id: string, price: number, quantity: number)
