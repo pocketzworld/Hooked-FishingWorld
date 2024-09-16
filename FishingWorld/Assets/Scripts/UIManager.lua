@@ -121,6 +121,17 @@ function ButtonPressed(btn: string)
         InventoryUIScript.ButtonPressed("bait")
         AudioManager.PlaySound("paperSound1", 1.1)
 
+    elseif btn == "Stats" then
+        ToggleAll(false)
+        ToggleUI("Inventory", true)
+        if not InventoryUIScript then
+            InventoryUIScript = InventoryObject:GetComponent(inventory)
+        end
+        local playerInventory = PlayerTracker.GetPlayerInventory()
+        InventoryUIScript.UpdateInventory(playerInventory)
+        InventoryUIScript.ButtonPressed("stats")
+        AudioManager.PlaySound("paperSound1", 1.1)
+
     elseif btn == "Shop" then
         ToggleAll(false)
         ToggleUI("Shop", true)

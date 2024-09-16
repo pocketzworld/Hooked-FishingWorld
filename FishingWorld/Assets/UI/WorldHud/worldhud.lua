@@ -44,7 +44,7 @@ local Utils = require("Utils")
 local itemMetaData = require("ItemMetaData")
 
 _playerLevelContainer:RegisterPressCallback(function()
-    UIManager.ButtonPressed("Poles")
+    UIManager.ButtonPressed("Stats")
 end, true, true, true)
 
 _InventoryButton:RegisterPressCallback(function()
