@@ -752,27 +752,21 @@ function self:Start()
   local playerInfo = playerTracker.players[client.localPlayer]
   playerInfo.playerLevel.Changed:Connect(function(lvl)
     HardcodedStats[1] = {name = "Level", value = lvl}
-    SetPlayerStats()
   end)
   playerInfo.playerXP.Changed:Connect(function(xp)
     print("XP Changed")
     HardcodedStats[2] = {name = "XP", value = xp}
-    SetPlayerStats()
   end)
   playerInfo.playerXPModifier.Changed:Connect(function(xpMod)
     HardcodedStats[3] = {name = "XP Modifier", value = xpMod}
-    SetPlayerStats()
   end)
   playerInfo.playerStrength.Changed:Connect(function(Str)
     HardcodedStats[4] = {name = "Strength", value = Str}
-    SetPlayerStats()
   end)
   playerInfo.playerHookSpeed.Changed:Connect(function(hookSpeed)
     HardcodedStats[5] = {name = "Hook Speed", value = hookSpeed}
-    SetPlayerStats()
   end)
   playerInfo.playerReelSpeed.Changed:Connect(function(reelSpeed)
     HardcodedStats[6] = {name = "Reel Speed", value = reelSpeed}
-    SetPlayerStats()
   end)
 end
