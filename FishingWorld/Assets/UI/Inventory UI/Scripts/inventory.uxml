@@ -35,11 +35,7 @@
           <VisualElement class="inventory__header__page--deselected" name="_pageButtonStats">
             <Image name="_pageButtonImageStats" class="inventory__header__page__icon" />
           </VisualElement>
-
-          <!-- quests page Button -->
-          <VisualElement class="inventory__header__page--deselected" name="_pageButtonQuests">
-            <Image name="_pageButtonImageQuests" class="inventory__header__page__icon" />
-          </VisualElement>
+          
         </VisualElement>
 
       </VisualElement>

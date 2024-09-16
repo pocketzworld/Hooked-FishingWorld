@@ -23,8 +23,8 @@ local _pageButtonBait : VisualElement = nil -- Important do not remove
 local _pageButtonProgress : VisualElement = nil -- Important do not remove
 --!Bind
 local _pageButtonStats : VisualElement = nil -- Important do not remove
---!Bind
-local _pageButtonQuests : VisualElement = nil -- Important do not remove
+
+--local _pageButtonQuests : VisualElement = nil -- Important do not remove
 
 --!Bind
 local _tooltipTitle : Label = nil -- Important do not remove
@@ -688,7 +688,7 @@ local buttons = {
   bait = { element = _pageButtonBait, state = 1, title = "Owned Bait" },
   progress = { element = _pageButtonProgress, state = 2, title = client.localPlayer.name .. "'s Progress" },
   stats = { element = _pageButtonStats, state = 3, title = client.localPlayer.name .. "'s Stats" },
-  quests = { element = _pageButtonQuests, state = 4, title = "Quests" }
+  --quests = { element = _pageButtonQuests, state = 4, title = "Quests" }
 }
 
 -- Function to make life easier :P
@@ -736,9 +736,11 @@ _pageButtonBait:RegisterPressCallback(function()
   ButtonPressed("bait")
 end, true, true, true)
 
+--[[
 _pageButtonQuests:RegisterPressCallback(function()
   ButtonPressed("quests")
 end, true, true, true)
+]]
 
 _pageButtonStats:RegisterPressCallback(function()
   ButtonPressed("stats")
