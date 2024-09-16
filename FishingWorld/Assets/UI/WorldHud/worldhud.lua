@@ -99,13 +99,19 @@ end
 
 function self:Start()
     playerTracker.players[client.localPlayer].playerXP.Changed:Connect(function(xp)
-        playerTracker.players[client.localPlayer].playerLevel.Changed:Connect(function(playerLevel)
-            local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
-            local percent = (xp / nextLevelXP)*100
-            print("Lvl: ".. playerLevel .. "XP: " .. xp .. " Next Level: " .. nextLevelXP .. " Percent: " .. percent)
-            player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
-            player_xp_text.text = xp .. "/" .. nextLevelXP
-            player_level_text.text = tostring(playerLevel)
-        end)
+        local playerLevel = playerTracker.players[client.localPlayer].playerLevel.value
+        local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
+        local percent = (xp / nextLevelXP)*100
+        player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
+        player_xp_text.text = xp .. "/" .. nextLevelXP
+        player_level_text.text = tostring(playerLevel)
+    end)
+    playerTracker.players[client.localPlayer].playerLevel.Changed:Connect(function(playerLevel)
+        local xp = playerTracker.players[client.localPlayer].playerXP.value
+        local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
+        local percent = (xp / nextLevelXP)*100
+        player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
+        player_xp_text.text = xp .. "/" .. nextLevelXP
+        player_level_text.text = tostring(playerLevel)
     end)
 end
