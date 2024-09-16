@@ -8,6 +8,11 @@
 >
 
   <hr:UILuaView class="island-level">
+    <VisualElement class="island-level__background">
+      <VisualElement class="island-level__background__image">
+        <Label name="level_label" class="island-level__background__image__label" text="99" />
+      </VisualElement>
+    </VisualElement>
   </hr:UILuaView>
 
 </UXML>

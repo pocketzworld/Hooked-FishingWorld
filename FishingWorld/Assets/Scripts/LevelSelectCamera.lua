@@ -37,6 +37,9 @@ function self:Start()
     rewardPopup.transform.localRotation = Quaternion.Euler(0, 0, 0)
 
     for i, gameObj in ipairs(IslandPoints) do
+
+        gameObj.transform:GetChild(0).gameObject:GetComponent(IslandLevel).SetText(IslandLevelReqs[i])
+
         local tapHandler = gameObj:GetComponent(TapHandler)
         tapHandler.Tapped:Connect(function()
 
