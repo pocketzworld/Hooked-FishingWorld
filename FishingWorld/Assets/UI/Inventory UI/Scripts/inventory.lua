@@ -115,10 +115,6 @@ local HardcodedStats = {
   {name = "Reel Speed", value = 1}
 }
 
-function SetPlayerStats()
-  UpdateInventory(playerTracker.GetPlayerInventory())
-end
-
 local HardcodedQuests = {
   {
     title = "Upgrade Fishing Pole to Level 2",
@@ -200,7 +196,7 @@ function CreateToolTipItem(tooltip_title: string, tooltip_description: string)
 end
 
 
-function CreateProgressItem(progress_title: string, progress_xp: number, progress_description: string, progress_progress: number | nil, max_progress: number, tooltipData: {title: string, description: string})
+function CreateProgressItem(progress_title: string, progress_xp: number, xp_over_lvl : boolean, progress_description: string, progress_progress: number | nil, max_progress: number, tooltipData: {title: string, description: string})
   local _progress_item = VisualElement.new()
   _progress_item:AddToClassList("progress-item")
 
@@ -223,7 +219,11 @@ function CreateProgressItem(progress_title: string, progress_xp: number, progres
   local _progress_title_xp = Label.new()
   _progress_title_xp:AddToClassList("progress-title-xp")
   if progress_xp then
-    _progress_title_xp.text = progress_xp .. " XP"
+    if xp_over_lvl then
+      _progress_title_xp.text = progress_xp .. " XP"
+    else
+      _progress_title_xp.text = "Lvl " .. progress_xp
+    end
   else
     print("progress_xp is nil")
     _progress_title_xp.text = "Nil XP"
@@ -286,16 +286,15 @@ end
 
 -- Descriptions are optional and based on the player level, to have a better design, you can add a description for each level
 local HardcodedPlayerData = {
-  level = 1,
-  experience = 45000,
-  xp_to_next_level = 50000,
+  level = 99,
+  experience = 333,
+  xp_to_next_level = 999,
   description = "You are a beginner fisherman. Keep fishing to level up!"
 }
 
 local HardcodedRodData = {
-  level = 1,
-  experience = 20000,
-  xp_to_next_level = 50000,
+  level = 99,
+  experience = 333,
   description = "Your rod is getting rusty. Time to upgrade!"
 }
 
@@ -650,8 +649,8 @@ function UpdateInventory(items)
     local tooltipPlayerData = {title = "Player", description = "Player Progress"} -- Change this to teach the player more about the player progress
     local tooltipRodData = {title = "Fishing Rod", description = "Fishing Rod Progress"} -- Change this to teach the player more about the rod progress
 
-    local playerProgress = CreateProgressItem("Player Level: " .. tostring(playerData.level), playerData.experience, playerData.description, playerData.experience, playerData.xp_to_next_level, {title = tooltipPlayerData.title, description = tooltipPlayerData.description})
-    local rodProgress = CreateProgressItem("Rod Level: " .. tostring(rodData.level), rodData.experience, rodData.description, rodData.experience, rodData.xp_to_next_level, {title = tooltipRodData.title, description = tooltipRodData.description})
+    local playerProgress = CreateProgressItem("Player Level: " .. tostring(playerData.level), playerData.experience, true, playerData.description, playerData.experience, playerData.xp_to_next_level, {title = tooltipPlayerData.title, description = tooltipPlayerData.description})
+    local rodProgress = CreateProgressItem("Rod Prestige: " .. tostring(rodData.level), rodData.experience, false, rodData.description, rodData.experience, 9, {title = tooltipRodData.title, description = tooltipRodData.description})
     
   elseif state == 3 then
     -- Stats
@@ -750,23 +749,55 @@ end, true, true, true)
 
 function self:Start()
   local playerInfo = playerTracker.players[client.localPlayer]
+
   playerInfo.playerLevel.Changed:Connect(function(lvl)
     HardcodedStats[1] = {name = "Level", value = lvl}
+
+    local xp = playerTracker.players[client.localPlayer].playerXP.value
+    local nextLevelXP = playerTracker.GetXPForLevel(lvl + 1)
+    HardcodedPlayerData["level"] = lvl
+    HardcodedPlayerData["experience"] = xp
+    HardcodedPlayerData["xp_to_next_level"] = nextLevelXP
+
   end)
   playerInfo.playerXP.Changed:Connect(function(xp)
     print("XP Changed")
     HardcodedStats[2] = {name = "XP", value = xp}
+
+    local lvl = playerTracker.players[client.localPlayer].playerLevel.value
+    local nextLevelXP = playerTracker.GetXPForLevel(lvl + 1)
+    HardcodedPlayerData["level"] = lvl
+    HardcodedPlayerData["experience"] = xp
+    HardcodedPlayerData["xp_to_next_level"] = nextLevelXP
+
   end)
   playerInfo.playerXPModifier.Changed:Connect(function(xpMod)
-    HardcodedStats[3] = {name = "XP Modifier", value = xpMod}
+    local formatted_number = string.format("%.2f", xpMod):gsub("%.?0+$", "")
+    HardcodedStats[3] = {name = "XP Multiplier", value = formatted_number}
   end)
   playerInfo.playerStrength.Changed:Connect(function(Str)
-    HardcodedStats[4] = {name = "Strength", value = Str}
+    HardcodedStats[4] = {name = "Strength Modifier", value = Str}
   end)
   playerInfo.playerHookSpeed.Changed:Connect(function(hookSpeed)
-    HardcodedStats[5] = {name = "Hook Speed", value = hookSpeed}
+    local formatted_number = string.format("%.2f", hookSpeed):gsub("%.?0+$", "")
+    HardcodedStats[5] = {name = "Hook Modifier", value = formatted_number}
   end)
   playerInfo.playerReelSpeed.Changed:Connect(function(reelSpeed)
-    HardcodedStats[6] = {name = "Reel Speed", value = reelSpeed}
+    local formatted_number = string.format("%.2f", reelSpeed):gsub("%.?0+$", "")
+    HardcodedStats[6] = {name = "Reel Modifier", value = formatted_number}
   end)
+
+  playerInfo.playerPoleLevel.Changed:Connect(function(poleLevel)
+    local prestige = playerTracker.players[client.localPlayer].playerPolePrestige.value
+    local levels_to_next_prestige = 10 - poleLevel
+    HardcodedRodData["level"] = prestige
+    HardcodedRodData["experience"] = poleLevel
+  end)
+  playerInfo.playerPolePrestige.Changed:Connect(function(polePrestige)
+    local poleLevel = playerTracker.players[client.localPlayer].playerPoleLevel.value
+    local levels_to_next_prestige = 10 - poleLevel
+    HardcodedRodData["level"] = polePrestige
+    HardcodedRodData["experience"] = poleLevel
+  end)
+
 end
