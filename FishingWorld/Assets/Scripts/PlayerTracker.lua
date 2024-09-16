@@ -37,10 +37,10 @@ function TrackPlayers(game, characterCallback)
             playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), -1),
             playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), -1),
             playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), -1),
-            playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), 1),
-            playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
-            playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), 1),
-            playerXPModifier = NumberValue.new("PlayerXPModifier" .. tostring(player.id), 1)
+            playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), -1),
+            playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), -1),
+            playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), -1),
+            playerXPModifier = NumberValue.new("PlayerXPModifier" .. tostring(player.id), -1)
         }
 
         player.CharacterChanged:Connect(function(player, character) 

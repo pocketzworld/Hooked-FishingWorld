@@ -107,27 +107,17 @@ end
 --#TODO: Hard coded stuff needs to be changed.
 
 local HardcodedStats = {
-  {
-    name = "Level",
-    value = 1
-  },
-  {
-    name = "Experience",
-    value = 20000
-  },
-  {
-    name = "Strength",
-    value = 50
-  },
-  {
-    name = "Fish Caught",
-    value = 100
-  },
-  {
-    name = "Tickets Earned",
-    value = 1000
-  }
+  {name = "Level", value = 1},
+  {name = "XP", value = 0},
+  {name = "XP Modifier", value = 1},
+  {name = "Strength", value = 1},
+  {name = "Hook Speed", value = 1},
+  {name = "Reel Speed", value = 1}
 }
+
+function SetPlayerStats()
+  UpdateInventory(playerTracker.GetPlayerInventory())
+end
 
 local HardcodedQuests = {
   {
@@ -665,6 +655,7 @@ function UpdateInventory(items)
     
   elseif state == 3 then
     -- Stats
+    print("Show Stats")
     for i, stat in ipairs(HardcodedStats) do
       local statsItem = CreateStatsItem(stat.name, stat.value)
     end
@@ -755,3 +746,33 @@ _closeButton:RegisterPressCallback(function()
   --self.gameObject:SetActive(false)
   ButtonPressed("close")
 end, true, true, true)
+
+
+function self:Start()
+  local playerInfo = playerTracker.players[client.localPlayer]
+  playerInfo.playerLevel.Changed:Connect(function(lvl)
+    HardcodedStats[1] = {name = "Level", value = lvl}
+    SetPlayerStats()
+  end)
+  playerInfo.playerXP.Changed:Connect(function(xp)
+    print("XP Changed")
+    HardcodedStats[2] = {name = "XP", value = xp}
+    SetPlayerStats()
+  end)
+  playerInfo.playerXPModifier.Changed:Connect(function(xpMod)
+    HardcodedStats[3] = {name = "XP Modifier", value = xpMod}
+    SetPlayerStats()
+  end)
+  playerInfo.playerStrength.Changed:Connect(function(Str)
+    HardcodedStats[4] = {name = "Strength", value = Str}
+    SetPlayerStats()
+  end)
+  playerInfo.playerHookSpeed.Changed:Connect(function(hookSpeed)
+    HardcodedStats[5] = {name = "Hook Speed", value = hookSpeed}
+    SetPlayerStats()
+  end)
+  playerInfo.playerReelSpeed.Changed:Connect(function(reelSpeed)
+    HardcodedStats[6] = {name = "Reel Speed", value = reelSpeed}
+    SetPlayerStats()
+  end)
+end
