@@ -110,7 +110,7 @@ function self:Start()
         local xp = playerTracker.players[client.localPlayer].playerXP.value
         local nextLevelXP = playerTracker.GetXPForLevel(playerLevel + 1)
         local percent = (xp / nextLevelXP)*100
-        player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent))
+        player_level_progress_bar.style.width = StyleLength.new(Length.Percent(percent-5))
         player_xp_text.text = xp .. "/" .. nextLevelXP
         player_level_text.text = tostring(playerLevel)
     end)
