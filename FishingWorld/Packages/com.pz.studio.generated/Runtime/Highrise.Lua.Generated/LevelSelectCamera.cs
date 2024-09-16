@@ -25,8 +25,9 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "a65a0ab44ea0b7043acf55e555e3d021";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.GameObject m_rewardPopup = default;
+        [SerializeField] public UnityEngine.Texture m_lockedImage = default;
         [SerializeField] public UnityEngine.Transform m_playerCamera = default;
-        [SerializeField] public System.Collections.Generic.List<UnityEngine.GameObject> m_IslandPoints = default;
         [SerializeField] public System.Double m_padding = 1;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -36,9 +37,10 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
-                CreateSerializedProperty(_script.GetPropertyAt(0), m_playerCamera),
-                CreateSerializedProperty(_script.GetPropertyAt(1), m_IslandPoints),
-                CreateSerializedProperty(_script.GetPropertyAt(2), m_padding),
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_rewardPopup),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_lockedImage),
+                CreateSerializedProperty(_script.GetPropertyAt(2), m_playerCamera),
+                CreateSerializedProperty(_script.GetPropertyAt(3), m_padding),
             };
         }
     }

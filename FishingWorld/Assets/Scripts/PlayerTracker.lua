@@ -163,6 +163,11 @@ function self:ClientAwake()
     TrackPlayers(client, OnCharacterInstantiate)
 end
 
+-- Function to get the player's Level
+function GetPlayerLevel()
+    return players[client.localPlayer].playerLevel.value
+end
+
 -- Function to get the player's strength
 function GetPlayerStrength()
     return players[client.localPlayer].playerStrength.value
