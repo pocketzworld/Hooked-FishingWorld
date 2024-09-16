@@ -18,6 +18,7 @@ function self:Start()
     for each, gameObj in IslandPoints do
         local tapHandler = gameObj:GetComponent(TapHandler)
         tapHandler.Tapped:Connect(function()
+            playerCamera.gameObject:GetComponent(Camera).enabled = true
             teleportManager.Teleport(gameObj.transform.position)
             print("Teleporting to " .. gameObj.name)
 
