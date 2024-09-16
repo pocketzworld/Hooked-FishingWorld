@@ -41,7 +41,7 @@ local missingCoinsModalOpen = false
 
 local purchaseTimer = nil
 
-local upgradeCost = 0
+local upgradeCost = 100
 
 local audioManager = require("AudioManager")
 local UIManager = require("UIManager")
@@ -810,7 +810,7 @@ function ButtonPressed(btn: string)
 end
 
 _PolesButton:RegisterPressCallback(function()
-  local success = ButtonPressed("Poles")
+  local success = ButtonPressed("poles")
 end, true, true, true)
 
 _BaitButton:RegisterPressCallback(function()

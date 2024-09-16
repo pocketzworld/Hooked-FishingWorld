@@ -286,15 +286,15 @@ end
 
 -- Descriptions are optional and based on the player level, to have a better design, you can add a description for each level
 local HardcodedPlayerData = {
-  level = 99,
-  experience = 333,
-  xp_to_next_level = 999,
+  level = 1,
+  experience = 0,
+  xp_to_next_level = 200,
   description = "You are a beginner fisherman. Keep fishing to level up!"
 }
 
 local HardcodedRodData = {
-  level = 99,
-  experience = 333,
+  level = 1,
+  experience = 1,
   description = "Your rod is getting rusty. Time to upgrade!"
 }
 

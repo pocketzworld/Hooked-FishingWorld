@@ -33,10 +33,10 @@ function TrackPlayers(game, characterCallback)
             playerFishRecords = TableValue.new("PlayerFishRecords" .. tostring(player.id), {}),
             playerFishingPole = StringValue.new("PlayerFishingPole" .. tostring(player.id), "fishing_pole_1"),
             playerBait = StringValue.new("PlayerBait" .. tostring(player.id), "none"),
-            playerXP = IntValue.new("PlayerXP" .. tostring(player.id), -1),
-            playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), -1),
-            playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), -1),
-            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), -1),
+            playerXP = IntValue.new("PlayerXP" .. tostring(player.id), 0),
+            playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), 1),
+            playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), 1),
+            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), 1),
             playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), -1),
             playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), -1),
             playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), -1),
@@ -445,11 +445,12 @@ function GetPlayerStatsFromStorage(player)
         -- Ensure all stats exist and default to valid values
         players[player].playerXP.value = playerStats.playerXP or 0
         players[player].playerLevel.value = playerStats.playerLevel or 1
-        players[player].playerPoleLevel.value = playerStats.playerPoleLevel or 1
-        players[player].playerPolePrestige.value = playerStats.playerPolePrestige or 1
+        players[player].playerPoleLevel.value = math.max(playerStats.playerPoleLevel, players[player].playerPoleLevel.value) or 1
+        players[player].playerPolePrestige.value = math.max(playerStats.playerPolePrestige, players[player].playerPolePrestige.value) or 1
         SetStatsPerLevel(player)
 
         -- Print the player's stats
+        --[[]
         print(player.name .. "'s stats: ")
         print("XP: " .. tostring(players[player].playerXP.value))
         print("Level: " .. tostring(players[player].playerLevel.value))
@@ -459,6 +460,7 @@ function GetPlayerStatsFromStorage(player)
         print("Hook Speed: " .. tostring(players[player].playerHookSpeed.value))
         print("Reel Speed: " .. tostring(players[player].playerReelSpeed.value))
         print("XP Modifier: " .. tostring(players[player].playerXPModifier.value))
+        ]]
 
     end)
     
@@ -590,29 +592,39 @@ end
 --[[
 Function to upgradeto the next level of the fishing pole and prestige at level 10
 ]]
-function UpgradePole(player, upgradeCost)
+function UpgradePole(player : Player, upgradeCost : number, levelstoIncease)
+    levelstoIncease = levelstoIncease or 1
     local playerInfo = players[player]
     local currentPoleLevel = playerInfo.playerPoleLevel.value
     local currentPolePrestige = playerInfo.playerPolePrestige.value
 
-    local transaction = InventoryTransaction.new()
-    :TakePlayer(player, "Tokens", upgradeCost)
-    Inventory.CommitTransaction(transaction, function(transactionId, err) if err ~= InventoryError.None then print(err) end end)
-    playerInfo.Tokens.value = playerInfo.Tokens.value - upgradeCost
-
-    -- Check if the player is at the maximum level
-    if currentPoleLevel == 9 then
-        -- Reset the pole level to 1 and increase the prestige level
-        playerInfo.playerPoleLevel.value = 1
-        playerInfo.playerPolePrestige.value = currentPolePrestige + 1
-        print(player.name .. " has reached prestige level " .. tostring(currentPolePrestige + 1) .. "!")
-    else
-        -- Increase the pole level
-        playerInfo.playerPoleLevel.value = currentPoleLevel + 1
-        print(player.name .. " has upgraded their fishing pole to level " .. tostring(currentPoleLevel + 1) .. "!")
+    if upgradeCost > 0 then
+        local transaction = InventoryTransaction.new()
+        :TakePlayer(player, "Tokens", upgradeCost)
+        Inventory.CommitTransaction(transaction, function(transactionId, err) if err ~= InventoryError.None then print(err) end end)
+        playerInfo.Tokens.value = playerInfo.Tokens.value - upgradeCost
     end
 
+    currentPoleLevel = currentPoleLevel + levelstoIncease
+
+    -- Loop to level up if enough XP is accumulated for multiple levels
+    while currentPoleLevel > 9 do
+        currentPoleLevel = currentPoleLevel - 9
+        currentPolePrestige = currentPolePrestige + 1
+    end
+
+    playerInfo.playerPoleLevel.value = currentPoleLevel
+    playerInfo.playerPolePrestige.value = currentPolePrestige
+
     -- Update the player's stats based on the new pole level and prestige
+    SetStatsPerLevel(player)
+    StorePlayerStats(player)
+end
+
+function SetPoleLevel(player, Prestige, Level)
+    local playerInfo = players[player]
+    playerInfo.playerPoleLevel.value = Level
+    playerInfo.playerPolePrestige.value = Prestige
     SetStatsPerLevel(player)
     StorePlayerStats(player)
 end

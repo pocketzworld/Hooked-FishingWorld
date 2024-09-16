@@ -78,6 +78,7 @@ function self:ServerAwake()
     --takeItemReq:Connect(TakePlayerItem)
 
     ClientJoinRequest:Connect(function(player)
+        --[[
         local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_1") > 0
         if not hasBegginerPole then
             GivePlayerItem(player, "fishing_pole_1", 1)
@@ -93,6 +94,44 @@ function self:ServerAwake()
         local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_5") > 0
         if not hasBegginerPole then
             GivePlayerItem(player, "fishing_pole_5", 1)
+        end
+        ]]
+
+        local highestPole = "fishing_pole_1"
+
+        -- Take all the poles from the player
+        local begginerPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_1")
+        if begginerPoleCount > 0 then
+            TakePlayerItem(player, "fishing_pole_1", begginerPoleCount)
+        end
+        local journeymanPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_2")
+        if journeymanPoleCount > 0 then
+            TakePlayerItem(player, "fishing_pole_2", begginerPoleCount)
+            highestPole = "fishing_pole_2"
+        end
+        local deapSeaPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_3")
+        if deapSeaPoleCount > 0 then
+            TakePlayerItem(player, "fishing_pole_3", begginerPoleCount)
+            highestPole = "fishing_pole_3"
+        end
+        local goldenPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_5")
+        if goldenPoleCount > 0 then
+            TakePlayerItem(player, "fishing_pole_5", begginerPoleCount)
+            highestPole = "fishing_pole_5"
+        end
+
+        -- Give player Rod Upgrades depending on the best Pole they have
+        if highestPole == "fishing_pole_1" then
+            return
+        elseif highestPole == "fishing_pole_2" then
+            playerTracker.SetPoleLevel(player, 2, 1)
+            print("Upgrading Pole 9 levels")
+        elseif highestPole == "fishing_pole_3" then
+            playerTracker.SetPoleLevel(player, 3, 1)
+            print("Upgrading Pole 18 levels")
+        elseif highestPole == "fishing_pole_5" then
+            playerTracker.SetPoleLevel(player, 4, 1)
+            print("Upgrading Pole 27 levels")
         end
     end)
 
