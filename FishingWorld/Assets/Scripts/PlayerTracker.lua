@@ -188,6 +188,11 @@ function GetPlayerPolePrestige()
     return players[client.localPlayer].playerPolePrestige.value
 end
 
+-- Function to get the player's XP Modifier
+function GetPlayerXPModifier(player)
+    return players[player].playerXPModifier.value
+end
+
 function UpgradePoleRequest()
     upgradePoleRequest:FireServer()
 end

@@ -294,7 +294,7 @@ function self:ServerAwake()
         if expectedFish and worth == fishMetaData.GetFishData(requestedFishID).Worth then 
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
             playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
-            playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID))
+            playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
         end
 
 
