@@ -358,10 +358,10 @@
   align-self: flex-start;
   overflow: hidden;
 
-  left: 15px;
+  left: 38px;
   top: 32px;
 
-  width: 140px;
+  width: 120px;
 }
 
 .player-xp-background {
