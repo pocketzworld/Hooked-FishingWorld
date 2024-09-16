@@ -73,9 +73,13 @@ end
 local GiveTransactionsToCommit = {}
 local TakeTransactionsToCommit = {}
 
+local currentSeasonID = 1
+
 function self:ServerAwake()
     --giveItemReq:Connect(GivePlayerItem)
     --takeItemReq:Connect(TakePlayerItem)
+
+    GetSeasonData()
 
     ClientJoinRequest:Connect(function(player)
         --[[
@@ -97,42 +101,31 @@ function self:ServerAwake()
         end
         ]]
 
-        local highestPole = "fishing_pole_1"
+        Timer.After(1, function()
 
-        -- Take all the poles from the player
-        local begginerPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_1")
-        if begginerPoleCount > 0 then
-            TakePlayerItem(player, "fishing_pole_1", begginerPoleCount)
-        end
-        local journeymanPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_2")
-        if journeymanPoleCount > 0 then
-            TakePlayerItem(player, "fishing_pole_2", begginerPoleCount)
-            highestPole = "fishing_pole_2"
-        end
-        local deapSeaPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_3")
-        if deapSeaPoleCount > 0 then
-            TakePlayerItem(player, "fishing_pole_3", begginerPoleCount)
-            highestPole = "fishing_pole_3"
-        end
-        local goldenPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_5")
-        if goldenPoleCount > 0 then
-            TakePlayerItem(player, "fishing_pole_5", begginerPoleCount)
-            highestPole = "fishing_pole_5"
-        end
+            -- Port Old poles to V2 as Rod Upgrades
+            TradeOldPoles(player)
 
-        -- Give player Rod Upgrades depending on the best Pole they have
-        if highestPole == "fishing_pole_1" then
-            return
-        elseif highestPole == "fishing_pole_2" then
-            playerTracker.SetPoleLevel(player, 2, 1)
-            print("Upgrading Pole 9 levels")
-        elseif highestPole == "fishing_pole_3" then
-            playerTracker.SetPoleLevel(player, 3, 1)
-            print("Upgrading Pole 18 levels")
-        elseif highestPole == "fishing_pole_5" then
-            playerTracker.SetPoleLevel(player, 4, 1)
-            print("Upgrading Pole 27 levels")
-        end
+            -- Get the player's Season Id
+            Storage.GetPlayerValue(player, "SeasonID", function(value)
+                local playerSeasonID = value or 1
+                -- If the player Season ID does not match the current Season ID, remove all fish from inv and reset the player Season ID
+                if playerSeasonID ~= currentSeasonID then
+                    -- Fetch the players Inventory
+                    local playerInv = playerTracker.players[player].playerInventory.value
+                    -- Remove all fish from the player's inventory
+                    for index, item in playerInv do
+                        if fishMetaData.IsFish(item.id) then
+                            TakePlayerItem(player, item.id, item.amount)
+                        end
+                    end
+                    -- Reset the player's level
+                    playerTracker.SetPlayerLevel(player, 1, 0)
+                    -- Reset the player's Season ID
+                    Storage.SetPlayerValue(player, "SeasonID", currentSeasonID)
+                end
+            end)
+        end)
     end)
 
     purchaseItemReq:Connect(function(player: Player, id: string, price: number, quantity: number)
@@ -289,4 +282,53 @@ function UpdatePlayersRecordFish(player : Player, fishID : string, size : number
         SetPlayersRecordFish(player, playerFishRecords)
 
     end)
+end
+
+function GetSeasonData()
+    Storage.GetValue("SeasonID", function(value)
+        if value == nil then
+            currentSeasonID = 1
+            Storage.SetValue("SeasonID", currentSeasonID)
+        else
+            currentSeasonID = value
+        end
+    end)
+end
+
+function TradeOldPoles(player : Player)
+    local highestPole = "fishing_pole_1"
+    -- Take all the poles from the player
+    local begginerPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_1")
+    if begginerPoleCount > 0 then
+        TakePlayerItem(player, "fishing_pole_1", begginerPoleCount)
+    end
+    local journeymanPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_2")
+    if journeymanPoleCount > 0 then
+        TakePlayerItem(player, "fishing_pole_2", begginerPoleCount)
+        highestPole = "fishing_pole_2"
+    end
+    local deapSeaPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_3")
+    if deapSeaPoleCount > 0 then
+        TakePlayerItem(player, "fishing_pole_3", begginerPoleCount)
+        highestPole = "fishing_pole_3"
+    end
+    local goldenPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_5")
+    if goldenPoleCount > 0 then
+        TakePlayerItem(player, "fishing_pole_5", begginerPoleCount)
+        highestPole = "fishing_pole_5"
+    end
+
+    -- Give player Rod Upgrades depending on the best Pole they have
+    if highestPole == "fishing_pole_1" then
+        return
+    elseif highestPole == "fishing_pole_2" then
+        playerTracker.SetPoleLevel(player, 2, 1)
+        print("Upgrading Pole 9 levels")
+    elseif highestPole == "fishing_pole_3" then
+        playerTracker.SetPoleLevel(player, 3, 1)
+        print("Upgrading Pole 18 levels")
+    elseif highestPole == "fishing_pole_5" then
+        playerTracker.SetPoleLevel(player, 4, 1)
+        print("Upgrading Pole 27 levels")
+    end
 end

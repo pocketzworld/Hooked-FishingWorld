@@ -634,6 +634,14 @@ function SetPoleLevel(player, Prestige, Level)
     StorePlayerStats(player)
 end
 
+function SetPlayerLevel(player, Level, XP)
+    local playerInfo = players[player]
+    playerInfo.playerLevel.value = Level
+    playerInfo.playerXP.value = XP
+    SetStatsPerLevel(player)
+    StorePlayerStats(player)
+end
+
 ----------------- Server Purchase Handler and Inventory -----------------
 function GetPlayerTokensServer(player)
     Inventory.GetPlayerItem(player, "Tokens", function(item)
