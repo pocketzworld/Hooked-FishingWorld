@@ -9,6 +9,8 @@ local isFishingRequest = Event.new("isFishingRequest")
 local changePoleRequest = Event.new("changePoleRequest")
 local changeBaitRequest = Event.new("changeBaitRequest")
 
+local upgradePoleRequest = Event.new("upgradePoleRequest")
+
 local audioManager = require("AudioManager")
 local utils = require("Utils")
 local uiManager = require("UIManager")
@@ -33,8 +35,8 @@ function TrackPlayers(game, characterCallback)
             playerBait = StringValue.new("PlayerBait" .. tostring(player.id), "none"),
             playerXP = IntValue.new("PlayerXP" .. tostring(player.id), -1),
             playerLevel = IntValue.new("PlayerLevel" .. tostring(player.id), -1),
-            playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), 1),
-            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), 1),
+            playerPoleLevel = IntValue.new("PlayerPoleLevel" .. tostring(player.id), -1),
+            playerPolePrestige = IntValue.new("PlayerPolePrestige" .. tostring(player.id), -1),
             playerStrength = IntValue.new("PlayerStrength" .. tostring(player.id), 1),
             playerHookSpeed = NumberValue.new("PlayerHookSpeed" .. tostring(player.id), 1),
             playerReelSpeed = NumberValue.new("PlayerReelSpeed" .. tostring(player.id), 1),
@@ -174,6 +176,20 @@ end
 -- Function to get the player's reel speed
 function GetPlayerReelSpeed()
     return players[client.localPlayer].playerReelSpeed.value
+end
+
+-- Function to get the player's Rod Level
+function GetPlayerPoleLevel()
+    return players[client.localPlayer].playerPoleLevel.value
+end
+
+-- Function to get the player's Rod Prestige
+function GetPlayerPolePrestige()
+    return players[client.localPlayer].playerPolePrestige.value
+end
+
+function UpgradePoleRequest()
+    upgradePoleRequest:FireServer()
 end
 
 function GetPlayerInventory()
@@ -358,6 +374,15 @@ function self:ServerAwake()
 
     changeBaitRequest:Connect(function(player, baitID, unEquip)
         SetBaitServer(player, baitID, unEquip)
+    end)
+
+    upgradePoleRequest:Connect(function(player)
+        local upgradeCost = players[player].playerPolePrestige.value * 100
+        if GetTokens(player) < upgradeCost  then
+            print("Error: Not enough tokens to upgrade pole")
+            return
+        end
+        UpgradePole(player, upgradeCost)
     end)
     
     ---------------Token amd Scoring System----------------
@@ -558,18 +583,33 @@ function calculateXPMultiplier(prestige)
 end
 
 --[[
-Function to calculate the Upgrade Cost for the pole per prestige
+Function to upgradeto the next level of the fishing pole and prestige at level 10
 ]]
-function calculatePoleUpgradeCost(prestige)
-    -- Base cost for upgrading the pole at prestige 1
-    local baseUpgradeCost = 100
-    -- Cost increase per prestige level
-    local upgradeCostIncreasePerPrestige = 100
+function UpgradePole(player, upgradeCost)
+    local playerInfo = players[player]
+    local currentPoleLevel = playerInfo.playerPoleLevel.value
+    local currentPolePrestige = playerInfo.playerPolePrestige.value
 
-    -- Calculate the upgrade cost based on the prestige level
-    local upgradeCost = baseUpgradeCost + ((prestige - 1) * upgradeCostIncreasePerPrestige)
+    local transaction = InventoryTransaction.new()
+    :TakePlayer(player, "Tokens", upgradeCost)
+    Inventory.CommitTransaction(transaction, function(transactionId, err) if err ~= InventoryError.None then print(err) end end)
+    playerInfo.Tokens.value = playerInfo.Tokens.value - upgradeCost
 
-    return upgradeCost
+    -- Check if the player is at the maximum level
+    if currentPoleLevel == 9 then
+        -- Reset the pole level to 1 and increase the prestige level
+        playerInfo.playerPoleLevel.value = 1
+        playerInfo.playerPolePrestige.value = currentPolePrestige + 1
+        print(player.name .. " has reached prestige level " .. tostring(currentPolePrestige + 1) .. "!")
+    else
+        -- Increase the pole level
+        playerInfo.playerPoleLevel.value = currentPoleLevel + 1
+        print(player.name .. " has upgraded their fishing pole to level " .. tostring(currentPoleLevel + 1) .. "!")
+    end
+
+    -- Update the player's stats based on the new pole level and prestige
+    SetStatsPerLevel(player)
+    StorePlayerStats(player)
 end
 
 ----------------- Server Purchase Handler and Inventory -----------------

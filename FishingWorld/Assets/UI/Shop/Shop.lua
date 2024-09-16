@@ -37,7 +37,11 @@ local _contentHeaderIcon : VisualElement = nil
 --!Bind
 local _contentHeaderLabel : UILabel = nil -- Content header label for the shop UI
 
+local missingCoinsModalOpen = false
+
 local purchaseTimer = nil
+
+local upgradeCost = 0
 
 local audioManager = require("AudioManager")
 local UIManager = require("UIManager")
@@ -60,6 +64,25 @@ _closeInfoButton:RegisterPressCallback(function()
   _itemInfo:RemoveFromClassList("open")
   _itemInfo:AddToClassList("hidden")
 end, true, true, true)
+
+function UpgradeRodCallback()
+  if missingCoinsModalOpen then return end
+  -- Check if the player has enough coins to upgrade the rod
+  if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
+    print("UPGRADING ROD FOR " .. upgradeCost .. " coins")
+    playerTracker.UpgradePoleRequest()
+  else
+    -- Display missing coins modal
+    missingCoinsModalOpen = true
+    local missingCoinsModal = CreateMissingCoinsModal()
+    _Shop:Add(missingCoinsModal)
+
+    Timer.After(0.1, function()
+      missingCoinsModal:EnableInClassList("open", true)
+    end)
+  
+  end
+end
 
 function UpdateCashUI()
   --print("SHOPUI: UpdateCashUI")
@@ -164,7 +187,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   local _rod_item_header_stats_bar_fill = VisualElement.new()
   _rod_item_header_stats_bar_fill:AddToClassList("rod__item-header__stats__bar__fill")
   local ProgressWidth = (rode_progress / rode_max_progress) * 100
-  _rod_item_header_stats_bar_fill.style.width = StyleLength.new(ProgressWidth)
+  _rod_item_header_stats_bar_fill.style.width = StyleLength.new(Length.Percent(ProgressWidth))
 
   _rod_item_header_stats_bar:Add(_rod_item_header_stats_bar_fill)
 
@@ -176,6 +199,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
 
   local _rod_item_upgrade_button = VisualElement.new()
   _rod_item_upgrade_button:AddToClassList("rod__item-upgrade-button")
+  _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true)
 
   local _button_upper = VisualElement.new()
   _button_upper:AddToClassList("button-upper")
@@ -594,6 +618,7 @@ function CreateMissingCoinsModal()
   _MissingCoinsModal:Add(_CloseButton)
 
   _CloseButton:RegisterPressCallback(function()
+    missingCoinsModalOpen = false
     _Shop:Remove(_MissingCoinsModal)
   end, true, true, true)
 
@@ -625,11 +650,6 @@ local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
 
 -- Poles Sorted by Price
 local Poles = {
-  -- Affordable - 99g
-  --{id = "fishing_pole_1"},
-  {id = "fishing_pole_2"},
-  {id = "fishing_pole_3"},
-  {id = "fishing_pole_5"}
 }
 
 local Bait = {
@@ -671,50 +691,8 @@ function PopulateShop(items)
     _contentHeaderLabel:SetPrelocalizedText("Upgrade your fishing pole to increase your fishing capabilities.")
     _contentHeaderIcon:AddToClassList("pole-icon")
 
-    local HardCodedRode = {
-      rode_level = 1, -- Rod Level
-      prestive_level = 0, -- Prestige Level
-      rode_progress = 30, -- Has to be % of rode_max_progress
-      rode_max_progress = 100, -- Max progress
-      rode_upgrade_price = 100, -- Upgrade price
-      rode_image = testImage -- Rod Image
-    }
+    CreateRodItem(playerTracker.GetPlayerPoleLevel(), playerTracker.GetPlayerPolePrestige(), playerTracker.GetPlayerPoleLevel(), 9, upgradeCost, testImage)
 
-    CreateRodItem(HardCodedRode.rode_level, HardCodedRode.prestive_level, HardCodedRode.rode_progress, HardCodedRode.rode_max_progress, HardCodedRode.rode_upgrade_price, HardCodedRode.rode_image)
-    --[[
-    for i = 1, #items do
-      if poleMetas[items[i].id] then
-        -- Create Item Meta Data based on ID
-        local itemMeta = poleMetas[items[i].id]
-    
-        local itemPrice = itemMeta.ItemWorth
-        local itemImage = itemMeta.ItemImage
-        local itemDescription = itemMeta.Description
-        local itemName = itemMeta.Name
-
-        local useGold = false
-    
-        local item = CreateItem(itemPrice, itemImage, useGold, "item_pole", Utils.TrimText(itemName, 9))
-      
-        item:RegisterPressCallback(function()
-          --Show Item Info
-          local is_purchased = false
-
-          --print the inventory keys
-          for key, value in playerTracker.players[client.localPlayer].playerInventory.value do
-            if value.id == items[i].id then
-              is_purchased = true
-              break
-            end
-          end
-
-          CreateItemInfoPage(itemName, itemPrice, itemDescription, itemImage, is_purchased, items[i].id, useGold, true, "item_pole", false)
-          if purchaseTimer then purchaseTimer:Stop(); purchaseTimer = nil end
-        end, true, true, true)
-    
-      end
-    end
-    ]]--
   elseif state == 1 then -- check if items are bait
     _contentHeaderLabel:SetPrelocalizedText("Bait is used to attract fish to your hook. Different fish are attracted to different bait.")
     _contentHeaderIcon:AddToClassList("bait-icon")
@@ -847,3 +825,14 @@ end, true, true, true)
 add_cash_button:RegisterPressCallback(function()
   ButtonPressed("deals")
 end, true, true, true)
+
+function self:Start()
+  playerTracker.players[client.localPlayer].playerPolePrestige.Changed:Connect(function(polPrstg)
+    upgradeCost = polPrstg * 100
+    PopulateShop(Poles)
+  end)
+
+  playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function()
+    PopulateShop(Poles)
+  end)
+end
