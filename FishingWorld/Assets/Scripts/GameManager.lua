@@ -44,6 +44,7 @@ local playerInventory = require("PlayerInventoryManager")
 local itemMetaData = require("ItemMetaData")
 local fishMetaData = require("FishMetaData")
 local utility = require("Utils")
+local ServerPrankModule = require("ServerPrankModule")
 
 -- Function to calculate Tap Meter Width Modifier based on the player's strength
 function GetHookBarWidth(strength)
@@ -295,6 +296,11 @@ function self:ServerAwake()
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
             playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
             playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
+
+            -- Assign caught Fish to the Event Server
+            ServerPrankModule.caughtFishRarity = fishMetaData.GetFishData(requestedFishID).Rarity
+            print("Caught Fish Rarity: " .. ServerPrankModule.caughtFishRarity)
+
         end
 
 

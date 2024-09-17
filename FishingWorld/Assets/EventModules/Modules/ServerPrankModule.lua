@@ -10,6 +10,16 @@ end
 local PrankModule = require("PrankModule")
 local PersistentKey = "event_state"
 
+caughtFishRarity = "Common"
+local fishRarityRewardsTable = {
+	Common = 1,
+	Uncommon = 2,
+	Rare = 3,
+	Epic = 4,
+	Legendary = 5,
+	Mythical = 6
+}
+
 -- Data taken from
 -- https://www.notion.so/pocketworlds/Prank-Event-Overview-For-Worlds-3646c56a5b56412a9550581ea3ae3cd9
 
@@ -140,9 +150,11 @@ function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: 
 
 	local superBoost =  1.0 + state.eventStatus.boostSuper
 
-	--print("Base: " .. tostring(baseTickets) .. " Action: " .. tostring(actionItemBoost) .. " Streak: " .. tostring(streakBoost) .. " Lucky: " .. tostring(luckyTokenBoost) .. " Item: " .. tostring(itemBoost) .. " Super: " .. tostring(superBoost))
+	local rarityBoost = fishRarityRewardsTable[caughtFishRarity]
 
-	return math.floor(baseTickets * streakBoost * luckyTokenBoost * itemBoost * superBoost)
+	print("Base: " .. tostring(baseTickets) .. " Rarity: " .. tostring(rarityBoost) .. " Action: " .. tostring(actionItemBoost) .. " Streak: " .. tostring(streakBoost) .. " Lucky: " .. tostring(luckyTokenBoost) .. " Item: " .. tostring(itemBoost) .. " Super: " .. tostring(superBoost))
+
+	return math.floor(baseTickets * streakBoost * luckyTokenBoost * itemBoost * superBoost * rarityBoost)
 end
 
 function Prank:CalculateTicketBoost(_eventStatus: PrankModule.TicketEventUserStatusData): number

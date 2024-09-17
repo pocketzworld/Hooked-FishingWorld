@@ -18,6 +18,7 @@ local playerTracker = require("PlayerTracker")
 local uiManager = require("UIManager")
 local itemMetaData = require("ItemMetaData")
 local fishMetaData = require("FishMetaData")
+local clientPrankModule = require("ClientPrankModule")
 local fishMetaTable = fishMetaData.fish_metadata
 
 ----------------- Client -----------------
@@ -38,6 +39,10 @@ function self:ClientAwake()
         --print("Item Changed: " .. item)
         -- Show popup for the item if it is a Fish
         if fishMetaData.IsFish(item) then 
+
+            --Award Tickets for catching fish
+            clientPrankModule.EventAction()
+
             local fishSize = fishMetaData.GetFishSize(item)
             if fishMetaTable[item] then
                 uiManager.ShowFishPopup(item,
