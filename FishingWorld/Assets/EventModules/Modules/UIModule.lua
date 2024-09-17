@@ -11,6 +11,8 @@ local energyWidget : GameObject = nil
 --!SerializeField
 local EventOverUI : GameObject = nil
 --!SerializeField
+local ticketsIndicator : GameObject = nil
+--!SerializeField
 local EventObjs : GameObject = nil
 
 local preTokens = 0
@@ -24,6 +26,7 @@ local PrankModule = require("PrankModule")
 function ShowResult(response : PrankModule.PrankResponse)
 	local tokensGained = response.state.eventStatus.luckyTokens - preTokens
 	EventHudOBJ:GetComponent(EventHud).UpdateEventValuesResponse(response, tokensGained)
+	ticketsIndicator:GetComponent(TicketWorldIndicator).ShowTickets(response.state.ticketRewardTotal)
 end
 
 function SyncState(state : PrankModule.UserPrankState)

@@ -30,6 +30,7 @@ namespace Highrise.Lua.Generated
         [SerializeField] public UnityEngine.GameObject m_superBoostPopup = default;
         [SerializeField] public UnityEngine.GameObject m_energyWidget = default;
         [SerializeField] public UnityEngine.GameObject m_EventOverUI = default;
+        [SerializeField] public UnityEngine.GameObject m_ticketsIndicator = default;
         [SerializeField] public UnityEngine.GameObject m_EventObjs = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
@@ -44,7 +45,8 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(2), m_superBoostPopup),
                 CreateSerializedProperty(_script.GetPropertyAt(3), m_energyWidget),
                 CreateSerializedProperty(_script.GetPropertyAt(4), m_EventOverUI),
-                CreateSerializedProperty(_script.GetPropertyAt(5), m_EventObjs),
+                CreateSerializedProperty(_script.GetPropertyAt(5), m_ticketsIndicator),
+                CreateSerializedProperty(_script.GetPropertyAt(6), m_EventObjs),
             };
         }
     }

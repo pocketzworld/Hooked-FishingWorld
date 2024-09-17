@@ -42,20 +42,21 @@ function self:ClientAwake()
 
             --Award Tickets for catching fish
             clientPrankModule.EventAction()
+            Timer.After(2, function()
+                local fishSize = fishMetaData.GetFishSize(item)
+                if fishMetaTable[item] then
+                    uiManager.ShowFishPopup(item,
+                    fishSize,
+                    fishMetaTable[item].Rarity,
+                    fishMetaTable[item].Description,
+                    fishMetaTable[item].FishImage,
+                    fishMetaTable[item].Worth)
 
-            local fishSize = fishMetaData.GetFishSize(item)
-            if fishMetaTable[item] then
-                uiManager.ShowFishPopup(item,
-                fishSize,
-                fishMetaTable[item].Rarity,
-                fishMetaTable[item].Description,
-                fishMetaTable[item].FishImage,
-                fishMetaTable[item].Worth)
+                    audioManager.PlaySound("rewardSound1", 1)
 
-                audioManager.PlaySound("rewardSound1", 1)
-
-                updateRecordReq:FireServer(item, fishSize)
-            end
+                    updateRecordReq:FireServer(item, fishSize)
+                end
+            end)
         end
 
     end)
