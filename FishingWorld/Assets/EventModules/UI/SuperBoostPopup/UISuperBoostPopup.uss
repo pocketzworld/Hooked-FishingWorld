@@ -1,0 +1,198 @@
+:root {
+    --color-gray-light: #2f384a;
+    --color-gray-dark: #272e3d;
+    --color-faded: #3f4961;
+    --color-faded-light: #7b88a4;
+    --color-faded-lighter: #a9b3c5;
+    --color-gray-light-border: #74462a;
+    --color-gray-dark-border: #1c212b;
+
+    --color-blue: #0491ea;
+    --color-bWhite: #eeeeff;
+
+    --image-tickets: url('project://database/Assets/EventModules/UI/Icons/event_tickets_icon.png');
+    --image-rocket: url('project://database/Assets/EventModules/UI/Icons/boost_hint_icon.png');
+    --image-energy-max: url('project://database/Assets/EventModules/UI/EnergyRefill/maxenergy_result.png');
+    --image-energy-min: url('project://database/Assets/EventModules/UI/EnergyRefill/halfenergy_result.png');
+    --image-boost-1: url('project://database/Assets/EventModules/UI/SuperBoostPopup/boost2_nosale.png');
+    --image-boost-2: url('project://database/Assets/EventModules/UI/SuperBoostPopup/boost1_nosale.png');
+}
+
+.energy-refill-content {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    flex-direction: column-reverse;
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+.refill-popup{
+    width: auto;
+    height: auto;
+    background-color: var(--color-gray-dark);
+    border-radius: 25px;
+    padding: 10px;
+    margin: auto auto;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+.empty-icon-container {
+    position: relative;
+    width: 96px;
+    height: 96px;
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+
+    bottom: -40px;
+
+    border-radius: 25%;
+    border-width: 8px;
+    border-color: var(--color-gray-dark);
+    background-color: #ff9900;
+
+}
+.empty-icon {
+    margin: auto;
+    width: 64px;
+    height: 64px;
+    background-image: url('project://database/Assets/EventModules/UI/SuperBoostPopup/SuperBoostIcon.png');
+}
+
+/* Amount Labels */
+.amount-label {
+    color: var(--color-faded-lighter);
+    background-color: rgba(0,0,0,0);
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    text-shadow:  0 5px 10px var(--color-gray-dark-border);
+}
+
+.amount-label-total {
+    color: var(--color-bWhite);
+    background-color: rgba(0,0,0,0);
+    font-size: 12px;
+    margin: 0 5px;
+    margin-left: 0;
+    padding: 0;
+    text-shadow:  0 5px 10px var(--color-gray-dark-border);
+}
+
+/* Additional Label */
+.additional-label {
+    font-size: 24px;
+    color: var(--color-bWhite);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.additional-description {
+    font-size: 16px;
+    color: var(--color-faded-light);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    padding: 0;
+}
+
+/* Row of Square Elements */
+.square-row {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    margin: 10px auto;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    width: 90%;
+    min-height: 100px;
+
+    background-color: var(--color-gray-dark);
+}
+
+.square-element {
+    width: 128px;
+    height: 120px;
+    background-color: var(--color-gray-light);
+    border-radius: 15px;
+}
+
+/* square amount, Top right corner of asquare */
+.square-amount {
+    position: absolute;
+    top: -8%;
+    right: -8%;
+    width: 20%;
+    height: 20%;
+    background-color: var(--color-faded);
+    border-radius: 25%;
+    color: white;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
+
+.square-label {
+    color: var(--color-blue);
+    font-size: 12px;
+    -unity-text-align: middle-center;
+    margin: auto;
+    padding: 0;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    white-space: normal;
+}
+
+.square-amount-label {
+    margin: auto;
+    color: var(--color-faded-light);
+}
+
+.square-amount-label.empty {
+    margin: auto;
+    color: var(--color-faded-light);
+}
+
+.square-image {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    margin: auto auto;
+}
+
+#itemImage1 {
+    background-image: var(--image-boost-1);
+}
+#item1Description {
+    color: #fff95f;
+}
+#itemImage2 {
+    background-image: var(--image-boost-2);
+}
+#item2Description {
+    color: #8460fc;
+}
+
+.cancel-button {
+    width: auto;
+    height: auto;
+    margin: 20px auto;
+    margin-bottom: 10px;
+    -unity-text-align: middle-center;
+}
+
+.cancel-button-label {
+    color: var(--color-bWhite);
+    font-size: 18px;
+    -unity-text-align: middle-center;
+    margin: auto;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}

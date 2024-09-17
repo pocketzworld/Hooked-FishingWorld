@@ -1,0 +1,159 @@
+:root {
+    --color-gray-light: #2f384a;
+    --color-gray-dark: #272e3d;
+    --color-faded: #3f4961;
+    --color-faded-light: #7b88a4;
+    --color-faded-lighter: #a9b3c5;
+    --color-gray-light-border: #74462a;
+    --color-gray-dark-border: #1c212b;
+
+    --color-blue: #0491ea;
+    --color-bWhite: #eeeeff;
+
+    --image-bag: url('project://database/Assets/EventModules/UI/EnergyTimer/icon_backpack.png');
+    --image-battery: url('project://database/Assets/EventModules/UI/EnergyTimer/icon_energy.png');
+    --image-event: url('project://database/Assets/UI/Icons/Fish/Fishes/fish-trout@2x.png');
+}
+
+.energy-timer {
+    position: absolute;
+    /* font size */
+    font-size: 12px;
+    width: auto;
+    height: auto;
+
+    right: 10px;
+    bottom: 5px;
+
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+.event_widgetContainer {
+    width: auto;
+    height: auto;
+    border-radius: 25px;
+    padding: 0px;
+    margin: auto auto;
+    margin-top: 0px;
+    flex-direction: row;
+}
+
+
+.event-button {
+    width: 42px;
+    height: 100%;
+    background-color: var(--color-blue);
+    border-radius: 8px;
+}
+
+.event-button-icon {
+    width: 38px;
+    height: 40px;
+    background-image: var(--image-event);
+    margin: auto;
+}
+
+.energy_column {
+    width: auto;
+    height: auto;
+    flex-direction: column;
+}
+
+.energy_row {
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    padding: 5px;
+    background-color: var(--color-gray-dark);
+
+    border-top-left-radius: 8px;
+}
+
+.energy_icon {
+    width: 15px;
+    height: 15px;
+    background-image: var(--image-battery);
+    margin: 2px;
+}
+
+.energy-label {
+    margin-left: auto;
+    margin-right: 0;
+
+    color: var(--color-bWhite);
+    padding: 0;
+}
+
+.energy-amount {
+    margin-right: auto;
+    margin-left: 0;
+
+    color: var(--color-faded-light);
+    padding: 0;
+}
+
+.timer_row {
+    font-size: 10px;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    padding: 2px;
+    background-color: var(--color-gray-light);
+
+    border-bottom-left-radius: 8px;
+}
+
+.timer-label {
+    margin: auto;
+    color: var(--color-faded-light);
+    padding: 0;
+}
+
+
+.event-bag {
+    /* font size */
+    font-size: 12px;
+    margin: 0px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+.top-half {
+    width: 100%;
+    height: auto;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+
+    background-color: var(--color-gray-dark);
+}
+
+.bag-icon {
+    width: 40px;
+    height: 46px;
+    margin: auto;
+    background-image: var(--image-bag);
+}
+
+.bottom-half {
+    width: auto;
+    height: auto;
+    padding: 0px;
+
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    background-color: var(--color-gray-light);
+}
+
+.bag-label {
+    color: var(--color-faded);
+    font-size: 9px;
+    padding: 5px;
+    margin: auto;
+    color: var(--color-bWhite);
+}

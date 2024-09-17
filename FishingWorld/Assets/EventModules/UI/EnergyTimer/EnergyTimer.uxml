@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="energy-timer" picking-mode="Ignore">
+
+    <!-- Bag UI -->
+    <VisualElement name="event_bag" class="event-bag">
+      <!-- Bag Icon -->
+      <VisualElement name="top_half" class="top-half">
+        <VisualElement name="bag_icon" class="bag-icon"/>
+      </VisualElement>
+      
+      <!-- Bag Label -->
+      <VisualElement name="bottom_half" class="bottom-half">
+        <Label name="bag_label" class="bag-label" text="MY BAG"/>
+      </VisualElement>
+    </VisualElement>
+
+    <!-- Event Widget Container -->
+    <VisualElement name="event_widgetContainer" class="event_widgetContainer">
+
+      <!-- Event button -->
+      <VisualElement name="event_button" class="event-button">
+        <VisualElement name="event_button_icon" class="event-button-icon"/>
+      </VisualElement>
+      
+    </VisualElement>
+  </hr:UILuaView>
+</UXML>

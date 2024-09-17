@@ -1,0 +1,190 @@
+:root {
+    --color-gray-light: #2f384a;
+    --color-gray-dark: #272e3d;
+    --color-blue: #4be59b;
+    --color-bWhite: #eeeeff;
+    --color-green: #4be59b;
+
+    --image-tickets: url('project://database/Assets/EventModules/UI/Icons/event_tickets_icon.png');
+    /*--image-rank: url('project://database/Assets/EventModules/UI/Drawer/rank_icon.png');*/
+    --image-rocket: url('project://database/Assets/EventModules/UI/Icons/boost_hint_icon.png');
+    --image-boostbutton: url('project://database/Assets/EventModules/UI/SuperBoostPopup/boost2_nosale.png');
+}
+
+.event-hud {
+    position: absolute;
+
+    bottom: 5px;
+    left: 10px;
+
+
+    width: auto;
+    display: flex;
+    flex-direction: column;
+
+
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+
+.root-container{
+    background-color: var(--color-gray-dark);
+    border-radius: 8px;
+}
+
+.boost-button {
+    position: relative;
+    margin-bottom: 10px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 10px;
+    border-width: 4px;
+    border-color: var(--color-gray-dark-border);
+
+    background-color: #ffbf3c;
+}
+
+.boost-button-image {
+    width: 32px;
+    height: 32px;
+    background-image: var(--image-boostbutton);
+
+    margin: auto;
+}
+
+.container {
+    justify-content: center;
+
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    padding-left: 0px;
+    margin-top: 0px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: auto;
+}
+
+.container.rank-container {
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    margin: 4px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tickets-icon {
+    background-image: var(--image-tickets);
+}
+
+.rocket-icon {
+    background-image: var(--image-rocket);
+}
+
+.rank-icon {
+    background-image: var(--image-rank);
+}
+
+.tickets-label {
+    color: var(--color-bWhite);
+    font-size: 18px;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0;
+}
+
+.rank-label {
+    color: var(--color-bWhite);
+    font-size: 14px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0;
+}
+
+.add-label {
+    position: absolute;
+
+    color: var(--color-green);
+    font-size: 14px;
+    right: -44px;
+
+    padding: 2px 3px;
+    margin: 2px;
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    text-shadow: #0e633a 1px 0 10px;
+
+    background-color: var(--color-gray-light);
+}
+.add-label-tokens {
+    position: absolute;
+
+    color: #AE79FF;
+    font-size: 14px;
+    right: -30px;
+    top: -20px;
+
+    padding: 2px 3px;
+    margin: 2px;
+    border-radius: 4px;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    text-shadow: #4e0f62 1px 0 10px;
+
+    background-color: var(--color-gray-light);
+}
+
+/* Mini Strip */
+.mini-strip {
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset");
+
+    height: 16px;
+    position: relative;
+    top: 0px;
+
+    /* Make it a row */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+/* Mini Strip Label */
+.mini-strip-label {
+    width: auto;
+    min-width: 85px;
+
+    background-color: var(--color-blue);
+    border-radius: 4px;
+    color: var(--color-gray-dark);
+    font-size: 12px;
+    margin: 2px 2px;
+    padding: 8px;
+    -unity-text-align: middle-center;
+
+}
+
+.mini-strip-label.boost {
+    background-color: #ffbf3c;
+}
+
+.invis {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}

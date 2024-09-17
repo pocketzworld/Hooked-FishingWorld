@@ -1,0 +1,231 @@
+:root {
+    --color-gray-light: #2f384a;
+    --color-gray-dark: #272e3d;
+    --color-faded: #3f4961;
+    --color-faded-mid: #4d5875;
+    --color-faded-light: #7b88a4;
+    --color-faded-lighter: #a9b3c5;
+    --color-gray-light-border: #74462a;
+    --color-gray-dark-border: #1c212b;
+
+    --color-blue: #0491ea;
+    --color-bWhite: #eeeeff;
+
+    --image-tickets: url('project://database/Assets/EventModules/UI/Icons/event_tickets_icon.png');
+    /*--image-rocket: url('project://database/Assets/EventModules/UI/Drawer/boost_hint_icon.png');*/
+    --image-rocket2: url('project://database/Assets/EventModules/UI/SuperBoostPopup/boost2_nosale.png');
+
+}
+
+/* Drawer Styles */
+.drawer-u-i {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+.drawer {
+    width: 85%;
+    height: auto;
+    background-color: var(--color-gray-dark);
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    border-width: 4px;
+    border-bottom-width: 0px;
+    border-color: var(--color-gray-dark-border);
+    margin: auto;
+    margin-bottom: 0px;
+    transition: translate 0.3s ease-in-out;
+    translate: 0px 8px;
+}
+
+.drawer.close {
+    translate: 0px 250%;
+}
+
+.boost-button {
+    position: absolute;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 35%;
+    border-width: 4px;
+    border-color: var(--color-gray-dark-border);
+
+    top: -60px;
+    left: 10px;
+
+    background-color: #ffbf3c;
+}
+
+.boost-button-image {
+    width: 30px;
+    height: 30px;
+    background-image: var(--image-rocket2);
+    background-size: contain;
+    margin: auto;
+}
+
+/* Stage Label */
+.stage-label {
+    font-size: 16px;
+    color: var(--color-bWhite);
+    margin: 3px auto;
+    -unity-text-align: middle-center;
+    text-shadow: 0 5px var(--color-gray-dark-border);
+}
+
+/* Strip Container */
+.strip-container {
+    background-color: var(--color-faded);
+    border-radius: 4px;
+    width: 90%;
+    min-height: 50px;
+    margin: 10px auto;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+/* Mini Strip */
+.mini-strip {
+    -unity-font-style: bold;
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset");
+    width: auto;
+    height: 26px;
+    position: absolute;
+    bottom: -13px; /* Move it down to overlap halfway */
+    /* Make it a row */
+    display: flex;
+    flex-direction: row;
+}
+
+/* Mini Strip Label */
+.mini-strip-label {
+    background-color: var(--color-blue);
+    border-radius: 4px;
+    color: var(--color-gray-dark);
+    font-size: 12px;
+    margin: 5px;
+    padding: 0px 5px;
+}
+
+.mini-strip-label.boost {
+    background-color: #ffbf3c;
+}
+
+/* Icon Styles */
+.icon {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+}
+
+/* Specific Icon Background Images */
+.tickets-icon {
+    background-image: var(--image-tickets);
+}
+
+.rocket-icon {
+    background-image: var(--image-rocket);
+}
+
+/* Amount Labels */
+.amount-label {
+    color: var(--color-faded-lighter);
+    background-color: rgba(0,0,0,0);
+    font-size: 12px;
+    margin: 0 5px;
+    margin-left: 0;
+    padding: 0;
+    text-shadow:  0 5px 10px var(--color-gray-dark-border);
+}
+
+.amount-label-total {
+    color: var(--color-bWhite);
+    background-color: rgba(0,0,0,0);
+    font-size: 12px;
+    margin: 0 5px;
+    margin-left: 0;
+    padding: 0;
+    text-shadow:  0 5px 10px var(--color-gray-dark-border);
+}
+
+/* Additional Label */
+.additional-label {
+    font-size: 16px;
+    color: var(--color-faded-mid);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    margin-top: 20px;
+    padding: 0;
+}
+
+/* Row of Square Elements */
+.square-row {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    margin: 10px auto;
+    margin-bottom: 0px;
+    width: 90%;
+}
+
+.square-element {
+    width: 85px;
+    height: auto;
+    background-color: var(--color-gray-light);
+    border-radius: 4px;
+}
+
+/* square amount, Top right corner of asquare */
+.square-amount {
+    position: absolute;
+    top: -8%;
+    right: -8%;
+    width: 30%;
+    height: 25%;
+    background-color: var(--color-faded);
+    border-radius: 25%;
+    color: white;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
+
+.square-label {
+    color: var(--color-blue);
+    font-size: 8px;
+    -unity-text-align: middle-center;
+    margin: auto;
+    padding: 0;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    white-space: normal;
+}
+
+.square-amount-label {
+    margin: auto;
+    color: var(--color-bWhite);
+}
+
+.square-amount-label.empty {
+    color: var(--color-faded-light);
+}
+
+.square-image {
+    width: 64px;
+    height: 90px;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView name="drawer_root" class="drawer-u-i">
+    <!-- Toggle Button -->
+    <!-- <VisualElement name="toggleButton" class="toggle-button"/> -->
+
+    <!-- Drawer Content -->
+    <VisualElement name="drawer" class="drawer">
+
+      <VisualElement name="boostButton" class="boost-button">
+        <VisualElement name="boostButtonImage" class="boost-button-image"/>
+      </VisualElement>
+
+      <!-- Stage Label -->
+      <Label name="stageLabel" class="stage-label" text="Stage 6/10"/>
+
+      <!-- Tickets and Rocket Display -->
+      <VisualElement name="stripContainer" class="strip-container">
+        <!-- Tickets Icon and Amount -->
+        <VisualElement class="icon tickets-icon"/>
+        <Label name="ticketsAmount" class="amount-label" text="10 X"/>
+
+        <!-- Rocket Icon and Amount -->
+        <VisualElement class="icon rocket-icon"/>
+        <Label name="rocketAmount" class="amount-label" text="5x ="/>
+
+        <!-- Total Amount (Tickets) -->
+        <VisualElement class="icon tickets-icon"/>
+        <Label name="totalAmount" class="amount-label-total" text="50"/>
+
+        <VisualElement name="miniStrip" class="mini-strip">
+        <!-- Left Mini Strip (Overlapping)-->
+        <Label name="miniStripLabel_boost" class="mini-strip-label boost" text="+30% Super Boost!"/>
+        <!-- Right Mini Strip (Overlapping) -->
+        <Label name="miniStripLabel_streak" class="mini-strip-label streak" text="+1X Streak"/>
+        </VisualElement>
+
+      </VisualElement>
+
+
+
+      <!-- Additional Label -->
+      <Label name="additionalLabel" class="additional-label" text="Choose an item to Mine with"/>
+
+      <!-- Row of Three Square Elements -->
+      <VisualElement name="squareRow" class="square-row">
+      </VisualElement>
+
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>

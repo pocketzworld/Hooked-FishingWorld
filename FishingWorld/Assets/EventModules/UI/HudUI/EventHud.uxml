@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView name="event_hud" class="event-hud" picking-mode="Ignore">
+
+    <VisualElement name="boostButton" class="boost-button">
+      <VisualElement name="boostButtonImage" class="boost-button-image"/>
+    </VisualElement>
+
+    <VisualElement class="root-container">
+    
+      <!-- Rank Container -->
+      <VisualElement name="rankContainer" class="container rank-container">
+
+        <!-- Rank Label -->
+        <Label name="rankLabel" class="rank-label" text="Rank 9999"/>
+      </VisualElement>
+
+      <!-- Tickets Container -->
+      <VisualElement name="ticketsContainer" class="container">
+
+        <!-- Boost Icon -->
+        <VisualElement name="boostIcon" class="icon rocket-icon"/>
+        <!-- Boost Label -->
+        <Label name="boostLabel" class="tickets-label" text="x999"/>
+
+        <!-- Tickets Icon -->
+        <VisualElement name="ticketsIcon" class="icon tickets-icon"/>
+        <!-- Tickets Label -->
+        <Label name="ticketsLabel" class="tickets-label" text="9999"/>
+        
+        <!-- Tickets Add Label -->
+        <Label name="ticketsAddLabel" class="add-label invis" text="+256"/>
+        <!-- Tokens Add Label -->
+        <Label name="tokensAddLabel" class="add-label-tokens invis" text="+0"/>
+      </VisualElement>
+
+      <VisualElement name="miniStrip" class="mini-strip">
+        <!-- Left Mini Strip (Overlapping)-->
+        <Label name="miniStripLabel_boost" class="mini-strip-label boost" text="+30% Super Boost!"/>
+        <!-- Right Mini Strip (Overlapping) -->
+        <Label name="miniStripLabel_streak" class="mini-strip-label streak" text="+99X Streak"/>
+      </VisualElement>
+    </VisualElement>
+
+  </hr:UILuaView>
+
+</UXML>

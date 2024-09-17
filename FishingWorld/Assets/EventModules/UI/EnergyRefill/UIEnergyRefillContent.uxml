@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="energy-refill-content">
+    
+    <VisualElement name="refillPopup" class="refill-popup">
+
+      <Label name="additionalLabel" class="additional-label" text="Refill your Energy?"/>
+
+      <Label name="popupDescription1" class="additional-description" text="Looks like your energy meter is running low."/>
+      <Label name="popupDescription2" class="additional-description" text="Refill it now and get back to action!"/>
+
+      <VisualElement name="_itemsContainer" class="square-row">
+
+        <VisualElement name="item1" class="square-element">
+          <VisualElement name="itemImage1" class="square-image"/>
+          <VisualElement name="item1Amount" class="square-amount">
+            <Label name="item1AmountLabel" class="square-amount-label" text="x5"/>
+          </VisualElement>
+          <Label name="item1Description" class="square-label" text="MAX Energy"/>
+        </VisualElement>
+
+        <VisualElement name="item2" class="square-element">
+          <VisualElement name="itemImage2" class="square-image"/>
+          <VisualElement name="item2Amount" class="square-amount">
+            <Label name="item2AmountLabel" class="square-amount-label" text="x1"/>
+          </VisualElement>
+          <Label name="item2Description" class="square-label" text="7 Energy"/>
+        </VisualElement>
+
+      </VisualElement>
+
+      <VisualElement name="cancelButton" class="cancel-button">
+        <Label name="cancelButtonLabel" class="cancel-button-label" text="Cancel"/>
+      </VisualElement>
+
+    </VisualElement>
+
+    <VisualElement name="energyIconContainer" class="empty-icon-container">
+      <VisualElement name="energyIcon" class="empty-icon"/>
+    </VisualElement>
+
+  </hr:UILuaView>
+
+</UXML>

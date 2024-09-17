@@ -1,0 +1,246 @@
+:root {
+    --color-gray-dark: #272e3d;
+    --color-gray-dark: #272e3d;
+    --color-faded: #3f4961;
+    --color-faded-light: #a7afc2;
+    --color-nbrown-light-border: #74462a;
+    --color-gray-dark-border: #1c212b;
+
+    --color-ngold: #ffc516;
+    --color-ngold-light: #ffdb6d;
+
+    --color-success: #15432d;
+    --color-success-border: #0e2e20;
+    --color-success-text: #3cb77c;
+    --color-fail: #521d31;
+    --color-fail-border: #3a1423;
+    --color-fail-text: #eb657c;
+
+    --image-tickets: url('project://database/Assets/EventModules/UI/Icons/event_tickets_icon.png');
+    --image-rocket: url('project://database/Assets/EventModules/UI/Icons/boost_hint_icon.png');
+    --image-ranking: url('project://database/Assets/EventModules/UI/Icons/icon_little_arrow_up.png');
+    --image-ranking-down: url('project://database/Assets/EventModules/UI/Icons/icon_little_arrow_down.png');
+    --image-luckyToken: url('project://database/Assets/EventModules/UI/Icons/lucky_token_thumbnail.png');
+}
+
+/* Drawer Styles */
+.drawer_-two {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    -unity-font-definition: url("project://database/Assets/EventModules/UI/MuseoSansRounded-900 SDF.asset")
+}
+
+.drawer {
+    width: 85%;
+    height: auto;
+    background-color: var(--color-success);
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    border-width: 4px;
+    border-bottom-width: 0px;
+    border-color: var(--color-success-border);
+    margin: auto;
+    margin-bottom: 0px;
+    transition: translate 0.3s ease-in-out;
+    translate: 0px 8px;
+}
+
+.drawer.fail {
+    background-color: var(--color-fail);
+    border-color: var(--color-fail-border);
+}
+
+.drawer.close {
+    translate: 0px 250%;
+}
+
+/* Toggle Button */
+.toggle-button {
+    background-color: var(--color-nbrown-light);
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+
+}
+
+/* Result Icon */
+.result-icon {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-color: var(--color-gray-dark);
+    border-radius: 20%;
+    border-width: 2px;
+    border-color: var(--color-gray-dark-border);
+    background-image: url('project://database/Assets/EventModules/UI/Drawer/equip_icon_gem_red.png');
+    margin: 10px auto;
+}
+
+.result-icon.fail {
+    background-image: url('project://database/Assets/EventModules/UI/Drawer/equip_icon_hammer_Broken.png');
+}
+
+/* Result Label */
+.result-label {
+    font-size: 24px;
+    color: var(--color-success-text);
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 0;
+    -unity-text-align: middle-center;
+}
+
+.result-label.fail {
+    color: var(--color-fail-text);
+}
+
+/* Bottom half of the Drawer */
+.lower-half {
+    width: 101.5%;
+    height: auto;
+    left: -.75%;
+
+    background-color: var(--color-gray-dark);
+    border-width: 4px;
+    border-color: var(--color-gray-dark-border);
+
+    align-items: center;
+
+    padding: 10px;
+}
+
+/* Stage Label */
+.stage-label {
+    font-size: 16px;
+    color: var(--color-success-text);
+    margin: 3px auto;
+    padding: 0;
+    -unity-text-align: middle-center;
+}
+
+.stage-label.fail {
+    color: var(--color-fail-text);
+}
+
+/* Lucky Tokens Strip */
+.lucky-tokens-strip {
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+
+    border-radius: 10px;
+
+    background-color: var(--color-faded);
+}
+
+/* Lucky Tokens Icon */
+.lucky-tokens-icon {
+    width: 24px;
+    height: 24px;
+    background-image: var(--image-luckyToken);
+}
+
+/* Lucky Tokens Amount */
+.lucky-tokens-amount {
+    color: var(--color-faded-light);
+    background-color: rgba(0,0,0,0);
+    font-size: 16px;
+    padding: 0;
+    margin:auto;
+    margin-left: 10px;
+}
+
+/* Strip Container */
+.ticket-row {
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Specific Icon Background Images */
+.ticket {
+    width: 24px;
+    height: 24px;
+    background-image: var(--image-tickets);
+}
+
+/* Amount Labels */
+.amount-label {
+    color: white;
+    background-color: rgba(0,0,0,0);
+    font-size: 16px;
+    text-shadow:  0 5px 10px var(--color-gray-dark-border);
+}
+#currentAmount {
+    color: var(--color-faded-light);
+    margin-right: 3px;
+    margin-left: 2px;
+    padding: 0;
+}
+
+
+/* Rank Row Container */
+.rank-row {
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Rank Label */
+.rank-label {
+    font-size: 16px;
+    color: var(--color-faded-light);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    padding: 0;
+}
+
+/* Rank Icon */
+.rank-icon {
+    width: 24px;
+    height: 24px;
+    background-image: var(--image-ranking);
+    margin: 0px auto;
+    margin-left: 5px;
+}
+
+.rank-icon.fail {
+    background-image: var(--image-ranking-down);
+}
+
+
+/* Rank Progress */
+.rank-progress {
+    font-size: 16px;
+    color: var(--color-success-text);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    padding: 0;
+}
+.rank-progress.fail {
+    color: var(--color-fail-text);
+}
+
+/* Additional Label */
+.additional-label {
+    font-size: 12px;
+    color: var(--color-faded-light);
+    -unity-text-align: middle-center;
+    margin: 0px auto;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}

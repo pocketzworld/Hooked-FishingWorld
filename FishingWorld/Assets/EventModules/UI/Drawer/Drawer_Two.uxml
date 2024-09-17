@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView name="drawer_response_root" class="drawer_-two">
+    <!-- Toggle Button -->
+    <!-- <VisualElement name="toggleButton2" class="toggle-button"/> -->
+
+    <!-- Drawer Content -->
+    <VisualElement name="drawer2" class="drawer">
+
+      <!-- Result Icon -->
+      <VisualElement name="resultIcon" class="result-icon"/>
+      <!-- Result Label -->
+      <Label name="resultLabel" class="result-label" text="..."/>
+
+      <!-- Lower Half -->
+      <VisualElement name="lowerHalf" class="lower-half">
+        <!-- Stage Label -->
+        <Label name="stageLabel" class="stage-label" text="..."/>
+
+        <!-- Lucky Tokens Strip -->
+        <VisualElement name="luckyTokensStrip" class="lucky-tokens-strip">
+          <VisualElement name="luckyTokensLabel" class="lucky-tokens-icon"/>
+          <Label name="luckyTokensAmount" class="lucky-tokens-amount" text="+2 Lucky Tokens"/>
+        </VisualElement>
+
+        <!-- Tickets Row -->
+        <VisualElement name="ticketContainer" class="ticket-row">
+          <VisualElement name="ticket" class="ticket"/>
+          <Label name="currentAmount" class="amount-label" text="999"/>
+          <Label name="plusAmount" class="amount-label" text="+ 280"/>
+        </VisualElement>
+
+        <!-- Mini Strip (Overlapping) -->
+        <!-- <VisualElement name="miniStrip" class="mini-strip"> -->
+        <!-- <Label name="miniStripLabel" class="mini-strip-label" text="+1X Streak"/> -->
+        <!-- </VisualElement> -->
+
+        <!-- Rank Row Container -->
+        <VisualElement name="rankContainer" class="rank-row">
+        <!-- Rank Label -->
+        <Label name="rankLabel" class="rank-label" text="Rank 1"/>
+        <!-- Rank Icon -->
+        <VisualElement name="rankIcon" class="rank-icon"/>
+        <!-- Rank Progress -->
+        <Label name="rankProgress" class="rank-progress" text="999"/>
+        </VisualElement>
+
+        <!-- Additional Label -->
+        <Label name="additionalLabel" class="additional-label" text="tap to continue..."/>
+      </VisualElement>
+      
+    </VisualElement>
+  </hr:UILuaView>
+
+</UXML>
