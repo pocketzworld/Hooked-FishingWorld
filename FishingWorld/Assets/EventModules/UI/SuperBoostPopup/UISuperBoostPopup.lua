@@ -30,6 +30,7 @@ item1:RegisterPressCallback(function()
             UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
         else
             --print("Success")
+            clientPrankModule.SuncUItoState()
             self.gameObject:SetActive(false)
         end
     end)
@@ -44,6 +45,7 @@ item2:RegisterPressCallback(function()
             UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
         else
             --print("Success")
+            clientPrankModule.SuncUItoState()
             self.gameObject:SetActive(false)
         end
     end)

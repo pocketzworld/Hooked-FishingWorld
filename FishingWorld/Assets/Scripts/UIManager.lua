@@ -232,6 +232,7 @@ function ShowMiniGame(fishName: string, hookwidth: number)
     FishingUIScript.ShowMiniGame(fishName, hookwidth)
     EventHudObject:SetActive(false)
     EnergyWidgetObject:SetActive(false)
+    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
 end
 
 --- Hides the fishing mini-game
@@ -239,6 +240,7 @@ function HideMiniGame()
     FishingUIScript.HideMiniGame()
     EventHudObject:SetActive(true)
     EnergyWidgetObject:SetActive(true)
+    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(true)
 end
 
 --- Shows a popup for the caught fish

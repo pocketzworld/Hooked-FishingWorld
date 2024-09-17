@@ -247,7 +247,7 @@ function EventAction()
 	end)
 end
 
-function self:ClientStart()
+function SuncUItoState()
 	QueryState(function(res, err)
 		if err then
 			print("Error querying state: " .. err)
@@ -261,4 +261,8 @@ function self:ClientStart()
 	PrankModule.EVENTS.ResetStreakResponse:Connect(function()
 		UIModule.ResetStreak()
 	end)
+end
+
+function self:ClientStart()
+	SuncUItoState()
 end

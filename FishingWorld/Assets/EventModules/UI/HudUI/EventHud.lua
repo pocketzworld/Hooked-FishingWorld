@@ -19,6 +19,8 @@ local rankLabel : Label = nil
 --!Bind
 local boostButton : VisualElement = nil
 
+local boostActive = false
+
 local clientPrankModule = require("ClientPrankModule")
 local PrankModule = require("PrankModule")
 
@@ -45,7 +47,8 @@ function UpdateEventValuesResponse(response : PrankModule.PrankResponse, tokensG
     end)
     
     miniStripLabel_boost:EnableInClassList("hidden", response.state.eventStatus.boostSuper <= 0)
-    boostButton:EnableInClassList("hidden", response.state.eventStatus.boostSuper ~= 0)
+    boostActive = response.state.eventStatus.boostSuper ~= 0
+    boostButton:EnableInClassList("hidden", boostActive)
     MoveSuperBoostTimer()
 end
 
@@ -62,7 +65,8 @@ function UpdateEventValuesState(state)
     rankLabel.text = "Rank " .. tostring(rank)
 
     miniStripLabel_boost:EnableInClassList("hidden", state.eventStatus.boostSuper <= 0)
-    boostButton:EnableInClassList("hidden", state.eventStatus.boostSuper ~= 0)
+    boostActive = state.eventStatus.boostSuper ~= 0
+    boostButton:EnableInClassList("hidden", boostActive)
     MoveSuperBoostTimer()
 end
 
@@ -79,6 +83,13 @@ end)
 function MoveSuperBoostTimer()
     event_hud.parent.parent:Children()[3]:Children()[2].style.bottom = StyleLength.new(90)
 end
+
+function ToggleBoostTimer(active : boolean)
+    if not boostActive then return end
+    event_hud.parent.parent:Children()[3].style.display = active and DisplayStyle.Flex or DisplayStyle.None
+end
+
+ToggleBoostTimer(true)
 
 function self:ClientAwake()
     MoveSuperBoostTimer()
