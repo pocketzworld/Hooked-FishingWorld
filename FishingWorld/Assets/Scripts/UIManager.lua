@@ -94,6 +94,10 @@ end
 
 --- Handles button press actions
 function ButtonPressed(btn: string)
+    if btn ~= "Close" then
+        EventHudObject:SetActive(false)
+        EnergyWidgetObject:SetActive(false)
+    end
     if btn == "Inventory" then
         ToggleAll(false)
         ToggleUI("Inventory", true)
