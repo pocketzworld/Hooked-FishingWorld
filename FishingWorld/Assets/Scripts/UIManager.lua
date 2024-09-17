@@ -97,6 +97,7 @@ function ButtonPressed(btn: string)
     if btn ~= "Close" then
         EventHudObject:SetActive(false)
         EnergyWidgetObject:SetActive(false)
+        EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
     end
     if btn == "Inventory" then
         ToggleAll(false)
@@ -183,6 +184,7 @@ function ButtonPressed(btn: string)
         AudioManager.PlaySound("paperSound1", 0.98)
         EventHudObject:SetActive(true)
         EnergyWidgetObject:SetActive(true)
+        EventHudObject:GetComponent(EventHud).ToggleBoostTimer(true)
     else
         print("[ButtonPressed] Unhandled button: " .. btn)
     end
@@ -253,6 +255,7 @@ function ShowFishPopup(fishID: string, size, rarity, description: string, image:
     Utils.ActivateObject(RewardPopupObject)
     EventHudObject:SetActive(false)
     EnergyWidgetObject:SetActive(false)
+    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
 end
 
 --- Initializes the UI scripts on client awake
