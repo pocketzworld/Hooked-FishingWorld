@@ -17,6 +17,10 @@ local RewardPopupObject : GameObject = nil
 local DailiesUIObject : GameObject = nil
 --!SerializeField
 local PlayerCardObject : GameObject = nil
+--!SerializeField
+local EventHudObject : GameObject = nil
+--!SerializeField
+local EnergyWidgetObject : GameObject = nil
 
 -- Required modules
 local Utils = require("Utils")
@@ -173,6 +177,8 @@ function ButtonPressed(btn: string)
         ToggleAll(false)
         ToggleUIs({"WorldHUD"}, true)
         AudioManager.PlaySound("paperSound1", 0.98)
+        EventHudObject:SetActive(true)
+        EnergyWidgetObject:SetActive(true)
     else
         print("[ButtonPressed] Unhandled button: " .. btn)
     end
@@ -220,11 +226,15 @@ end
 --- Shows the fishing mini-game
 function ShowMiniGame(fishName: string, hookwidth: number)
     FishingUIScript.ShowMiniGame(fishName, hookwidth)
+    EventHudObject:SetActive(false)
+    EnergyWidgetObject:SetActive(false)
 end
 
 --- Hides the fishing mini-game
 function HideMiniGame()
     FishingUIScript.HideMiniGame()
+    EventHudObject:SetActive(true)
+    EnergyWidgetObject:SetActive(true)
 end
 
 --- Shows a popup for the caught fish
@@ -235,6 +245,8 @@ function ShowFishPopup(fishID: string, size, rarity, description: string, image:
     ItemPopupScript.SetFish(fishID, size, rarity, description, image, worth, headerOverride)
     Utils.ActivateObject(ItemPopupObject)
     Utils.ActivateObject(RewardPopupObject)
+    EventHudObject:SetActive(false)
+    EnergyWidgetObject:SetActive(false)
 end
 
 --- Initializes the UI scripts on client awake

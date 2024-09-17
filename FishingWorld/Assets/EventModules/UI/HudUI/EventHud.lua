@@ -77,7 +77,7 @@ end)
 
 
 function MoveSuperBoostTimer()
-    event_hud.parent.parent:Children()[2]:Children()[2].style.bottom = StyleLength.new(90)
+    event_hud.parent.parent:Children()[3]:Children()[2].style.bottom = StyleLength.new(90)
 end
 
 function self:ClientAwake()
