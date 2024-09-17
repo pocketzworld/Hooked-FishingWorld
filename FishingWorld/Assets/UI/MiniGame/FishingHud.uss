@@ -8,22 +8,28 @@
 }
 
 .fish-button {
-    
-    -unity-text-align: middle-center;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
     align-self: center;
 
+    -unity-text-align: middle-center;
     overflow: hidden;
 
     padding: 10px;
     border-radius: 8px;
 
     color: #000000;
-    font-size: 32px;
-    width: 64px;
-    height: 64px;
-}
+    font-size: 26px;
+    
+    width: 84px;
+    height: 54px;
 
-#actionLabel {
+    border-width: 2px;
+    border-color: #9efcff;
+
+    background-color: #176161;
 }
 
 .button-content {
@@ -35,16 +41,17 @@
     height: 25px;
 }
 .progress-bar__background {
-    background-color: #773920;
+    background-color: #176161;
     border-radius: 5px;
-    border-radius-bottom-left: 5px;
     height: 15px;
 
-    border-width: 2px;
-    border-color: #ae6e34;
+    border-width: 1px;
+    border-color: #9efcff;
+
+    overflow: hidden;
 }
 .progress-bar__progress {
-    background-color: #fff902;
+    background-color: #13d4d4;
 }
 
 .fish-container {
@@ -87,27 +94,33 @@
 
 #hookSlider .slider__background {
     display: flex;
-    background-color: rgba(255,255,255,0);
-    background-image: url("project://database/Assets/UI/Icons/fishing_BG_2.png");
+    background-color: rgba(6, 148, 148, 1);
+    background-image: var(--image-expensive-tip-glare);
+    background-size: cover;
+    background-position-x: right 32px;
+
+
     height: 36px;
     top: 0;
 
-    border-width: 3px;
-    border-radius: 5px;
-    border-color: #87501f;
+    border-width: 2px;
+    border-radius: 8px;
+    border-color: #9efcff;
+
+    overflow: hidden;
 }
 
 #hookSlider .slider__knob {
     width: 72px;
     height: 36px;
+    
     top: 0;
     bottom: 0;
 
-    border-radius: 0%;
+    border-radius: 0;
     border-width: 0px;
     background-color: rgba(0,0,0,.5);
     background-image: url("project://database/Assets/UI/Icons/Fishing_Bar_Green.png");
-
 }
 
 .slider .slider__foreground {

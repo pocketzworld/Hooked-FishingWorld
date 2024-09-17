@@ -640,8 +640,37 @@
   background-color: var(--color-secondary);
   background-image: var(--image-expensive-tip-glare);
   background-size: cover;
+  background-position-x: left 240px;
 
   overflow: hidden;
+}
+
+.stats-item__left {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 100%; 
+
+  border-right-width: 1px;
+}
+
+.stats-item__left Image{
+  width: 25px;
+  height: 25px;
+
+  --unity-image: url("project://database/Assets/UI/Icons/info.png");
+}
+
+.stats-item__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
 }
 
 .stats-item__title {

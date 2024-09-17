@@ -16,7 +16,7 @@
     </VisualElement>
 
     <VisualElement name="actionButton" class="fish-button">
-      <hr:UIBlur class="overlay"/>
+      <!-- <hr:UIBlur class="overlay"/> -->
       <VisualElement class="button-content">
         <hr:UILabel name="actionLabel"/>
       </VisualElement>
