@@ -89,8 +89,6 @@ function ToggleBoostTimer(active : boolean)
     event_hud.parent.parent:Children()[3].style.display = active and DisplayStyle.Flex or DisplayStyle.None
 end
 
-ToggleBoostTimer(true)
-
 function self:ClientAwake()
     MoveSuperBoostTimer()
 end
