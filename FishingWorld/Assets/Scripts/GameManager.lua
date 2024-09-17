@@ -117,7 +117,7 @@ end
 function StartBaiting(biome : string)
     local BaitTime = 1.5 * playerHookSpeed
 
-    print("Baiting for " .. tostring(BaitTime) .. " seconds")
+    --print("Baiting for " .. tostring(BaitTime) .. " seconds")
     baitTimer = Timer.After(BaitTime, function() 
         local roll = math.random(1,100)
         if roll > 80 then

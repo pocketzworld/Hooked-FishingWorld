@@ -79,8 +79,6 @@ function self:ServerAwake()
     --giveItemReq:Connect(GivePlayerItem)
     --takeItemReq:Connect(TakePlayerItem)
 
-    GetSeasonData()
-
     ClientJoinRequest:Connect(function(player)
         --[[
         local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_1") > 0
@@ -101,29 +99,31 @@ function self:ServerAwake()
         end
         ]]
 
-        Timer.After(1, function()
+        GetSeasonData(function()
+            Timer.After(1, function()
 
-            -- Port Old poles to V2 as Rod Upgrades
-            TradeOldPoles(player)
-
-            -- Get the player's Season Id
-            Storage.GetPlayerValue(player, "SeasonID", function(value)
-                local playerSeasonID = value or 1
-                -- If the player Season ID does not match the current Season ID, remove all fish from inv and reset the player Season ID
-                if playerSeasonID ~= currentSeasonID then
-                    -- Fetch the players Inventory
-                    local playerInv = playerTracker.players[player].playerInventory.value
-                    -- Remove all fish from the player's inventory
-                    for index, item in playerInv do
-                        if fishMetaData.IsFish(item.id) then
-                            TakePlayerItem(player, item.id, item.amount)
+                -- Port Old poles to V2 as Rod Upgrades
+                TradeOldPoles(player)
+    
+                -- Get the player's Season Id
+                Storage.GetPlayerValue(player, "SeasonID", function(value)
+                    local playerSeasonID = value or 1
+                    -- If the player Season ID does not match the current Season ID, remove all fish from inv and reset the player Season ID
+                    if playerSeasonID ~= currentSeasonID then
+                        -- Fetch the players Inventory
+                        local playerInv = playerTracker.players[player].playerInventory.value
+                        -- Remove all fish from the player's inventory
+                        for index, item in playerInv do
+                            if fishMetaData.IsFish(item.id) then
+                                TakePlayerItem(player, item.id, item.amount)
+                            end
                         end
+                        -- Reset the player's level
+                        playerTracker.SetPlayerLevel(player, 1, 0)
+                        -- Reset the player's Season ID
+                        Storage.SetPlayerValue(player, "SeasonID", currentSeasonID)
                     end
-                    -- Reset the player's level
-                    playerTracker.SetPlayerLevel(player, 1, 0)
-                    -- Reset the player's Season ID
-                    Storage.SetPlayerValue(player, "SeasonID", currentSeasonID)
-                end
+                end)
             end)
         end)
     end)
@@ -284,7 +284,7 @@ function UpdatePlayersRecordFish(player : Player, fishID : string, size : number
     end)
 end
 
-function GetSeasonData()
+function GetSeasonData(cb)
     Storage.GetValue("SeasonID", function(value)
         if value == nil then
             currentSeasonID = 1
@@ -292,6 +292,7 @@ function GetSeasonData()
         else
             currentSeasonID = value
         end
+        if cb ~= nil then cb() end
     end)
 end
 
