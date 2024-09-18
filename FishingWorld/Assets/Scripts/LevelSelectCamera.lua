@@ -131,6 +131,11 @@ function SwitchToMap()
     playerCamera.gameObject:GetComponent(Camera).enabled = false
     playerCamera.gameObject:SetActive(false)
     for each, gameObj in IslandPoints do gameObj.gameObject:SetActive(true) end
+
+    rewardPopup.transform.parent = self.transform
+    rewardPopup.transform.localScale = Vector3.new(600, 600, 1)
+    rewardPopup.transform.localPosition = Vector3.new(0, 0, 0)
+    rewardPopup.transform.localRotation = Quaternion.Euler(0, 0, 0)
 end
 
 function ZoomToFit()
