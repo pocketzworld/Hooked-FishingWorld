@@ -159,6 +159,7 @@ function GetConsumables(state: PrankModule.UserPrankState): { {Consumable} }
 		},
 	}
 --]]
+--[[
 	local consumablesEnergy: { Consumable } = {
 		{
 			id = energyRefillMax.id,
@@ -173,6 +174,7 @@ function GetConsumables(state: PrankModule.UserPrankState): { {Consumable} }
 			image = energyRefillSmall.imageUrl,
 		},
 	}
+--]]
 
 	local consumablesBoosts: { Consumable } = {
 		{
@@ -189,7 +191,7 @@ function GetConsumables(state: PrankModule.UserPrankState): { {Consumable} }
 		},
 	}
 
-	return {consumablesEnergy, consumablesBoosts}
+	return {consumablesBoosts}
 end
 
 function ShowBoostUI()
