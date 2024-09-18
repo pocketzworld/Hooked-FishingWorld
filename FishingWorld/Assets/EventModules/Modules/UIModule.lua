@@ -25,6 +25,7 @@ local PrankModule = require("PrankModule")
 
 function ShowResult(response : PrankModule.PrankResponse)
 	local tokensGained = response.state.eventStatus.luckyTokens - preTokens
+	preTokens = response.state.eventStatus.luckyTokens
 	EventHudOBJ:GetComponent(EventHud).UpdateEventValuesResponse(response, tokensGained)
 	ticketsIndicator:GetComponent(TicketWorldIndicator).ShowTickets(response.state.ticketRewardTotal)
 end
