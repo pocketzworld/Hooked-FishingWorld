@@ -21,6 +21,8 @@ local PlayerCardObject : GameObject = nil
 local EventHudObject : GameObject = nil
 --!SerializeField
 local EnergyWidgetObject : GameObject = nil
+--!SerializeField
+local islandCamera : GameObject = nil
 
 -- Required modules
 local Utils = require("Utils")
@@ -185,6 +187,10 @@ function ButtonPressed(btn: string)
         EventHudObject:SetActive(true)
         EnergyWidgetObject:SetActive(true)
         EventHudObject:GetComponent(EventHud).ToggleBoostTimer(true)
+     
+    elseif btn == "Map" then
+        islandCamera:GetComponent(LevelSelectCamera).SwitchToMap()
+        AudioManager.PlaySound("paperSound1", 1.1)
     else
         print("[ButtonPressed] Unhandled button: " .. btn)
     end

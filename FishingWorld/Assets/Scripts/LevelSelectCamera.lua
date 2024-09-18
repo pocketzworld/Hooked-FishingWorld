@@ -20,6 +20,8 @@ local teleportManager = require("TeleporterController")
 
 local IslandPoints = nil
 local IslandLevelReqs = nil
+local StartPos = nil
+local StartRot = nil
 
 function CheckPlayerlevelReqs(req : number)
     local playerLevel = playerTracker.GetPlayerLevel()
@@ -35,6 +37,9 @@ function self:Start()
     rewardPopup.transform.localScale = Vector3.new(600, 600, 1)
     rewardPopup.transform.localPosition = Vector3.new(0, 0, 0)
     rewardPopup.transform.localRotation = Quaternion.Euler(0, 0, 0)
+
+    StartPos = self.transform.position
+    StartRot = self.transform.rotation
 
     for i, gameObj in ipairs(IslandPoints) do
 
@@ -105,10 +110,23 @@ function SwitchToPlayer()
             :Duration(1.5)
             :EaseInOutCubic()
             :Play();
-        Timer.After(1.5, function() self.gameObject:SetActive(false) end)
+        Timer.After(1.5, function() 
+            self.gameObject:SetActive(false)
+            self.transform.position = StartPos
+            self.transform.rotation = StartRot
+        end)
     end)
     
     for each, gameObj in IslandPoints do gameObj.gameObject:SetActive(false) end
+end
+
+function SwitchToMap()
+    levelSelectMode = true
+    cam.orthographic = true
+    self.gameObject:SetActive(true)
+    playerCamera.gameObject:GetComponent(Camera).enabled = false
+    playerCamera.gameObject:SetActive(false)
+    for each, gameObj in IslandPoints do gameObj.gameObject:SetActive(true) end
 end
 
 function ZoomToFit()
