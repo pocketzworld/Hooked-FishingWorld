@@ -8,6 +8,8 @@ local startupContainer : VisualElement = nil
 --!Bind
 local tutorialImage : Image = nil
 
+local uiManager = require("UIManager")
+
 local page = 1
 tutorialImage.image = Pages[page]
 startupContainer:RegisterPressCallback(function()

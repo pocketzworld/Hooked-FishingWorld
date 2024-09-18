@@ -73,6 +73,10 @@ bait_slot:RegisterPressCallback(function()
     UIManager.ButtonPressed("Bait")
 end, true, true, true)
 
+_MapButton:RegisterPressCallback(function()
+    UIManager.ButtonPressed("Map")
+end, true, true, true)
+
 function UpdateBaitSlot(baitID : string, amount)
     amount = amount or 0
     if itemMetaData.bait_metadata[baitID] then

@@ -11,6 +11,7 @@ local padding : number = 1
 local cam : Camera
 
 local levelSelectMode = true
+local inTrans = false
 
 local uiManager = require("UIManager")
 local audioManager = require("AudioManager")
@@ -20,6 +21,8 @@ local teleportManager = require("TeleporterController")
 
 local IslandPoints = nil
 local IslandLevelReqs = nil
+local StartPos = nil
+local StartRot = nil
 
 function CheckPlayerlevelReqs(req : number)
     local playerLevel = playerTracker.GetPlayerLevel()
@@ -35,6 +38,9 @@ function self:Start()
     rewardPopup.transform.localScale = Vector3.new(600, 600, 1)
     rewardPopup.transform.localPosition = Vector3.new(0, 0, 0)
     rewardPopup.transform.localRotation = Quaternion.Euler(0, 0, 0)
+
+    StartPos = self.transform.position
+    StartRot = self.transform.rotation
 
     for i, gameObj in ipairs(IslandPoints) do
 
@@ -63,6 +69,7 @@ function self:Start()
             playerCamera.gameObject:GetComponent(Camera).enabled = true
             teleportManager.Teleport(gameObj.transform.position)
             print("Teleporting to " .. gameObj.name)
+            inTrans = true
 
             playerCamera.gameObject:SetActive(true)
             Timer.After(0.2, function()
@@ -105,10 +112,30 @@ function SwitchToPlayer()
             :Duration(1.5)
             :EaseInOutCubic()
             :Play();
-        Timer.After(1.5, function() self.gameObject:SetActive(false) end)
+        Timer.After(1.5, function() 
+            self.gameObject:SetActive(false)
+            self.transform.position = StartPos
+            self.transform.rotation = StartRot
+            inTrans = false
+        end)
     end)
     
     for each, gameObj in IslandPoints do gameObj.gameObject:SetActive(false) end
+end
+
+function SwitchToMap()
+    if inTrans then return end
+    levelSelectMode = true
+    cam.orthographic = true
+    self.gameObject:SetActive(true)
+    playerCamera.gameObject:GetComponent(Camera).enabled = false
+    playerCamera.gameObject:SetActive(false)
+    for each, gameObj in IslandPoints do gameObj.gameObject:SetActive(true) end
+
+    rewardPopup.transform.parent = self.transform
+    rewardPopup.transform.localScale = Vector3.new(600, 600, 1)
+    rewardPopup.transform.localPosition = Vector3.new(0, 0, 0)
+    rewardPopup.transform.localRotation = Quaternion.Euler(0, 0, 0)
 end
 
 function ZoomToFit()
