@@ -96,10 +96,8 @@ end
 
 --- Handles button press actions
 function ButtonPressed(btn: string)
-    if btn ~= "Close" then
-        EventHudObject:SetActive(false)
-        EnergyWidgetObject:SetActive(false)
-        EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
+    if btn ~= "Close" and btn ~= "Map" then
+        ToggleEventUI(false)
     end
     if btn == "Inventory" then
         ToggleAll(false)
@@ -184,9 +182,7 @@ function ButtonPressed(btn: string)
         ToggleAll(false)
         ToggleUIs({"WorldHUD"}, true)
         AudioManager.PlaySound("paperSound1", 0.98)
-        EventHudObject:SetActive(true)
-        EnergyWidgetObject:SetActive(true)
-        EventHudObject:GetComponent(EventHud).ToggleBoostTimer(true)
+        ToggleEventUI(true)
      
     elseif btn == "Map" then
         islandCamera:GetComponent(LevelSelectCamera).SwitchToMap()
@@ -238,17 +234,13 @@ end
 --- Shows the fishing mini-game
 function ShowMiniGame(fishName: string, hookwidth: number)
     FishingUIScript.ShowMiniGame(fishName, hookwidth)
-    EventHudObject:SetActive(false)
-    EnergyWidgetObject:SetActive(false)
-    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
+    ToggleEventUI(false)
 end
 
 --- Hides the fishing mini-game
 function HideMiniGame()
     FishingUIScript.HideMiniGame()
-    EventHudObject:SetActive(true)
-    EnergyWidgetObject:SetActive(true)
-    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(true)
+    ToggleEventUI(true)
 end
 
 --- Shows a popup for the caught fish
@@ -259,13 +251,18 @@ function ShowFishPopup(fishID: string, size, rarity, description: string, image:
     ItemPopupScript.SetFish(fishID, size, rarity, description, image, worth, headerOverride)
     Utils.ActivateObject(ItemPopupObject)
     Utils.ActivateObject(RewardPopupObject)
-    EventHudObject:SetActive(false)
-    EnergyWidgetObject:SetActive(false)
-    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(false)
+    ToggleEventUI(false)
+end
+
+function ToggleEventUI(state: boolean)
+    EventHudObject:SetActive(state)
+    EnergyWidgetObject:SetActive(state)
+    EventHudObject:GetComponent(EventHud).ToggleBoostTimer(state)
 end
 
 --- Initializes the UI scripts on client awake
 function self:ClientAwake()
     WorldHUDScript = WorldHudObject:GetComponent(worldhud)
     FishingUIScript = FishingHudObject:GetComponent(FishingHud)
+    ToggleEventUI(false)
 end

@@ -11,6 +11,7 @@ local padding : number = 1
 local cam : Camera
 
 local levelSelectMode = true
+local inTrans = false
 
 local uiManager = require("UIManager")
 local audioManager = require("AudioManager")
@@ -68,6 +69,7 @@ function self:Start()
             playerCamera.gameObject:GetComponent(Camera).enabled = true
             teleportManager.Teleport(gameObj.transform.position)
             print("Teleporting to " .. gameObj.name)
+            inTrans = true
 
             playerCamera.gameObject:SetActive(true)
             Timer.After(0.2, function()
@@ -114,6 +116,7 @@ function SwitchToPlayer()
             self.gameObject:SetActive(false)
             self.transform.position = StartPos
             self.transform.rotation = StartRot
+            inTrans = false
         end)
     end)
     
@@ -121,6 +124,7 @@ function SwitchToPlayer()
 end
 
 function SwitchToMap()
+    if inTrans then return end
     levelSelectMode = true
     cam.orthographic = true
     self.gameObject:SetActive(true)
