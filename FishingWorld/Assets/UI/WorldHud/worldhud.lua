@@ -12,6 +12,8 @@ local _ShopButton : VisualElement = nil
 --!Bind
 local _DailiesButton : VisualElement = nil
 --!Bind
+local _MapButton : VisualElement = nil
+--!Bind
 local add_cash_button : VisualElement = nil
 --!Bind
 local cash_text : Label = nil

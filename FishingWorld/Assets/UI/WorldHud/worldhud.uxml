@@ -53,33 +53,32 @@
       <!-- Container for the shop, inventory, and leaderboard buttons -->
       <VisualElement class="world-button inventory" name="_InventoryButton">
         <!-- <Image class="button-icon inventory" name="_InventoryIcon"/> -->
-
         <hr:UIImage class="button-icon" name="_InventoryIcon"/>
-
         <VisualElement class="placeholder inventory" picking-mode="Ignore">
           <Label class="inventory-text" text="Journal"/>
         </VisualElement>
-        
       </VisualElement>
 
       <VisualElement class="world-button shop" name="_ShopButton">
         <!-- <Image class="button-icon inventory" name="_InventoryIcon"/> -->
-
         <hr:UIImage class="button-icon" name="_ShopIcon"/>
-
         <VisualElement class="placeholder shop" picking-mode="Ignore">
           <Label class="inventory-text" text="Shop"/>
         </VisualElement>
-        
       </VisualElement>
 
       <VisualElement class="world-button dailies" name="_DailiesButton">
         <hr:UIImage class="button-icon" name="_DailiesIcon"/>
-
         <VisualElement class="placeholder dailies" picking-mode="Ignore">
           <Label class="inventory-text" text="Dailies"/>
         </VisualElement>
-        
+      </VisualElement>
+
+      <VisualElement class="world-button map" name="_MapButton">
+        <hr:UIImage class="button-icon" name="_MapIcon"/>
+        <VisualElement class="placeholder map" picking-mode="Ignore">
+          <Label class="inventory-text" text="Map"/>
+        </VisualElement>
       </VisualElement>
 
     </VisualElement>

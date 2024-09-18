@@ -503,6 +503,24 @@ end
 function CreateStatsItem(name: string, value: number)
   local _StatsItem = VisualElement.new()
   _StatsItem:AddToClassList("stats-item")
+  
+
+  local _StatsItemLeft = VisualElement.new()
+  _StatsItemLeft:AddToClassList("stats-item__left")
+
+  local _tooltip_icon = Image.new()
+  _tooltip_icon:AddToClassList("tooltip-icon")
+
+  --#TODO: Change the tooltip title and description
+  _tooltip_icon:RegisterPressCallback(function()
+    CreateToolTipItem(name, "This is a tooltip for " .. name)
+  end, true, true, true)
+
+  _StatsItemLeft:Add(_tooltip_icon)
+  _StatsItem:Add(_StatsItemLeft)
+
+  local _StatsItemRight = VisualElement.new()
+  _StatsItemRight:AddToClassList("stats-item__right")
 
   local _StatsItemTitle = Label.new()
   _StatsItemTitle:AddToClassList("stats-item__title")
@@ -512,8 +530,10 @@ function CreateStatsItem(name: string, value: number)
   _StatsItemValue:AddToClassList("stats-item__value")
   _StatsItemValue.text = tostring(value)
 
-  _StatsItem:Add(_StatsItemTitle)
-  _StatsItem:Add(_StatsItemValue)
+  _StatsItemRight:Add(_StatsItemTitle)
+  _StatsItemRight:Add(_StatsItemValue)
+    
+  _StatsItem:Add(_StatsItemRight)
 
   _InventoryContent:Add(_StatsItem)
 

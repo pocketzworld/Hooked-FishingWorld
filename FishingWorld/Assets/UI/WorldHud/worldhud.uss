@@ -22,6 +22,7 @@
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
   --gem-icon: url("project://database/Assets/UI/Icons/icon_gem_2_blue.png");
   --star-icon: url("project://database/Assets/UI/Icons/star.png");
+  --map-pic: url("project://database/Assets/UI/Icons/map.png");
 
   /* Leveling & XP */
   --xp-bar-fill: #F28C28;
@@ -81,6 +82,11 @@
   right: 11px;
 }
 
+.world-button.map {
+  top: 120px;
+  left: 11px;
+}
+
 .button-icon {
   align-items: center;
   justify-content: flex-start;
@@ -128,6 +134,9 @@
   --unity-image: var(--gem-icon);
 }
 
+#_MapIcon {
+  --unity-image: var(--map-pic);
+}
 
 .placeholder {
   position: absolute;
@@ -359,7 +368,7 @@
   align-self: flex-start;
   overflow: hidden;
 
-  left: 38px;
+  left: 34px;
   top: 32px;
 
   width: 120px;
