@@ -201,7 +201,7 @@ function ShowBoostUI()
 			return
 		end
 		
-		--print("State: " .. tostring(res))
+		print("State: " .. tostring(res))
 		UIModule.ShowPopup("superboost", res)
 
 		if res ~= nil then

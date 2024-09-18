@@ -14,7 +14,7 @@ local item2AmountLabel : Label = nil
 local clientPrankModule = require("ClientPrankModule")
 
 local currentState = nil
-local EventConsumablesBoost = nil
+local EventConsumablesBoost = {}
 
 cancelButton:RegisterPressCallback(function()
     --print("Cancel button pressed")
@@ -29,7 +29,7 @@ item1:RegisterPressCallback(function()
             self.gameObject:SetActive(false)
             UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
         else
-            --print("Success")
+            print("Success")
             clientPrankModule.SuncUItoState()
             self.gameObject:SetActive(false)
         end
@@ -44,7 +44,7 @@ item2:RegisterPressCallback(function()
             self.gameObject:SetActive(false)
             UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
         else
-            --print("Success")
+            print("Success")
             clientPrankModule.SuncUItoState()
             self.gameObject:SetActive(false)
         end
@@ -52,8 +52,8 @@ item2:RegisterPressCallback(function()
 end)
 
 function SetStateValues(state)
-    currentState = state
-    EventConsumablesBoost = clientPrankModule.GetConsumables(currentState)[1]
+    EventConsumablesBoost = clientPrankModule.GetConsumables(state)[1]
+    print("EventConsumablesBoost: " .. tostring(EventConsumablesBoost))
 
     item1AmountLabel.text = tostring("x" .. EventConsumablesBoost[1].ownedAmount)
     item2AmountLabel.text = tostring("x" .. EventConsumablesBoost[2].ownedAmount)
