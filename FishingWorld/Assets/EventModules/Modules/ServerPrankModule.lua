@@ -145,11 +145,11 @@ function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: 
 
 	local streakBoost = 1.0 + (0.05 * state.streak)
 
-	local luckyTokenBoost = 1.0 + state.eventStatus.boostLuckyTokens
+	local luckyTokenBoost = state.eventStatus.boostLuckyTokens
 
-	local itemBoost = 1.0 + state.eventStatus.boostItems
+	local itemBoost = state.eventStatus.boostItems
 
-	local luckyPlusitems = luckyTokenBoost + itemBoost
+	local luckyPlusitems = 1 + luckyTokenBoost + itemBoost
 
 	local superBoost =  1.0 + state.eventStatus.boostSuper
 

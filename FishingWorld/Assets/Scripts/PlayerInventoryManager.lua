@@ -157,7 +157,7 @@ function self:ServerAwake()
 
     -- Commit All Queued Transactions every 5 seconds
     Timer.Every(5, function()
-        print("do transactions")
+        --print("do transactions")
         CommitQueuedTransactions()
     end)
 end
