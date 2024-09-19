@@ -42,6 +42,7 @@ local missingCoinsModalOpen = false
 local purchaseTimer = nil
 
 local upgradeCost = 100
+local maxedOut = false
 
 local audioManager = require("AudioManager")
 local UIManager = require("UIManager")
@@ -230,7 +231,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
 
   local _rod_item_upgrade_button = VisualElement.new()
   _rod_item_upgrade_button:AddToClassList("rod__item-upgrade-button")
-  _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true)
+  if not maxedOut then _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true) end
 
   local _button_upper = VisualElement.new()
   _button_upper:AddToClassList("button-upper")
@@ -251,12 +252,16 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
 
   local _rod_item_upgrade_button_label = Label.new()
   _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
-  if rode_progress == rode_max_progress then
-    _rod_item_upgrade_button_label.text = "PRESTIGE"
-    -- Logic for prestige
+  if not maxedOut then
+    if rode_progress == rode_max_progress then
+      _rod_item_upgrade_button_label.text = "PRESTIGE"
+      -- Logic for prestige
+    else
+      _rod_item_upgrade_button_label.text = "UPGRADE"
+      -- Logic for upgrade
+    end
   else
-    _rod_item_upgrade_button_label.text = "UPGRADE"
-    -- Logic for upgrade
+    _rod_item_upgrade_button_label.text = "Max Level"
   end
 
   _button_lower:Add(_rod_item_upgrade_button_label)
@@ -828,11 +833,21 @@ end, true, true, true)
 
 function self:Start()
   playerTracker.players[client.localPlayer].playerPolePrestige.Changed:Connect(function(polPrstg)
+    if polPrstg == 12 and playerTracker.players[client.localPlayer].playerPoleLevel.value == 9 then
+      maxedOut = true
+    else
+      maxedOut = false
+    end
     upgradeCost = polPrstg * 100
     PopulateShop(Poles)
   end)
 
-  playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function()
+  playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function(polLvl)
+    if polLvl == 9 and playerTracker.players[client.localPlayer].playerPolePrestige.value == 12 then
+      maxedOut = true
+    else
+      maxedOut = false
+    end
     PopulateShop(Poles)
   end)
 
