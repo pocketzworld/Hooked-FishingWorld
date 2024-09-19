@@ -325,13 +325,13 @@ function TradeOldPoles(player : Player)
     if highestPole == "fishing_pole_1" then
         return
     elseif highestPole == "fishing_pole_2" then
-        playerTracker.SetPoleLevel(player, 2, 1)
+        playerTracker.SetPoleLevel(player, 1, 1)
         print("Upgrading Pole 9 levels")
     elseif highestPole == "fishing_pole_3" then
-        playerTracker.SetPoleLevel(player, 3, 1)
+        playerTracker.SetPoleLevel(player, 2, 1)
         print("Upgrading Pole 18 levels")
     elseif highestPole == "fishing_pole_5" then
-        playerTracker.SetPoleLevel(player, 4, 1)
+        playerTracker.SetPoleLevel(player, 2, 9)
         print("Upgrading Pole 27 levels")
     end
 end
