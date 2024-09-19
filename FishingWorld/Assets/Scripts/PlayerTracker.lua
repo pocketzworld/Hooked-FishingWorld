@@ -387,7 +387,7 @@ function self:ServerAwake()
     end)
 
     upgradePoleRequest:Connect(function(player)
-        local upgradeCost = players[player].playerPolePrestige.value * 100
+        local upgradeCost = CalculatePoleUpgradeCost(player)
         if GetTokens(player) < upgradeCost  then
             print("Error: Not enough tokens to upgrade pole")
             return
@@ -529,6 +529,8 @@ function SetStatsPerLevel(player)
     local currentPoleLevel = playerInfo.playerPoleLevel.value
     local currentPolePrestige = playerInfo.playerPolePrestige.value
 
+    playerInfo.playerFishingPole.value = "fishing_pole_" .. tostring(currentPolePrestige)
+
     --LEVEL UP STATS
     playerInfo.playerStrength.value = currentLevel
     playerInfo.playerHookSpeed.value = calculateHookSpeed(currentPoleLevel, currentPolePrestige)
@@ -595,6 +597,68 @@ function calculateXPMultiplier(prestige)
 end
 
 --[[
+Calculate the cost to upgrade the fishing pole based on the current level and prestige
+]]
+--Increase by 10 per level at prestige one, 50 per level at prestige 2, 100 per level at prestige 3, 200 per level at prestige 4, 300 per level at prestige 5, 400 per level at prestige 6, 500 per level at prestige 7, 600 per level at prestige 8, 700 per level at prestige 9, 800 per level at prestige 10, 900 per level at prestige 11, 1000 per level at prestige 12 
+-- not reseting each prestige
+-- Calculate the cost to upgrade the fishing pole based on the current level and prestige
+function CalculatePoleUpgradeCost(player: Player)
+    local playerInfo = players[player]
+    local currentPoleLevel = playerInfo.playerPoleLevel.value
+    local prestige = playerInfo.playerPolePrestige.value
+    local upgradeCost = 100
+        
+    -- Determine the cost increase per level for each prestige
+    local costIncreasePerLevel = 1
+    local prestigeStartingCost = 100
+    if prestige == 1 then
+        costIncreasePerLevel = 10
+        prestigeStartingCost = 100
+    elseif prestige == 2 then
+        costIncreasePerLevel = 50
+        prestigeStartingCost = 200
+    elseif prestige == 3 then
+        costIncreasePerLevel = 100
+        prestigeStartingCost = 700
+    elseif prestige == 4 then
+        costIncreasePerLevel = 200
+        prestigeStartingCost = 1700
+    elseif prestige == 5 then
+        costIncreasePerLevel = 300
+        prestigeStartingCost = 3700
+    elseif prestige == 6 then
+        costIncreasePerLevel = 400
+        prestigeStartingCost = 6700
+    elseif prestige == 7 then
+        costIncreasePerLevel = 500
+        prestigeStartingCost = 10700
+    elseif prestige == 8 then
+        costIncreasePerLevel = 600
+        prestigeStartingCost = 15700
+    elseif prestige == 9 then
+        costIncreasePerLevel = 700
+        prestigeStartingCost = 21700
+    elseif prestige == 10 then
+        costIncreasePerLevel = 800
+        prestigeStartingCost = 28700
+    elseif prestige == 11 then
+        costIncreasePerLevel = 900
+        prestigeStartingCost = 36700
+    elseif prestige == 12 then
+        costIncreasePerLevel = 1000
+        prestigeStartingCost = 45700
+    end
+
+    -- Add the accumulated cost for each level within the current prestige
+    for level = 1, currentPoleLevel do
+        -- Base cost starts at 100 and increases by the prestige's level cost increment
+        upgradeCost = prestigeStartingCost + ((level-1) * costIncreasePerLevel)
+    end
+
+    return upgradeCost
+end
+
+--[[
 Function to upgradeto the next level of the fishing pole and prestige at level 10
 ]]
 function UpgradePole(player : Player, upgradeCost : number, levelstoIncease)
@@ -615,11 +679,15 @@ function UpgradePole(player : Player, upgradeCost : number, levelstoIncease)
     -- Loop to level up if enough XP is accumulated for multiple levels
     while currentPoleLevel > 9 do
         currentPoleLevel = currentPoleLevel - 9
-        currentPolePrestige = currentPolePrestige + 1
+        if currentPolePrestige < 12 then
+            currentPolePrestige = currentPolePrestige + 1
+        end
     end
 
     playerInfo.playerPoleLevel.value = currentPoleLevel
     playerInfo.playerPolePrestige.value = currentPolePrestige
+    playerInfo.playerFishingPole.value = "fishing_pole_" .. tostring(currentPolePrestige)
+    print(currentPolePrestige)
 
     -- Update the player's stats based on the new pole level and prestige
     SetStatsPerLevel(player)

@@ -196,6 +196,7 @@ function increaseValueOnPress()
 end
 
 function MovedToWater(point : Vector3, water : GameObject)
+    if Vector3.Distance(point, client.localPlayer.character.transform.position) > 12 then return end
     -- Get the water Biome and Player Bait
     local _waterType = water:GetComponent(WaterType)
     local _rarity = _waterType.GetRarity()

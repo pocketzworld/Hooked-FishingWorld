@@ -151,6 +151,7 @@ function self:ServerAwake()
 
     -- Commit All Queued Transactions every 5 seconds
     Timer.Every(5, function()
+        print("do transactions")
         CommitQueuedTransactions()
     end)
 end
@@ -199,6 +200,7 @@ function GivePlayerItem(player : Player, itemId : string, amount : number)
 end
 function TakePlayerItem(player : Player, itemId : string, amount : number)
     table.insert(TakeTransactionsToCommit, {playerID = player.user.id, itemId = itemId, amount = amount})
+    print("Taking " .. tostring(amount) .. " " .. itemId .. " from " .. player.name)
     UpdatePlayerInventory_Temporary(player, itemId, -amount)
 end
 
@@ -305,17 +307,17 @@ function TradeOldPoles(player : Player)
     end
     local journeymanPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_2")
     if journeymanPoleCount > 0 then
-        TakePlayerItem(player, "fishing_pole_2", begginerPoleCount)
+        TakePlayerItem(player, "fishing_pole_2", journeymanPoleCount)
         highestPole = "fishing_pole_2"
     end
     local deapSeaPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_3")
     if deapSeaPoleCount > 0 then
-        TakePlayerItem(player, "fishing_pole_3", begginerPoleCount)
+        TakePlayerItem(player, "fishing_pole_3", deapSeaPoleCount)
         highestPole = "fishing_pole_3"
     end
     local goldenPoleCount = playerTracker.GetPlayerItemCount(player, "fishing_pole_5")
     if goldenPoleCount > 0 then
-        TakePlayerItem(player, "fishing_pole_5", begginerPoleCount)
+        TakePlayerItem(player, "fishing_pole_5", goldenPoleCount)
         highestPole = "fishing_pole_5"
     end
 

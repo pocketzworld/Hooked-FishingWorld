@@ -17,6 +17,8 @@ local RewardPopupObject : GameObject = nil
 local DailiesUIObject : GameObject = nil
 --!SerializeField
 local PlayerCardObject : GameObject = nil
+--!SerializeField
+local islandCamera : GameObject = nil
 
 -- Required modules
 local Utils = require("Utils")
@@ -173,6 +175,10 @@ function ButtonPressed(btn: string)
         ToggleAll(false)
         ToggleUIs({"WorldHUD"}, true)
         AudioManager.PlaySound("paperSound1", 0.98)
+     
+    elseif btn == "Map" then
+        islandCamera:GetComponent(LevelSelectCamera).SwitchToMap()
+        AudioManager.PlaySound("paperSound1", 1.1)
     else
         print("[ButtonPressed] Unhandled button: " .. btn)
     end
