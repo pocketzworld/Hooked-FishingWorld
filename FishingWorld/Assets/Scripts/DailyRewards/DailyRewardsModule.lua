@@ -20,7 +20,7 @@ RewardSchedule = TableValue.new("RewardSchedule", {
 }
 )
 
-CLAIM_INTERVAL_MINUTES = .15  -- Set the interval for claiming rewards (in minutes)
+CLAIM_INTERVAL_MINUTES = 1440  -- Set the interval for claiming rewards (in minutes)
 
 players = {}
 ------------ Player Tracking ------------
