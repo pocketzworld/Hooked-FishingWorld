@@ -106,6 +106,7 @@ _closeInfoButton:RegisterPressCallback(function()
 end, true, true, true)
 
 function UpgradeRodCallback()
+
   if coolingDown then return end
   coolingDown = true
   cooldownBarElapsedTime = 0
@@ -113,12 +114,17 @@ function UpgradeRodCallback()
     coolingDown = false
     coolDownCurrentValue = coolDownEndValue
   end)
+
   if missingCoinsModalOpen then return end
+  upgradeCost = playerTracker.CalculatePoleUpgradeCost(client.localPlayer)
   -- Check if the player has enough coins to upgrade the rod
   if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
+    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
     print("UPGRADING ROD FOR " .. upgradeCost .. " coins")
     playerTracker.UpgradePoleRequest()
   else
+    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
+    print("NOT ENOUGH COINS TO UPGRADE ROD")
     -- Display missing coins modal
     missingCoinsModalOpen = true
     local missingCoinsModal = CreateMissingCoinsModal()
@@ -871,7 +877,6 @@ function self:Start()
     else
       maxedOut = false
     end
-    upgradeCost = polPrstg * 100
     PopulateShop(Poles)
   end)
 
