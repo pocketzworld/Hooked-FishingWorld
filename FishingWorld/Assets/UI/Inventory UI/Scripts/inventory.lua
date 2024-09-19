@@ -107,12 +107,12 @@ end
 --#TODO: Hard coded stuff needs to be changed.
 
 local HardcodedStats = {
-  {name = "Level", value = 1},
-  {name = "XP", value = 0},
-  {name = "XP Modifier", value = 1},
-  {name = "Strength", value = 1},
-  {name = "Hook Speed", value = 1},
-  {name = "Reel Speed", value = 1}
+  {name = "Level", value = 1, tooltip = "Player Level: The more you fish, the more XP you earn. When you reach the required XP, you level up and unlock new regions."},
+  {name = "XP", value = 0, tooltip = "Player Experience: Collect XP by fishing, rarer fish provide more XP!"},
+  {name = "XP Multiplier", value = 1, tooltip = "Player Experience Multiplier: Increase the amount of XP you earn by fishing. Increase your multiplier by leveling up your fishing pole."},
+  {name = "Strength", value = 1, tooltip = "Player Strength: Increase the chance of catching fish by increasing your strength. Get stronger by leveling up your Player."},
+  {name = "Hook Speed", value = 1, tooltip = "Increase the speed of your Hook by upgrading your fishing pole! This measures how quickly the game checks for a bite. A lower hook speed value means fish bite faster!"},
+  {name = "Reel Speed", value = 1, tooltip = "Reel Modifier: Increase your Reel Speed by upgrading your fishing pole! This measures how fast you can reel in the fish. A higher reel speed value means you can reel in the fish faster."}
 }
 
 local HardcodedQuests = {
@@ -500,7 +500,7 @@ function CreateItemInfoPage(name: string, amount: number, description: string, i
   _ItemInfoContent:Add(_ItemInfoStats)
 end
 
-function CreateStatsItem(name: string, value: number)
+function CreateStatsItem(name: string, value: number, tooltip)
   local _StatsItem = VisualElement.new()
   _StatsItem:AddToClassList("stats-item")
   
@@ -513,7 +513,7 @@ function CreateStatsItem(name: string, value: number)
 
   --#TODO: Change the tooltip title and description
   _tooltip_icon:RegisterPressCallback(function()
-    CreateToolTipItem(name, "This is a tooltip for " .. name)
+    CreateToolTipItem(name, tooltip)
   end, true, true, true)
 
   _StatsItemLeft:Add(_tooltip_icon)
@@ -666,8 +666,8 @@ function UpdateInventory(items)
     local playerData = HardcodedPlayerData
     local rodData = HardcodedRodData
 
-    local tooltipPlayerData = {title = "Player", description = "Player Progress"} -- Change this to teach the player more about the player progress
-    local tooltipRodData = {title = "Fishing Rod", description = "Fishing Rod Progress"} -- Change this to teach the player more about the rod progress
+    local tooltipPlayerData = {title = "Player", description = "The more you fish, the more XP you earn. When you reach the required XP, you level up and unlock new regions."} -- Change this to teach the player more about the player progress
+    local tooltipRodData = {title = "Fishing Rod", description = "As your rod levels up, hook speed and reel speed improve. The maximum rod level is 9. When you increase your prestige, rod progress resets, but its base stats improve slightly. For example, a prestige 2, level 1 rod is better than a prestige 1, level 1 rod but weaker than a prestige 1, level 9 rod."} -- Change this to teach the player more about the rod progress
 
     local playerProgress = CreateProgressItem("Player Level: " .. tostring(playerData.level), playerData.experience, true, playerData.description, playerData.experience, playerData.xp_to_next_level, {title = tooltipPlayerData.title, description = tooltipPlayerData.description})
     local rodProgress = CreateProgressItem("Rod Prestige: " .. tostring(rodData.level), rodData.experience, false, rodData.description, rodData.experience, 9, {title = tooltipRodData.title, description = tooltipRodData.description})
@@ -675,7 +675,7 @@ function UpdateInventory(items)
   elseif state == 3 then
     -- Stats
     for i, stat in ipairs(HardcodedStats) do
-      local statsItem = CreateStatsItem(stat.name, stat.value)
+      local statsItem = CreateStatsItem(stat.name, stat.value, stat.tooltip)
     end
   elseif state == 4 then
     -- Quests
@@ -770,7 +770,7 @@ function self:Start()
   local playerInfo = playerTracker.players[client.localPlayer]
 
   playerInfo.playerLevel.Changed:Connect(function(lvl)
-    HardcodedStats[1] = {name = "Level", value = lvl}
+    HardcodedStats[1] = {name = "Level", value = lvl, tooltip = "Player Level: The more you fish, the more XP you earn. When you reach the required XP, you level up and unlock new regions."}
 
     local xp = playerTracker.players[client.localPlayer].playerXP.value
     local nextLevelXP = playerTracker.GetXPForLevel(lvl + 1)
@@ -780,7 +780,7 @@ function self:Start()
 
   end)
   playerInfo.playerXP.Changed:Connect(function(xp)
-    HardcodedStats[2] = {name = "XP", value = xp}
+    HardcodedStats[2] = {name = "XP", value = xp, tooltip = "Player Experience: Collect XP by fishing, rarer fish provide more XP!"}
 
     local lvl = playerTracker.players[client.localPlayer].playerLevel.value
     local nextLevelXP = playerTracker.GetXPForLevel(lvl + 1)
@@ -791,18 +791,18 @@ function self:Start()
   end)
   playerInfo.playerXPModifier.Changed:Connect(function(xpMod)
     local formatted_number = string.format("%.2f", xpMod):gsub("%.?0+$", "")
-    HardcodedStats[3] = {name = "XP Multiplier", value = formatted_number}
+    HardcodedStats[3] = {name = "XP Multiplier", value = formatted_number, tooltip = "Increase the amount of XP you earn when fishing. Increase your multiplier by leveling up your fishing pole."}
   end)
   playerInfo.playerStrength.Changed:Connect(function(Str)
-    HardcodedStats[4] = {name = "Strength Modifier", value = Str}
+    HardcodedStats[4] = {name = "Strength Modifier", value = Str, tooltip = "Increase the chance of catching fish by increasing your strength. Get stronger by leveling up your Player."}
   end)
   playerInfo.playerHookSpeed.Changed:Connect(function(hookSpeed)
     local formatted_number = string.format("%.2f", hookSpeed):gsub("%.?0+$", "")
-    HardcodedStats[5] = {name = "Hook Modifier", value = formatted_number}
+    HardcodedStats[5] = {name = "Hook Modifier", value = formatted_number, tooltip = "Increase the speed of your Hook by upgrading your fishing pole! This measures how quickly the game checks for a bite. A lower hook speed value means fish bite faster!"}
   end)
   playerInfo.playerReelSpeed.Changed:Connect(function(reelSpeed)
     local formatted_number = string.format("%.2f", reelSpeed):gsub("%.?0+$", "")
-    HardcodedStats[6] = {name = "Reel Modifier", value = formatted_number}
+    HardcodedStats[6] = {name = "Reel Modifier", value = formatted_number, tooltip = "Increase your Reel Speed by upgrading your fishing pole! This measures how fast you can reel in the fish. A higher reel speed value means you can reel in the fish faster."}
   end)
 
   playerInfo.playerPoleLevel.Changed:Connect(function(poleLevel)
