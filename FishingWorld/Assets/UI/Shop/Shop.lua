@@ -53,6 +53,37 @@ local poleMetas = itemMetaData.pole_metadata
 local baitMetas = itemMetaData.bait_metadata
 local dealMetas = itemMetaData.deals_metadata
 
+local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
+
+-- Poles Sorted by Price
+local Poles = {
+}
+
+local Bait = {
+  {id = "sadworm_bait"},
+  {id = "corn_bait"},
+  {id = "plastic_bait"},
+  {id = "maggot_bait"},
+  {id = "grub_bait"},
+  {id = "toast_bait"},
+  {id = "bacon_bait"},
+  {id = "broccoli_bait"},
+  {id = "chicken_bait"},
+  {id = "egg_bait"},
+  {id = "hotdog_bait"},
+  {id = "pizza_bait"},
+  {id = "shrimp_bait"},
+  {id = "squid_bait"},
+  {id = "steak_bait"},
+  {id = "donut_bait"}
+}
+
+local Deals = {
+  {id = "fishing_token_1"},
+  {id = "fishing_token_2"},
+  {id = "fishing_token_3"}
+}
+
 -- Register a callback to close the shop UI
 _closeButton:RegisterPressCallback(function()
   --self.gameObject:SetActive(false)
@@ -646,37 +677,6 @@ function CreatePurhcasedButton(autoHide, buyButton)
   end
 end
 
-local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
-
--- Poles Sorted by Price
-local Poles = {
-}
-
-local Bait = {
-  {id = "sadworm_bait"},
-  {id = "corn_bait"},
-  {id = "plastic_bait"},
-  {id = "maggot_bait"},
-  {id = "grub_bait"},
-  {id = "toast_bait"},
-  {id = "bacon_bait"},
-  {id = "broccoli_bait"},
-  {id = "chicken_bait"},
-  {id = "egg_bait"},
-  {id = "hotdog_bait"},
-  {id = "pizza_bait"},
-  {id = "shrimp_bait"},
-  {id = "squid_bait"},
-  {id = "steak_bait"},
-  {id = "donut_bait"}
-}
-
-local Deals = {
-  {id = "fishing_token_1"},
-  {id = "fishing_token_2"},
-  {id = "fishing_token_3"}
-}
-
 function PopulateShop(items)
   _ShopContent:Clear()
   _ShopContentContainer:ScrollToBeginning()
@@ -833,6 +833,10 @@ function self:Start()
   end)
 
   playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function()
+    PopulateShop(Poles)
+  end)
+
+  playerTracker.players[client.localPlayer].playerFishingPole.Changed:Connect(function(newPole)
     PopulateShop(Poles)
   end)
 end

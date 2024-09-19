@@ -529,6 +529,8 @@ function SetStatsPerLevel(player)
     local currentPoleLevel = playerInfo.playerPoleLevel.value
     local currentPolePrestige = playerInfo.playerPolePrestige.value
 
+    playerInfo.playerFishingPole.value = "fishing_pole_" .. tostring(currentPolePrestige)
+
     --LEVEL UP STATS
     playerInfo.playerStrength.value = currentLevel
     playerInfo.playerHookSpeed.value = calculateHookSpeed(currentPoleLevel, currentPolePrestige)
@@ -615,11 +617,15 @@ function UpgradePole(player : Player, upgradeCost : number, levelstoIncease)
     -- Loop to level up if enough XP is accumulated for multiple levels
     while currentPoleLevel > 9 do
         currentPoleLevel = currentPoleLevel - 9
-        currentPolePrestige = currentPolePrestige + 1
+        if currentPolePrestige < 12 then
+            currentPolePrestige = currentPolePrestige + 1
+        end
     end
 
     playerInfo.playerPoleLevel.value = currentPoleLevel
     playerInfo.playerPolePrestige.value = currentPolePrestige
+    playerInfo.playerFishingPole.value = "fishing_pole_" .. tostring(currentPolePrestige)
+    print(currentPolePrestige)
 
     -- Update the player's stats based on the new pole level and prestige
     SetStatsPerLevel(player)
