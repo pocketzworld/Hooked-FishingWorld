@@ -243,6 +243,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   local _rod_item_upgrade_button_label = Label.new()
   _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
   _rod_item_upgrade_button_label.text = tostring(rode_upgrade_price)
+  if maxedOut then _rod_item_upgrade_button_label.text = "" end
 
   _button_upper:Add(_rod_item_upgrade_button_label)
   _rod_item_upgrade_button:Add(_button_upper)
