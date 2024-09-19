@@ -486,9 +486,43 @@ end
 
 -- Define XP required for each level
 function GetXPForLevel(level)
-    -- Example formula: each level requires 100 + (level - 1) * 50 XP to level up
-    return 100 + (level - 1) * 100
+    if level == 1 then
+        return 100
+    elseif level >= 2 and level <= 9 then
+        -- Levels 2 to 9: Each level requires 50 more XP than the previous
+        return 100 + (level - 1) * 50
+    elseif level >= 10 and level <= 14 then
+        -- Levels 10 to 14: Each level requires 100 more XP than the previous
+        -- Level 10 requires 600 XP (from the table)
+        return 600 + (level - 10) * 100
+    elseif level >= 15 and level <= 24 then
+        -- Levels 15 to 24: Each level requires 200 more XP than the previous
+        -- Level 15 requires 1200 XP (from the table)
+        return 1200 + (level - 15) * 200
+    elseif level >= 25 and level <= 29 then
+        -- Levels 25 to 29: Each level requires 500 more XP than the previous
+        -- Level 25 requires 3500 XP (from the table)
+        return 3500 + (level - 25) * 500
+    elseif level == 30 then
+        -- Level 30 is the max level; no further XP required
+        return nil -- or you can return 0 or a specific message
+    else
+        -- Handle invalid levels
+        return nil -- or an error message
+    end
 end
+
+-- Example Usage:
+--[[
+for lvl = 1, 30 do
+    local xp = GetXPForLevel(lvl)
+    if xp then
+        print("Level " .. lvl .. " requires " .. xp .. " XP to reach the next level.")
+    else
+        print("Level " .. lvl .. " is the maximum level.")
+    end
+end
+-]]
 
 --[[
 If a player has enough XP to jump from level 3 to level 5 in a single action, 
