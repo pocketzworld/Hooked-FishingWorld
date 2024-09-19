@@ -333,11 +333,13 @@ MonoBehaviour:
   _uiOutputSettings:
     rid: -2
   m_Pages:
-  - {fileID: 2800000, guid: e7deb4ef936535643912db3214869776, type: 3}
   - {fileID: 2800000, guid: 05307d32b608744498f4167da7dbd9ca, type: 3}
   - {fileID: 2800000, guid: d4f1bdefa387ae642b018b86a3e754e2, type: 3}
+  - {fileID: 2800000, guid: 63f171533cf90e242b6752b623f4b8bd, type: 3}
   - {fileID: 2800000, guid: 03a36d215058040429b98ef1cdee49df, type: 3}
   - {fileID: 2800000, guid: 20d70d68f74531f46842c7765e666c9c, type: 3}
+  - {fileID: 2800000, guid: 124ce6afbc14e8449aab0e1cf7d4307c, type: 3}
+  - {fileID: 2800000, guid: 4cf02c10654bd414aa74c027ea134d2f, type: 3}
   references:
     version: 2
     RefIds:
