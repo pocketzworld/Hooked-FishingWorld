@@ -1237,6 +1237,20 @@
   transition-duration: 0.2s;
 
   font-size: 14px;
+  overflow: hidden;
+}
+
+.rod__item-upgrade-button__cooldown-fill {
+  display: flex;
+  position: absolute;
+
+  width: 0%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+
+  background-color: var(--color-tertiary);
 }
 
 .button-upper {
