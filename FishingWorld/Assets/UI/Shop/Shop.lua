@@ -691,7 +691,7 @@ function PopulateShop(items)
     _contentHeaderLabel:SetPrelocalizedText("Upgrade your fishing pole to increase your fishing capabilities.")
     _contentHeaderIcon:AddToClassList("pole-icon")
 
-    CreateRodItem(playerTracker.GetPlayerPoleLevel(), playerTracker.GetPlayerPolePrestige(), playerTracker.GetPlayerPoleLevel(), 9, upgradeCost, testImage)
+    CreateRodItem(playerTracker.GetPlayerPoleLevel(), playerTracker.GetPlayerPolePrestige(), playerTracker.GetPlayerPoleLevel(), 9, upgradeCost, poleMetas[playerTracker.players[client.localPlayer].playerFishingPole.value].ItemImage)
 
   elseif state == 1 then -- check if items are bait
     _contentHeaderLabel:SetPrelocalizedText("Bait is used to attract fish to your hook. Different fish are attracted to different bait.")
