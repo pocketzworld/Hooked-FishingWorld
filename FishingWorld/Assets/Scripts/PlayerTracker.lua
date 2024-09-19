@@ -637,58 +637,7 @@ Calculate the cost to upgrade the fishing pole based on the current level and pr
 -- not reseting each prestige
 -- Calculate the cost to upgrade the fishing pole based on the current level and prestige
 function CalculatePoleUpgradeCost(player: Player)
-    local playerInfo = players[player]
-    local currentPoleLevel = playerInfo.playerPoleLevel.value
-    local prestige = playerInfo.playerPolePrestige.value
-    local upgradeCost = 100
-        
-    -- Determine the cost increase per level for each prestige
-    local costIncreasePerLevel = 1
-    local prestigeStartingCost = 100
-    if prestige == 1 then
-        costIncreasePerLevel = 10
-        prestigeStartingCost = 100
-    elseif prestige == 2 then
-        costIncreasePerLevel = 50
-        prestigeStartingCost = 200
-    elseif prestige == 3 then
-        costIncreasePerLevel = 100
-        prestigeStartingCost = 700
-    elseif prestige == 4 then
-        costIncreasePerLevel = 200
-        prestigeStartingCost = 1700
-    elseif prestige == 5 then
-        costIncreasePerLevel = 300
-        prestigeStartingCost = 3700
-    elseif prestige == 6 then
-        costIncreasePerLevel = 400
-        prestigeStartingCost = 6700
-    elseif prestige == 7 then
-        costIncreasePerLevel = 500
-        prestigeStartingCost = 10700
-    elseif prestige == 8 then
-        costIncreasePerLevel = 600
-        prestigeStartingCost = 15700
-    elseif prestige == 9 then
-        costIncreasePerLevel = 700
-        prestigeStartingCost = 21700
-    elseif prestige == 10 then
-        costIncreasePerLevel = 800
-        prestigeStartingCost = 28700
-    elseif prestige == 11 then
-        costIncreasePerLevel = 900
-        prestigeStartingCost = 36700
-    elseif prestige == 12 then
-        costIncreasePerLevel = 1000
-        prestigeStartingCost = 45700
-    end
-
-    -- Add the accumulated cost for each level within the current prestige
-    for level = 1, currentPoleLevel do
-        -- Base cost starts at 100 and increases by the prestige's level cost increment
-        upgradeCost = prestigeStartingCost + ((level-1) * costIncreasePerLevel)
-    end
-
+    local upgradeCost = players[player].playerPolePrestige.value * 100
     return upgradeCost
 end
 
