@@ -387,7 +387,7 @@ function self:ServerAwake()
     end)
 
     upgradePoleRequest:Connect(function(player)
-        local upgradeCost = players[player].playerPolePrestige.value * 100
+        local upgradeCost = CalculatePoleUpgradeCost(player)
         if GetTokens(player) < upgradeCost  then
             print("Error: Not enough tokens to upgrade pole")
             return
@@ -594,6 +594,57 @@ function calculateXPMultiplier(prestige)
     local xpMultiplier = baseXPMultiplier + ((prestige - 1) * xpMultiplierIncreasePerPrestige)
 
     return xpMultiplier
+end
+
+--[[
+Calculate the cost to upgrade the fishing pole based on the current level and prestige
+]]
+--Increase by 10 per level at prestige one, 50 per level at prestige 2, 100 per level at prestige 3, 200 per level at prestige 4, 300 per level at prestige 5, 400 per level at prestige 6, 500 per level at prestige 7, 600 per level at prestige 8, 700 per level at prestige 9, 800 per level at prestige 10, 900 per level at prestige 11, 1000 per level at prestige 12 
+-- not reseting each prestige
+-- Calculate the cost to upgrade the fishing pole based on the current level and prestige
+function CalculatePoleUpgradeCost(player: Player)
+    local playerInfo = players[player]
+    local currentPoleLevel = playerInfo.playerPoleLevel.value
+    local prestige = playerInfo.playerPolePrestige.value
+    local upgradeCost = 100
+
+    -- Calculate accumulated cost based on current level and prestige
+    local costIncreasePerLevel = 1
+        
+        -- Determine the cost increase per level for each prestige
+        if prestige == 1 then
+            costIncreasePerLevel = 10
+        elseif prestige == 2 then
+            costIncreasePerLevel = 50
+        elseif prestige == 3 then
+            costIncreasePerLevel = 100
+        elseif prestige == 4 then
+            costIncreasePerLevel = 200
+        elseif prestige == 5 then
+            costIncreasePerLevel = 300
+        elseif prestige == 6 then
+            costIncreasePerLevel = 400
+        elseif prestige == 7 then
+            costIncreasePerLevel = 500
+        elseif prestige == 8 then
+            costIncreasePerLevel = 600
+        elseif prestige == 9 then
+            costIncreasePerLevel = 700
+        elseif prestige == 10 then
+            costIncreasePerLevel = 800
+        elseif prestige == 11 then
+            costIncreasePerLevel = 900
+        elseif prestige == 12 then
+            costIncreasePerLevel = 1000
+        end
+
+        -- Add the accumulated cost for each level within the current prestige
+        for level = 1, currentPoleLevel do
+            -- Base cost starts at 100 and increases by the prestige's level cost increment
+            upgradeCost = 100 + ((level) * costIncreasePerLevel)
+        end
+
+    return upgradeCost
 end
 
 --[[
