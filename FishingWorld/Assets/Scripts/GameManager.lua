@@ -294,8 +294,8 @@ function self:ServerAwake()
         -- Give the player the fish if the client isnt lying
         if expectedFish and worth == fishMetaData.GetFishData(requestedFishID).Worth then 
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
-            playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
-            playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
+            playerTracker.IncrementTokensServer(player, 100 * fishMetaData.GetFishData(requestedFishID).Worth)
+            playerTracker.AwardXP(player, 50 * fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
         end
 
 
