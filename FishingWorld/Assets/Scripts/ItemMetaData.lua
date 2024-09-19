@@ -273,20 +273,20 @@ deals_metadata =
     ["fishing_token_1"] = {
         Name = "100 Fish Coins",
         Amount = 100,
-        Description = "Get a quick boost with 100 Gold for 100 Coins – perfect for a small upgrade or some extra bait!",
+        Description = "Get a quick boost with 100 Coins for 100 Gold – perfect for a small upgrade or some extra bait!",
         ItemImage = dealsIcons[1],
         ItemWorth = 100
     },
     ["fishing_token_2"] = {
         Name = "200 Fish Coins",
         Amount = 200,
-        Description = "Grab 190 Gold for just 200 Coins – a great deal to keep you fishing longer with better gear.",
+        Description = "Grab 200 Coins for just 190 Gold – a great deal to keep you fishing longer with better gear.",
         ItemImage = dealsIcons[2],
         ItemWorth = 190
     },
     ["fishing_token_3"] = {
         Name = "500 Fish Coins",
-        Description = "Maximize your value with 450 Gold for 500 Coins – the best choice for serious anglers looking to level up fast!",
+        Description = "Maximize your value with 500 Coins for only 450 Gold – the best choice for serious anglers looking to level up fast!",
         Amount = 500,
         ItemImage = dealsIcons[3],
         ItemWorth = 450
