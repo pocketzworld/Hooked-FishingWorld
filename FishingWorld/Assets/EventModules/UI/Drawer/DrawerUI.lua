@@ -69,7 +69,7 @@ function MakeEventItem (text : string, amount : number, texture : Texture, cb : 
         itemElement:AddToClassList("empty")
         itemElement:RegisterPressCallback(function() 
             --print("ITEM EMPTY: OPEN THE SHOP DEEPLINK")
-            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
+            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66e9d968f3e754f7116bbd76")
             CloseDrawer()
         end)
     elseif amount == math.huge then

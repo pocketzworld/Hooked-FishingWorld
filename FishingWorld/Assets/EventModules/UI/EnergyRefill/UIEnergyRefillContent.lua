@@ -27,7 +27,7 @@ item1:RegisterPressCallback(function()
         if err then
             print("Error: " .. err) --#TODO OPEN EVENT STORE
             self.gameObject:SetActive(false)
-            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
+            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66e9d968f3e754f7116bbd76")
         else
             print("Success")
             clientPrankModule.QueryEnergyData()
@@ -42,7 +42,7 @@ item2:RegisterPressCallback(function()
         if err then
             print("Error: " .. err) --#TODO OPEN EVENT STORE
             self.gameObject:SetActive(false)
-            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66dde521dc5a2eeb8f86ba88")
+            UI:ExecuteDeepLink("https://high.rs/shop?type=ic&id=66e9d968f3e754f7116bbd76")
         else
             --print("Success")
             clientPrankModule.QueryEnergyData()
