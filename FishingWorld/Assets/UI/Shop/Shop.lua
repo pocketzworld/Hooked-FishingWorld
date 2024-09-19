@@ -42,6 +42,8 @@ local missingCoinsModalOpen = false
 local purchaseTimer = nil
 
 local upgradeCost = 100
+local maxedOut = false
+local coolingDown = false
 
 local audioManager = require("AudioManager")
 local UIManager = require("UIManager")
@@ -52,6 +54,44 @@ local itemMetaData = require("ItemMetaData")
 local poleMetas = itemMetaData.pole_metadata
 local baitMetas = itemMetaData.bait_metadata
 local dealMetas = itemMetaData.deals_metadata
+
+local cooldownBarElapsedTime = 0
+local cooldownBarDuration = 3
+local coolDownStartValue = 100
+local coolDownEndValue = 0
+local coolDownCurrentValue = coolDownStartValue
+local _rod_item_upgrade_button_cooldown_fill = nil
+
+local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
+
+-- Poles Sorted by Price
+local Poles = {
+}
+
+local Bait = {
+  {id = "sadworm_bait"},
+  {id = "corn_bait"},
+  {id = "plastic_bait"},
+  {id = "maggot_bait"},
+  {id = "grub_bait"},
+  {id = "toast_bait"},
+  {id = "bacon_bait"},
+  {id = "broccoli_bait"},
+  {id = "chicken_bait"},
+  {id = "egg_bait"},
+  {id = "hotdog_bait"},
+  {id = "pizza_bait"},
+  {id = "shrimp_bait"},
+  {id = "squid_bait"},
+  {id = "steak_bait"},
+  {id = "donut_bait"}
+}
+
+local Deals = {
+  {id = "fishing_token_1"},
+  {id = "fishing_token_2"},
+  {id = "fishing_token_3"}
+}
 
 -- Register a callback to close the shop UI
 _closeButton:RegisterPressCallback(function()
@@ -66,6 +106,13 @@ _closeInfoButton:RegisterPressCallback(function()
 end, true, true, true)
 
 function UpgradeRodCallback()
+  if coolingDown then return end
+  coolingDown = true
+  cooldownBarElapsedTime = 0
+  Timer.After(3, function()
+    coolingDown = false
+    coolDownCurrentValue = coolDownEndValue
+  end)
   if missingCoinsModalOpen then return end
   -- Check if the player has enough coins to upgrade the rod
   if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
@@ -199,7 +246,10 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
 
   local _rod_item_upgrade_button = VisualElement.new()
   _rod_item_upgrade_button:AddToClassList("rod__item-upgrade-button")
-  _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true)
+  if not maxedOut then _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true) end
+
+  _buttons_container = VisualElement.new()
+  _buttons_container:AddToClassList("rod__item-upgrade-button__container")
 
   local _button_upper = VisualElement.new()
   _button_upper:AddToClassList("button-upper")
@@ -211,26 +261,45 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   local _rod_item_upgrade_button_label = Label.new()
   _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
   _rod_item_upgrade_button_label.text = tostring(rode_upgrade_price)
+  if maxedOut then _rod_item_upgrade_button_label.text = "" end
 
   _button_upper:Add(_rod_item_upgrade_button_label)
-  _rod_item_upgrade_button:Add(_button_upper)
+  _buttons_container:Add(_button_upper)
 
   local _button_lower = VisualElement.new()
   _button_lower:AddToClassList("button-lower")
 
   local _rod_item_upgrade_button_label = Label.new()
   _rod_item_upgrade_button_label:AddToClassList("rod__item-upgrade-button__label")
-  if rode_progress == rode_max_progress then
-    _rod_item_upgrade_button_label.text = "PRESTIGE"
-    -- Logic for prestige
+  if not maxedOut then
+    if rode_progress == rode_max_progress then
+      _rod_item_upgrade_button_label.text = "PRESTIGE"
+      -- Logic for prestige
+    else
+      _rod_item_upgrade_button_label.text = "UPGRADE"
+      -- Logic for upgrade
+    end
   else
-    _rod_item_upgrade_button_label.text = "UPGRADE"
-    -- Logic for upgrade
+    _rod_item_upgrade_button_label.text = "Max Level"
   end
 
   _button_lower:Add(_rod_item_upgrade_button_label)
 
-  _rod_item_upgrade_button:Add(_button_lower)
+  _buttons_container:Add(_button_lower)
+
+  _rod_item_upgrade_button_cooldown_fill = VisualElement.new()
+  _rod_item_upgrade_button_cooldown_fill:AddToClassList("rod__item-upgrade-button__cooldown-fill")
+
+  -- This is a test to show the cooldown fill
+  -- When the cooldown start set this "_buttons_container.style.opacity = StyleFloat.new(0)"
+  -- When the cooldown ends set this "_buttons_container.style.opacity = StyleFloat.new(1)"
+  -- Optional: Changing the opacity of the button to hide whats behind the fill
+  _rod_item_upgrade_button_cooldown_fill.style.width = StyleLength.new(Length.Percent(0))
+  _rod_item_upgrade_button_cooldown_fill.style.opacity = StyleFloat.new(.9)
+
+
+  _rod_item_upgrade_button:Add(_buttons_container)
+  _rod_item_upgrade_button:Add(_rod_item_upgrade_button_cooldown_fill)
 
   _rod_item_content:Add(_rod_item_upgrade_button)
   _rod_item:Add(_rod_item_content)
@@ -646,37 +715,6 @@ function CreatePurhcasedButton(autoHide, buyButton)
   end
 end
 
-local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
-
--- Poles Sorted by Price
-local Poles = {
-}
-
-local Bait = {
-  {id = "sadworm_bait"},
-  {id = "corn_bait"},
-  {id = "plastic_bait"},
-  {id = "maggot_bait"},
-  {id = "grub_bait"},
-  {id = "toast_bait"},
-  {id = "bacon_bait"},
-  {id = "broccoli_bait"},
-  {id = "chicken_bait"},
-  {id = "egg_bait"},
-  {id = "hotdog_bait"},
-  {id = "pizza_bait"},
-  {id = "shrimp_bait"},
-  {id = "squid_bait"},
-  {id = "steak_bait"},
-  {id = "donut_bait"}
-}
-
-local Deals = {
-  {id = "fishing_token_1"},
-  {id = "fishing_token_2"},
-  {id = "fishing_token_3"}
-}
-
 function PopulateShop(items)
   _ShopContent:Clear()
   _ShopContentContainer:ScrollToBeginning()
@@ -691,7 +729,7 @@ function PopulateShop(items)
     _contentHeaderLabel:SetPrelocalizedText("Upgrade your fishing pole to increase your fishing capabilities.")
     _contentHeaderIcon:AddToClassList("pole-icon")
 
-    CreateRodItem(playerTracker.GetPlayerPoleLevel(), playerTracker.GetPlayerPolePrestige(), playerTracker.GetPlayerPoleLevel(), 9, upgradeCost, testImage)
+    CreateRodItem(playerTracker.GetPlayerPoleLevel(), playerTracker.GetPlayerPolePrestige(), playerTracker.GetPlayerPoleLevel(), 9, playerTracker.CalculatePoleUpgradeCost(client.localPlayer), poleMetas[playerTracker.players[client.localPlayer].playerFishingPole.value].ItemImage)
 
   elseif state == 1 then -- check if items are bait
     _contentHeaderLabel:SetPrelocalizedText("Bait is used to attract fish to your hook. Different fish are attracted to different bait.")
@@ -828,11 +866,37 @@ end, true, true, true)
 
 function self:Start()
   playerTracker.players[client.localPlayer].playerPolePrestige.Changed:Connect(function(polPrstg)
+    if polPrstg == 12 and playerTracker.players[client.localPlayer].playerPoleLevel.value == 9 then
+      maxedOut = true
+    else
+      maxedOut = false
+    end
     upgradeCost = polPrstg * 100
     PopulateShop(Poles)
   end)
 
-  playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function()
+  playerTracker.players[client.localPlayer].playerPoleLevel.Changed:Connect(function(polLvl)
+    if polLvl == 9 and playerTracker.players[client.localPlayer].playerPolePrestige.value == 12 then
+      maxedOut = true
+    else
+      maxedOut = false
+    end
     PopulateShop(Poles)
   end)
+
+  playerTracker.players[client.localPlayer].playerFishingPole.Changed:Connect(function(newPole)
+    PopulateShop(Poles)
+  end)
+end
+
+function self:Update()
+  if cooldownBarElapsedTime < cooldownBarDuration and coolingDown then
+    cooldownBarElapsedTime = cooldownBarElapsedTime + Time.deltaTime
+    coolDownCurrentValue = Mathf.Lerp(coolDownStartValue, coolDownEndValue, cooldownBarElapsedTime / cooldownBarDuration)
+  else
+    coolDownCurrentValue = coolDownEndValue
+  end
+  if _rod_item_upgrade_button_cooldown_fill ~= nil then
+    _rod_item_upgrade_button_cooldown_fill.style.width = StyleLength.new(Length.Percent(coolDownCurrentValue))
+  end
 end

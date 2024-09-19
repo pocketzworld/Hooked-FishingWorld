@@ -18,48 +18,68 @@ function AssignCoinIcon(amount: number)
     return dealsIcons[3]
   end
 end
-
+--12 poles data
 pole_metadata = 
 {
     ["fishing_pole_1"] = {
         Name = "Beginner's Pole",
-        Description = "The basic fishing pole allows you to fish in small lakes and rivers.",
         Outfit = poleOutfits[1],
         ItemImage = poleIcons[1],
-        ItemWorth = 0,
-        ItemRarity = "Uncommon",
-        ItemBiomes = {"Lake", "River"}, 
-        ItemLevel = 1
     },
     ["fishing_pole_2"] = {
         Name = "Journeyman's Pole",
-        Description = "The Journeyman's fishing pole allows you to fish in small lakes, rivers, and even icy waters!",
         Outfit = poleOutfits[2],
         ItemImage = poleIcons[2],
-        ItemWorth = 100,
-        ItemRarity = "Uncommon",
-        ItemBiomes = {"Lake", "River", "Ice"},
-        ItemLevel = 2
     },
     ["fishing_pole_3"] = {
         Name = "Deep Sea Pole",
-        Description = "The Deep Sea fishing pole allows you to explore the salty ocean waters! but isnt effective in the fresh water rivers and lakes.",
         Outfit = poleOutfits[3],
         ItemImage = poleIcons[3],
-        ItemWorth = 500,
-        ItemRarity = "Rare",
-        ItemBiomes = {"Ocean", "Ice"},
-        ItemLevel = 3
+    },
+    ["fishing_pole_4"] = {
+        Name = "Master's Pole",
+        Outfit = poleOutfits[4],
+        ItemImage = poleIcons[4],
     },
     ["fishing_pole_5"] = {
         Name = "Golden Pole",
-        Description = "The Golden fishing pole allows you to fish in any body of water!",
         Outfit = poleOutfits[5],
         ItemImage = poleIcons[5],
-        ItemWorth = 3000,
-        ItemRarity = "Mythical",
-        ItemBiomes = {"Any"},
-        ItemLevel = 5
+    },
+    ["fishing_pole_6"] = {
+        Name = "Rainbow Pole",
+        Outfit = poleOutfits[6],
+        ItemImage = poleIcons[6],
+    },
+    ["fishing_pole_7"] = {
+        Name = "Lucky Pole",
+        Outfit = poleOutfits[7],
+        ItemImage = poleIcons[7],
+    },
+    ["fishing_pole_8"] = {
+        Name = "Mystic Pole",
+        Outfit = poleOutfits[8],
+        ItemImage = poleIcons[8],
+    },
+    ["fishing_pole_9"] = {
+        Name = "Epic Pole",
+        Outfit = poleOutfits[9],
+        ItemImage = poleIcons[9],
+    },
+    ["fishing_pole_10"] = {
+        Name = "Legendary Pole",
+        Outfit = poleOutfits[10],
+        ItemImage = poleIcons[10],
+    },
+    ["fishing_pole_11"] = {
+        Name = "Mythical Pole",
+        Outfit = poleOutfits[11],
+        ItemImage = poleIcons[11],
+    },
+    ["fishing_pole_12"] = {
+        Name = "Divine Pole",
+        Outfit = poleOutfits[12],
+        ItemImage = poleIcons[12],
     }
 }
 
@@ -253,20 +273,20 @@ deals_metadata =
     ["fishing_token_1"] = {
         Name = "100 Fish Coins",
         Amount = 100,
-        Description = "Get a quick boost with 100 Gold for 100 Coins – perfect for a small upgrade or some extra bait!",
+        Description = "Get a quick boost with 100 Coins for 100 Gold – perfect for a small upgrade or some extra bait!",
         ItemImage = dealsIcons[1],
         ItemWorth = 100
     },
     ["fishing_token_2"] = {
         Name = "200 Fish Coins",
         Amount = 200,
-        Description = "Grab 190 Gold for just 200 Coins – a great deal to keep you fishing longer with better gear.",
+        Description = "Grab 200 Coins for just 190 Gold – a great deal to keep you fishing longer with better gear.",
         ItemImage = dealsIcons[2],
         ItemWorth = 190
     },
     ["fishing_token_3"] = {
         Name = "500 Fish Coins",
-        Description = "Maximize your value with 450 Gold for 500 Coins – the best choice for serious anglers looking to level up fast!",
+        Description = "Maximize your value with 500 Coins for only 450 Gold – the best choice for serious anglers looking to level up fast!",
         Amount = 500,
         ItemImage = dealsIcons[3],
         ItemWorth = 450
