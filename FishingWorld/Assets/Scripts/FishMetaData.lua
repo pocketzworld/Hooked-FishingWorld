@@ -1238,12 +1238,12 @@ function rollRarity(luck, cap)
     print("Luck: " .. tostring(luck))
     -- Define the minimum and maximum chances for each rarity
     local rarities = {
-        {name = "Common", minChance = 70, maxChance = 15},
-        {name = "Uncommon", minChance = 20, maxChance = 20},
-        {name = "Rare", minChance = 7, maxChance = 30},
-        {name = "Epic", minChance = 2, maxChance = 20},
-        {name = "Legendary", minChance = 0.9, maxChance = 10},
-        {name = "Mythical", minChance = 0.1, maxChance = 5},
+        {name = "Common", minChance = 70, maxChance = 55.5},
+        {name = "Uncommon", minChance = 20, maxChance = 25},
+        {name = "Rare", minChance = 7, maxChance = 12},
+        {name = "Epic", minChance = 2, maxChance = 5},
+        {name = "Legendary", minChance = 0.9, maxChance = 2},
+        {name = "Mythical", minChance = 0.1, maxChance = .5},
     }
 
     -- Map the cap to a maximum index
