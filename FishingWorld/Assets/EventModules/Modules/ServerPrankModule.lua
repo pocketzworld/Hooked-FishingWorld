@@ -10,7 +10,7 @@ end
 local PrankModule = require("PrankModule")
 local PersistentKey = "event_state"
 
-caughtFishRarity = "Common"
+caughtFishRarityPerPlayer = {}
 local fishRarityRewardsTable = {
 	Common = 1,
 	Uncommon = 2,
@@ -65,7 +65,8 @@ export type Prank = {
 	CalculateTicketReward: (
 		self: Prank,
 		state: PrankModule.UserPrankState,
-		itemId: string | nil
+		itemId: string | nil,
+		player: Player
 	) -> number,
     CalculateTicketBoost: (
         self: Prank,
@@ -136,7 +137,7 @@ function Prank:SetStreakBoost(streakBoost: number, streakBoostMin: number): Pran
 	return self
 end
 
-function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: string | nil): number
+function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: string | nil, player: Player): number
 	-- base tickets x action indicator boost x (1.0 + streak boost) x (1.0 + lucky token boost + item boost) x party time.
 
 	local baseTickets = 300
@@ -148,13 +149,16 @@ function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: 
 
 	local itemBoost = 1.0 + state.eventStatus.boostItems
 
+	local luckyPlusitems = luckyTokenBoost + itemBoost
+
 	local superBoost =  1.0 + state.eventStatus.boostSuper
 
-	local rarityBoost = fishRarityRewardsTable[caughtFishRarity]
+	local rarityBoost = fishRarityRewardsTable[caughtFishRarityPerPlayer[player]]
+	if rarityBoost == nil then rarityBoost = 1 end
 
-	print("Base: " .. tostring(baseTickets) .. " Rarity: " .. tostring(rarityBoost) .. " Action: " .. tostring(actionItemBoost) .. " Streak: " .. tostring(streakBoost) .. " Lucky: " .. tostring(luckyTokenBoost) .. " Item: " .. tostring(itemBoost) .. " Super: " .. tostring(superBoost))
+	print("Base: " .. tostring(baseTickets) .. " Rarity: " .. tostring(rarityBoost) .. " Action: " .. tostring(actionItemBoost) .. " Streak: " .. tostring(streakBoost) .. " Lucky and Items: " .. tostring(luckyPlusitems) .. " Super: " .. tostring(superBoost))
 
-	return math.floor(baseTickets * streakBoost * luckyTokenBoost * itemBoost * superBoost * rarityBoost)
+	return math.floor(baseTickets * streakBoost * luckyPlusitems * superBoost * rarityBoost)
 end
 
 function Prank:CalculateTicketBoost(_eventStatus: PrankModule.TicketEventUserStatusData): number
@@ -226,7 +230,7 @@ function Prank:OnSuccessfulPrank(
 		luckyTokensWon = 2
 	end
 
-	local ticketsAwarded = self:CalculateTicketReward(state, itemId)
+	local ticketsAwarded = self:CalculateTicketReward(state, itemId, player)
 	local energyLost = 0
 
 	self.provider:ModifyPlayer(
