@@ -43,6 +43,7 @@ local purchaseTimer = nil
 
 local upgradeCost = 100
 local maxedOut = false
+local coolingDown = false
 
 local audioManager = require("AudioManager")
 local UIManager = require("UIManager")
@@ -98,6 +99,11 @@ _closeInfoButton:RegisterPressCallback(function()
 end, true, true, true)
 
 function UpgradeRodCallback()
+  if coolingDown then return end
+  coolingDown = true
+  Timer.After(3, function()
+    coolingDown = false
+  end)
   if missingCoinsModalOpen then return end
   -- Check if the player has enough coins to upgrade the rod
   if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
