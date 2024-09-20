@@ -96,7 +96,7 @@ function ToggleBoostTimer(active : boolean)
         _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
         if _superBoost == nil then return end
         _superBoost.style.display = DisplayStyle.None
-        print("Boost not active setting none display")
+        --print("Boost not active setting none display")
         return 
     end
 
