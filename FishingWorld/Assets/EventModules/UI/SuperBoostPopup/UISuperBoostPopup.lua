@@ -53,7 +53,7 @@ end)
 
 function SetStateValues(state)
     EventConsumablesBoost = clientPrankModule.GetConsumables(state)[1]
-    print("EventConsumablesBoost: " .. tostring(EventConsumablesBoost))
+    --print("EventConsumablesBoost: " .. tostring(EventConsumablesBoost))
 
     item1AmountLabel.text = tostring("x" .. EventConsumablesBoost[1].ownedAmount)
     item2AmountLabel.text = tostring("x" .. EventConsumablesBoost[2].ownedAmount)

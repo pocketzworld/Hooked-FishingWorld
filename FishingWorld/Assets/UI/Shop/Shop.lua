@@ -119,12 +119,12 @@ function UpgradeRodCallback()
   upgradeCost = playerTracker.CalculatePoleUpgradeCost(client.localPlayer)
   -- Check if the player has enough coins to upgrade the rod
   if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
-    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
-    print("UPGRADING ROD FOR " .. upgradeCost .. " coins")
+    --print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
+    --print("UPGRADING ROD FOR " .. upgradeCost .. " coins")
     playerTracker.UpgradePoleRequest()
   else
-    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
-    print("NOT ENOUGH COINS TO UPGRADE ROD")
+    --print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
+    --print("NOT ENOUGH COINS TO UPGRADE ROD")
     -- Display missing coins modal
     missingCoinsModalOpen = true
     local missingCoinsModal = CreateMissingCoinsModal()

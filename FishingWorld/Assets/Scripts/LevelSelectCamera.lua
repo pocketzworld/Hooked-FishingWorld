@@ -50,7 +50,7 @@ function self:Start()
         tapHandler.Tapped:Connect(function()
 
             if CheckPlayerlevelReqs(IslandLevelReqs[i]) == false then
-                print("Player level is too low to teleport to " .. gameObj.name .. ". Required level: " .. IslandLevelReqs[i])
+                --print("Player level is too low to teleport to " .. gameObj.name .. ". Required level: " .. IslandLevelReqs[i])
                 -- Display a message to the player that they need a different pole
                 uiManager.ShowFishPopup("Level " .. IslandLevelReqs[i], 
                     nil, 
@@ -68,7 +68,7 @@ function self:Start()
 
             playerCamera.gameObject:GetComponent(Camera).enabled = true
             teleportManager.Teleport(gameObj.transform.position)
-            print("Teleporting to " .. gameObj.name)
+            --print("Teleporting to " .. gameObj.name)
             inTrans = true
 
             playerCamera.gameObject:SetActive(true)

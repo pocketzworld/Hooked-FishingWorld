@@ -121,7 +121,7 @@ function self:ClientAwake()
                 else
                     uiManager.UpdateSelectedBait("none", nil)
                 end
-                print(baitID)
+                --print(baitID)
             end
         end)
 
@@ -141,7 +141,7 @@ function self:ClientAwake()
         playerinfo.playerInventory.Changed:Connect(function(inventory, oldVal)
             if player == client.localPlayer then
 
-                print("Inventory Changed: " .. tostring(#inventory))
+                --print("Inventory Changed: " .. tostring(#inventory))
 
                 -- Get the curretn Pole and update the UI
                 uiManager.UpdateSelectedPole(playerinfo.playerFishingPole.value)
@@ -535,7 +535,7 @@ function CheckLevelUp(player)
     local currentLevel = playerInfo.playerLevel.value
 
     --Print current XP and level
-    print(player.name .. " has " .. tostring(currentXP) .. " XP and is level " .. tostring(currentLevel))
+    --print(player.name .. " has " .. tostring(currentXP) .. " XP and is level " .. tostring(currentLevel))
 
     -- Loop to level up if enough XP is accumulated for multiple levels
     while currentXP >= GetXPForLevel(currentLevel) do
@@ -670,7 +670,7 @@ function UpgradePole(player : Player, upgradeCost : number, levelstoIncease)
     playerInfo.playerPoleLevel.value = currentPoleLevel
     playerInfo.playerPolePrestige.value = currentPolePrestige
     playerInfo.playerFishingPole.value = "fishing_pole_" .. tostring(currentPolePrestige)
-    print(currentPolePrestige)
+    --print(currentPolePrestige)
 
     -- Update the player's stats based on the new pole level and prestige
     SetStatsPerLevel(player)

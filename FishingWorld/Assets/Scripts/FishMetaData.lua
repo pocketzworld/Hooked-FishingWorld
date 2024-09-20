@@ -1235,7 +1235,7 @@ function rollRarity(luck, cap)
     cap = cap or "Mythical"
     -- Clamp luck to be at least 1 (or you could define specific behavior for luck = 0)
     luck = math.max(luck, 1)
-    print("Luck: " .. tostring(luck))
+    --print("Luck: " .. tostring(luck))
     -- Define the minimum and maximum chances for each rarity
     local rarities = {
         {name = "Common", minChance = 70, maxChance = 55.5},
@@ -1267,7 +1267,7 @@ function rollRarity(luck, cap)
         else
             rarity.adjustedChance = 0  -- Set chances to 0 for rarities above the cap
         end
-        print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
+        --print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
     end
 
     -- Normalize adjusted chances to ensure the total remains 100 for allowed rarities
@@ -1281,7 +1281,7 @@ function rollRarity(luck, cap)
 
     -- Roll a random number between 0 and 100 to pick a rarity
     local roll = math.random() * 100
-    print("Roll: " .. tostring(roll))
+    --print("Roll: " .. tostring(roll))
     local cumulative = 0
 
     for i, rarity in ipairs(rarities) do
@@ -1289,10 +1289,10 @@ function rollRarity(luck, cap)
         if roll <= cumulative then
             -- If a rarity higher than the cap is selected, return the cap rarity
             if i > capIndex then
-                print("Rarity rolled above cap: " .. rarities[capIndex].name)
+                --print("Rarity rolled above cap: " .. rarities[capIndex].name)
                 return rarities[capIndex].name
             else
-                print("Rarity rolled: " .. rarity.name)
+                --print("Rarity rolled: " .. rarity.name)
                 return rarity.name
             end
         end

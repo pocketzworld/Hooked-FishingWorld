@@ -89,7 +89,10 @@ function MoveSuperBoostTimer()
 end
 
 function ToggleBoostTimer(active : boolean)
-    if not boostActive then return end
+    if not boostActive then
+        _superBoost.style.display = DisplayStyle.None
+        return 
+    end
 
     _aboveChat = event_hud.parent.parent
     _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")

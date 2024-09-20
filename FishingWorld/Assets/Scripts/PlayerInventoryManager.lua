@@ -163,7 +163,7 @@ function self:ServerAwake()
 end
 
 function UpdatePlayerInventory(player, items)
-    print("Sending " .. tostring(#items) .. " items to " .. player.name)
+    --print("Sending " .. tostring(#items) .. " items to " .. player.name)
     --Convert the items to a format that can be sent to the client
     local clientItems = {}
     for index, item in items do
@@ -206,7 +206,7 @@ function GivePlayerItem(player : Player, itemId : string, amount : number)
 end
 function TakePlayerItem(player : Player, itemId : string, amount : number)
     table.insert(TakeTransactionsToCommit, {playerID = player.user.id, itemId = itemId, amount = amount})
-    print("Taking " .. tostring(amount) .. " " .. itemId .. " from " .. player.name)
+    --print("Taking " .. tostring(amount) .. " " .. itemId .. " from " .. player.name)
     UpdatePlayerInventory_Temporary(player, itemId, -amount)
 end
 
