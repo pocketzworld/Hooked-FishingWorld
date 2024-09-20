@@ -81,12 +81,21 @@ end)
 
 
 function MoveSuperBoostTimer()
-    event_hud.parent.parent:Children()[3]:Children()[2].style.bottom = StyleLength.new(90)
+    _aboveChat = event_hud.parent.parent
+    _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
+
+    if _superBoost == nil then return end
+    _superBoost.style.bottom = StyleLength.new(90)
 end
 
 function ToggleBoostTimer(active : boolean)
     if not boostActive then return end
-    event_hud.parent.parent:Children()[3].style.display = active and DisplayStyle.Flex or DisplayStyle.None
+
+    _aboveChat = event_hud.parent.parent
+    _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
+
+    if _superBoost == nil then return end
+    _superBoost.style.display = active and DisplayStyle.Flex or DisplayStyle.None
 end
 
 function self:ClientAwake()
