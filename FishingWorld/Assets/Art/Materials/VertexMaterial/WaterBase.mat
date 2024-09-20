@@ -21,22 +21,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterBase
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0e0c21a2ba8941047a75b2d217d0bb1d,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _SURFACE_TYPE_TRANSPARENT
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2998
-  stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
-  - SHADOWCASTER
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -114,12 +110,17 @@ Material:
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _EnvironmentReflections: 1
+    - _Foam_Amount: 2
+    - _Foam_Cutoff: 1
+    - _Foam_Scale: 1
+    - _Foam_Speed: 0.1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: -2
     - _ReceiveShadows: 1
     - _SampleGI: 0
@@ -129,11 +130,18 @@ Material:
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
+    - _WaterDepth: 5
+    - _Water_Scale: 50
+    - _Water_Speed: 50
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0.6102462, b: 1, a: 1}
     - _Color: {r: 0, g: 0.6102462, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Foam_Color: {r: 0.7216981, g: 0.9174876, b: 1, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Water_Deep_Color_1: {r: 0.1462264, g: 0.7021395, b: 1, a: 0}
+    - _Water_Deep_Color_2: {r: 0.1462264, g: 0.7021395, b: 1, a: 0}
+    - _Water_Shallow_Color: {r: 0.1462264, g: 0.7021395, b: 1, a: 0}
   m_BuildTextureStacks: []
