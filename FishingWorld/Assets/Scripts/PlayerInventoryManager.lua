@@ -73,58 +73,14 @@ end
 local GiveTransactionsToCommit = {}
 local TakeTransactionsToCommit = {}
 
-local currentSeasonID = 1
-
 function self:ServerAwake()
     --giveItemReq:Connect(GivePlayerItem)
     --takeItemReq:Connect(TakePlayerItem)
 
     ClientJoinRequest:Connect(function(player)
-        --[[
-        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_1") > 0
-        if not hasBegginerPole then
-            GivePlayerItem(player, "fishing_pole_1", 1)
-        end
-        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_2") > 0
-        if not hasBegginerPole then
-            GivePlayerItem(player, "fishing_pole_2", 1)
-        end
-        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_3") > 0
-        if not hasBegginerPole then
-            GivePlayerItem(player, "fishing_pole_3", 1)
-        end
-        local hasBegginerPole = playerTracker.GetPlayerItemCount(player, "fishing_pole_5") > 0
-        if not hasBegginerPole then
-            GivePlayerItem(player, "fishing_pole_5", 1)
-        end
-        ]]
-
-        GetSeasonData(function()
-            Timer.After(1, function()
-
-                -- Port Old poles to V2 as Rod Upgrades
-                TradeOldPoles(player)
-    
-                -- Get the player's Season Id
-                Storage.GetPlayerValue(player, "SeasonID", function(value)
-                    local playerSeasonID = value or 1
-                    -- If the player Season ID does not match the current Season ID, remove all fish from inv and reset the player Season ID
-                    if playerSeasonID ~= currentSeasonID then
-                        -- Fetch the players Inventory
-                        local playerInv = playerTracker.players[player].playerInventory.value
-                        -- Remove all fish from the player's inventory
-                        for index, item in playerInv do
-                            if fishMetaData.IsFish(item.id) then
-                                TakePlayerItem(player, item.id, item.amount)
-                            end
-                        end
-                        -- Reset the player's level
-                        playerTracker.SetPlayerLevel(player, 1, 0)
-                        -- Reset the player's Season ID
-                        Storage.SetPlayerValue(player, "SeasonID", currentSeasonID)
-                    end
-                end)
-            end)
+        Timer.After(1, function()
+            -- Port Old poles to V2 as Rod Upgrades
+            TradeOldPoles(player)
         end)
     end)
 
@@ -286,18 +242,6 @@ function UpdatePlayersRecordFish(player : Player, fishID : string, size : number
     end)
 end
 
-function GetSeasonData(cb)
-    Storage.GetValue("SeasonID", function(value)
-        if value == nil then
-            currentSeasonID = 1
-            Storage.SetValue("SeasonID", currentSeasonID)
-        else
-            currentSeasonID = value
-        end
-        if cb ~= nil then cb() end
-    end)
-end
-
 function TradeOldPoles(player : Player)
     local highestPole = "fishing_pole_1"
     -- Take all the poles from the player
@@ -334,4 +278,5 @@ function TradeOldPoles(player : Player)
         playerTracker.SetPoleLevel(player, 2, 9)
         print("Upgrading Pole 27 levels")
     end
+
 end
