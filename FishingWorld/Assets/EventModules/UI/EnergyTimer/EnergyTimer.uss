@@ -12,7 +12,7 @@
 
     --image-bag: url('project://database/Assets/EventModules/UI/EnergyTimer/icon_backpack.png');
     --image-battery: url('project://database/Assets/EventModules/UI/EnergyTimer/icon_energy.png');
-    --image-event: url('project://database/Assets/UI/Icons/Fish/Fishes/fish-trout@2x.png');
+    --image-event: url('project://database/Assets/HUDButton.png');
 }
 
 .energy-timer {

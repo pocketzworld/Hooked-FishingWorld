@@ -22,7 +22,7 @@
   --plus-icon: url("project://database/Assets/UI/Icons/plus.png");
   --sad-fish-icon: url("project://database/Assets/UI/Icons/Sad_Fish.png");
 
-  --image-icon-pole: url("project://database/Assets/UI/Icons/Poles/Pole_Lvl_4.png");
+  --image-icon-pole: url("project://database/Assets/UI/Icons/Poles/Pole_Lvl_12.png");
   --image-icon-bait: url("project://database/Assets/UI/Icons/Bait/bait-worm@2x.png");
   --image-icon-deals: url("project://database/Assets/UI/Icons/icon_coins_pouch.png");
 }
