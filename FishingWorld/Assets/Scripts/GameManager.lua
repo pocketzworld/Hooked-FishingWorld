@@ -294,13 +294,13 @@ function self:ServerAwake()
         local expectedFish = activeFishIDs[player] == requestedFishID
         -- Give the player the fish if the client isnt lying
         if expectedFish and worth == fishMetaData.GetFishData(requestedFishID).Worth then 
-            playerInventory.GivePlayerItem(player, requestedFishID, 1) 
             playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
             playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
-
             -- Assign caught Fish to the Event Server
-            ServerPrankModule.caughtFishRarityPerPlayer[player] = fishMetaData.GetFishData(requestedFishID).Rarity
+            ServerPrankModule.caughtFishRarityPerPlayer[player] = fishMetaData.GetFishData(requestedFishID).Worth
             print("Caught Fish Rarity: " .. ServerPrankModule.caughtFishRarityPerPlayer[player])
+
+            playerInventory.GivePlayerItem(player, requestedFishID, 1) -- GIVE THE PLAYER THE FISH AND TRIGGER THE EVENT
 
         end
 

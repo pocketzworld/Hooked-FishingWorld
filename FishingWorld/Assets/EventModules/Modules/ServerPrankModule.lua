@@ -11,14 +11,6 @@ local PrankModule = require("PrankModule")
 local PersistentKey = "event_state"
 
 caughtFishRarityPerPlayer = {}
-local fishRarityRewardsTable = {
-	Common = 1,
-	Uncommon = 2,
-	Rare = 3,
-	Epic = 4,
-	Legendary = 5,
-	Mythical = 6
-}
 
 -- Data taken from
 -- https://www.notion.so/pocketworlds/Prank-Event-Overview-For-Worlds-3646c56a5b56412a9550581ea3ae3cd9
@@ -140,7 +132,11 @@ end
 function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: string | nil, player: Player): number
 	-- base tickets x action indicator boost x (1.0 + streak boost) x (1.0 + lucky token boost + item boost) x party time.
 
-	local baseTickets = 300
+	local baseTickets = caughtFishRarityPerPlayer[player.user.id]
+	if baseTickets == nil then
+		baseTickets = 10
+	end
+
 	local actionItemBoost = self:GetTicketMultiplierForItem(itemId)
 
 	local streakBoost = 1.0 + (0.05 * state.streak)
@@ -153,12 +149,9 @@ function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: 
 
 	local superBoost =  1.0 + state.eventStatus.boostSuper
 
-	local rarityBoost = fishRarityRewardsTable[caughtFishRarityPerPlayer[player]]
-	if rarityBoost == nil then rarityBoost = 1 end
+	print("Base: " .. tostring(baseTickets) .. " Streak: " .. tostring(streakBoost) .. " Lucky and Items: " .. tostring(luckyPlusitems) .. " Super: " .. tostring(superBoost))
 
-	print("Base: " .. tostring(baseTickets) .. " Rarity: " .. tostring(rarityBoost) .. " Action: " .. tostring(actionItemBoost) .. " Streak: " .. tostring(streakBoost) .. " Lucky and Items: " .. tostring(luckyPlusitems) .. " Super: " .. tostring(superBoost))
-
-	return math.floor(baseTickets * streakBoost * luckyPlusitems * superBoost * rarityBoost)
+	return math.floor(baseTickets * streakBoost * luckyPlusitems * superBoost)
 end
 
 function Prank:CalculateTicketBoost(_eventStatus: PrankModule.TicketEventUserStatusData): number
