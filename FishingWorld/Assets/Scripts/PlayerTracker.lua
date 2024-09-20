@@ -508,7 +508,7 @@ function GetXPForLevel(level)
         return 3500 + (level - 25) * 1000
     else
         -- Handle invalid levels
-        return nil -- or an error message
+        return 100 -- or an error message
     end
 end
 
