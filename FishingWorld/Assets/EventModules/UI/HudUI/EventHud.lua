@@ -90,7 +90,11 @@ end
 
 function ToggleBoostTimer(active : boolean)
     if not boostActive then
+        _aboveChat = event_hud.parent.parent
+        _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
+        if _superBoost == nil then return end
         _superBoost.style.display = DisplayStyle.None
+
         return 
     end
 
