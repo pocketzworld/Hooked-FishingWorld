@@ -49,6 +49,7 @@ function UpdateEventValuesResponse(response : PrankModule.PrankResponse, tokensG
     miniStripLabel_boost:EnableInClassList("hidden", response.state.eventStatus.boostSuper <= 0)
     boostActive = response.state.eventStatus.boostSuper ~= 0
     boostButton:EnableInClassList("hidden", boostActive)
+    ToggleBoostTimer(boostActive)
     MoveSuperBoostTimer()
 end
 
@@ -67,6 +68,7 @@ function UpdateEventValuesState(state)
     miniStripLabel_boost:EnableInClassList("hidden", state.eventStatus.boostSuper <= 0)
     boostActive = state.eventStatus.boostSuper ~= 0
     boostButton:EnableInClassList("hidden", boostActive)
+    ToggleBoostTimer(boostActive)
     MoveSuperBoostTimer()
 end
 
@@ -94,7 +96,7 @@ function ToggleBoostTimer(active : boolean)
         _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
         if _superBoost == nil then return end
         _superBoost.style.display = DisplayStyle.None
-
+        print("Boost not active setting none display")
         return 
     end
 
@@ -102,7 +104,12 @@ function ToggleBoostTimer(active : boolean)
     _superBoost = _aboveChat:Q(nil, "event-super-boost-hud-head")
 
     if _superBoost == nil then return end
-    _superBoost.style.display = active and DisplayStyle.Flex or DisplayStyle.None
+    if active then
+        _superBoost.style.display = DisplayStyle.Flex
+    else
+        _superBoost.style.display = DisplayStyle.None
+    end
+
 end
 
 function self:ClientAwake()
