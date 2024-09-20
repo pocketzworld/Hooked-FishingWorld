@@ -243,6 +243,7 @@ function UserPrankState:__tostring(): string
 end
 
 function UserPrankState:GetEventItem(itemId: string): TicketEventItem
+	--print("GetEventItem", itemId)
 	for _, item in ipairs(self.eventStatus.eventInventory) do
 		if item.id == itemId then
 			return item

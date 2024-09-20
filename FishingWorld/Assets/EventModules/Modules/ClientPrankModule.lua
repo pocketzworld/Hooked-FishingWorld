@@ -133,8 +133,8 @@ end
 
 function GetConsumables(state: PrankModule.UserPrankState): { {Consumable} }
 
-	local energyRefillSmall = state:GetEventItem(PrankModule.ENERGY_REFILL_SMALL)
-	local energyRefillMax = state:GetEventItem(PrankModule.ENERGY_REFILL_MAX)
+	--local energyRefillSmall = state:GetEventItem(PrankModule.ENERGY_REFILL_SMALL)
+	--local energyRefillMax = state:GetEventItem(PrankModule.ENERGY_REFILL_MAX)
 	local stageBonusTime1 = state:GetEventItem(PrankModule.STAGE_BONUS_TIME_1)
 	local stageBonusTime2 = state:GetEventItem(PrankModule.STAGE_BONUS_TIME_2)
 --[[
