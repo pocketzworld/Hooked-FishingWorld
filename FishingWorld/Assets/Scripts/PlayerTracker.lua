@@ -503,9 +503,9 @@ function GetXPForLevel(level)
         -- Levels 25 to 29: Each level requires 500 more XP than the previous
         -- Level 25 requires 3500 XP (from the table)
         return 3500 + (level - 25) * 500
-    elseif level == 30 then
+    elseif level >= 30 then
         -- Level 30 is the max level; no further XP required
-        return nil -- or you can return 0 or a specific message
+        return 3500 + (level - 25) * 1000
     else
         -- Handle invalid levels
         return nil -- or an error message
@@ -622,7 +622,7 @@ function calculateXPMultiplier(prestige)
     -- Base XP multiplier for Prestige 1
     local baseXPMultiplier = 1.0
     -- XP multiplier increase per prestige level
-    local xpMultiplierIncreasePerPrestige = 0.5
+    local xpMultiplierIncreasePerPrestige = 0.25
 
     -- Calculate the XP multiplier based on the prestige level
     local xpMultiplier = baseXPMultiplier + ((prestige - 1) * xpMultiplierIncreasePerPrestige)
