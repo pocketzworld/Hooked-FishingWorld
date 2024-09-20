@@ -52,6 +52,12 @@ function ShowPopup(popup : string, state : PrankModule.UserPrankState)
 	end
 end
 
+function ClosePopup(popup : string)
+	if popup == "superboost" then
+		superBoostPopup:SetActive(false)
+	end
+end
+
 function EndEvent()
 	EventOverUI:SetActive(true)
 	EventObjs:SetActive(false)

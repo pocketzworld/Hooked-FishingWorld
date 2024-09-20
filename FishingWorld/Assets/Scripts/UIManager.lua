@@ -29,6 +29,7 @@ local Utils = require("Utils")
 local GameManager = require("GameManager")
 local PlayerTracker = require("PlayerTracker")
 local AudioManager = require("AudioManager")
+local EventUIManager = require("UIModule")
 
 -- UI scripts
 FishingUIScript = nil
@@ -245,6 +246,7 @@ end
 
 --- Shows a popup for the caught fish
 function ShowFishPopup(fishID: string, size, rarity, description: string, image: Texture, worth, headerOverride)
+    EventUIManager.ClosePopup("superboost")
     if not ItemPopupScript then
         ItemPopupScript = ItemPopupObject:GetComponent(ItemPopup)
     end

@@ -10,7 +10,7 @@ end
 local PrankModule = require("PrankModule")
 local PersistentKey = "event_state"
 
-caughtFishRarityPerPlayer = {}
+caughtFishWorthPerPlayer = {}
 
 -- Data taken from
 -- https://www.notion.so/pocketworlds/Prank-Event-Overview-For-Worlds-3646c56a5b56412a9550581ea3ae3cd9
@@ -132,7 +132,7 @@ end
 function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: string | nil, player: Player): number
 	-- base tickets x action indicator boost x (1.0 + streak boost) x (1.0 + lucky token boost + item boost) x party time.
 
-	local baseTickets = caughtFishRarityPerPlayer[player.user.id]
+	local baseTickets = caughtFishWorthPerPlayer[player]
 	if baseTickets == nil then
 		baseTickets = 10
 	end

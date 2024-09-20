@@ -297,8 +297,8 @@ function self:ServerAwake()
             playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
             playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
             -- Assign caught Fish to the Event Server
-            ServerPrankModule.caughtFishRarityPerPlayer[player] = fishMetaData.GetFishData(requestedFishID).Worth
-            print("Caught Fish Rarity: " .. ServerPrankModule.caughtFishRarityPerPlayer[player])
+            ServerPrankModule.caughtFishWorthPerPlayer[player] = fishMetaData.GetFishData(requestedFishID).Worth
+            print("Caught Fish Rarity: " .. ServerPrankModule.caughtFishWorthPerPlayer[player])
 
             playerInventory.GivePlayerItem(player, requestedFishID, 1) -- GIVE THE PLAYER THE FISH AND TRIGGER THE EVENT
 
