@@ -486,9 +486,43 @@ end
 
 -- Define XP required for each level
 function GetXPForLevel(level)
-    -- Example formula: each level requires 100 + (level - 1) * 50 XP to level up
-    return 100 + (level - 1) * 100
+    if level == 1 then
+        return 100
+    elseif level >= 2 and level <= 9 then
+        -- Levels 2 to 9: Each level requires 50 more XP than the previous
+        return 100 + (level - 1) * 50
+    elseif level >= 10 and level <= 14 then
+        -- Levels 10 to 14: Each level requires 100 more XP than the previous
+        -- Level 10 requires 600 XP (from the table)
+        return 600 + (level - 10) * 100
+    elseif level >= 15 and level <= 24 then
+        -- Levels 15 to 24: Each level requires 200 more XP than the previous
+        -- Level 15 requires 1200 XP (from the table)
+        return 1200 + (level - 15) * 200
+    elseif level >= 25 and level <= 29 then
+        -- Levels 25 to 29: Each level requires 500 more XP than the previous
+        -- Level 25 requires 3500 XP (from the table)
+        return 3500 + (level - 25) * 500
+    elseif level >= 30 then
+        -- Level 30 is the max level; no further XP required
+        return 3500 + (level - 25) * 1000
+    else
+        -- Handle invalid levels
+        return nil -- or an error message
+    end
 end
+
+-- Example Usage:
+--[[
+for lvl = 1, 30 do
+    local xp = GetXPForLevel(lvl)
+    if xp then
+        print("Level " .. lvl .. " requires " .. xp .. " XP to reach the next level.")
+    else
+        print("Level " .. lvl .. " is the maximum level.")
+    end
+end
+-]]
 
 --[[
 If a player has enough XP to jump from level 3 to level 5 in a single action, 
@@ -588,7 +622,7 @@ function calculateXPMultiplier(prestige)
     -- Base XP multiplier for Prestige 1
     local baseXPMultiplier = 1.0
     -- XP multiplier increase per prestige level
-    local xpMultiplierIncreasePerPrestige = 0.5
+    local xpMultiplierIncreasePerPrestige = 0.25
 
     -- Calculate the XP multiplier based on the prestige level
     local xpMultiplier = baseXPMultiplier + ((prestige - 1) * xpMultiplierIncreasePerPrestige)
@@ -603,58 +637,7 @@ Calculate the cost to upgrade the fishing pole based on the current level and pr
 -- not reseting each prestige
 -- Calculate the cost to upgrade the fishing pole based on the current level and prestige
 function CalculatePoleUpgradeCost(player: Player)
-    local playerInfo = players[player]
-    local currentPoleLevel = playerInfo.playerPoleLevel.value
-    local prestige = playerInfo.playerPolePrestige.value
-    local upgradeCost = 100
-        
-    -- Determine the cost increase per level for each prestige
-    local costIncreasePerLevel = 1
-    local prestigeStartingCost = 100
-    if prestige == 1 then
-        costIncreasePerLevel = 10
-        prestigeStartingCost = 100
-    elseif prestige == 2 then
-        costIncreasePerLevel = 50
-        prestigeStartingCost = 200
-    elseif prestige == 3 then
-        costIncreasePerLevel = 100
-        prestigeStartingCost = 700
-    elseif prestige == 4 then
-        costIncreasePerLevel = 200
-        prestigeStartingCost = 1700
-    elseif prestige == 5 then
-        costIncreasePerLevel = 300
-        prestigeStartingCost = 3700
-    elseif prestige == 6 then
-        costIncreasePerLevel = 400
-        prestigeStartingCost = 6700
-    elseif prestige == 7 then
-        costIncreasePerLevel = 500
-        prestigeStartingCost = 10700
-    elseif prestige == 8 then
-        costIncreasePerLevel = 600
-        prestigeStartingCost = 15700
-    elseif prestige == 9 then
-        costIncreasePerLevel = 700
-        prestigeStartingCost = 21700
-    elseif prestige == 10 then
-        costIncreasePerLevel = 800
-        prestigeStartingCost = 28700
-    elseif prestige == 11 then
-        costIncreasePerLevel = 900
-        prestigeStartingCost = 36700
-    elseif prestige == 12 then
-        costIncreasePerLevel = 1000
-        prestigeStartingCost = 45700
-    end
-
-    -- Add the accumulated cost for each level within the current prestige
-    for level = 1, currentPoleLevel do
-        -- Base cost starts at 100 and increases by the prestige's level cost increment
-        upgradeCost = prestigeStartingCost + ((level-1) * costIncreasePerLevel)
-    end
-
+    local upgradeCost = players[player].playerPolePrestige.value * 100
     return upgradeCost
 end
 

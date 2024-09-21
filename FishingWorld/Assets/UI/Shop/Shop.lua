@@ -55,6 +55,13 @@ local poleMetas = itemMetaData.pole_metadata
 local baitMetas = itemMetaData.bait_metadata
 local dealMetas = itemMetaData.deals_metadata
 
+local cooldownBarElapsedTime = 0
+local cooldownBarDuration = 3
+local coolDownStartValue = 100
+local coolDownEndValue = 0
+local coolDownCurrentValue = coolDownStartValue
+local _rod_item_upgrade_button_cooldown_fill = nil
+
 local state = 0 -- 0 = Poles, 1 = Bait, 2 = Deals
 
 -- Poles Sorted by Price
@@ -99,17 +106,25 @@ _closeInfoButton:RegisterPressCallback(function()
 end, true, true, true)
 
 function UpgradeRodCallback()
+
   if coolingDown then return end
   coolingDown = true
+  cooldownBarElapsedTime = 0
   Timer.After(3, function()
     coolingDown = false
+    coolDownCurrentValue = coolDownEndValue
   end)
+
   if missingCoinsModalOpen then return end
+  upgradeCost = playerTracker.CalculatePoleUpgradeCost(client.localPlayer)
   -- Check if the player has enough coins to upgrade the rod
   if playerTracker.GetTokens(client.localPlayer) >= upgradeCost then
+    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
     print("UPGRADING ROD FOR " .. upgradeCost .. " coins")
     playerTracker.UpgradePoleRequest()
   else
+    print("player has " .. tostring(playerTracker.GetTokens(client.localPlayer)) .. " coins")
+    print("NOT ENOUGH COINS TO UPGRADE ROD")
     -- Display missing coins modal
     missingCoinsModalOpen = true
     local missingCoinsModal = CreateMissingCoinsModal()
@@ -239,6 +254,9 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   _rod_item_upgrade_button:AddToClassList("rod__item-upgrade-button")
   if not maxedOut then _rod_item_upgrade_button:RegisterPressCallback(UpgradeRodCallback, true, true, true) end
 
+  _buttons_container = VisualElement.new()
+  _buttons_container:AddToClassList("rod__item-upgrade-button__container")
+
   local _button_upper = VisualElement.new()
   _button_upper:AddToClassList("button-upper")
 
@@ -252,7 +270,7 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
   if maxedOut then _rod_item_upgrade_button_label.text = "" end
 
   _button_upper:Add(_rod_item_upgrade_button_label)
-  _rod_item_upgrade_button:Add(_button_upper)
+  _buttons_container:Add(_button_upper)
 
   local _button_lower = VisualElement.new()
   _button_lower:AddToClassList("button-lower")
@@ -273,7 +291,21 @@ function CreateRodItem(rode_level: number, prestive_level: number, rode_progress
 
   _button_lower:Add(_rod_item_upgrade_button_label)
 
-  _rod_item_upgrade_button:Add(_button_lower)
+  _buttons_container:Add(_button_lower)
+
+  _rod_item_upgrade_button_cooldown_fill = VisualElement.new()
+  _rod_item_upgrade_button_cooldown_fill:AddToClassList("rod__item-upgrade-button__cooldown-fill")
+
+  -- This is a test to show the cooldown fill
+  -- When the cooldown start set this "_buttons_container.style.opacity = StyleFloat.new(0)"
+  -- When the cooldown ends set this "_buttons_container.style.opacity = StyleFloat.new(1)"
+  -- Optional: Changing the opacity of the button to hide whats behind the fill
+  _rod_item_upgrade_button_cooldown_fill.style.width = StyleLength.new(Length.Percent(0))
+  _rod_item_upgrade_button_cooldown_fill.style.opacity = StyleFloat.new(.9)
+
+
+  _rod_item_upgrade_button:Add(_buttons_container)
+  _rod_item_upgrade_button:Add(_rod_item_upgrade_button_cooldown_fill)
 
   _rod_item_content:Add(_rod_item_upgrade_button)
   _rod_item:Add(_rod_item_content)
@@ -845,7 +877,6 @@ function self:Start()
     else
       maxedOut = false
     end
-    upgradeCost = polPrstg * 100
     PopulateShop(Poles)
   end)
 
@@ -861,4 +892,16 @@ function self:Start()
   playerTracker.players[client.localPlayer].playerFishingPole.Changed:Connect(function(newPole)
     PopulateShop(Poles)
   end)
+end
+
+function self:Update()
+  if cooldownBarElapsedTime < cooldownBarDuration and coolingDown then
+    cooldownBarElapsedTime = cooldownBarElapsedTime + Time.deltaTime
+    coolDownCurrentValue = Mathf.Lerp(coolDownStartValue, coolDownEndValue, cooldownBarElapsedTime / cooldownBarDuration)
+  else
+    coolDownCurrentValue = coolDownEndValue
+  end
+  if _rod_item_upgrade_button_cooldown_fill ~= nil then
+    _rod_item_upgrade_button_cooldown_fill.style.width = StyleLength.new(Length.Percent(coolDownCurrentValue))
+  end
 end
