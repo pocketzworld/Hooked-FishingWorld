@@ -83,7 +83,7 @@
 }
 
 .world-button.map {
-  top: 120px;
+  top: 175px;
   left: 11px;
 }
 
@@ -171,7 +171,7 @@
   
   overflow: hidden;
   left: 11px;
-  top: 0;
+  top: 55;
   margin-top: -50px;
 
   height: 40px;
@@ -249,7 +249,7 @@
   
   overflow: hidden;
   left: 12px;
-  top: 5px;
+  top: 60px;
 
   -unity-font-definition: var(--font-inter-semi-bold);
 }
@@ -303,7 +303,7 @@
   overflow: hidden;
   left: 11px;
 
-  top: -55px;
+  top: 0px;
 }
 
 .player-level-content {
