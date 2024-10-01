@@ -26,6 +26,7 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public System.Boolean m_testMode = false;
+        [SerializeField] public System.String m_apiEndpoint = "http://a4ed98aeda3824434b7c3f3fec23eb66-40ba9f472381ce71.elb.us-east-1.amazonaws.com";
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -35,6 +36,7 @@ namespace Highrise.Lua.Generated
             return new SerializedPropertyValue[]
             {
                 CreateSerializedProperty(_script.GetPropertyAt(0), m_testMode),
+                CreateSerializedProperty(_script.GetPropertyAt(1), m_apiEndpoint),
             };
         }
     }
