@@ -47,9 +47,9 @@ local utility = require("Utils")
 
 -- Function to calculate Tap Meter Width Modifier based on the player's strength
 function GetHookBarWidth(strength)
-    print("Strength: " .. tostring(strength) .. " Strength Resistance: " .. tostring(StrengthResistance))
-    print("Hook Width: " .. tostring((72 * ((100 + 6.25 * (strength - 1))/100)) / StrengthResistance))
-    return (72 * ((100 + 6.25 * (strength - 1))/100)) / StrengthResistance
+    --print("Strength: " .. tostring(strength) .. " Strength Resistance: " .. tostring(StrengthResistance))
+    --print("Hook Width: " .. tostring((72 * ((100 + 6.25 * (strength - 1))/100)) / StrengthResistance))
+    return (72 * ((100 + 4 * (strength - 1))/100)) / StrengthResistance
 end
 
 -- Function to handle catching the fish
