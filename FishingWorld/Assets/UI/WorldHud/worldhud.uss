@@ -79,12 +79,13 @@
 
 .world-button.dailies {
   top: 180px;
-  right: 11px;
+  left: 11px;
+  display: none;
 }
 
 .world-button.map {
   top: 175px;
-  left: 11px;
+  right: 11px;
 }
 
 .button-icon {
