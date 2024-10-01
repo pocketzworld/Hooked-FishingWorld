@@ -3,11 +3,19 @@
 --!SerializeField
 local testMode: boolean = false
 
+--!SerializeField
+local apiEndpoint: string =
+	"http://a4ed98aeda3824434b7c3f3fec23eb66-40ba9f472381ce71.elb.us-east-1.amazonaws.com"
+
+-- Production:  a046832ac7c9c4561976dd2279e6d8fe-bf434f972f8fb8c5.elb.us-east-1.amazonaws.com
+-- Dev: http://a4ed98aeda3824434b7c3f3fec23eb66-40ba9f472381ce71.elb.us-east-1.amazonaws.com
+
 if not server then
 	return
 end
 
 local PrankModule = require("PrankModule")
+local TicketAPI = require("TicketAPI")
 local PersistentKey = "event_state"
 
 caughtFishWorthPerPlayer = {}
@@ -60,17 +68,14 @@ export type Prank = {
 		itemId: string | nil,
 		player: Player
 	) -> number,
-    CalculateTicketBoost: (
-        self: Prank,
-        _eventStatus: PrankModule.TicketEventUserStatusData
-    ) -> number,
+	CalculateTicketBoost: (self: Prank, _eventStatus: PrankModule.TicketEventUserStatusData) -> number,
 	TryPrank: (
 		self: Prank,
 		player: Player,
 		itemId: string,
 		cb: (data: PrankModule.PrankResponseData | nil, err: string | nil) -> ()
 	) -> (),
-    StartBoost: (
+	StartBoost: (
 		self: Prank,
 		player: Player,
 		itemId: string,
@@ -147,9 +152,18 @@ function Prank:CalculateTicketReward(state: PrankModule.UserPrankState, itemId: 
 
 	local luckyPlusitems = 1 + luckyTokenBoost + itemBoost
 
-	local superBoost =  1.0 + state.eventStatus.boostSuper
+	local superBoost = 1.0 + state.eventStatus.boostSuper
 
-	print("Base: " .. tostring(baseTickets) .. " Streak: " .. tostring(streakBoost) .. " Lucky and Items: " .. tostring(luckyPlusitems) .. " Super: " .. tostring(superBoost))
+	print(
+		"Base: "
+			.. tostring(baseTickets)
+			.. " Streak: "
+			.. tostring(streakBoost)
+			.. " Lucky and Items: "
+			.. tostring(luckyPlusitems)
+			.. " Super: "
+			.. tostring(superBoost)
+	)
 
 	return math.floor(baseTickets * streakBoost * luckyPlusitems * superBoost)
 end
@@ -336,11 +350,7 @@ function Prank:TryPrank(
 	end)
 end
 
-function Prank:StartBoost(
-	player: Player,
-	itemId: string,
-	cb: (err: string | nil) -> ()
-): ()
+function Prank:StartBoost(player: Player, itemId: string, cb: (err: string | nil) -> ()): ()
 	self:QueryStateForPlayer(player, function(data: PrankModule.UserPrankStateData, err: string | nil)
 		if err ~= nil then
 			return cb(err)
@@ -357,48 +367,28 @@ function Prank:StartBoost(
 			return cb(PrankModule.ERR_NOT_ENOUGH_ITEMS)
 		end
 
-        self.provider:ModifyPlayer(
-            player,
-            0,
-			0,
-            0,
-            itemId,
-            function(response: StateModifiedResponse, err: string | nil)
-                return cb(err)
-            end
-        )
-
+		self.provider:ModifyPlayer(player, 0, 0, 0, itemId, function(response: StateModifiedResponse, err: string | nil)
+			return cb(err)
+		end)
 	end)
 end
 
-function Prank:RefillEnergy(
-	player: Player,
-	itemId: string,
-	cb: (err: string | nil) -> ()
-): ()
+function Prank:RefillEnergy(player: Player, itemId: string, cb: (err: string | nil) -> ()): ()
 	self:QueryStateForPlayer(player, function(data: PrankModule.UserPrankStateData, err: string | nil)
 		if err ~= nil then
 			return cb(err)
 		end
 
 		local state: PrankModule.UserPrankState = PrankModule.UserPrankState.New(data)
-		
+
 		if not self:ValidateEnergyRefillItem(state, itemId) then
 			print("Not enough items: " .. itemId)
 			return cb(PrankModule.ERR_NOT_ENOUGH_ITEMS)
 		end
 
-        self.provider:ModifyPlayer(
-            player,
-            0,
-			0,
-            0,
-            itemId,
-            function(response: StateModifiedResponse, err: string | nil)
-                return cb(err)
-            end
-        )
-
+		self.provider:ModifyPlayer(player, 0, 0, 0, itemId, function(response: StateModifiedResponse, err: string | nil)
+			return cb(err)
+		end)
 	end)
 end
 
@@ -482,7 +472,7 @@ function MockEventProvider:NewState()
 		energyNextIncrementIn = 240,
 		energyMax = 15,
 		energyPerSecondIncrease = 240,
-		-- 
+		--
 		eventInventory = {
 			{
 				id = PrankModule.GUARANTEED_ITEM_ID,
@@ -503,21 +493,21 @@ function MockEventProvider:NewState()
 				ownedAmount = 5,
 				text = "7 Energy",
 				subText = "Refill 7 energy",
-				imageUrl = "nil",				
+				imageUrl = "nil",
 			},
 			{
 				id = PrankModule.ENERGY_REFILL_MAX,
 				ownedAmount = 5,
 				text = "Max Energy",
 				subText = "Refill all energy",
-				imageUrl = "nil",				
+				imageUrl = "nil",
 			},
 			{
 				id = PrankModule.STAGE_BONUS_TIME_1,
 				ownedAmount = 5,
 				text = "30% Bonus",
 				subText = "description",
-				imageUrl = "nil",				
+				imageUrl = "nil",
 			},
 			{
 				id = PrankModule.STAGE_BONUS_TIME_2,
@@ -525,7 +515,7 @@ function MockEventProvider:NewState()
 				text = "60% Bonus",
 				subText = "description",
 				imageUrl = "nil",
-			}
+			},
 		},
 	} :: PrankModule.TicketEventUserStatusData
 end
@@ -560,7 +550,11 @@ function MockEventProvider:ModifyPlayer(
 	data.luckyTokens = data.luckyTokens + luckyTokensWon
 
 	if itemToUse == PrankModule.STAGE_BONUS_TIME_1 or itemToUse == PrankModule.STAGE_BONUS_TIME_2 then
-		if itemToUse == PrankModule.STAGE_BONUS_TIME_1 then data.boostSuper =  .6 elseif itemToUse == PrankModule.STAGE_BONUS_TIME_2 then data.boostSuper = .3 end
+		if itemToUse == PrankModule.STAGE_BONUS_TIME_1 then
+			data.boostSuper = 0.6
+		elseif itemToUse == PrankModule.STAGE_BONUS_TIME_2 then
+			data.boostSuper = 0.3
+		end
 	end
 
 	if itemToUse == PrankModule.ENERGY_REFILL_SMALL then
@@ -590,65 +584,7 @@ local _prank: Prank
 if testMode then
 	_prank = Prank.New(MockEventProvider.New())
 else
-	_prank = Prank.New({
-		GetStatusForPlayer = function(
-			_,
-			player: Player,
-			cb: (response: PrankModule.TicketEventUserStatusData | nil, err: any) -> ()
-		)
-			InternalTickets.GetStatusForPlayer(player, function(response: PrankModule.TicketEventUserStatusData, err)
-				if err ~= 0 then
-					print("Error while getting status for player: " .. tostring(err))
-					return cb(nil, PrankModule.ERR_INTERNAL)
-				end
-
-				cb(PrankModule.TicketEventUserStatus.New(response):Serialize(), nil)
-			end)
-		end,
-		ModifyPlayer = function(
-			_,
-			player: Player,
-			energyLost: number,
-			luckyTokensWon: number,
-			ticketsGained: number,
-			itemToUse: string | nil,
-			cb: (response: StateModifiedResponse | nil, err: any) -> ()
-		)
-			local tr = InternalTicketsTransaction.new()
-			if ticketsGained > 0 then
-				tr:GiveTickets(ticketsGained)
-			end
-			--[[
-			if energyLost > 0 then
-				tr:TakeEnergy(energyLost)
-			end
-			--]]
-			if luckyTokensWon > 0 then
-				tr:GiveLuckyTokens(luckyTokensWon)
-			end
-			if itemToUse ~= nil then
-				tr:TakeEventItem(itemToUse, 1)
-			end
-
-			InternalTickets.ChangeInventory(tr, player, function(
-				response: {
-					status: PrankModule.TicketEventUserStatusData,
-					ranksAdvanced: number,
-				},
-				err
-			)
-				if err ~= 0 then
-					print("Error while modifying player: " .. tostring(err))
-					return cb(nil, PrankModule.ERR_INTERNAL)
-				end
-
-				cb({
-					status = PrankModule.TicketEventUserStatus.New(response.status):Serialize(),
-					ranksAdvanced = response.ranksAdvanced,
-				}, nil)
-			end)
-		end,
-	})
+	_prank = Prank.New(TicketAPI.New(apiEndpoint))
 end
 
 -- 30% boost after 6 consecutive successful pranks
@@ -685,8 +621,8 @@ function self:ServerAwake()
 			PrankModule.EVENTS.PrankResponse:FireClient(player, data, err)
 		end)
 	end)
-    
-    PrankModule.EVENTS.RequestSuperBoost:Connect(function(player: Player, itemId: string | nil)
+
+	PrankModule.EVENTS.RequestSuperBoost:Connect(function(player: Player, itemId: string | nil)
 		local userId = player.user.id
 		if instance.pendingRequests[userId] then
 			PrankModule.EVENTS.SuperBoostResponse:FireClient(player, nil, PrankModule.ERR_PENDING_REQUEST)
@@ -717,8 +653,7 @@ function self:ServerAwake()
 	PrankModule.EVENTS.ResetStreakRequest:Connect(function(player)
 		instance.playerStates[player.user.id] = {
 			streak = 0,
-			PrankModule.EVENTS.ResetStreakResponse:FireClient(player)
+			PrankModule.EVENTS.ResetStreakResponse:FireClient(player),
 		}
 	end)
-
 end

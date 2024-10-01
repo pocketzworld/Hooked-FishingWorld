@@ -92,7 +92,6 @@ export type PrankResponse = {
 	ranksAdvanced: number,
 	ticketsGained: number,
 	wasSuccessful: boolean,
-
 	state: UserPrankState,
 }
 
@@ -192,7 +191,7 @@ function TicketEventUserStatus:__tostring(): string
 		table.insert(items, TabLines(tostring(item)))
 	end
 
-	itemStr = TabLines(table.concat(items, ", "))
+	local itemStr = TabLines(table.concat(items, ", "))
 
 	return string.format(
 		"TicketEventUserStatus(\n\tboostLuckyTokens: %f, \n\tboostItems: %f, \n\tboostSuper: %f, \n\tticketsTotal: %d, \n\trank: %d, \n\tenergyNextIncrementIn: %d, \n\tenergyPerSecondIncrease: %d, \n\tenergyMax: %d, \n\tluckyTokens: %d, \n\tenergyAmount: %d, \n\teventInventory: [\n%s\n\t]\n)",
@@ -260,7 +259,6 @@ function PrankResponse.New(data: PrankResponseData): PrankResponse
 		ranksAdvanced = data.ranksAdvanced,
 		ticketsGained = data.ticketsGained,
 		wasSuccessful = data.wasSuccessful,
-
 		state = UserPrankState.New(data.state),
 	} :: PrankResponse
 	setmetatable(self, PrankResponse)
