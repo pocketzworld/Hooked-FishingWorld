@@ -139,8 +139,8 @@ local function GiveReward(player, reward)
 end
 
 local function SavePlayerClaimData(player : Player, lastClaimTimestamp : number | nil, streak : number | nil)
-    if lastClaimTimestamp then Storage.SetPlayerValue(player, "LastClaimTimestamp", lastClaimTimestamp, function(err) if err == 0 then print("player claim time saved") else print(err) end end) end
-    if streak then Storage.SetPlayerValue(player, "ClaimStreak", streak, function(err) if err == 0 then print("player claim streak saved") else print(err) end end) end
+    if lastClaimTimestamp then Storage.SetPlayerValue(player, "LastClaimTimestamp", lastClaimTimestamp, function(err) if err == 0 then print(err) end end) end
+    if streak then Storage.SetPlayerValue(player, "ClaimStreak", streak, function(err) if err ~= 0 then print(err) end end) end
 end
 
 local function LoadPlayerClaimData(player, callback)

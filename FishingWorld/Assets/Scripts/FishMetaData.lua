@@ -1267,7 +1267,7 @@ function rollRarity(luck, cap)
         else
             rarity.adjustedChance = 0  -- Set chances to 0 for rarities above the cap
         end
-        print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
+        --print("Adjusted chance for " .. rarity.name .. ": " .. tostring(rarity.adjustedChance))
     end
 
     -- Normalize adjusted chances to ensure the total remains 100 for allowed rarities
@@ -1281,7 +1281,7 @@ function rollRarity(luck, cap)
 
     -- Roll a random number between 0 and 100 to pick a rarity
     local roll = math.random() * 100
-    print("Roll: " .. tostring(roll))
+    --print("Roll: " .. tostring(roll))
     local cumulative = 0
 
     for i, rarity in ipairs(rarities) do

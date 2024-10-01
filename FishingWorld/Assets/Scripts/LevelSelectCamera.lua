@@ -68,7 +68,7 @@ function self:Start()
 
             playerCamera.gameObject:GetComponent(Camera).enabled = true
             teleportManager.Teleport(gameObj.transform.position)
-            print("Teleporting to " .. gameObj.name)
+            --print("Teleporting to " .. gameObj.name)
             inTrans = true
 
             playerCamera.gameObject:SetActive(true)
