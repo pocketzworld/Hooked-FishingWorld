@@ -28,7 +28,7 @@ function TrackPlayers(game, characterCallback)
             Score = IntValue.new("PlayerScore" .. tostring(player.id), 0),
             isFishing = BoolValue.new("isFishing" .. tostring(player.id), false),
             fishingPoint = Vector3Value.new("fishingPoint" .. tostring(player.id), Vector3.new(0,0,0)),
-            playerInventory = TableValue.new("PlayerInventory" .. tostring(player.id)),
+            playerInventory = TableValue.new("PlayerInventory" .. tostring(player.id), {}),
             Tokens = IntValue.new("Tokens" .. tostring(player.id), 0),
             playerFishRecords = TableValue.new("PlayerFishRecords" .. tostring(player.id), {}),
             playerFishingPole = StringValue.new("PlayerFishingPole" .. tostring(player.id), "fishing_pole_1"),

@@ -10,13 +10,13 @@ local playerTracker = require("PlayerTracker")
 local itemMetaData = require("ItemMetaData")
 
 RewardSchedule = TableValue.new("RewardSchedule", {
-    day_1 = {item_name = "sadworm_bait", item_amount = 1},
-    day_2 = {item_name = "sadworm_bait", item_amount = 2},
-    day_3 = {item_name = "sadworm_bait", item_amount = 3},
-    day_4 = {item_name = "sadworm_bait", item_amount = 4},
-    day_5 = {item_name = "sadworm_bait", item_amount = 5},
-    day_6 = {item_name = "sadworm_bait", item_amount = 6},
-    day_7 = {item_name = "sadworm_bait", item_amount = 7}
+    day_1 = {item_name = "sadworm_bait", item_amount = 5},
+    day_2 = {item_name = "corn_bait", item_amount = 10},
+    day_3 = {item_name = "plastic_bait", item_amount = 5},
+    day_4 = {item_name = "Tokens", item_amount = 1000},
+    day_5 = {item_name = "grub_bait", item_amount = 10},
+    day_6 = {item_name = "toast_bait", item_amount = 5},
+    day_7 = {item_name = "Tokens", item_amount = 2200}
 }
 )
 

@@ -94,6 +94,7 @@ function self:ServerAwake()
         playerTracker.GetPlayerTokensServer(player)
     end)
     scene.PlayerJoined:Connect(function(scene, player)
+        print("Player Joined: " .. player.name .. " Getting Items")
         GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
     end)
 
