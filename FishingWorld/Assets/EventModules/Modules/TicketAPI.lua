@@ -112,8 +112,6 @@ function TicketAPI:GetData(cb: (response: EventData | nil, err: any) -> ()): ()
 
 	req:SetHeader("Content-Type", "application/json")
 
-	req:SetHeader("x-world-id", "66bf8479a69108d97800051e") --- FOR TEST IN STUDIO
-
 	HTTPClient.Request(req, function(res, err)
 		if err == HTTPError.None then
 			cb(res:GetJSONBody(), nil)
@@ -129,11 +127,8 @@ function TicketAPI:GetStatusForPlayer(player: Player, cb: (response: EventUserSt
 	req:SetHeader("Content-Type", "application/json")
 	req:SetQueryParameter("user_id", player.user.id)
 
-	req:SetHeader("x-world-id", "66bf8479a69108d97800051e") --- FOR TEST IN STUDIO
-
 	HTTPClient.Request(req, function(res, err)
 		if err == HTTPError.None then
-			print(tostring(res:GetBody()))
 			local json = res:GetJSONBody()
 			cb(self:DecodeStatus(json), nil)
 		else
@@ -160,8 +155,6 @@ function TicketAPI:ModifyPlayer(
 			amount = 1,
 		})
 	end
-
-	req:SetHeader("x-world-id", "66bf8479a69108d97800051e") --- FOR TEST IN STUDIO
 
 	req:SetJSONBody({
 		user_id = player.user.id,
