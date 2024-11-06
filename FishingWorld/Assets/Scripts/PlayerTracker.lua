@@ -705,7 +705,7 @@ function GetPlayerTokensServer(player)
     --print("Player " .. player.name .. " has " .. tostring(players[player].Tokens.value) .. " tokens")
 end
 function IncrementTokensServer(player, amount)
-    ----print("Incrementing tokens for player " .. player.name .. " by " .. tostring(amount))
+    print("Incrementing tokens for player " .. player.name .. " by " .. tostring(amount))
     if amount < 0 then
         -- TAKE TOKENS
         local transaction = InventoryTransaction.new()
@@ -716,7 +716,7 @@ function IncrementTokensServer(player, amount)
         -- GIVE TOKENS
         local transaction = InventoryTransaction.new()
         :GivePlayer(player, "Tokens", math.abs(amount))
-        Inventory.CommitTransaction(transaction)
+        Inventory.CommitTransaction(transaction, function(transactionId: string, error: InventoryError) print(tostring(error)) end)
         playMoneySoundEvent:FireClient(player)
 
     else

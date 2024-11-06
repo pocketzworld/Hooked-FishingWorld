@@ -88,10 +88,15 @@ function self:ServerAwake()
         local transaction = InventoryTransaction.new()
         :TakePlayer(player, "Tokens", price)
         :GivePlayer(player, id, quantity)
-        Inventory.CommitTransaction(transaction)
 
-        GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
-        playerTracker.GetPlayerTokensServer(player)
+        Inventory.CommitTransaction(transaction, function(transactionId: string, error: InventoryError)
+            if error ~= InventoryError.None then
+                print("Transaction Error: " .. tostring(error))
+            end
+            GetAllPlayerItems_From_API(player, 100, nil, {}, UpdatePlayerInventory)
+            playerTracker.GetPlayerTokensServer(player)
+        end)
+
     end)
     scene.PlayerJoined:Connect(function(scene, player)
         print("Player Joined: " .. player.name .. " Getting Items")

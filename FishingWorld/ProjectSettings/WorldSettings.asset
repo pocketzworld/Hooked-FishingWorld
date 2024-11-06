@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 2
-  _publishedId: 
+  _publishedId: 66b4db57c8ea189e1e73be24
   _worldPrefab: {fileID: 7673265052841940933, guid: 2b1ed6c47db99534fa47a4a4bceeae1a,
     type: 3}
   _scenePrefab: {fileID: 2096779056499917272, guid: 8225ff7f6c565df418d7d593c0eb5f38,
@@ -26,3 +26,5 @@ MonoBehaviour:
     LoadingImage: {fileID: 2800000, guid: 6f9235fd7c31aea498918ab44c186b79, type: 3}
   _hideVirtualPlayerScenes: 0
   _defaultPlayerProfileId: 0
+  _useRemoteServer: 0
+  _remoteServerUserIds: []
