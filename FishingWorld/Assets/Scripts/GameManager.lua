@@ -44,6 +44,7 @@ local playerInventory = require("PlayerInventoryManager")
 local itemMetaData = require("ItemMetaData")
 local fishMetaData = require("FishMetaData")
 local utility = require("Utils")
+local missionsModule = require("MissionsModule")
 
 -- Function to calculate Tap Meter Width Modifier based on the player's strength
 function GetHookBarWidth(strength)
@@ -296,6 +297,7 @@ function self:ServerAwake()
             playerInventory.GivePlayerItem(player, requestedFishID, 1) 
             playerTracker.IncrementTokensServer(player, fishMetaData.GetFishData(requestedFishID).Worth)
             playerTracker.AwardXP(player, fishMetaData.GetFishExperianceValue(requestedFishID) * playerTracker.GetPlayerXPModifier(player))
+            missionsModule.IncrementMission("hooked_catch_fish", { player.user.id }, 1)
         end
 
 
