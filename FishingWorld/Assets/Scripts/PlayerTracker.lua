@@ -482,7 +482,9 @@ end
 -- Function to award XP to the player
 function AwardXP(player, xpAmount)
     local playerInfo = players[player]
-    
+
+    xpAmount = xpAmount * 1.5 -- Apply XP modifier (1.5x for now, can be adjusted based on player pole prestige)
+
     -- Add the XP to the player's current XP
     playerInfo.playerXP.value = playerInfo.playerXP.value + xpAmount
     print(player.name .. " has been awarded " .. tostring(xpAmount) .. " XP!")

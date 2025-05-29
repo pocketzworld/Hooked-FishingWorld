@@ -155,22 +155,22 @@ local bait_images = {
 
 -- Table for bait worth (value)
 local bait_worth = {
-    ["sadworm_bait"] = 100,
-    ["corn_bait"] = 200,
-    ["plastic_bait"] = 300,
-    ["maggot_bait"] = 400,
-    ["grub_bait"] = 500,
-    ["toast_bait"] = 600,
-    ["bacon_bait"] = 700,
-    ["broccoli_bait"] = 800,
-    ["chicken_bait"] = 900,
-    ["egg_bait"] = 1000,
-    ["hotdog_bait"] = 1200,
-    ["pizza_bait"] = 1400,
-    ["shrimp_bait"] = 1600,
-    ["squid_bait"] = 1800,
-    ["steak_bait"] = 2000,
-    ["donut_bait"] = 2200
+    ["sadworm_bait"]  =  20,  -- 100 / 5
+    ["corn_bait"]     =  40,  -- 200 / 5
+    ["plastic_bait"]  =  60,  -- 300 / 5
+    ["maggot_bait"]   =  80,  -- 400 / 5
+    ["grub_bait"]     = 100,  -- 500 / 5
+    ["toast_bait"]    = 120,  -- 600 / 5
+    ["bacon_bait"]    = 140,  -- 700 / 5
+    ["broccoli_bait"] = 160,  -- 800 / 5
+    ["chicken_bait"]  = 180,  -- 900 / 5
+    ["egg_bait"]      = 200,  -- 1000 / 5
+    ["hotdog_bait"]   = 240,  -- 1200 / 5
+    ["pizza_bait"]    = 280,  -- 1400 / 5
+    ["shrimp_bait"]   = 320,  -- 1600 / 5
+    ["squid_bait"]    = 360,  -- 1800 / 5
+    ["steak_bait"]    = 400,  -- 2000 / 5
+    ["donut_bait"]    = 440,  -- 2200 / 5
 }
 
 -- Table for bait rarity
