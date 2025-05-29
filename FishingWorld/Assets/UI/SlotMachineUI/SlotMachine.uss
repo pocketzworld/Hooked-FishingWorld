@@ -1,0 +1,224 @@
+:root {
+    --color-red: #fd4f4b;
+    --color-yellow: #f1d800;
+    --color-blue: #00b9f1;
+    --color-green: #00d345;
+    --color-purple: #834bc2;
+    --color-white: #f2f7f9;
+    --color-pink: #ff8c8c;
+    --color-pink-dark: #e07574;
+
+    --font-muesou-900: url("project://database/Assets/UI/Fonts/MuseoSansRounded1000 SDF.asset");
+}
+
+.slot-machine {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+
+    color: var(--color-white);
+    font-size: 48px;
+    -unity-font-definition: var(--font-muesou-900);
+    -unity-text-align: middle-center;
+}
+
+.slot-machine-container {
+    position: absolute;
+    width: 320px;
+    height: 360px;
+
+    align-self: center;
+    top: 50%;
+    left: 50%;
+    translate: -50%;
+}
+
+#player_wallet_container {
+    position: absolute;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    top: -50px;
+}
+
+#wallet_icon {
+    width:  42px;
+    height: 42px;
+    background-image: url("project://database/Assets/UI/Icons/icon_chips.png");
+}
+
+#player_wallet_text {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.powerup-container {
+    position: absolute;
+
+    flex-direction: row;
+    justify-content: space-around;
+
+    width: 150px;
+    height: 60px;
+
+    left: 5px;
+    bottom: 10px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.powerup-slot {
+    width:  56px;
+    height: 56px;
+    background-color: var(--color-purple);
+
+    border-radius: 10px;
+
+    border-color:rgb(99, 0, 197);
+    border-width: 2px;
+    border-bottom-width: 4px;
+}
+
+#bingo_button{
+    position: absolute;
+
+    width: 120px;
+    height: 60px;
+    background-color: var(--color-purple);
+
+    margin:0;
+    padding:0;
+
+    bottom: 10px;
+    right: 5px;
+
+    border-radius: 10px;
+
+    font-size: 28px;
+    color: var(--color-white);
+
+    border-color:rgb(99, 0, 197);
+    border-width: 2px;
+    border-bottom-width: 4px;
+}
+#spin_text {
+    margin: 0;
+    padding: 0;
+}
+#cost_container{
+    font-size: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+#cost_icon{
+    width:  28px;
+    height: 28px;
+    background-image: url("project://database/Assets/UI/Icons/icon_chips.png");
+}
+#cost_text{
+}
+
+.powerup{
+    width:  46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 10px;
+
+    align-self: center;
+    position: absolute;
+}
+
+.powerup-free_daub{
+    background-image: url("project://database/Assets/UI/Icons/power_up.png");
+}
+
+#Slots_Container {
+    position: absolute;
+    width:  100%;
+    height: 250px;
+
+    padding: 5px;
+
+    overflow: hidden;
+    border-radius: 20px;
+    flex-direction: row;
+
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: rgba(143, 32, 253, 0.5);
+
+    background-image: url("project://database/Assets/UI/Icons/Slot_bg.png");
+}
+
+#center {
+    position: absolute;
+    width:  10px;
+    height: 10px;
+    left: 50%;
+    top: 50%;
+    translate: -251% -250%;
+}
+
+.slot__content {
+    flex-direction: column;
+
+    width: 100%;
+    height: 1640px;
+
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.Slot__Item {
+    width: 100%;
+    height: 82px;
+
+    scale: .8;
+    opacity: 0.8;
+
+    transition-property: opacity, scale;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.Slot__Item--Main {
+    scale: 1;
+    opacity: 1;
+}
+
+#click_off {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+
+    top: -50%;
+    left: -50%;
+
+    background-color:rgba(7, 1, 37, .8);
+
+}
+
+#exit_label {
+    position: absolute;
+    width: 100%;
+
+    font-size: 24px;
+    color: var(--color-white);
+
+    -unity-font-definition: var(--font-muesou-900);
+    -unity-text-align: middle-center;
+
+    bottom: 10px;
+}
+
+.locked-button {
+    opacity: 0.75;
+}

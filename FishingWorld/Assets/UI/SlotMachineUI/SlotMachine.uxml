@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="slot-machine">
+    <VisualElement name="click_off"/>
+    <VisualElement class="slot-machine-container" name="slot_machine_container">
+
+      <VisualElement name="player_wallet_container">
+        <VisualElement name="wallet_icon"/>
+        <Label name="player_wallet_text" text="0"/>
+      </VisualElement>
+
+      <VisualElement name="Slots_Container">
+        <VisualElement name="wheel_one" class="slot__content"/>
+        <VisualElement name="wheel_two" class="slot__content"/>
+        <VisualElement name="wheel_three" class="slot__content"/>
+        <VisualElement name="center"/>
+      </VisualElement>
+
+      <VisualElement name="powerup_slots" class="powerup-container">
+        <VisualElement class="powerup-slot" name="powerup_one"/>
+        <VisualElement class="powerup-slot" name="powerup_two" />
+      </VisualElement>
+
+      <VisualElement name="bingo_button">
+      
+        <Label name="spin_text" text="SPIN!"/>
+        <VisualElement name="cost_container">
+          <VisualElement name="cost_icon"/>
+          <Label name="cost_text" text="100"/>
+        </VisualElement>
+
+      </VisualElement>
+
+    </VisualElement>
+
+    <Label name="exit_label" text="tap to exit"/>
+
+  </hr:UILuaView>
+
+</UXML>
