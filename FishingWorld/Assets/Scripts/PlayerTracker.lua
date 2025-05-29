@@ -1,5 +1,8 @@
 --!Type(Module)
 
+--!SerializeField
+local playerWorldFishPrefab : GameObject = nil
+
 local clientJoinRequets = Event.new("ClientJoinRequest")
 
 local ServerLeaderboard = TableValue.new("ServerLeaderboard")
@@ -78,6 +81,10 @@ function self:ClientAwake()
     function OnCharacterInstantiate(playerinfo)
         local player = playerinfo.player
         local character = player.character
+
+        local _newPlayerWorldFish = GameObject.Instantiate(playerWorldFishPrefab)
+        _newPlayerWorldFish.transform.parent = character.gameObject.transform
+        _newPlayerWorldFish.name = "WorldFish_" .. tostring(player.user.id)
 
         -- Local player score update
         playerinfo.Score.Changed:Connect(function(score, oldVal)

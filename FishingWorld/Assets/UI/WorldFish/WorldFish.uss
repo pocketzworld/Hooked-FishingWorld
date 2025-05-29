@@ -1,0 +1,9 @@
+.world-fish {
+    width: 100%;
+    height: 100%;
+}
+
+#fish_image {
+    width: 100%;
+    height: 100%;
+}

@@ -18,13 +18,32 @@ MonoBehaviour:
     Name: Wooden Bench
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/665903686e9f2ad62c40e98c/18fcbb57550_0.jpg
     AdditionalAssetGUIDs: []
+    IsBundle: 0
   - Guid: ab5a0568d2a8dbf43976d9e2c640a4fc
     StoreId: 662697d2486f5fbcfabe6613
     Name: Hosta 03
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/662697d2486f5fbcfabe6613/18f06c1c3e8_0.jpg
     AdditionalAssetGUIDs: []
+    IsBundle: 0
   - Guid: dd54b740a8c7c7d42bb371d168163877
     StoreId: 66d9d1e500f32319adeff71b
     Name: Club Void Galaxy Speaker
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/60da890faa873b0a6b20555c/66d9d1e500f32319adeff71b/thumbnail.png
     AdditionalAssetGUIDs: []
+    IsBundle: 0
+  - Guid: 3ceab48c95daa604688c3d970e7a2720
+    StoreId: 67835a6d3d114c80248f7a1b
+    Name: Simple Billboard
+    ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/6761f149a8efd664e85455fb/67835a6d3d114c80248f7a1b/thumbnail.png
+    AdditionalAssetGUIDs:
+    - 3ceab48c95daa604688c3d970e7a2720
+    - 98ea02232fcd05e4d90dc97a38bec87e
+    - 2c930ed92c1876542bf9d92c841775b6
+    - 7e92c7455334f6a4d8b209612dd07037
+    - 7d42ee9db5d295544b5d6017c3dbe761
+    - 23b2ac6b851124842804dccff72b5212
+    - f5100994572dd7c46b630f6847797d26
+    - dc44662d34c936145bc53fd418183303
+    - 3338d8f7991ea674ea9ced9766be9481
+    - c1733ae99a96f4f4b865e21368dbd6b2
+    IsBundle: 0

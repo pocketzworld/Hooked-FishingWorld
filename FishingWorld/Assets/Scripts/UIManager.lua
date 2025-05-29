@@ -20,11 +20,16 @@ local PlayerCardObject : GameObject = nil
 --!SerializeField
 local islandCamera : GameObject = nil
 
+playerDisplayFishRequest = Event.new("PlayerDisplayFishRequest")
+playerDisplayFishResponse = Event.new("PlayerDisplayFishResponse")
+
 -- Required modules
 local Utils = require("Utils")
 local GameManager = require("GameManager")
 local PlayerTracker = require("PlayerTracker")
 local AudioManager = require("AudioManager")
+local fishMetaData = require("FishMetaData")
+local fishMetaTable = fishMetaData.fish_metadata
 
 -- UI scripts
 FishingUIScript = nil
@@ -243,8 +248,28 @@ function ShowFishPopup(fishID: string, size, rarity, description: string, image:
     Utils.ActivateObject(RewardPopupObject)
 end
 
+function ShowPlayerFishWorld(player, fish, size)
+    print(player.character.gameObject.transform:GetChild(3).gameObject.name)
+    local playerFishQuad = player.character.gameObject.transform:GetChild(3).gameObject.transform:GetChild(0).gameObject
+    local playerFishAnimator = playerFishQuad:GetComponent(Animator)
+    local playerFishRenderer = player.character.gameObject.transform:GetChild(3).gameObject.transform:GetChild(0):GetComponent(Renderer)
+    playerFishRenderer.material:SetTexture("_BaseMap", fishMetaTable[fish].FishImage)
+    playerFishAnimator:SetTrigger("ShowFish")
+
+end
+
 --- Initializes the UI scripts on client awake
 function self:ClientAwake()
     WorldHUDScript = WorldHudObject:GetComponent(worldhud)
     FishingUIScript = FishingHudObject:GetComponent(FishingHud)
+
+    playerDisplayFishResponse:Connect(ShowPlayerFishWorld)
+end
+
+
+
+function self:ServerAwake()
+    playerDisplayFishRequest:Connect(function(player, fish, size)
+        playerDisplayFishResponse:FireAllClients(player, fish, size)
+    end)
 end
