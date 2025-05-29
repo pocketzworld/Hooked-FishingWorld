@@ -17,24 +17,28 @@ MonoBehaviour:
     StoreId: 665903686e9f2ad62c40e98c
     Name: Wooden Bench
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/665903686e9f2ad62c40e98c/18fcbb57550_0.jpg
+    AdditionalImageUrls: []
     AdditionalAssetGUIDs: []
     IsBundle: 0
   - Guid: ab5a0568d2a8dbf43976d9e2c640a4fc
     StoreId: 662697d2486f5fbcfabe6613
     Name: Hosta 03
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/662697d2486f5fbcfabe6613/18f06c1c3e8_0.jpg
+    AdditionalImageUrls: []
     AdditionalAssetGUIDs: []
     IsBundle: 0
   - Guid: dd54b740a8c7c7d42bb371d168163877
     StoreId: 66d9d1e500f32319adeff71b
     Name: Club Void Galaxy Speaker
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/60da890faa873b0a6b20555c/66d9d1e500f32319adeff71b/thumbnail.png
+    AdditionalImageUrls: []
     AdditionalAssetGUIDs: []
     IsBundle: 0
   - Guid: 3ceab48c95daa604688c3d970e7a2720
     StoreId: 67835a6d3d114c80248f7a1b
     Name: Simple Billboard
     ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/6761f149a8efd664e85455fb/67835a6d3d114c80248f7a1b/thumbnail.png
+    AdditionalImageUrls: []
     AdditionalAssetGUIDs:
     - 3ceab48c95daa604688c3d970e7a2720
     - 98ea02232fcd05e4d90dc97a38bec87e
@@ -46,4 +50,16 @@ MonoBehaviour:
     - dc44662d34c936145bc53fd418183303
     - 3338d8f7991ea674ea9ced9766be9481
     - c1733ae99a96f4f4b865e21368dbd6b2
+    IsBundle: 0
+  - Guid: 71fad4e2517f71b488d197ae2b14fe20
+    StoreId: 66269a65486f5fbcfabe662c
+    Name: Rocks 03
+    ThumbnailUrl: https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/66269a65486f5fbcfabe662c/18f06cdcdf0_0.jpg
+    AdditionalImageUrls:
+    - https://d4v5j9dz6t9fz.cloudfront.net/web_uploads/world_builder_assets/647622d2106a74bac609d8ea/66269a65486f5fbcfabe662c/18f06cdbe50_0.jpg
+    AdditionalAssetGUIDs:
+    - 71fad4e2517f71b488d197ae2b14fe20
+    - 53bd6566115bdbd44948f3a0f59dfd73
+    - 7cad33aafac861c45ac43bd7b6274dd4
+    - 5f34ab98f76b64b46a21be8918d4691c
     IsBundle: 0

@@ -198,7 +198,7 @@ end
 
 function MovedToWater(point : Vector3, water : GameObject)
     local _player2DLocation = client.localPlayer.character.transform.position
-	_player2DLocation.y = 0
+	_player2DLocation.y = point.y
     if Vector3.Distance(point, _player2DLocation) > 24 then return end
     -- Get the water Biome and Player Bait
     local _waterType = water:GetComponent(WaterType)
