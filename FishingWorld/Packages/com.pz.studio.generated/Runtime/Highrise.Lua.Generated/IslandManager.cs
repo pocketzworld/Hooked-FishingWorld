@@ -27,7 +27,7 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public System.Collections.Generic.List<UnityEngine.GameObject> m_IslandPoints = default;
-        [SerializeField] public System.Collections.Generic.List<System.Double> m_IslandLevelReqs = default;
+        [SerializeField] public System.Collections.Generic.List<UnityEngine.Texture> m_IslandLevelReqs = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {

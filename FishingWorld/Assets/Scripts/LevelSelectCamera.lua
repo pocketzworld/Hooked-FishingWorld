@@ -25,8 +25,7 @@ local StartPos = nil
 local StartRot = nil
 
 function CheckPlayerlevelReqs(req : number)
-    local playerLevel = playerTracker.GetPlayerLevel()
-    return playerLevel >= req
+    return true
 end
 
 function self:Start()
@@ -44,10 +43,12 @@ function self:Start()
 
     for i, gameObj in ipairs(IslandPoints) do
 
-        gameObj.transform:GetChild(0).gameObject:GetComponent(IslandLevel).SetText(IslandLevelReqs[i])
+        gameObj.transform:GetChild(0).gameObject:GetComponent(IslandLevel).SetTexture(IslandLevelReqs[i])
 
         local tapHandler = gameObj:GetComponent(TapHandler)
         tapHandler.Tapped:Connect(function()
+
+            print("Tapped on " .. gameObj.name)
 
             if CheckPlayerlevelReqs(IslandLevelReqs[i]) == false then
                 print("Player level is too low to teleport to " .. gameObj.name .. ". Required level: " .. IslandLevelReqs[i])

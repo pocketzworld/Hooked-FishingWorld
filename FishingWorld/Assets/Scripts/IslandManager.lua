@@ -3,7 +3,7 @@
 --!SerializeField
 local IslandPoints : {GameObject} = nil
 --!SerializeField
-local IslandLevelReqs : {number} = nil
+local IslandLevelReqs : {Texture} = nil
 
 function GetIslandPoints()
     return IslandPoints
