@@ -112,6 +112,18 @@ local FishBiomes = {
     ["yellow_watchman"] = {"Any"},
     ["bubble_fish"] = {"Any"},
     ["rainbow_fish"] = {"crystal"},
+    ["garnetfish"] = {"crystal"},
+    ["amethyststream"] = {"crystal"},
+    ["aquaripple"] = {"crystal"},
+    ["diamondblink"] = {"crystal"},
+    ["emeraldfin"] = {"crystal"},
+    ["pearlglow"] = {"crystal"},
+    ["rubyflame"] = {"crystal"},
+    ["peridotglimmer"] = {"crystal"},
+    ["sapphirine"] = {"crystal"},
+    ["opalflare"] = {"crystal"},
+    ["topazflare"] = {"crystal"},
+    ["turquoisewave"] = {"crystal"},
 }
 
 local FishNames = {
@@ -202,6 +214,18 @@ local FishNames = {
     ["yellow_watchman"] = "Yellow Watchman",
     ["bubble_fish"] = "Bubble Fish",
     ["rainbow_fish"] = "Rainbow Fish",
+    ["garnetfish"] = "Garnetfish",
+    ["amethyststream"] = "Amethyststream",
+    ["aquaripple"] = "Aquaripple",
+    ["diamondblink"] = "Diamondblink",
+    ["emeraldfin"] = "Emeraldfin",
+    ["pearlglow"] = "Pearlglow",
+    ["rubyflame"] = "Rubyflame",
+    ["peridotglimmer"] = "Peridotglimmer",
+    ["sapphirine"] = "Sapphirine",
+    ["opalflare"] = "Opalflare",
+    ["topazflare"] = "Topazflare",
+    ["turquoisewave"] = "Turquoisewave",
 }
 
 local FishRarity = {
@@ -292,6 +316,18 @@ local FishRarity = {
     ["yellow_watchman"] = "Mythical",
     ["bubble_fish"] = "Legendary",
     ["rainbow_fish"] = "Mythical",
+    ["garnetfish"] = "Epic",
+    ["amethyststream"] = "Epic",
+    ["aquaripple"] = "Epic",
+    ["diamondblink"] = "Epic",
+    ["emeraldfin"] = "Epic",
+    ["pearlglow"] = "Epic",
+    ["rubyflame"] = "Epic",
+    ["peridotglimmer"] = "Epic",
+    ["sapphirine"] = "Epic",
+    ["opalflare"] = "Epic",
+    ["topazflare"] = "Epic",
+    ["turquoisewave"] = "Epic",
 }
 
 local FishWorth = {
@@ -382,7 +418,22 @@ local FishWorth = {
     ["yellow_watchman"] = 500,
     ["bubble_fish"] = 250,
     ["rainbow_fish"] = 1000,
+
+    -- Crystal biome fish
+    ["garnetfish"] = 150,
+    ["amethyststream"] = 150,
+    ["aquaripple"] = 150,
+    ["diamondblink"] = 150,
+    ["emeraldfin"] = 150,
+    ["pearlglow"] = 150,
+    ["rubyflame"] = 150,
+    ["peridotglimmer"] = 150,
+    ["sapphirine"] = 150,
+    ["opalflare"] = 150,
+    ["topazflare"] = 150,
+    ["turquoisewave"] = 150,
 }
+
 
 local FishQuestID = {
     ["black_crappie"] = "Q2001",
@@ -562,6 +613,31 @@ local FishDescriptions = {
     ["yellow_watchman"] = "A rare and elusive deep sea fish known for kepping an eye out.",
     ["bubble_fish"] = "A whimsical fish that blows bubbles and spreads joy wherever it swims!",
     ["rainbow_fish"] = "A vibrant and colorful fish that brings a splash of joy to the ocean!",
+    ["garnetfish"] = "Garnetfish",
+    ["amethyststream"] = "Amethyststream",
+    ["aquaripple"] = "Aquaripple",
+    ["diamondblink"] = "Diamondblink",
+    ["emeraldfin"] = "Emeraldfin",
+    ["pearlglow"] = "Pearlglow",
+    ["rubyflame"] = "Rubyflame",
+    ["peridotglimmer"] = "Peridotglimmer",
+    ["sapphirine"] = "Sapphirine",
+    ["opalflare"] = "Opalflare",
+    ["topazflare"] = "Topazflare",
+    ["turquoisewave"] = "Turquoisewave",
+    ["garnetfish"] = "Radiating a fiery red glow, the Garnetfish blazes through crystal waters like a living ember!",
+    ["amethyststream"] = "A mystical swimmer with sparkling purple scales, the Amethyststream glides like a dream!",
+    ["aquaripple"] = "Dancing through the currents, the Aquaripple leaves behind waves of serene shimmer!",
+    ["diamondblink"] = "With dazzling flashes like lightning in the depths, the Diamondblink is the deep’s precious flicker!",
+    ["emeraldfin"] = "This vibrant green beauty swims with elegant sways, painting the water with nature’s glow!",
+    ["pearlglow"] = "Soft and radiant, the Pearlglow illuminates the dark with its moonlight shimmer!",
+    ["rubyflame"] = "Bold and brilliant, the Rubyflame streaks through the crystal caverns like a comet of passion!",
+    ["peridotglimmer"] = "The Peridotglimmer sparkles with earthy charm, a rare gem among aquatic royalty!",
+    ["sapphirine"] = "Cool as the twilight sky, the Sapphirine brings calm and beauty to every crystalline ripple!",
+    ["opalflare"] = "Flashing every color in the spectrum, the Opalflare is a living firework beneath the waves!",
+    ["topazflare"] = "Golden and proud, the Topazflare swims like the sun itself dipped beneath the surface!",
+    ["turquoisewave"] = "A tranquil tide in fish form, the Turquoisewave flows like a gemstone caught in motion!",
+
 }
 
 local FishSizeRange = {
@@ -652,6 +728,18 @@ local FishSizeRange = {
     ["yellow_watchman"] = {min = 20, max = 40},
     ["bubble_fish"] = {min = 5, max = 10},
     ["rainbow_fish"] = {min = 10, max = 30},
+    ["garnetfish"] = {min = 10, max = 20},
+    ["amethyststream"] = {min = 8, max = 18},
+    ["aquaripple"] = {min = 7, max = 17},
+    ["diamondblink"] = {min = 9, max = 19},
+    ["emeraldfin"] = {min = 10, max = 20},
+    ["pearlglow"] = {min = 6, max = 15},
+    ["rubyflame"] = {min = 10, max = 20},
+    ["peridotglimmer"] = {min = 8, max = 16},
+    ["sapphirine"] = {min = 9, max = 18},
+    ["opalflare"] = {min = 10, max = 20},
+    ["topazflare"] = {min = 9, max = 19},
+    ["turquoisewave"] = {min = 8, max = 17},
 }
 
 local FishSpecialAttributes = {
@@ -742,6 +830,19 @@ local FishSpecialAttributes = {
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
     ["bubble_fish"] = "Blows bubbles that can distract other fish.",
     ["rainbow_fish"] = "A vibrant fish that brings a splash of joy to the ocean.",
+    ["garnetfish"] = "Hard to catch, glows faintly in deep waters.",
+    ["amethyststream"] = "Rare spawn, boosts lure attraction for a short time.",
+    ["aquaripple"] = "Quick and agile, leaves a shimmer trail.",
+    ["diamondblink"] = "Hard to find, gives luck bonus.",
+    ["emeraldfin"] = "Quick and agile, blends with crystal kelp.",
+    ["pearlglow"] = "Rare spawn, glows softly to light up nearby fish.",
+    ["rubyflame"] = "Emits short bursts of light, hard to catch.",
+    ["peridotglimmer"] = "Hard to catch, attracts nearby small fish.",
+    ["sapphirine"] = "Rare spawn, increases nearby fish spawn chance temporarily.",
+    ["opalflare"] = "Hard to find, gives luck bonus.",
+    ["topazflare"] = "Rare spawn, glows brighter during daytime.",
+    ["turquoisewave"] = "Quick and agile, sometimes stuns small prey fish.",
+
 }
 
 local HookSensitivity = {
@@ -832,6 +933,18 @@ local HookSensitivity = {
     ["yellow_watchman"] = 2.5,
     ["bubble_fish"] = 1.5,
     ["rainbow_fish"] = 1.2,
+    ["garnetfish"] = 1.5,
+    ["amethyststream"] = 1.5,
+    ["aquaripple"] = 1,
+    ["diamondblink"] = 1.5,
+    ["emeraldfin"] = 1,
+    ["pearlglow"] = 1.5,
+    ["rubyflame"] = 1.5,
+    ["peridotglimmer"] = 1,
+    ["sapphirine"] = 1.5,
+    ["opalflare"] = 1,
+    ["topazflare"] = 1.5,
+    ["turquoisewave"] = 1,
 }
 
 local FishImage = {
@@ -922,6 +1035,18 @@ local FishImage = {
     ["yellow_watchman"] = fishTextures[85],
     ["bubble_fish"] = fishTextures[86],
     ["rainbow_fish"] = fishTextures[87],
+    ["garnetfish"] = fishTextures[88],
+    ["amethyststream"] = fishTextures[89],
+    ["aquaripple"] = fishTextures[90],
+    ["diamondblink"] = fishTextures[91],
+    ["emeraldfin"] = fishTextures[92],
+    ["pearlglow"] = fishTextures[93],
+    ["rubyflame"] = fishTextures[94],
+    ["peridotglimmer"] = fishTextures[95],
+    ["sapphirine"] = fishTextures[96],
+    ["opalflare"] = fishTextures[97],
+    ["topazflare"] = fishTextures[98],
+    ["turquoisewave"] = fishTextures[99],
 }
 
 local FishBaits = {
@@ -1012,6 +1137,18 @@ local FishBaits = {
     ["yellow_watchman"] = {"donut_bait"},
     ["bubble_fish"] = {"hotdog_bait"},
     ["rainbow_fish"] = {"donut_bait"},
+    ["garnetfish"] = {"shrimp_bait"},
+    ["amethyststream"] = {"donut_bait"},
+    ["aquaripple"] = {"toast_bait"},
+    ["diamondblink"] = {"steak_bait"},
+    ["emeraldfin"] = {"broccoli_bait"},
+    ["pearlglow"] = {"egg_bait"},
+    ["rubyflame"] = {"hotdog_bait"},
+    ["peridotglimmer"] = {"plastic_bait"},
+    ["sapphirine"] = {"maggot_bait"},
+    ["opalflare"] = {"pizza_bait"},
+    ["topazflare"] = {"corn_bait"},
+    ["turquoisewave"] = {"bacon_bait"},
 }
 
 local RarityReelResistances = {
@@ -1121,6 +1258,19 @@ fish_keys = {
     "squid",              -- Legendary
     "king_seahorse",      -- Legendary
     "bubble_fish",       -- Legendary
+    -- Crystal Biome – Epic
+    "garnetfish",
+    "amethyststream",
+    "aquaripple",
+    "diamondblink",
+    "emeraldfin",
+    "pearlglow",
+    "rubyflame",
+    "peridotglimmer",
+    "sapphirine",
+    "opalflare",
+    "topazflare",
+    "turquoisewave",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1255,7 +1405,6 @@ local function CheckBait(fishName, Bait)
 end
 
 function GetRandomFish(Biome, Bait, MaxRarity)
-
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "none"
@@ -1303,7 +1452,6 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     local randomFish = fishList[math.random(1, #fishList)]
     --print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
     return randomFish
-
 end
 
 
