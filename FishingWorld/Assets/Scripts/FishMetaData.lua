@@ -199,6 +199,7 @@ local FishBiomes = {
     ["walley_fish"] = {"Any"},
     ["albino_catfish"] = {"Any"},
     ["yellow_watchman"] = {"Any"},
+    ["bubble_fish"] = {"Any"},
 }
 
 local FishNames = {
@@ -287,6 +288,7 @@ local FishNames = {
     ["walley_fish"] = "Walleye",
     ["albino_catfish"] = "Albino Catfish",
     ["yellow_watchman"] = "Yellow Watchman",
+    ["bubble_fish"] = "Bubble Fish",
 }
 
 local FishRarity = {
@@ -375,6 +377,7 @@ local FishRarity = {
     ["walley_fish"] = "Uncommon",
     ["albino_catfish"] = "Rare",
     ["yellow_watchman"] = "Mythical",
+    ["bubble_fish"] = "Legendary",
 }
 
 local FishWorth = {
@@ -463,6 +466,7 @@ local FishWorth = {
     ["walley_fish"] = 15,
     ["albino_catfish"] = 30,
     ["yellow_watchman"] = 500,
+    ["bubble_fish"] = 250,
 }
 
 local FishQuestID = {
@@ -551,6 +555,7 @@ local FishQuestID = {
     ["walley_fish"] = "Q3015",
     ["albino_catfish"] = "Q4018",
     ["yellow_watchman"] = "Q6017",
+    ["bubble_fish"] = "Q5021",
 }
 
 local FishDescriptions = {
@@ -639,6 +644,7 @@ local FishDescriptions = {
     ["walley_fish"] = "The oceans stealthy stalker, blending in and making every hunt a success!",
     ["albino_catfish"] = "The ocean’s elusive gem, standing out with a pristine, otherworldly shine!",
     ["yellow_watchman"] = "A rare and elusive deep sea fish known for kepping an eye out.",
+    ["bubble_fish"] = "A whimsical fish that blows bubbles and spreads joy wherever it swims!",
 }
 
 local FishSizeRange = {
@@ -727,6 +733,7 @@ local FishSizeRange = {
     ["walley_fish"] = {min = 15, max = 30},
     ["albino_catfish"] = {min = 10, max = 30},
     ["yellow_watchman"] = {min = 20, max = 40},
+    ["bubble_fish"] = {min = 5, max = 10},
 }
 
 local FishSpecialAttributes = {
@@ -815,6 +822,7 @@ local FishSpecialAttributes = {
     ["walley_fish"] = "Strong and difficult to catch.",
     ["albino_catfish"] = "Hard to catch.",
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
+    ["bubble_fish"] = "Blows bubbles that can distract other fish.",
 }
 
 local HookSensitivity = {
@@ -903,6 +911,7 @@ local HookSensitivity = {
     ["walley_fish"] = 1.5,
     ["albino_catfish"] = 1.5,
     ["yellow_watchman"] = 2.5,
+    ["bubble_fish"] = 1.5,
 }
 
 local FishImage = {
@@ -991,6 +1000,7 @@ local FishImage = {
     ["walley_fish"] = fishTextures[83],
     ["albino_catfish"] = fishTextures[84],
     ["yellow_watchman"] = fishTextures[85],
+    ["bubble_fish"] = fishTextures[86],
 }
 
 local FishBaits = {
@@ -1079,6 +1089,7 @@ local FishBaits = {
     ["walley_fish"] = {"corn_bait"},
     ["albino_catfish"] = {"bacon_bait"},
     ["yellow_watchman"] = {"donut_bait"},
+    ["bubble_fish"] = {"hotdog_bait"},
 }
 
 local RarityReelResistances = {
@@ -1187,6 +1198,7 @@ fish_keys = {
     "royal_lake_fish",    -- Legendary
     "squid",              -- Legendary
     "king_seahorse",      -- Legendary
+    "bubble_fish",       -- Legendary
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1320,6 +1332,7 @@ local function CheckBait(fishName, Bait)
 end
 
 function GetRandomFish(Biome, Bait, MaxRarity)
+
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "none"
@@ -1367,6 +1380,7 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     local randomFish = fishList[math.random(1, #fishList)]
     --print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
     return randomFish
+
 end
 
 
