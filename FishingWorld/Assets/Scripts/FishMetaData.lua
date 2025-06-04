@@ -24,95 +24,6 @@ Q60xx - Mythical
 
 -- Separated tables for each attribute, keyed by fish ID
 
---[[ Empty FishTable
-local EmptyFishDataTable = {
-    ["black_crappie"] = 1,
-    ["yellow_perch"] = 1,
-    ["blue_gill"] = 1,
-    ["pumpkinseed"] = 1,
-    ["boot_fish"] = 1,
-    ["can_fish"] = 1,
-    ["long_mouth_bass"] = 1,
-    ["salmon"] = 1,
-    ["crystal_fairy_fish"] = 1,
-    ["dragon_fish"] = 1,
-    ["unicorn_fish"] = 1,
-    ["anchovi_fish"] = 1,
-    ["angler_fish"] = 1,
-    ["arowana_fish"] = 1,
-    ["barred_knife_fish"] = 1,
-    ["beach_shark_fish"] = 1,
-    ["begginers_luck_fish"] = 1,
-    ["betta_fish"] = 1,
-    ["black_ghostshark"] = 1,
-    ["black_drum_fish"] = 1,
-    ["blue_whale"] = 1,
-    ["blue_tang"] = 1,
-    ["alley_cat_fish"] = 1,
-    ["catfish"] = 1,
-    ["chum_salmon_fish"] = 1,
-    ["clown_fish"] = 1,
-    ["coho_salmon_fish"] = 1,
-    ["common_carp_fish"] = 1,
-    ["crab"] = 1,
-    ["dolphin"] = 1,
-    ["rasta_drum_fish"] = 1,
-    ["dumbo_octopus"] = 1,
-    ["electric_eel"] = 1,
-    ["flounder_fish"] = 1,
-    ["tourist_fish"] = 1,
-    ["gold_fish"] = 1,
-    ["goliath_tiger_fish"] = 1,
-    ["jelly_fish"] = 1,
-    ["jogger_fish"] = 1,
-    ["killer_whale"] = 1,
-    ["king_catfish"] = 1,
-    ["king_mackerel"] = 1,
-    ["king_salmon"] = 1,
-    ["king_seahorse"] = 1,
-    ["koi_fish_samurai"] = 1,
-    ["koi_fish_large"] = 1,
-    ["large_stripped_bass"] = 1,
-    ["lion_fish"] = 1,
-    ["freindly_local_fish"] = 1,
-    ["mouse_fish"] = 1,
-    ["newborn_salmon"] = 1,
-    ["nomadic_trout"] = 1,
-    ["northern_pike"] = 1,
-    ["octopus"] = 1,
-    ["oil_eater_fish"] = 1,
-    ["omnipotent_squid"] = 1,
-    ["pearl_perch_fish"] = 1,
-    ["peasant_fish"] = 1,
-    ["pink_salmon"] = 1,
-    ["piranha"] = 1,
-    ["red_snapper_fish"] = 1,
-    ["rock_bass_fish"] = 1,
-    ["royal_lake_fish"] = 1,
-    ["salt_trader_fish"] = 1,
-    ["saw_fish"] = 1,
-    ["seahorse"] = 1,
-    ["servant_fish"] = 1,
-    ["small_common_trout"] = 1,
-    ["rainbow_trout"] = 1,
-    ["spotted_bass_fish"] = 1,
-    ["squid"] = 1,
-    ["squirrel_fish"] = 1,
-    ["star_fish"] = 1,
-    ["sting_ray"] = 1,
-    ["sun_fish"] = 1,
-    ["surffer_fish"] = 1,
-    ["sword_fish"] = 1,
-    ["tiger_pistol_shrimp"] = 1,
-    ["transparent_head_fish"] = 1,
-    ["buisness_fish"] = 1,
-    ["derp_fish"] = 1,
-    ["king_fish"] = 1,
-    ["walley_fish"] = 1,
-    ["albino_catfish"] = 1,
-    ["yellow_watchman"] = 1,
-}]]
-
 local FishBiomes = {
     ["black_crappie"] = {"Any"},
     ["yellow_perch"] = {"Any"},
@@ -200,6 +111,7 @@ local FishBiomes = {
     ["albino_catfish"] = {"Any"},
     ["yellow_watchman"] = {"Any"},
     ["bubble_fish"] = {"Any"},
+    ["rainbow_fish"] = {"crystal"},
 }
 
 local FishNames = {
@@ -289,6 +201,7 @@ local FishNames = {
     ["albino_catfish"] = "Albino Catfish",
     ["yellow_watchman"] = "Yellow Watchman",
     ["bubble_fish"] = "Bubble Fish",
+    ["rainbow_fish"] = "Rainbow Fish",
 }
 
 local FishRarity = {
@@ -378,6 +291,7 @@ local FishRarity = {
     ["albino_catfish"] = "Rare",
     ["yellow_watchman"] = "Mythical",
     ["bubble_fish"] = "Legendary",
+    ["rainbow_fish"] = "Mythical",
 }
 
 local FishWorth = {
@@ -467,6 +381,7 @@ local FishWorth = {
     ["albino_catfish"] = 30,
     ["yellow_watchman"] = 500,
     ["bubble_fish"] = 250,
+    ["rainbow_fish"] = 1000,
 }
 
 local FishQuestID = {
@@ -556,6 +471,7 @@ local FishQuestID = {
     ["albino_catfish"] = "Q4018",
     ["yellow_watchman"] = "Q6017",
     ["bubble_fish"] = "Q5021",
+    ["rainbow_fish"] = "Q6018",
 }
 
 local FishDescriptions = {
@@ -645,6 +561,7 @@ local FishDescriptions = {
     ["albino_catfish"] = "The ocean’s elusive gem, standing out with a pristine, otherworldly shine!",
     ["yellow_watchman"] = "A rare and elusive deep sea fish known for kepping an eye out.",
     ["bubble_fish"] = "A whimsical fish that blows bubbles and spreads joy wherever it swims!",
+    ["rainbow_fish"] = "A vibrant and colorful fish that brings a splash of joy to the ocean!",
 }
 
 local FishSizeRange = {
@@ -734,6 +651,7 @@ local FishSizeRange = {
     ["albino_catfish"] = {min = 10, max = 30},
     ["yellow_watchman"] = {min = 20, max = 40},
     ["bubble_fish"] = {min = 5, max = 10},
+    ["rainbow_fish"] = {min = 10, max = 30},
 }
 
 local FishSpecialAttributes = {
@@ -823,6 +741,7 @@ local FishSpecialAttributes = {
     ["albino_catfish"] = "Hard to catch.",
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
     ["bubble_fish"] = "Blows bubbles that can distract other fish.",
+    ["rainbow_fish"] = "A vibrant fish that brings a splash of joy to the ocean.",
 }
 
 local HookSensitivity = {
@@ -912,6 +831,7 @@ local HookSensitivity = {
     ["albino_catfish"] = 1.5,
     ["yellow_watchman"] = 2.5,
     ["bubble_fish"] = 1.5,
+    ["rainbow_fish"] = 1.2,
 }
 
 local FishImage = {
@@ -1001,6 +921,7 @@ local FishImage = {
     ["albino_catfish"] = fishTextures[84],
     ["yellow_watchman"] = fishTextures[85],
     ["bubble_fish"] = fishTextures[86],
+    ["rainbow_fish"] = fishTextures[87],
 }
 
 local FishBaits = {
@@ -1090,6 +1011,7 @@ local FishBaits = {
     ["albino_catfish"] = {"bacon_bait"},
     ["yellow_watchman"] = {"donut_bait"},
     ["bubble_fish"] = {"hotdog_bait"},
+    ["rainbow_fish"] = {"donut_bait"},
 }
 
 local RarityReelResistances = {
@@ -1216,7 +1138,8 @@ fish_keys = {
     "omnipotent_squid",   -- Mythical
     "blue_whale",         -- Mythical
     "koi_fish_samurai",   -- Mythical
-    "salt_trader_fish"   -- Mythical
+    "salt_trader_fish",   -- Mythical
+    "rainbow_fish"
 }
 
 -- Create an entry for each fish pulling data from the tables above
