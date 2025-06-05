@@ -124,6 +124,14 @@ local FishBiomes = {
     ["opalflare"] = {"crystal"},
     ["topazflare"] = {"crystal"},
     ["turquoisewave"] = {"crystal"},
+    ["LouYu"] = {"crystal"},
+    ["Obsidianfin"] = {"crystal"},
+    ["solidGoldFish"] = {"crystal"},
+    ["solidSilverFish"] = {"crystal"},
+    ["tounniFish"] = {"crystal"},
+    ["bubbleGumFish"] = {"crystal"},
+    ["DreamweaverBeta"] = {"crystal"},
+    ["crystalJellyFish"] = {"crystal"},
 }
 
 local FishNames = {
@@ -226,6 +234,14 @@ local FishNames = {
     ["opalflare"] = "Opalflare",
     ["topazflare"] = "Topazflare",
     ["turquoisewave"] = "Turquoisewave",
+    ["LouYu"] = "Lou Yu",
+    ["Obsidianfin"] = "Obsidianfin",
+    ["solidGoldFish"] = "Midas Fin",
+    ["solidSilverFish"] = "Sterling Fish",
+    ["tounniFish"] = "Glimmergill",
+    ["bubbleGumFish"] = "Bubblegum Fish",
+    ["DreamweaverBeta"] = "Dreamweaver Beta",
+    ["crystalJellyFish"] = "Iridesceus",
 }
 
 local FishRarity = {
@@ -328,6 +344,14 @@ local FishRarity = {
     ["opalflare"] = "Epic",
     ["topazflare"] = "Epic",
     ["turquoisewave"] = "Epic",
+    ["LouYu"] = "Rare",
+    ["Obsidianfin"] = "Rare",
+    ["solidGoldFish"] = "Rare",
+    ["solidSilverFish"] = "Rare",
+    ["tounniFish"] = "Rare",
+    ["bubbleGumFish"] = "Legendary",
+    ["DreamweaverBeta"] = "Legendary",
+    ["crystalJellyFish"] = "Mythical",
 }
 
 local FishWorth = {
@@ -417,7 +441,7 @@ local FishWorth = {
     ["albino_catfish"] = 30,
     ["yellow_watchman"] = 500,
     ["bubble_fish"] = 250,
-    ["rainbow_fish"] = 1000,
+    ["rainbow_fish"] = 800,
 
     -- Crystal biome fish
     ["garnetfish"] = 150,
@@ -432,97 +456,15 @@ local FishWorth = {
     ["opalflare"] = 150,
     ["topazflare"] = 150,
     ["turquoisewave"] = 150,
-}
 
-
-local FishQuestID = {
-    ["black_crappie"] = "Q2001",
-    ["yellow_perch"] = "Q2002",
-    ["blue_gill"] = "Q2003",
-    ["pumpkinseed"] = "Q2004",
-    ["boot_fish"] = "Q2005",
-    ["can_fish"] = "Q2006",
-    ["long_mouth_bass"] = "Q3001",
-    ["salmon"] = "Q3002",
-    ["crystal_fairy_fish"] = "Q5001",
-    ["dragon_fish"] = "Q6001",
-    ["unicorn_fish"] = "Q6002",
-    ["anchovi_fish"] = "Q2007",
-    ["angler_fish"] = "Q5002",
-    ["arowana_fish"] = "Q3003",
-    ["barred_knife_fish"] = "Q4002",
-    ["beach_shark_fish"] = "Q5003",
-    ["begginers_luck_fish"] = "Q5004",
-    ["betta_fish"] = "Q4003",
-    ["black_ghostshark"] = "Q6003",
-    ["black_drum_fish"] = "Q3004",
-    ["blue_whale"] = "Q6004",
-    ["blue_tang"] = "Q4004",
-    ["alley_cat_fish"] = "Q3005",
-    ["catfish"] = "Q2008",
-    ["chum_salmon_fish"] = "Q4005",
-    ["clown_fish"] = "Q2009",
-    ["coho_salmon_fish"] = "Q3006",
-    ["common_carp_fish"] = "Q2010",
-    ["crab"] = "Q2011",
-    ["dolphin"] = "Q5005",
-    ["rasta_drum_fish"] = "Q6005",
-    ["dumbo_octopus"] = "Q4006",
-    ["electric_eel"] = "Q3007",
-    ["flounder_fish"] = "Q2012",
-    ["tourist_fish"] = "Q5006",
-    ["gold_fish"] = "Q4007",
-    ["goliath_tiger_fish"] = "Q3008",
-    ["jelly_fish"] = "Q6006",
-    ["jogger_fish"] = "Q2013",
-    ["killer_whale"] = "Q5007",
-    ["king_catfish"] = "Q5008",
-    ["king_mackerel"] = "Q5009",
-    ["king_salmon"] = "Q5010",
-    ["king_seahorse"] = "Q5011",
-    ["koi_fish_samurai"] = "Q6007",
-    ["koi_fish_large"] = "Q4008",
-    ["large_stripped_bass"] = "Q3009",
-    ["lion_fish"] = "Q6008",
-    ["freindly_local_fish"] = "Q5012",
-    ["mouse_fish"] = "Q4009",
-    ["newborn_salmon"] = "Q4010",
-    ["nomadic_trout"] = "Q5013",
-    ["northern_pike"] = "Q3010",
-    ["octopus"] = "Q6010",
-    ["oil_eater_fish"] = "Q4011",
-    ["omnipotent_squid"] = "Q6011",
-    ["pearl_perch_fish"] = "Q2014",
-    ["peasant_fish"] = "Q6012",
-    ["pink_salmon"] = "Q3011",
-    ["piranha"] = "Q5014",
-    ["red_snapper_fish"] = "Q4012",
-    ["rock_bass_fish"] = "Q2015",
-    ["royal_lake_fish"] = "Q5015",
-    ["salt_trader_fish"] = "Q6013",
-    ["saw_fish"] = "Q4013",
-    ["seahorse"] = "Q4014",
-    ["servant_fish"] = "Q3012",
-    ["small_common_trout"] = "Q2016",
-    ["rainbow_trout"] = "Q4015",
-    ["spotted_bass_fish"] = "Q3013",
-    ["squid"] = "Q5016",
-    ["squirrel_fish"] = "Q3014",
-    ["star_fish"] = "Q6014",
-    ["sting_ray"] = "Q4016",
-    ["sun_fish"] = "Q2017",
-    ["surffer_fish"] = "Q5017",
-    ["sword_fish"] = "Q6015",
-    ["tiger_pistol_shrimp"] = "Q5018",
-    ["transparent_head_fish"] = "Q6016",
-    ["buisness_fish"] = "Q5019",
-    ["derp_fish"] = "Q4017",
-    ["king_fish"] = "Q5020",
-    ["walley_fish"] = "Q3015",
-    ["albino_catfish"] = "Q4018",
-    ["yellow_watchman"] = "Q6017",
-    ["bubble_fish"] = "Q5021",
-    ["rainbow_fish"] = "Q6018",
+    ["LouYu"] = 50,
+    ["Obsidianfin"] = 50,
+    ["solidGoldFish"] = 50,
+    ["solidSilverFish"] = 50,
+    ["tounniFish"] = 50,
+    ["bubbleGumFish"] = 125,
+    ["DreamweaverBeta"] = 150,
+    ["crystalJellyFish"] = 1000,
 }
 
 local FishDescriptions = {
@@ -637,7 +579,14 @@ local FishDescriptions = {
     ["opalflare"] = "Flashing every color in the spectrum, the Opalflare is a living firework beneath the waves!",
     ["topazflare"] = "Golden and proud, the Topazflare swims like the sun itself dipped beneath the surface!",
     ["turquoisewave"] = "A tranquil tide in fish form, the Turquoisewave flows like a gemstone caught in motion!",
-
+    ["LouYu"] = "A mysterious fish with ancient scales etched in forgotten symbols.",
+    ["Obsidianfin"] = "This sleek fish glimmers with volcanic glass armor.",
+    ["solidGoldFish"] = "A majestic creature made entirely of gleaming gold.",
+    ["solidSilverFish"] = "Shimmering like moonlight, it glides silently through the water.",
+    ["tounniFish"] = "Wrapped in vibrant silks, this fish is elegance in motion.",
+    ["bubbleGumFish"] = "Bright, stretchy, and sweet-smelling—like a sugary puff underwater!",
+    ["DreamweaverBeta"] = "Glides like a dream, leaving traces of iridescent mist.",
+    ["crystalJellyFish"] = "A radiant jellyfish made of refracting crystal light.",
 }
 
 local FishSizeRange = {
@@ -740,6 +689,14 @@ local FishSizeRange = {
     ["opalflare"] = {min = 10, max = 20},
     ["topazflare"] = {min = 9, max = 19},
     ["turquoisewave"] = {min = 8, max = 17},
+    ["LouYu"] = {min = 10, max = 20},
+    ["Obsidianfin"] = {min = 10, max = 20},
+    ["solidGoldFish"] = {min = 10, max = 20},
+    ["solidSilverFish"] = {min = 10, max = 20},
+    ["tounniFish"] = {min = 10, max = 20},
+    ["bubbleGumFish"] = {min = 10, max = 20},
+    ["DreamweaverBeta"] = {min = 10, max = 20},
+    ["crystalJellyFish"] = {min = 10, max = 20},
 }
 
 local FishSpecialAttributes = {
@@ -842,7 +799,14 @@ local FishSpecialAttributes = {
     ["opalflare"] = "Hard to find, gives luck bonus.",
     ["topazflare"] = "Rare spawn, glows brighter during daytime.",
     ["turquoisewave"] = "Quick and agile, sometimes stuns small prey fish.",
-
+    ["LouYu"] = "A mysterious fish with ancient scales etched in forgotten symbols.",
+    ["Obsidianfin"] = "Tough scales make it difficult to catch.",
+    ["solidGoldFish"] = "Rare spawn, shines bright when hooked.",
+    ["solidSilverFish"] = "Slippery and fast, but worth the chase.",
+    ["tounniFish"] = "Quick and agile, dances near bait.",
+    ["bubbleGumFish"] = "Can inflate and bounce off hooks.",
+    ["DreamweaverBeta"] = "Leaves a glowing trail.",
+    ["crystalJellyFish"] = "Rarest jelly fish in the sea!",
 }
 
 local HookSensitivity = {
@@ -945,6 +909,14 @@ local HookSensitivity = {
     ["opalflare"] = 1,
     ["topazflare"] = 1.5,
     ["turquoisewave"] = 1,
+    ["LouYu"] = 1.2,
+    ["Obsidianfin"] = 1.2,
+    ["solidGoldFish"] = 1.2,
+    ["solidSilverFish"] = 1.2,
+    ["tounniFish"] = 1.2,
+    ["bubbleGumFish"] = 1.5,
+    ["DreamweaverBeta"] = 1.5,
+    ["crystalJellyFish"] = 2,
 }
 
 local FishImage = {
@@ -1047,6 +1019,14 @@ local FishImage = {
     ["opalflare"] = fishTextures[97],
     ["topazflare"] = fishTextures[98],
     ["turquoisewave"] = fishTextures[99],
+    ["LouYu"] = fishTextures[100],
+    ["Obsidianfin"] = fishTextures[101],
+    ["solidGoldFish"] = fishTextures[102],
+    ["solidSilverFish"] = fishTextures[103],
+    ["tounniFish"] = fishTextures[104],
+    ["bubbleGumFish"] = fishTextures[105],
+    ["DreamweaverBeta"] = fishTextures[106],
+    ["crystalJellyFish"] = fishTextures[107],
 }
 
 local FishBaits = {
@@ -1149,6 +1129,14 @@ local FishBaits = {
     ["opalflare"] = {"pizza_bait"},
     ["topazflare"] = {"corn_bait"},
     ["turquoisewave"] = {"bacon_bait"},
+    ["LouYu"] = {"shrimp_bait"},
+    ["Obsidianfin"] = {"steak_bait"},
+    ["solidGoldFish"] = {"donut_bait"},
+    ["solidSilverFish"] = {"toast_bait"},
+    ["tounniFish"] = {"broccoli_bait"},
+    ["bubbleGumFish"] = {"pizza_bait"},
+    ["DreamweaverBeta"] = {"egg_bait"},
+    ["crystalJellyFish"] = {"hotdog_bait"},
 }
 
 local RarityReelResistances = {
@@ -1233,6 +1221,11 @@ fish_keys = {
     "red_snapper_fish",   -- Rare
     "blue_tang",          -- Rare
     "chum_salmon_fish",   -- Rare
+    "LouYu",            -- Rare
+    "Obsidianfin",      -- Rare
+    "solidGoldFish",    -- Rare
+    "solidSilverFish",  -- Rare
+    "tounniFish",       -- Rare
 
     -- Epic
     "dolphin",            -- Epic
@@ -1272,6 +1265,10 @@ fish_keys = {
     "topazflare",
     "turquoisewave",
 
+    -- Legendary
+    "bubbleGumFish",    -- Rare
+    "DreamweaverBeta",  -- Rare
+
     -- Mythical
     "dragon_fish",        -- Mythical
     "jelly_fish",         -- Mythical
@@ -1289,7 +1286,8 @@ fish_keys = {
     "blue_whale",         -- Mythical
     "koi_fish_samurai",   -- Mythical
     "salt_trader_fish",   -- Mythical
-    "rainbow_fish"
+    "rainbow_fish",       -- Mythical
+    "crystalJellyFish",   -- Mythical
 }
 
 -- Create an entry for each fish pulling data from the tables above
@@ -1304,7 +1302,7 @@ for _, fishKey in ipairs(fish_keys) do
         HookSensitivity = HookSensitivity[fishKey],
         FishImage = FishImage[fishKey],
         Worth = FishWorth[fishKey],
-        Quest_ID = FishQuestID[fishKey],
+        Quest_ID = "nil",
         SizeRange = FishSizeRange[fishKey],
         Special_Attribute = FishSpecialAttributes[fishKey]
     }
@@ -1405,6 +1403,7 @@ local function CheckBait(fishName, Bait)
 end
 
 function GetRandomFish(Biome, Bait, MaxRarity)
+
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "none"
@@ -1452,6 +1451,7 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     local randomFish = fishList[math.random(1, #fishList)]
     --print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
     return randomFish
+
 end
 
 
