@@ -155,6 +155,28 @@ local FishBiomes = {
     ["spinebloom"] = {"coral"},
     ["stellafin"] = {"coral"},
     ["bettraquon"] = {"coral"},
+    --winter
+    ["brineleaf"] = {"winter"},
+    ["crescentide"] = {"winter"},
+    ["crystalfade"] = {"winter"},
+    ["deepgloom"] = {"winter"},
+    ["dusktide"] = {"winter"},
+    ["frothling"] = {"winter"},
+    ["frostchar"] = {"winter"},
+    ["frostqueen"] = {"winter"},
+    ["frostscale"] = {"winter"},
+    ["glimmerscale"] = {"winter"},
+    ["glacierrun"] = {"winter"},
+    ["lunawing"] = {"winter"},
+    ["moonspine"] = {"winter"},
+    ["mythicrest"] = {"winter"},
+    ["rimefang"] = {"winter"},
+    ["shiverfin"] = {"winter"},
+    ["silvertang"] = {"winter"},
+    ["snowidol"] = {"winter"},
+    ["tundrawave"] = {"winter"},
+    ["whispergill"] = {"winter"},
+
 }
 
 local FishNames = {
@@ -288,6 +310,27 @@ local FishNames = {
     ["spinebloom"] = "Spine Bloom",
     ["stellafin"] = "Stella Fin",
     ["bettraquon"] = "Bettraquon",
+    --winter
+    ["brineleaf"] = "Brineleaf",
+    ["crescentide"] = "Crescentide",
+    ["crystalfade"] = "Crystalfade",
+    ["deepgloom"] = "Deepgloom",
+    ["dusktide"] = "Dusktide",
+    ["frothling"] = "Frothling",
+    ["frostchar"] = "Frostchar",
+    ["frostqueen"] = "Frostqueen",
+    ["frostscale"] = "Frostscale",
+    ["glimmerscale"] = "Glimmerscale",
+    ["glacierrun"] = "Glacierrun",
+    ["lunawing"] = "Lunawing",
+    ["moonspine"] = "Moonspine",
+    ["mythicrest"] = "Mythicrest",
+    ["rimefang"] = "Rimefang",
+    ["shiverfin"] = "Shiverfin",
+    ["silvertang"] = "Silvertang",
+    ["snowidol"] = "Snowidol",
+    ["tundrawave"] = "Tundrawave",
+    ["whispergill"] = "Whispergill",
 }
 
 local FishRarity = {
@@ -421,6 +464,27 @@ local FishRarity = {
     ["spinebloom"] = "Rare",
     ["stellafin"] = "Rare",
     ["bettraquon"] = "Epic",
+    --winter
+    ["brineleaf"] = "Mythical",
+    ["crescentide"] = "Legendary",
+    ["crystalfade"] = "Epic",
+    ["deepgloom"] = "Rare",
+    ["dusktide"] = "Epic",
+    ["frothling"] = "Rare",
+    ["frostchar"] = "Mythical",
+    ["frostqueen"] = "Rare",
+    ["frostscale"] = "Rare",
+    ["glimmerscale"] = "Rare",
+    ["glacierrun"] = "Rare",
+    ["lunawing"] = "Rare",
+    ["moonspine"] = "Epic",
+    ["mythicrest"] = "Mythical",
+    ["rimefang"] = "Rare",
+    ["shiverfin"] = "Legendary",
+    ["silvertang"] = "Epic",
+    ["snowidol"] = "Epic",
+    ["tundrawave"] = "Legendary",
+    ["whispergill"] = "Rare",
 }
 
 local FishWorth = {
@@ -558,6 +622,29 @@ local FishWorth = {
     ["spinebloom"] = 30,
     ["stellafin"] = 30,
     ["bettraquon"] = 80,
+
+    --winter
+    ["brineleaf"] = 510,      -- Mythical
+    ["crescentide"] = 150,    -- Legendary
+    ["crystalfade"] = 80,     -- Epic
+    ["deepgloom"] = 30,       -- Rare
+    ["dusktide"] = 90,        -- Epic
+    ["frothling"] = 40,       -- Rare
+    ["frostchar"] = 500,      -- Mythical
+    ["frostqueen"] = 20,      -- Rare
+    ["frostscale"] = 30,      -- Rare
+    ["glimmerscale"] = 40,    -- Rare
+    ["glacierrun"] = 20,      -- Rare
+    ["lunawing"] = 30,        -- Rare
+    ["moonspine"] = 70,       -- Epic
+    ["mythicrest"] = 490,     -- Mythical
+    ["rimefang"] = 30,        -- Rare
+    ["shiverfin"] = 160,      -- Legendary
+    ["silvertang"] = 80,      -- Epic
+    ["snowidol"] = 90,        -- Epic
+    ["tundrawave"] = 140,     -- Legendary
+    ["whispergill"] = 30,     -- Rare
+
 }
 
 local FishDescriptions = {
@@ -703,6 +790,27 @@ local FishDescriptions = {
     ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
     ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
     ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
+    --winter
+    ["brineleaf"] = "A rare seadragon adorned with icy fronds that drift like kelp in Arctic currents.",
+    ["crescentide"] = "Glows faintly beneath the moon, its shape cutting soft arcs through snowy waters.",
+    ["crystalfade"] = "Shimmers like frost on glass, vanishing in flashes as it darts through icy reefs.",
+    ["deepgloom"] = "Lurks in frozen depths where no light reaches — a true shadow of the abyss.",
+    ["dusktide"] = "Its violet glow pulses like twilight beneath frost-covered waves.",
+    ["frothling"] = "A bubbly, playful fish that rides the crests of stormy northern seas.",
+    ["frostchar"] = "A hardened survivor of glacial lakes, marked by silver stripes and cold resolve.",
+    ["frostqueen"] = "Elegant and commanding, with fins that fan like a royal winter cloak.",
+    ["frostscale"] = "Covered in tiny frost-like scales, it thrives where ice meets open water.",
+    ["glimmerscale"] = "Its pearly body glints like snow under a full moon.",
+    ["glacierrun"] = "Swift and strong, this fish cuts upstream through frigid meltwater streams.",
+    ["lunawing"] = "Graceful and haunting, it circles beneath moonlit ice sheets.",
+    ["moonspine"] = "Lined with glowing fins, it appears only on the coldest, clearest nights.",
+    ["mythicrest"] = "Said to be a guardian spirit of frozen seas, rarely seen, never caught.",
+    ["rimefang"] = "A fierce predator with jagged, ice-crusted teeth and unmatched speed.",
+    ["shiverfin"] = "Trembles as it moves, disturbing water like ripples in a snowdrift.",
+    ["silvertang"] = "Its polished scales reflect starlight like polished frost.",
+    ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
+    ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
+    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice.",
 }
 
 local FishSizeRange = {
@@ -836,7 +944,27 @@ local FishSizeRange = {
     ["spinebloom"] = {min = 8, max = 14},
     ["stellafin"] = {min = 9, max = 16},
     ["bettraquon"] = {min = 10, max = 18},
-
+    --winter
+    ["brineleaf"] = {min = 25, max = 40},       -- Mythical
+    ["crescentide"] = {min = 18, max = 30},     -- Legendary
+    ["crystalfade"] = {min = 12, max = 20},     -- Epic
+    ["deepgloom"] = {min = 10, max = 18},       -- Rare
+    ["dusktide"] = {min = 14, max = 22},        -- Epic
+    ["frothling"] = {min = 6, max = 12},        -- Rare
+    ["frostchar"] = {min = 28, max = 42},       -- Mythical
+    ["frostqueen"] = {min = 10, max = 18},      -- Rare
+    ["frostscale"] = {min = 8, max = 16},       -- Rare
+    ["glimmerscale"] = {min = 9, max = 17},     -- Rare
+    ["glacierrun"] = {min = 14, max = 22},      -- Rare
+    ["lunawing"] = {min = 12, max = 20},        -- Rare
+    ["moonspine"] = {min = 15, max = 25},       -- Epic
+    ["mythicrest"] = {min = 30, max = 45},      -- Mythical
+    ["rimefang"] = {min = 16, max = 28},        -- Rare
+    ["shiverfin"] = {min = 20, max = 32},       -- Legendary
+    ["silvertang"] = {min = 14, max = 24},      -- Epic
+    ["snowidol"] = {min = 13, max = 22},        -- Epic
+    ["tundrawave"] = {min = 22, max = 34},      -- Legendary
+    ["whispergill"] = {min = 10, max = 18},     -- Rare
 }
 
 local FishSpecialAttributes = {
@@ -970,6 +1098,27 @@ local FishSpecialAttributes = {
     ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
     ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
     ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
+    --winter
+    ["brineleaf"] = "A rare seadragon adorned with icy fronds that drift like kelp in Arctic currents.",
+    ["crescentide"] = "Glows faintly beneath the moon, its shape cutting soft arcs through snowy waters.",
+    ["crystalfade"] = "Shimmers like frost on glass, vanishing in flashes as it darts through icy reefs.",
+    ["deepgloom"] = "Lurks in frozen depths where no light reaches — a true shadow of the abyss.",
+    ["dusktide"] = "Its violet glow pulses like twilight beneath frost-covered waves.",
+    ["frothling"] = "A bubbly, playful fish that rides the crests of stormy northern seas.",
+    ["frostchar"] = "A hardened survivor of glacial lakes, marked by silver stripes and cold resolve.",
+    ["frostqueen"] = "Elegant and commanding, with fins that fan like a royal winter cloak.",
+    ["frostscale"] = "Covered in tiny frost-like scales, it thrives where ice meets open water.",
+    ["glimmerscale"] = "Its pearly body glints like snow under a full moon.",
+    ["glacierrun"] = "Swift and strong, this fish cuts upstream through frigid meltwater streams.",
+    ["lunawing"] = "Graceful and haunting, it circles beneath moonlit ice sheets.",
+    ["moonspine"] = "Lined with glowing fins, it appears only on the coldest, clearest nights.",
+    ["mythicrest"] = "Said to be a guardian spirit of frozen seas, rarely seen, never caught.",
+    ["rimefang"] = "A fierce predator with jagged, ice-crusted teeth and unmatched speed.",
+    ["shiverfin"] = "Trembles as it moves, disturbing water like ripples in a snowdrift.",
+    ["silvertang"] = "Its polished scales reflect starlight like polished frost.",
+    ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
+    ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
+    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice."
 }
 
 local HookSensitivity = {
@@ -1080,6 +1229,7 @@ local HookSensitivity = {
     ["bubbleGumFish"] = 1.5,
     ["DreamweaverBeta"] = 1.5,
     ["crystalJellyFish"] = 2,
+    --coral
     ["amberlure"] = 1.1,
     ["ashflare"] = 1.4,
     ["azuregill"] = 1.3,
@@ -1102,6 +1252,27 @@ local HookSensitivity = {
     ["spinebloom"] = 1.0,
     ["stellafin"] = 1.1,
     ["bettraquon"] = 1.3,
+    --winter
+    ["brineleaf"] = 1.9,       -- Mythical
+    ["crescentide"] = 1.5,     -- Legendary
+    ["crystalfade"] = 1.3,     -- Epic
+    ["deepgloom"] = 1.0,       -- Rare
+    ["dusktide"] = 1.4,        -- Epic
+    ["frothling"] = 1.1,       -- Rare
+    ["frostchar"] = 2.0,       -- Mythical
+    ["frostqueen"] = 1.2,      -- Rare
+    ["frostscale"] = 1.2,      -- Rare
+    ["glimmerscale"] = 1.1,    -- Rare
+    ["glacierrun"] = 1.2,      -- Rare
+    ["lunawing"] = 1.2,        -- Rare
+    ["moonspine"] = 1.3,       -- Epic
+    ["mythicrest"] = 1.8,      -- Mythical
+    ["rimefang"] = 1.3,        -- Rare
+    ["shiverfin"] = 1.5,       -- Legendary
+    ["silvertang"] = 1.4,      -- Epic
+    ["snowidol"] = 1.3,        -- Epic
+    ["tundrawave"] = 1.6,      -- Legendary
+    ["whispergill"] = 1.1,     -- Rare
 }
 
 local FishImage = {
@@ -1235,6 +1406,27 @@ local FishImage = {
     ["skypiercer"] = fishTextures[127],
     ["spinebloom"] = fishTextures[128],
     ["stellafin"] = fishTextures[129],
+    --winter
+    ["brineleaf"] = fishTextures[130],
+    ["crescentide"] = fishTextures[131],
+    ["crystalfade"] = fishTextures[132],
+    ["deepgloom"] = fishTextures[133],
+    ["dusktide"] = fishTextures[134],
+    ["frothling"] = fishTextures[135],
+    ["frostchar"] = fishTextures[136],
+    ["frostqueen"] = fishTextures[137],
+    ["frostscale"] = fishTextures[138],
+    ["glacierrun"] = fishTextures[139],
+    ["glimmerscale"] = fishTextures[140],
+    ["lunawing"] = fishTextures[141],
+    ["moonspine"] = fishTextures[142],
+    ["mythicrest"] = fishTextures[143],
+    ["rimefang"] = fishTextures[144],
+    ["shiverfin"] = fishTextures[145],
+    ["silvertang"] = fishTextures[146],
+    ["snowidol"] = fishTextures[147],
+    ["tundrawave"] = fishTextures[148],
+    ["whispergill"] = fishTextures[149],
 }
 
 local FishBaits = {
@@ -1368,6 +1560,27 @@ local FishBaits = {
     ["skypiercer"] = {"pizza_bait"},
     ["spinebloom"] = {"corn_bait"},
     ["stellafin"] = {"egg_bait"},
+    --winter
+    ["brineleaf"] = {"shrimp_bait"},
+    ["crescentide"] = {"donut_bait"},
+    ["crystalfade"] = {"hotdog_bait"},
+    ["deepgloom"] = {"maggot_bait"},
+    ["dusktide"] = {"bacon_bait"},
+    ["frothling"] = {"broccoli_bait"},
+    ["frostchar"] = {"steak_bait"},
+    ["frostqueen"] = {"corn_bait"},
+    ["frostscale"] = {"toast_bait"},
+    ["glacierrun"] = {"plastic_bait"},
+    ["glimmerscale"] = {"egg_bait"},
+    ["lunawing"] = {"pizza_bait"},
+    ["moonspine"] = {"maggot_bait"},
+    ["mythicrest"] = {"steak_bait"},
+    ["rimefang"] = {"hotdog_bait"},
+    ["shiverfin"] = {"squid_bait"},
+    ["silvertang"] = {"broccoli_bait"},
+    ["snowidol"] = {"pizza_bait"},
+    ["tundrawave"] = {"donut_bait"},
+    ["whispergill"] = {"chicken_bait"},
 }
 
 local RarityReelResistances = {
@@ -1469,6 +1682,16 @@ fish_keys = {
     "skypiercer",    -- Rare
     "spinebloom",    -- Rare
     "stellafin",     -- Rare
+    -- Winter Rare
+    "deepgloom",
+    "frothling",
+    "frostqueen",
+    "frostscale",
+    "glimmerscale",
+    "glacierrun",
+    "lunawing",
+    "rimefang",
+    "whispergill",
 
     -- Epic
     "dolphin",            -- Epic
@@ -1494,7 +1717,6 @@ fish_keys = {
     "opalflare",
     "topazflare",
     "turquoisewave",
-
     -- Coral Epic
     "ashflare",      -- Epic
     "azuregill",     -- Epic
@@ -1502,6 +1724,12 @@ fish_keys = {
     "charavine",     -- Epic
     "crownscale",    -- Epic
     "puffreef",      -- Epic
+    -- Winter Epic
+    "crystalfade",
+    "dusktide",
+    "moonspine",
+    "silvertang",
+    "snowidol",
     
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
@@ -1520,12 +1748,15 @@ fish_keys = {
     -- Crystal Legendary
     "bubbleGumFish",    -- leg
     "DreamweaverBeta",  -- leg
-    
     -- Coral Legendary
     "blazefin",      -- Legendary
     "jellyspawn",    -- Legendary
     "mandaglimmer",  -- Legendary
     "nightdarter",   -- Legendary
+    -- Winter Legendary
+    "crescentide",
+    "shiverfin",
+    "tundrawave",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1548,10 +1779,13 @@ fish_keys = {
 
     -- Crystal Mythical
     "crystalJellyFish",   -- Mythical
-
     -- Coral Mythical
     "moltenfin",     -- Mythical
     "regalfin",      -- Mythical
+    -- Winter Mythical
+    "brineleaf",
+    "frostchar",
+    "mythicrest",
 }
 
 -- Create an entry for each fish pulling data from the tables above
