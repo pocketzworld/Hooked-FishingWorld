@@ -132,6 +132,29 @@ local FishBiomes = {
     ["bubbleGumFish"] = {"crystal"},
     ["DreamweaverBeta"] = {"crystal"},
     ["crystalJellyFish"] = {"crystal"},
+    --coral
+    ["amberlure"] = {"coral"},
+    ["ashflare"] = {"coral"},
+    ["azuregill"] = {"coral"},
+    ["blazefin"] = {"coral"},
+    ["charavine"] = {"coral"},
+    ["crownscale"] = {"coral"},
+    ["duskmire"] = {"coral"},
+    ["embercreel"] = {"coral"},
+    ["flutterfin"] = {"coral"},
+    ["gloomgill"] = {"coral"},
+    ["jellyspawn"] = {"coral"},
+    ["mandaglimmer"] = {"coral"},
+    ["moltenfin"] = {"coral"},
+    ["nightdarter"] = {"coral"},
+    ["oarpike"] = {"coral"},
+    ["puffreef"] = {"coral"},
+    ["reefwarden"] = {"coral"},
+    ["regalfin"] = {"coral"},
+    ["skypiercer"] = {"coral"},
+    ["spinebloom"] = {"coral"},
+    ["stellafin"] = {"coral"},
+    ["bettraquon"] = {"coral"},
 }
 
 local FishNames = {
@@ -242,6 +265,29 @@ local FishNames = {
     ["bubbleGumFish"] = "Bubblegum Fish",
     ["DreamweaverBeta"] = "Dreamweaver Beta",
     ["crystalJellyFish"] = "Iridesceus",
+    --coral
+    ["amberlure"] = "Amber Lure",
+    ["ashflare"] = "Ash Flare",
+    ["azuregill"] = "Azure Gill",
+    ["blazefin"] = "Blaze Fin",
+    ["charavine"] = "Charavine",
+    ["crownscale"] = "Crown Scale",
+    ["duskmire"] = "Duskmire",
+    ["embercreel"] = "Ember Creel",
+    ["flutterfin"] = "Flutter Fin",
+    ["gloomgill"] = "Gloom Gill",
+    ["jellyspawn"] = "Jellyspawn",
+    ["mandaglimmer"] = "Mandaglimmer",
+    ["moltenfin"] = "Molten Fin",
+    ["nightdarter"] = "Night Darter",
+    ["oarpike"] = "Oarpike",
+    ["puffreef"] = "Puff Reef",
+    ["reefwarden"] = "Reef Warden",
+    ["regalfin"] = "Regal Fin",
+    ["skypiercer"] = "Sky Piercer",
+    ["spinebloom"] = "Spine Bloom",
+    ["stellafin"] = "Stella Fin",
+    ["bettraquon"] = "Bettraquon",
 }
 
 local FishRarity = {
@@ -352,6 +398,29 @@ local FishRarity = {
     ["bubbleGumFish"] = "Legendary",
     ["DreamweaverBeta"] = "Legendary",
     ["crystalJellyFish"] = "Mythical",
+    --coral
+    ["amberlure"] = "Rare",
+    ["ashflare"] = "Epic",
+    ["azuregill"] = "Epic",
+    ["blazefin"] = "Legendary",
+    ["charavine"] = "Epic",
+    ["crownscale"] = "Epic",
+    ["duskmire"] = "Rare",
+    ["embercreel"] = "Rare",
+    ["flutterfin"] = "Rare",
+    ["gloomgill"] = "Rare",
+    ["jellyspawn"] = "Legendary",
+    ["mandaglimmer"] = "Legendary",
+    ["moltenfin"] = "Mythical",
+    ["nightdarter"] = "Legendary",
+    ["oarpike"] = "Rare",
+    ["puffreef"] = "Epic",
+    ["reefwarden"] = "Rare",
+    ["regalfin"] = "Mythical",
+    ["skypiercer"] = "Rare",
+    ["spinebloom"] = "Rare",
+    ["stellafin"] = "Rare",
+    ["bettraquon"] = "Epic",
 }
 
 local FishWorth = {
@@ -465,6 +534,30 @@ local FishWorth = {
     ["bubbleGumFish"] = 125,
     ["DreamweaverBeta"] = 150,
     ["crystalJellyFish"] = 1000,
+
+    --coral
+    ["amberlure"] = 30,
+    ["ashflare"] = 80,
+    ["azuregill"] = 80,
+    ["blazefin"] = 150,
+    ["charavine"] = 80,
+    ["crownscale"] = 80,
+    ["duskmire"] = 30,
+    ["embercreel"] = 30,
+    ["flutterfin"] = 30,
+    ["gloomgill"] = 30,
+    ["jellyspawn"] = 150,
+    ["mandaglimmer"] = 150,
+    ["moltenfin"] = 500,
+    ["nightdarter"] = 150,
+    ["oarpike"] = 30,
+    ["puffreef"] = 80,
+    ["reefwarden"] = 30,
+    ["regalfin"] = 500,
+    ["skypiercer"] = 30,
+    ["spinebloom"] = 30,
+    ["stellafin"] = 30,
+    ["bettraquon"] = 80,
 }
 
 local FishDescriptions = {
@@ -587,6 +680,29 @@ local FishDescriptions = {
     ["bubbleGumFish"] = "Bright, stretchy, and sweet-smelling—like a sugary puff underwater!",
     ["DreamweaverBeta"] = "Glides like a dream, leaving traces of iridescent mist.",
     ["crystalJellyFish"] = "A radiant jellyfish made of refracting crystal light.",
+    -- coral
+    ["amberlure"] = "A glowing fish known to attract others with its radiant amber shimmer.",
+    ["ashflare"] = "A fiery swimmer that thrives near volcanic vents and glows like embers.",
+    ["azuregill"] = "This sleek fish darts through tropical currents with vibrant blue fins.",
+    ["blazefin"] = "Its blazing trail leaves scorch marks in the water — a rare sight to behold.",
+    ["charavine"] = "Delicate and elegant, this fish weaves through coral like a vine.",
+    ["crownscale"] = "A noble creature with regal scales that shimmer like a jeweled crown.",
+    ["duskmire"] = "Dark and elusive, it drifts in the shadows of deep trenches.",
+    ["embercreel"] = "A warm-toned fish often seen in glowing reefs during twilight.",
+    ["flutterfin"] = "Its fins move like wings, gently pulsing through still waters.",
+    ["gloomgill"] = "A melancholy dweller of underwater caves, nearly invisible in the dark.",
+    ["jellyspawn"] = "A bizarre hybrid of jellyfish and fish, glowing with bioluminescence.",
+    ["mandaglimmer"] = "A radiant, tranquil fish with colors that shift like silk in moonlight.",
+    ["moltenfin"] = "Forged by magma flows, this legendary fish swims through molten tides.",
+    ["nightdarter"] = "Fast and silent, it moves like a shadow, seen only by starlight.",
+    ["oarpike"] = "An ancient species with paddle-like fins and a piercing gaze.",
+    ["puffreef"] = "A buoyant, reef-dwelling fish that inflates when threatened.",
+    ["reefwarden"] = "Guardian of the coral forests, rarely straying from its territory.",
+    ["regalfin"] = "Graceful and powerful, said to bring fortune to those who catch a glimpse.",
+    ["skypiercer"] = "A fast swimmer known to leap above waves, slicing through air and sea.",
+    ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
+    ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
+    ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
 }
 
 local FishSizeRange = {
@@ -697,6 +813,30 @@ local FishSizeRange = {
     ["bubbleGumFish"] = {min = 10, max = 20},
     ["DreamweaverBeta"] = {min = 10, max = 20},
     ["crystalJellyFish"] = {min = 10, max = 20},
+    --coral
+    ["amberlure"] = {min = 5, max = 15},
+    ["ashflare"] = {min = 12, max = 22},
+    ["azuregill"] = {min = 10, max = 18},
+    ["blazefin"] = {min = 20, max = 35},
+    ["charavine"] = {min = 8, max = 16},
+    ["crownscale"] = {min = 14, max = 25},
+    ["duskmire"] = {min = 6, max = 14},
+    ["embercreel"] = {min = 7, max = 15},
+    ["flutterfin"] = {min = 5, max = 13},
+    ["gloomgill"] = {min = 6, max = 12},
+    ["jellyspawn"] = {min = 15, max = 30},
+    ["mandaglimmer"] = {min = 18, max = 28},
+    ["moltenfin"] = {min = 25, max = 40},
+    ["nightdarter"] = {min = 16, max = 30},
+    ["oarpike"] = {min = 12, max = 20},
+    ["puffreef"] = {min = 10, max = 18},
+    ["reefwarden"] = {min = 9, max = 17},
+    ["regalfin"] = {min = 22, max = 35},
+    ["skypiercer"] = {min = 11, max = 21},
+    ["spinebloom"] = {min = 8, max = 14},
+    ["stellafin"] = {min = 9, max = 16},
+    ["bettraquon"] = {min = 10, max = 18},
+
 }
 
 local FishSpecialAttributes = {
@@ -807,6 +947,29 @@ local FishSpecialAttributes = {
     ["bubbleGumFish"] = "Can inflate and bounce off hooks.",
     ["DreamweaverBeta"] = "Leaves a glowing trail.",
     ["crystalJellyFish"] = "Rarest jelly fish in the sea!",
+    --coral
+    ["amberlure"] = "A glowing fish known to attract others with its radiant amber shimmer.",
+    ["ashflare"] = "A fiery swimmer that thrives near volcanic vents and glows like embers.",
+    ["azuregill"] = "This sleek fish darts through tropical currents with vibrant blue fins.",
+    ["blazefin"] = "Its blazing trail leaves scorch marks in the water — a rare sight to behold.",
+    ["charavine"] = "Delicate and elegant, this fish weaves through coral like a vine.",
+    ["crownscale"] = "A noble creature with regal scales that shimmer like a jeweled crown.",
+    ["duskmire"] = "Dark and elusive, it drifts in the shadows of deep trenches.",
+    ["embercreel"] = "A warm-toned fish often seen in glowing reefs during twilight.",
+    ["flutterfin"] = "Its fins move like wings, gently pulsing through still waters.",
+    ["gloomgill"] = "A melancholy dweller of underwater caves, nearly invisible in the dark.",
+    ["jellyspawn"] = "A bizarre hybrid of jellyfish and fish, glowing with bioluminescence.",
+    ["mandaglimmer"] = "A radiant, tranquil fish with colors that shift like silk in moonlight.",
+    ["moltenfin"] = "Forged by magma flows, this legendary fish swims through molten tides.",
+    ["nightdarter"] = "Fast and silent, it moves like a shadow, seen only by starlight.",
+    ["oarpike"] = "An ancient species with paddle-like fins and a piercing gaze.",
+    ["puffreef"] = "A buoyant, reef-dwelling fish that inflates when threatened.",
+    ["reefwarden"] = "Guardian of the coral forests, rarely straying from its territory.",
+    ["regalfin"] = "Graceful and powerful, said to bring fortune to those who catch a glimpse.",
+    ["skypiercer"] = "A fast swimmer known to leap above waves, slicing through air and sea.",
+    ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
+    ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
+    ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
 }
 
 local HookSensitivity = {
@@ -917,6 +1080,28 @@ local HookSensitivity = {
     ["bubbleGumFish"] = 1.5,
     ["DreamweaverBeta"] = 1.5,
     ["crystalJellyFish"] = 2,
+    ["amberlure"] = 1.1,
+    ["ashflare"] = 1.4,
+    ["azuregill"] = 1.3,
+    ["blazefin"] = 1.5,
+    ["charavine"] = 1.3,
+    ["crownscale"] = 1.4,
+    ["duskmire"] = 1.0,
+    ["embercreel"] = 1.1,
+    ["flutterfin"] = 1.0,
+    ["gloomgill"] = 1.1,
+    ["jellyspawn"] = 1.6,
+    ["mandaglimmer"] = 1.5,
+    ["moltenfin"] = 1.9,
+    ["nightdarter"] = 1.6,
+    ["oarpike"] = 1.0,
+    ["puffreef"] = 1.3,
+    ["reefwarden"] = 1.1,
+    ["regalfin"] = 2.0,
+    ["skypiercer"] = 1.2,
+    ["spinebloom"] = 1.0,
+    ["stellafin"] = 1.1,
+    ["bettraquon"] = 1.3,
 }
 
 local FishImage = {
@@ -1027,6 +1212,29 @@ local FishImage = {
     ["bubbleGumFish"] = fishTextures[105],
     ["DreamweaverBeta"] = fishTextures[106],
     ["crystalJellyFish"] = fishTextures[107],
+    --coral
+    ["amberlure"] = fishTextures[108],
+    ["ashflare"] = fishTextures[109],
+    ["azuregill"] = fishTextures[110],
+    ["bettraquon"] = fishTextures[111],
+    ["blazefin"] = fishTextures[112],
+    ["charavine"] = fishTextures[113],
+    ["crownscale"] = fishTextures[114],
+    ["duskmire"] = fishTextures[115],
+    ["embercreel"] = fishTextures[116],
+    ["flutterfin"] = fishTextures[117],
+    ["gloomgill"] = fishTextures[118],
+    ["jellyspawn"] = fishTextures[119],
+    ["mandaglimmer"] = fishTextures[120],
+    ["moltenfin"] = fishTextures[121],
+    ["nightdarter"] = fishTextures[122],
+    ["oarpike"] = fishTextures[123],
+    ["puffreef"] = fishTextures[124],
+    ["reefwarden"] = fishTextures[125],
+    ["regalfin"] = fishTextures[126],
+    ["skypiercer"] = fishTextures[127],
+    ["spinebloom"] = fishTextures[128],
+    ["stellafin"] = fishTextures[129],
 }
 
 local FishBaits = {
@@ -1137,6 +1345,29 @@ local FishBaits = {
     ["bubbleGumFish"] = {"pizza_bait"},
     ["DreamweaverBeta"] = {"egg_bait"},
     ["crystalJellyFish"] = {"hotdog_bait"},
+    --coral
+    ["amberlure"] = {"egg_bait"},
+    ["ashflare"] = {"hotdog_bait"},
+    ["azuregill"] = {"broccoli_bait"},
+    ["bettraquon"] = {"bacon_bait"},
+    ["blazefin"] = {"hotdog_bait"},
+    ["charavine"] = {"corn_bait"},
+    ["crownscale"] = {"shrimp_bait"},
+    ["duskmire"] = {"maggot_bait"},
+    ["embercreel"] = {"toast_bait"},
+    ["flutterfin"] = {"Any"},
+    ["gloomgill"] = {"maggot_bait"},
+    ["jellyspawn"] = {"squid_bait"},
+    ["mandaglimmer"] = {"donut_bait"},
+    ["moltenfin"] = {"steak_bait"},
+    ["nightdarter"] = {"shrimp_bait"},
+    ["oarpike"] = {"corn_bait"},
+    ["puffreef"] = {"broccoli_bait"},
+    ["reefwarden"] = {"shrimp_bait"},
+    ["regalfin"] = {"steak_bait"},
+    ["skypiercer"] = {"pizza_bait"},
+    ["spinebloom"] = {"corn_bait"},
+    ["stellafin"] = {"egg_bait"},
 }
 
 local RarityReelResistances = {
@@ -1227,6 +1458,18 @@ fish_keys = {
     "solidSilverFish",  -- Rare
     "tounniFish",       -- Rare
 
+    -- Coral Rare
+    "amberlure",     -- Rare
+    "duskmire",      -- Rare
+    "embercreel",    -- Rare
+    "flutterfin",    -- Rare
+    "gloomgill",     -- Rare
+    "oarpike",       -- Rare
+    "reefwarden",    -- Rare
+    "skypiercer",    -- Rare
+    "spinebloom",    -- Rare
+    "stellafin",     -- Rare
+
     -- Epic
     "dolphin",            -- Epic
     "king_mackerel",      -- Epic
@@ -1237,6 +1480,28 @@ fish_keys = {
     "beach_shark_fish",   -- Epic
     "angler_fish",        -- Epic
     "nomadic_trout",      -- Epic
+    
+    -- Crystal Epic
+    "garnetfish",
+    "amethyststream",
+    "aquaripple",
+    "diamondblink",
+    "emeraldfin",
+    "pearlglow",
+    "rubyflame",
+    "peridotglimmer",
+    "sapphirine",
+    "opalflare",
+    "topazflare",
+    "turquoisewave",
+
+    -- Coral Epic
+    "ashflare",      -- Epic
+    "azuregill",     -- Epic
+    "bettraquon",    -- Epic
+    "charavine",     -- Epic
+    "crownscale",    -- Epic
+    "puffreef",      -- Epic
     
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
@@ -1251,23 +1516,16 @@ fish_keys = {
     "squid",              -- Legendary
     "king_seahorse",      -- Legendary
     "bubble_fish",       -- Legendary
-    -- Crystal Biome – Epic
-    "garnetfish",
-    "amethyststream",
-    "aquaripple",
-    "diamondblink",
-    "emeraldfin",
-    "pearlglow",
-    "rubyflame",
-    "peridotglimmer",
-    "sapphirine",
-    "opalflare",
-    "topazflare",
-    "turquoisewave",
 
-    -- Legendary
-    "bubbleGumFish",    -- Rare
-    "DreamweaverBeta",  -- Rare
+    -- Crystal Legendary
+    "bubbleGumFish",    -- leg
+    "DreamweaverBeta",  -- leg
+    
+    -- Coral Legendary
+    "blazefin",      -- Legendary
+    "jellyspawn",    -- Legendary
+    "mandaglimmer",  -- Legendary
+    "nightdarter",   -- Legendary
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1287,7 +1545,13 @@ fish_keys = {
     "koi_fish_samurai",   -- Mythical
     "salt_trader_fish",   -- Mythical
     "rainbow_fish",       -- Mythical
+
+    -- Crystal Mythical
     "crystalJellyFish",   -- Mythical
+
+    -- Coral Mythical
+    "moltenfin",     -- Mythical
+    "regalfin",      -- Mythical
 }
 
 -- Create an entry for each fish pulling data from the tables above

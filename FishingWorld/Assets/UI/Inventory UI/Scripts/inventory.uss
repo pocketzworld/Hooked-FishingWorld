@@ -300,8 +300,8 @@
 }
 
 .locked {
-  --unity-image-tint-color: black;
-  opacity: 0.25;
+  /*--unity-image-tint-color: black;
+  opacity: 0.25;*/
 }
 
 .inventory__item-icon-plus UIImage{
