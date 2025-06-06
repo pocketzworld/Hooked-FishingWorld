@@ -218,6 +218,28 @@ local FishBiomes = {
     ["speckledray"] = {"cliffs"},
     ["stellaroi"] = {"cliffs"},
     ["striatus"] = {"cliffs"},
+    --tropical
+    ["sunburstfish"] = {"tropical"},
+    ["burbot"] = {"tropical"},
+    ["clearcap"] = {"tropical"},
+    ["gulpfin"] = {"tropical"},
+    ["tangaclaw"] = {"tropical"},
+    ["neonflare"] = {"tropical"},
+    ["shadefin"] = {"tropical"},
+    ["rainbowbeak"] = {"tropical"},
+    ["peaflare"] = {"tropical"},
+    ["streamglow"] = {"tropical"},
+    ["reefshadow"] = {"tropical"},
+    ["stoneblenny"] = {"tropical"},
+    ["rustbarb"] = {"tropical"},
+    ["koisamurai"] = {"tropical"},
+    ["shellback"] = {"tropical"},
+    ["stardustfin"] = {"tropical"},
+    ["dawnsnapper"] = {"tropical"},
+    ["dusksnapper"] = {"tropical"},
+    ["venomfang"] = {"tropical"},
+    ["voidwing"] = {"tropical"},
+
 }
 
 local FishNames = {
@@ -414,6 +436,28 @@ local FishNames = {
     ["stellaroi"] = "Stellaroi",
     ["striatus"] = "Striatus",
     ["windsprite"] = "Windsprite",
+    --tropical
+    ["sunburstfish"] = "Sunburstfish",
+    ["burbot"] = "Burbot",
+    ["clearcap"] = "Clearcap",
+    ["gulpfin"] = "Gulpfin",
+    ["tangaclaw"] = "Tangaclaw",
+    ["neonflare"] = "Neonflare",
+    ["shadefin"] = "Shadefin",
+    ["rainbowbeak"] = "Rainbowbeak",
+    ["peaflare"] = "Peaflare",
+    ["streamglow"] = "Streamglow",
+    ["reefshadow"] = "Reefshadow",
+    ["stoneblenny"] = "Stoneblenny",
+    ["rustbarb"] = "Rustbarb",
+    ["koisamurai"] = "Koisamurai",
+    ["shellback"] = "Shellback",
+    ["stardustfin"] = "Stardustfin",
+    ["dawnsnapper"] = "Dawnsnapper",
+    ["dusksnapper"] = "Dusksnapper",
+    ["venomfang"] = "Venomfang",
+    ["voidwing"] = "Voidwing",
+
 }
 
 local FishRarity = {
@@ -610,6 +654,28 @@ local FishRarity = {
     ["speckledray"] = "Rare",
     ["stellaroi"] = "Rare",
     ["striatus"] = "Rare",
+    --tropical
+    ["sunburstfish"] = "Legendary",
+    ["burbot"] = "Rare",
+    ["clearcap"] = "Epic",
+    ["gulpfin"] = "Epic",
+    ["tangaclaw"] = "Epic",
+    ["neonflare"] = "Rare",
+    ["shadefin"] = "Epic",
+    ["rainbowbeak"] = "Legendary",
+    ["peaflare"] = "Rare",
+    ["streamglow"] = "Mythical",
+    ["reefshadow"] = "Epic",
+    ["stoneblenny"] = "Rare",
+    ["rustbarb"] = "Rare",
+    ["koisamurai"] = "Mythical",
+    ["shellback"] = "Rare",
+    ["stardustfin"] = "Rare",
+    ["dawnsnapper"] = "Rare",
+    ["dusksnapper"] = "Rare",
+    ["venomfang"] = "Legendary",
+    ["voidwing"] = "Rare",
+
 }
 
 local FishWorth = {
@@ -813,6 +879,29 @@ local FishWorth = {
     ["stellaroi"] = 30,        -- Rare
     ["striatus"] = 30,         -- Rare
     ["windsprite"] = 150,      -- Legendary
+
+    --tropical
+    ["sunburstfish"] = 150,      -- Legendary
+    ["burbot"] = 30,          -- Rare
+    ["clearcap"] = 80,        -- Epic
+    ["gulpfin"] = 80,         -- Epic
+    ["tangaclaw"] = 80,       -- Epic
+    ["neonflare"] = 30,       -- Rare
+    ["shadefin"] = 80,        -- Epic
+    ["rainbowbeak"] = 150,    -- Legendary
+    ["peaflare"] = 30,        -- Rare
+    ["streamglow"] = 500,     -- Mythical
+    ["reefshadow"] = 80,      -- Epic
+    ["stoneblenny"] = 30,     -- Rare
+    ["rustbarb"] = 30,        -- Rare
+    ["koisamurai"] = 500,     -- Mythical
+    ["shellback"] = 30,       -- Rare
+    ["stardustfin"] = 30,     -- Rare
+    ["dawnsnapper"] = 30,     -- Rare
+    ["dusksnapper"] = 30,     -- Rare
+    ["venomfang"] = 150,      -- Legendary
+    ["voidwing"] = 30,        -- Rare
+
 }
 
 local FishDescriptions = {
@@ -1021,6 +1110,28 @@ local FishDescriptions = {
     ["stellaroi"] = "Koi with star-like patterns on its scales.",
     ["striatus"] = "Striped bass that darts swiftly.",
     ["windsprite"] = "Swift and light, it dances on currents.",
+    --tropical
+    ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
+    ["burbot"] = "A sturdy bottom dweller with a muddy hue.",
+    ["clearcap"] = "A translucent fish with a crystal-clear head.",
+    ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
+    ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
+    ["neonflare"] = "Small and vibrant, glowing with neon colors.",
+    ["shadefin"] = "A dark, elusive fish that lurks in shadowy reefs.",
+    ["rainbowbeak"] = "Colorful parrotfish with a sharp, curved beak.",
+    ["peaflare"] = "A flashy anthias with vibrant, peacock-like fins.",
+    ["streamglow"] = "A mystical fish that glows softly in fast streams.",
+    ["reefshadow"] = "An octopus-like fish blending into coral shadows.",
+    ["stoneblenny"] = "A tiny fish camouflaged among rocky pools.",
+    ["rustbarb"] = "A rusty-colored barb fish with a fierce attitude.",
+    ["koisamurai"] = "A noble koi known for its fierce spirit.",
+    ["shellback"] = "A snailfish with a sturdy shell-like back.",
+    ["stardustfin"] = "A carp glittering with specks of stardust.",
+    ["dawnsnapper"] = "A snapper that appears at sunrise, vibrant and bright.",
+    ["dusksnapper"] = "A snapper that prowls the reefs at dusk.",
+    ["venomfang"] = "A venomous fish with sharp fangs and swift strikes.",
+    ["voidwing"] = "A manta that glides silently through deep, dark waters.",
+
 }
 
 local FishSizeRange = {
@@ -1217,6 +1328,28 @@ local FishSizeRange = {
     ["stellaroi"] = {min = 14, max = 24},
     ["striatus"] = {min = 18, max = 30},
     ["windsprite"] = {min = 22, max = 36},
+    --tropical
+    ["sunburstfish"] = {min = 20, max = 35},
+    ["burbot"] = {min = 15, max = 25},
+    ["clearcap"] = {min = 10, max = 18},
+    ["gulpfin"] = {min = 18, max = 30},
+    ["tangaclaw"] = {min = 12, max = 22},
+    ["neonflare"] = {min = 6, max = 12},
+    ["shadefin"] = {min = 14, max = 24},
+    ["rainbowbeak"] = {min = 15, max = 28},
+    ["peaflare"] = {min = 8, max = 15},
+    ["streamglow"] = {min = 22, max = 36},
+    ["reefshadow"] = {min = 16, max = 26},
+    ["stoneblenny"] = {min = 7, max = 13},
+    ["rustbarb"] = {min = 12, max = 20},
+    ["koisamurai"] = {min = 25, max = 40},
+    ["shellback"] = {min = 10, max = 18},
+    ["stardustfin"] = {min = 15, max = 25},
+    ["dawnsnapper"] = {min = 16, max = 26},
+    ["dusksnapper"] = {min = 16, max = 26},
+    ["venomfang"] = {min = 18, max = 30},
+    ["voidwing"] = {min = 25, max = 40},
+
 }
 
 local FishSpecialAttributes = {
@@ -1413,6 +1546,28 @@ local FishSpecialAttributes = {
     ["stellaroi"] = "Koi with star-like patterns on its scales.",
     ["striatus"] = "Striped bass that darts swiftly.",
     ["windsprite"] = "Swift and light, it dances on currents.",
+    --tropical
+    ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
+    ["burbot"] = "A sturdy bottom dweller with a muddy hue.",
+    ["clearcap"] = "A translucent fish with a crystal-clear head.",
+    ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
+    ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
+    ["neonflare"] = "Small and vibrant, glowing with neon colors.",
+    ["shadefin"] = "A dark, elusive fish that lurks in shadowy reefs.",
+    ["rainbowbeak"] = "Colorful parrotfish with a sharp, curved beak.",
+    ["peaflare"] = "A flashy anthias with vibrant, peacock-like fins.",
+    ["streamglow"] = "A mystical fish that glows softly in fast streams.",
+    ["reefshadow"] = "An octopus-like fish blending into coral shadows.",
+    ["stoneblenny"] = "A tiny fish camouflaged among rocky pools.",
+    ["rustbarb"] = "A rusty-colored barb fish with a fierce attitude.",
+    ["koisamurai"] = "A noble koi known for its fierce spirit.",
+    ["shellback"] = "A snailfish with a sturdy shell-like back.",
+    ["stardustfin"] = "A carp glittering with specks of stardust.",
+    ["dawnsnapper"] = "A snapper that appears at sunrise, vibrant and bright.",
+    ["dusksnapper"] = "A snapper that prowls the reefs at dusk.",
+    ["venomfang"] = "A venomous fish with sharp fangs and swift strikes.",
+    ["voidwing"] = "A manta that glides silently through deep, dark waters.",
+
 }
 
 local HookSensitivity = {
@@ -1609,6 +1764,27 @@ local HookSensitivity = {
     ["stellaroi"] = 1.1,    -- Rare
     ["striatus"] = 1.2,     -- Rare
     ["windsprite"] = 1.5,   -- Legendary
+    --tropical
+    ["burbot"] = 1.0,          -- Rare
+    ["clearcap"] = 1.3,        -- Epic
+    ["dawnsnapper"] = 1.1,     -- Rare
+    ["dusksnapper"] = 1.1,     -- Rare
+    ["gulpfin"] = 1.4,         -- Epic
+    ["koisamurai"] = 1.8,      -- Mythical
+    ["neonflare"] = 1.0,       -- Rare
+    ["peaflare"] = 1.2,        -- Rare
+    ["rainbowbeak"] = 1.5,     -- Legendary
+    ["reefshadow"] = 1.5,      -- Epic
+    ["rustbarb"] = 1.2,        -- Rare
+    ["shadefin"] = 1.3,        -- Epic
+    ["shellback"] = 1.1,       -- Rare
+    ["stoneblenny"] = 1.0,     -- Rare
+    ["stardustfin"] = 1.1,     -- Rare
+    ["sunburstfish"] = 1.5,    -- Legendary
+    ["streamglow"] = 1.9,      -- Mythical
+    ["venomfang"] = 1.5,       -- Legendary
+    ["voidwing"] = 1.2,        -- Rare
+
 }
 
 local FishImage = {
@@ -1805,6 +1981,26 @@ local FishImage = {
     ["stellaroi"] = fishTextures[187],
     ["striatus"] = fishTextures[188],
     ["windsprite"] = fishTextures[189],
+    --tropical
+    ["burbot"] = fishTextures[190],
+    ["clearcap"] = fishTextures[191],
+    ["dawnsnapper"] = fishTextures[192],
+    ["dusksnapper"] = fishTextures[193],
+    ["gulpfin"] = fishTextures[194],
+    ["koisamurai"] = fishTextures[195],
+    ["neonflare"] = fishTextures[196],
+    ["peaflare"] = fishTextures[197],
+    ["rainbowbeak"] = fishTextures[198],
+    ["reefshadow"] = fishTextures[199],
+    ["rustbarb"] = fishTextures[200],
+    ["shadefin"] = fishTextures[201],
+    ["shellback"] = fishTextures[202],
+    ["sinkblenny"] = fishTextures[203],  -- typo? Should be stoneblenny?
+    ["sliperdustfin"] = fishTextures[204],  -- typo? Should be stardustfin?
+    ["sunburstfish"] = fishTextures[205],
+    ["streamglow"] = fishTextures[206],
+    ["venomfang"] = fishTextures[207],
+    ["voidwing"] = fishTextures[208],
 }
 
 local FishBaits = {
@@ -2001,6 +2197,26 @@ local FishBaits = {
     ["stellaroi"] = {"egg_bait"},
     ["striatus"] = {"plastic_bait"},
     ["windsprite"] = {"pizza_bait"},
+    --tropical
+    ["burbot"] = {"Any"},
+    ["clearcap"] = {"hotdog_bait"},
+    ["dawnsnapper"] = {"corn_bait"},
+    ["dusksnapper"] = {"corn_bait"},
+    ["gulpfin"] = {"pizza_bait"},
+    ["koisamurai"] = {"donut_bait"},
+    ["neonflare"] = {"maggot_bait"},
+    ["peaflare"] = {"shrimp_bait"},
+    ["rainbowbeak"] = {"bacon_bait"},
+    ["reefshadow"] = {"steak_bait"},
+    ["rustbarb"] = {"broccoli_bait"},
+    ["shadefin"] = {"hotdog_bait"},
+    ["shellback"] = {"toast_bait"},
+    ["stoneblenny"] = {"Any"},
+    ["stardustfin"] = {"egg_bait"},
+    ["sunburstfish"] = {"bacon_bait"},
+    ["streamglow"] = {"donut_bait"},
+    ["venomfang"] = {"hotdog_bait"},
+    ["voidwing"] = {"toast_bait"},
 }
 
 local RarityReelResistances = {
@@ -2134,6 +2350,17 @@ fish_keys = {
     "speckledray",
     "stellaroi",
     "striatus",
+    --tropical Rare
+    "burbot",
+    "dawnsnapper",
+    "dusksnapper",
+    "neonflare",
+    "peaflare",
+    "rustbarb",
+    "shellback",
+    "stoneblenny",
+    "stardustfin",
+    "voidwing",
 
     -- Epic
     "dolphin",            -- Epic
@@ -2183,6 +2410,12 @@ fish_keys = {
     "glacierglow",
     "glowcrest",
     "plumecrest",
+    -- Tropical Epic
+    "clearcap",
+    "gulpfin",
+    "shadefin",
+    "reefshadow",
+    "tangaclaw",
 
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
@@ -2219,6 +2452,10 @@ fish_keys = {
     "flareborn",
     "somnifin",
     "windsprite",
+    -- Tropical Legendary
+    "rainbowbeak",
+    "sunburstfish",
+    "venomfang",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -2254,6 +2491,9 @@ fish_keys = {
     -- Cliffs Mythical
     "goldwyrm",
     "mistwhirl",
+    -- Tropical Mythical
+    "koisamurai",
+    "streamglow",
 }
 
 -- Create an entry for each fish pulling data from the tables above
