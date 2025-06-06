@@ -197,6 +197,27 @@ local FishBiomes = {
     ["stormpulse"] = {"jungle"},
     ["stripeflash"] = {"jungle"},
     ["zebris"] = {"jungle"},
+    --cliffs
+    ["glacierglow"] = {"cliffs"},
+    ["axolume"] = {"cliffs"},
+    ["blueflare"] = {"cliffs"},
+    ["cratefin"] = {"cliffs"},
+    ["mistwhirl"] = {"cliffs"},
+    ["dragonscale"] = {"cliffs"},
+    ["somnifin"] = {"cliffs"},
+    ["faeglimmer"] = {"cliffs"},
+    ["windsprite"] = {"cliffs"},
+    ["ballfin"] = {"cliffs"},
+    ["goldwyrm"] = {"cliffs"},
+    ["skyrider"] = {"cliffs"},
+    ["plumecrest"] = {"cliffs"},
+    ["beakcoil"] = {"cliffs"},
+    ["flareborn"] = {"cliffs"},
+    ["glowcrest"] = {"cliffs"},
+    ["spectralfin"] = {"cliffs"},
+    ["speckledray"] = {"cliffs"},
+    ["stellaroi"] = {"cliffs"},
+    ["striatus"] = {"cliffs"},
 }
 
 local FishNames = {
@@ -372,6 +393,27 @@ local FishNames = {
     ["stormpulse"] = "Stormpulse",
     ["stripeflash"] = "Stripeflash",
     ["zebris"] = "Zebris",
+    --cliffs
+    ["axolume"] = "Axolume",
+    ["ballfin"] = "Ballfin",
+    ["beakcoil"] = "Beakcoil",
+    ["blueflare"] = "Blueflare",
+    ["cratefin"] = "Cratefin",
+    ["dragonscale"] = "Dragonscale",
+    ["faeglimmer"] = "Faeglimmer",
+    ["flareborn"] = "Flareborn",
+    ["glacierglow"] = "Glacierglow",
+    ["glowcrest"] = "Glowcrest",
+    ["goldwyrm"] = "Goldwyrm",
+    ["mistwhirl"] = "Mistwhirl",
+    ["plumecrest"] = "Plumecrest",
+    ["skyrider"] = "Skyrider",
+    ["somnifin"] = "Somnifin",
+    ["spectralfin"] = "Spectralfin",
+    ["speckledray"] = "Speckledray",
+    ["stellaroi"] = "Stellaroi",
+    ["striatus"] = "Striatus",
+    ["windsprite"] = "Windsprite",
 }
 
 local FishRarity = {
@@ -547,6 +589,27 @@ local FishRarity = {
     ["stormpulse"] = "Epic",
     ["stripeflash"] = "Epic",
     ["zebris"] = "Rare",
+    --cliffs
+    ["glacierglow"] = "Epic",
+    ["axolume"] = "Rare",
+    ["blueflare"] = "Epic",
+    ["cratefin"] = "Rare",
+    ["mistwhirl"] = "Mythical",
+    ["dragonscale"] = "Rare",
+    ["somnifin"] = "Legendary",
+    ["faeglimmer"] = "Epic",
+    ["windsprite"] = "Legendary",
+    ["ballfin"] = "Rare",
+    ["goldwyrm"] = "Mythical",
+    ["skyrider"] = "Rare",
+    ["plumecrest"] = "Epic",
+    ["beakcoil"] = "Rare",
+    ["flareborn"] = "Legendary",
+    ["glowcrest"] = "Legendary",
+    ["spectralfin"] = "Rare",
+    ["speckledray"] = "Rare",
+    ["stellaroi"] = "Rare",
+    ["striatus"] = "Rare",
 }
 
 local FishWorth = {
@@ -728,6 +791,28 @@ local FishWorth = {
     ["stormpulse"] = 80,     -- Epic
     ["stripeflash"] = 80,    -- Epic
     ["zebris"] = 30,         -- Rare
+
+    --cliff
+    ["axolume"] = 30,          -- Rare
+    ["ballfin"] = 30,          -- Rare
+    ["beakcoil"] = 30,         -- Rare
+    ["blueflare"] = 80,        -- Epic
+    ["cratefin"] = 30,         -- Rare
+    ["dragonscale"] = 30,      -- Rare
+    ["faeglimmer"] = 80,       -- Epic
+    ["flareborn"] = 150,       -- Legendary
+    ["glacierglow"] = 80,      -- Epic
+    ["glowcrest"] = 150,       -- Legendary
+    ["goldwyrm"] = 500,        -- Mythical
+    ["mistwhirl"] = 500,       -- Mythical
+    ["plumecrest"] = 80,       -- Epic
+    ["skyrider"] = 30,         -- Rare
+    ["somnifin"] = 150,        -- Legendary
+    ["spectralfin"] = 30,      -- Rare
+    ["speckledray"] = 30,      -- Rare
+    ["stellaroi"] = 30,        -- Rare
+    ["striatus"] = 30,         -- Rare
+    ["windsprite"] = 150,      -- Legendary
 }
 
 local FishDescriptions = {
@@ -915,6 +1000,27 @@ local FishDescriptions = {
     ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
     ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
     ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses.",
+    --cliff
+    ["axolume"] = "A glowing amphibian with mysterious powers.",
+    ["ballfin"] = "Compact and sturdy, built for rocky streams.",
+    ["beakcoil"] = "Eel with a sharp, pelican-like beak.",
+    ["blueflare"] = "Bright blue scales that shimmer in sunlight.",
+    ["cratefin"] = "Box-shaped fish with a tough exterior.",
+    ["dragonscale"] = "Dragon-like scales protect this fierce fish.",
+    ["faeglimmer"] = "Delicate fish that sparkles with magic.",
+    ["flareborn"] = "Born from fire, it lights up dark waters.",
+    ["glacierglow"] = "Radiates a cold, icy blue glow.",
+    ["glowcrest"] = "Shines bright atop rocky cliffs.",
+    ["goldwyrm"] = "Legendary fish with golden scales.",
+    ["mistwhirl"] = "Swims through fog with ghostly grace.",
+    ["plumecrest"] = "Vibrant fins like a peacock's plume.",
+    ["skyrider"] = "Soars through water like a hawk in air.",
+    ["somnifin"] = "Dreamy fish that lulls prey to sleep.",
+    ["spectralfin"] = "Elusive fish with a ghostly glow.",
+    ["speckledray"] = "Spotted pattern helps it hide in rocks.",
+    ["stellaroi"] = "Koi with star-like patterns on its scales.",
+    ["striatus"] = "Striped bass that darts swiftly.",
+    ["windsprite"] = "Swift and light, it dances on currents.",
 }
 
 local FishSizeRange = {
@@ -1090,6 +1196,27 @@ local FishSizeRange = {
     ["stormpulse"] = {min = 18, max = 30},     -- Epic
     ["stripeflash"] = {min = 12, max = 22},    -- Epic
     ["zebris"] = {min = 8, max = 14},           -- Rare
+    --cliff
+    ["axolume"] = {min = 10, max = 18},
+    ["ballfin"] = {min = 12, max = 20},
+    ["beakcoil"] = {min = 15, max = 25},
+    ["blueflare"] = {min = 14, max = 24},
+    ["cratefin"] = {min = 10, max = 18},
+    ["dragonscale"] = {min = 20, max = 35},
+    ["faeglimmer"] = {min = 12, max = 22},
+    ["flareborn"] = {min = 25, max = 40},
+    ["glacierglow"] = {min = 18, max = 30},
+    ["glowcrest"] = {min = 22, max = 34},
+    ["goldwyrm"] = {min = 28, max = 45},
+    ["mistwhirl"] = {min = 30, max = 48},
+    ["plumecrest"] = {min = 14, max = 26},
+    ["skyrider"] = {min = 16, max = 28},
+    ["somnifin"] = {min = 20, max = 34},
+    ["spectralfin"] = {min = 10, max = 18},
+    ["speckledray"] = {min = 12, max = 22},
+    ["stellaroi"] = {min = 14, max = 24},
+    ["striatus"] = {min = 18, max = 30},
+    ["windsprite"] = {min = 22, max = 36},
 }
 
 local FishSpecialAttributes = {
@@ -1264,7 +1391,28 @@ local FishSpecialAttributes = {
     ["silkspinner"] = "Spins delicate webs of silk-like threads to catch prey.",
     ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
     ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
-    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses."
+    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses.",
+    --cliff
+    ["axolume"] = "A glowing amphibian with mysterious powers.",
+    ["ballfin"] = "Compact and sturdy, built for rocky streams.",
+    ["beakcoil"] = "Eel with a sharp, pelican-like beak.",
+    ["blueflare"] = "Bright blue scales that shimmer in sunlight.",
+    ["cratefin"] = "Box-shaped fish with a tough exterior.",
+    ["dragonscale"] = "Dragon-like scales protect this fierce fish.",
+    ["faeglimmer"] = "Delicate fish that sparkles with magic.",
+    ["flareborn"] = "Born from fire, it lights up dark waters.",
+    ["glacierglow"] = "Radiates a cold, icy blue glow.",
+    ["glowcrest"] = "Shines bright atop rocky cliffs.",
+    ["goldwyrm"] = "Legendary fish with golden scales.",
+    ["mistwhirl"] = "Swims through fog with ghostly grace.",
+    ["plumecrest"] = "Vibrant fins like a peacock's plume.",
+    ["skyrider"] = "Soars through water like a hawk in air.",
+    ["somnifin"] = "Dreamy fish that lulls prey to sleep.",
+    ["spectralfin"] = "Elusive fish with a ghostly glow.",
+    ["speckledray"] = "Spotted pattern helps it hide in rocks.",
+    ["stellaroi"] = "Koi with star-like patterns on its scales.",
+    ["striatus"] = "Striped bass that darts swiftly.",
+    ["windsprite"] = "Swift and light, it dances on currents.",
 }
 
 local HookSensitivity = {
@@ -1440,6 +1588,27 @@ local HookSensitivity = {
     ["stormpulse"] = 1.3,     -- Epic  
     ["stripeflash"] = 1.3,    -- Epic  
     ["zebris"] = 1.0,         -- Rare
+    --cliff
+    ["axolume"] = 1.1,      -- Rare
+    ["ballfin"] = 1.1,      -- Rare
+    ["beakcoil"] = 1.2,     -- Rare
+    ["blueflare"] = 1.3,    -- Epic
+    ["cratefin"] = 1.1,     -- Rare
+    ["dragonscale"] = 1.4,  -- Rare (tougher fish)
+    ["faeglimmer"] = 1.3,   -- Epic
+    ["flareborn"] = 1.5,    -- Legendary
+    ["glacierglow"] = 1.3,  -- Epic
+    ["glowcrest"] = 1.5,    -- Legendary
+    ["goldwyrm"] = 1.9,     -- Mythical
+    ["mistwhirl"] = 1.9,    -- Mythical
+    ["plumecrest"] = 1.3,   -- Epic
+    ["skyrider"] = 1.2,     -- Rare
+    ["somnifin"] = 1.5,     -- Legendary
+    ["spectralfin"] = 1.1,  -- Rare
+    ["speckledray"] = 1.1,  -- Rare
+    ["stellaroi"] = 1.1,    -- Rare
+    ["striatus"] = 1.2,     -- Rare
+    ["windsprite"] = 1.5,   -- Legendary
 }
 
 local FishImage = {
@@ -1615,6 +1784,27 @@ local FishImage = {
     ["tigerrush"] = fishTextures[167],
     ["voltcat"] = fishTextures[168],
     ["zebris"] = fishTextures[169],
+    --cliff
+    ["axolume"] = fishTextures[170],
+    ["ballfin"] = fishTextures[171],
+    ["beakcoil"] = fishTextures[172],
+    ["blueflare"] = fishTextures[173],
+    ["cratefin"] = fishTextures[174],
+    ["dragonscale"] = fishTextures[175],
+    ["faeglimmer"] = fishTextures[176],
+    ["flareborn"] = fishTextures[177],
+    ["glacierglow"] = fishTextures[178],
+    ["glowcrest"] = fishTextures[179],
+    ["goldwyrm"] = fishTextures[180],
+    ["mistwhirl"] = fishTextures[181],
+    ["plumecrest"] = fishTextures[182],
+    ["skyrider"] = fishTextures[183],
+    ["somnifin"] = fishTextures[184],
+    ["spectralfin"] = fishTextures[185],
+    ["speckledray"] = fishTextures[186],
+    ["stellaroi"] = fishTextures[187],
+    ["striatus"] = fishTextures[188],
+    ["windsprite"] = fishTextures[189],
 }
 
 local FishBaits = {
@@ -1790,6 +1980,27 @@ local FishBaits = {
     ["stormpulse"] = {"squid_bait"},
     ["stripeflash"] = {"bacon_bait"},
     ["zebris"] = {"chicken_bait"},
+    --cliff
+    ["axolume"] = {"maggot_bait"},
+    ["ballfin"] = {"hotdog_bait"},
+    ["beakcoil"] = {"toast_bait"},
+    ["blueflare"] = {"bacon_bait"},
+    ["cratefin"] = {"corn_bait"},
+    ["dragonscale"] = {"steak_bait"},
+    ["faeglimmer"] = {"donut_bait"},
+    ["flareborn"] = {"steak_bait"},
+    ["glacierglow"] = {"egg_bait"},
+    ["glowcrest"] = {"steak_bait"},
+    ["goldwyrm"] = {"donut_bait"},
+    ["mistwhirl"] = {"donut_bait"},
+    ["plumecrest"] = {"bacon_bait"},
+    ["skyrider"] = {"chicken_bait"},
+    ["somnifin"] = {"pizza_bait"},
+    ["spectralfin"] = {"maggot_bait"},
+    ["speckledray"] = {"corn_bait"},
+    ["stellaroi"] = {"egg_bait"},
+    ["striatus"] = {"plastic_bait"},
+    ["windsprite"] = {"pizza_bait"},
 }
 
 local RarityReelResistances = {
@@ -1901,7 +2112,7 @@ fish_keys = {
     "lunawing",
     "rimefang",
     "whispergill",
-    -- Rare
+    -- Jungel Rare
     "drakefly",
     "duneskimmer",
     "gleameel",
@@ -1912,6 +2123,17 @@ fish_keys = {
     "silkspinner",
     "zebris",
     "goldripple",
+    -- Cliffs Rare
+    "axolume",
+    "ballfin",
+    "beakcoil",
+    "cratefin",
+    "dragonscale",
+    "skyrider",
+    "spectralfin",
+    "speckledray",
+    "stellaroi",
+    "striatus",
 
     -- Epic
     "dolphin",            -- Epic
@@ -1955,7 +2177,13 @@ fish_keys = {
     "shovelclaw",
     "stormpulse",
     "stripeflash",
-    
+    -- Cliffs Epic
+    "blueflare",
+    "faeglimmer",
+    "glacierglow",
+    "glowcrest",
+    "plumecrest",
+
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
     "surffer_fish",       -- Legendary
@@ -1987,6 +2215,10 @@ fish_keys = {
     "tigerrush",
     "voltcat",
     "gratch",
+    -- Cliffs Legendary
+    "flareborn",
+    "somnifin",
+    "windsprite",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -2019,6 +2251,9 @@ fish_keys = {
     -- Jungle Mythical
     "jadeflare",
     "mystiglow",
+    -- Cliffs Mythical
+    "goldwyrm",
+    "mistwhirl",
 }
 
 -- Create an entry for each fish pulling data from the tables above
