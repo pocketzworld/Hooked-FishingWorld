@@ -2628,8 +2628,10 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     for fishName, fishData in fish_metadata do
         if fishData.Rarity == chosenRarity and CheckBiome(fishName, Biome) then
             table.insert(fishList, fishName)
+            --print("Found fish: " .. fishName .. " with rarity: " .. fishData.Rarity .. " in Biome: " .. Biome)
             -- if the fish matches the chosen bait add it in the table again to increase its odds
             if CheckBait(fishName, Bait) then
+                table.insert(fishList, fishName)
                 table.insert(fishList, fishName)
             end
         end
