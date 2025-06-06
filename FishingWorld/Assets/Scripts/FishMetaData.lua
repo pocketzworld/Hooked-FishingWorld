@@ -220,7 +220,7 @@ local FishBiomes = {
     ["striatus"] = {"cliffs"},
     --tropical
     ["sunburstfish"] = {"tropical"},
-    ["burbot"] = {"tropical"},
+    ["mudfin"] = {"tropical"},
     ["clearcap"] = {"tropical"},
     ["gulpfin"] = {"tropical"},
     ["tangaclaw"] = {"tropical"},
@@ -438,7 +438,7 @@ local FishNames = {
     ["windsprite"] = "Windsprite",
     --tropical
     ["sunburstfish"] = "Sunburstfish",
-    ["burbot"] = "Burbot",
+    ["mudfin"] = "mudfin",
     ["clearcap"] = "Clearcap",
     ["gulpfin"] = "Gulpfin",
     ["tangaclaw"] = "Tangaclaw",
@@ -656,7 +656,7 @@ local FishRarity = {
     ["striatus"] = "Rare",
     --tropical
     ["sunburstfish"] = "Legendary",
-    ["burbot"] = "Rare",
+    ["mudfin"] = "Rare",
     ["clearcap"] = "Epic",
     ["gulpfin"] = "Epic",
     ["tangaclaw"] = "Epic",
@@ -882,7 +882,7 @@ local FishWorth = {
 
     --tropical
     ["sunburstfish"] = 150,      -- Legendary
-    ["burbot"] = 30,          -- Rare
+    ["mudfin"] = 30,          -- Rare
     ["clearcap"] = 80,        -- Epic
     ["gulpfin"] = 80,         -- Epic
     ["tangaclaw"] = 80,       -- Epic
@@ -1112,7 +1112,7 @@ local FishDescriptions = {
     ["windsprite"] = "Swift and light, it dances on currents.",
     --tropical
     ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
-    ["burbot"] = "A sturdy bottom dweller with a muddy hue.",
+    ["mudfin"] = "A sturdy bottom dweller with a muddy hue.",
     ["clearcap"] = "A translucent fish with a crystal-clear head.",
     ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
     ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
@@ -1330,7 +1330,7 @@ local FishSizeRange = {
     ["windsprite"] = {min = 22, max = 36},
     --tropical
     ["sunburstfish"] = {min = 20, max = 35},
-    ["burbot"] = {min = 15, max = 25},
+    ["mudfin"] = {min = 15, max = 25},
     ["clearcap"] = {min = 10, max = 18},
     ["gulpfin"] = {min = 18, max = 30},
     ["tangaclaw"] = {min = 12, max = 22},
@@ -1548,7 +1548,7 @@ local FishSpecialAttributes = {
     ["windsprite"] = "Swift and light, it dances on currents.",
     --tropical
     ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
-    ["burbot"] = "A sturdy bottom dweller with a muddy hue.",
+    ["mudfin"] = "A sturdy bottom dweller with a muddy hue.",
     ["clearcap"] = "A translucent fish with a crystal-clear head.",
     ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
     ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
@@ -1765,11 +1765,12 @@ local HookSensitivity = {
     ["striatus"] = 1.2,     -- Rare
     ["windsprite"] = 1.5,   -- Legendary
     --tropical
-    ["burbot"] = 1.0,          -- Rare
+    ["mudfin"] = 1.0,          -- Rare
     ["clearcap"] = 1.3,        -- Epic
     ["dawnsnapper"] = 1.1,     -- Rare
     ["dusksnapper"] = 1.1,     -- Rare
     ["gulpfin"] = 1.4,         -- Epic
+    ["tangaclaw"] = 1.2,       -- Rare
     ["koisamurai"] = 1.8,      -- Mythical
     ["neonflare"] = 1.0,       -- Rare
     ["peaflare"] = 1.2,        -- Rare
@@ -1982,12 +1983,12 @@ local FishImage = {
     ["striatus"] = fishTextures[188],
     ["windsprite"] = fishTextures[189],
     --tropical
-    ["burbot"] = fishTextures[190],
-    ["clearcap"] = fishTextures[191],
-    ["dawnsnapper"] = fishTextures[192],
-    ["dusksnapper"] = fishTextures[193],
-    ["gulpfin"] = fishTextures[194],
-    ["koisamurai"] = fishTextures[195],
+    ["clearcap"] = fishTextures[190],
+    ["dawnsnapper"] = fishTextures[191],
+    ["dusksnapper"] = fishTextures[192],
+    ["gulpfin"] = fishTextures[193],
+    ["koisamurai"] = fishTextures[194],
+    ["mudfin"] = fishTextures[195],
     ["neonflare"] = fishTextures[196],
     ["peaflare"] = fishTextures[197],
     ["rainbowbeak"] = fishTextures[198],
@@ -1995,12 +1996,13 @@ local FishImage = {
     ["rustbarb"] = fishTextures[200],
     ["shadefin"] = fishTextures[201],
     ["shellback"] = fishTextures[202],
-    ["sinkblenny"] = fishTextures[203],  -- typo? Should be stoneblenny?
-    ["sliperdustfin"] = fishTextures[204],  -- typo? Should be stardustfin?
-    ["sunburstfish"] = fishTextures[205],
-    ["streamglow"] = fishTextures[206],
-    ["venomfang"] = fishTextures[207],
-    ["voidwing"] = fishTextures[208],
+    ["stardustfin"] = fishTextures[203],
+    ["stoneblenny"] = fishTextures[204],
+    ["streamglow"] = fishTextures[205],
+    ["sunburstfish"] = fishTextures[206],
+    ["tangaclaw"] = fishTextures[207],
+    ["venomfang"] = fishTextures[208],
+    ["voidwing"] = fishTextures[209],
 }
 
 local FishBaits = {
@@ -2198,7 +2200,7 @@ local FishBaits = {
     ["striatus"] = {"plastic_bait"},
     ["windsprite"] = {"pizza_bait"},
     --tropical
-    ["burbot"] = {"Any"},
+    ["mudfin"] = {"Any"},
     ["clearcap"] = {"hotdog_bait"},
     ["dawnsnapper"] = {"corn_bait"},
     ["dusksnapper"] = {"corn_bait"},
@@ -2217,6 +2219,7 @@ local FishBaits = {
     ["streamglow"] = {"donut_bait"},
     ["venomfang"] = {"hotdog_bait"},
     ["voidwing"] = {"toast_bait"},
+    ["tangaclaw"] = {"shrimp_bait"},
 }
 
 local RarityReelResistances = {
@@ -2351,7 +2354,7 @@ fish_keys = {
     "stellaroi",
     "striatus",
     --tropical Rare
-    "burbot",
+    "mudfin",
     "dawnsnapper",
     "dusksnapper",
     "neonflare",
