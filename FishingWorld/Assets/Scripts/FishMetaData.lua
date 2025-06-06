@@ -176,7 +176,27 @@ local FishBiomes = {
     ["snowidol"] = {"winter"},
     ["tundrawave"] = {"winter"},
     ["whispergill"] = {"winter"},
-
+    -- jungle
+    ["tigerrush"] = {"jungle"},
+    ["leafshade"] = {"jungle"},
+    ["piranthrax"] = {"jungle"},
+    ["goldripple"] = {"jungle"},
+    ["shadowdrake"] = {"jungle"},
+    ["drakefly"] = {"jungle"},
+    ["voltcat"] = {"jungle"},
+    ["gleameel"] = {"jungle"},
+    ["gratch"] = {"jungle"},
+    ["jadeflare"] = {"jungle"},
+    ["glowbelly"] = {"jungle"},
+    ["mystiglow"] = {"jungle"},
+    ["nightmoth"] = {"jungle"},
+    ["runecarp"] = {"jungle"},
+    ["duneskimmer"] = {"jungle"},
+    ["shovelclaw"] = {"jungle"},
+    ["silkspinner"] = {"jungle"},
+    ["stormpulse"] = {"jungle"},
+    ["stripeflash"] = {"jungle"},
+    ["zebris"] = {"jungle"},
 }
 
 local FishNames = {
@@ -331,6 +351,27 @@ local FishNames = {
     ["snowidol"] = "Snowidol",
     ["tundrawave"] = "Tundrawave",
     ["whispergill"] = "Whispergill",
+    -- jungle
+    ["tigerrush"] = "Tigerrush",
+    ["leafshade"] = "Leafshade",
+    ["piranthrax"] = "Piranthrax",
+    ["goldripple"] = "Goldripple",
+    ["shadowdrake"] = "Shadowdrake",
+    ["drakefly"] = "Drakefly",
+    ["voltcat"] = "Voltcat",
+    ["gleameel"] = "Gleameel",
+    ["gratch"] = "Gratch",
+    ["jadeflare"] = "Jadeflare",
+    ["glowbelly"] = "Glowbelly",
+    ["mystiglow"] = "Mystiglow",
+    ["nightmoth"] = "Nightmoth",
+    ["runecarp"] = "Runecarp",
+    ["duneskimmer"] = "Duneskimmer",
+    ["shovelclaw"] = "Shovelclaw",
+    ["silkspinner"] = "Silkspinner",
+    ["stormpulse"] = "Stormpulse",
+    ["stripeflash"] = "Stripeflash",
+    ["zebris"] = "Zebris",
 }
 
 local FishRarity = {
@@ -485,6 +526,27 @@ local FishRarity = {
     ["snowidol"] = "Epic",
     ["tundrawave"] = "Legendary",
     ["whispergill"] = "Rare",
+    --jungle
+    ["tigerrush"] = "Rare",
+    ["leafshade"] = "Rare",
+    ["piranthrax"] = "Rare",
+    ["goldripple"] = "Rare",
+    ["shadowdrake"] = "Legendary",
+    ["drakefly"] = "Rare",
+    ["voltcat"] = "Legendary",
+    ["gleameel"] = "Rare",
+    ["gratch"] = "Legendary",
+    ["jadeflare"] = "Mythical",
+    ["glowbelly"] = "Rare",
+    ["mystiglow"] = "Mythical",
+    ["nightmoth"] = "Rare",
+    ["runecarp"] = "Epic",
+    ["duneskimmer"] = "Rare",
+    ["shovelclaw"] = "Epic",
+    ["silkspinner"] = "Rare",
+    ["stormpulse"] = "Epic",
+    ["stripeflash"] = "Epic",
+    ["zebris"] = "Rare",
 }
 
 local FishWorth = {
@@ -645,6 +707,27 @@ local FishWorth = {
     ["tundrawave"] = 140,     -- Legendary
     ["whispergill"] = 30,     -- Rare
 
+    --jungle
+    ["tigerrush"] = 30,      -- Rare
+    ["leafshade"] = 30,      -- Rare
+    ["piranthrax"] = 30,     -- Rare
+    ["goldripple"] = 30,     -- Rare
+    ["shadowdrake"] = 150,   -- Legendary
+    ["drakefly"] = 30,       -- Rare
+    ["voltcat"] = 150,       -- Legendary
+    ["gleameel"] = 30,       -- Rare
+    ["gratch"] = 150,        -- Legendary
+    ["jadeflare"] = 500,     -- Mythical
+    ["glowbelly"] = 30,      -- Rare
+    ["mystiglow"] = 500,     -- Mythical
+    ["nightmoth"] = 30,      -- Rare
+    ["runecarp"] = 80,       -- Epic
+    ["duneskimmer"] = 30,    -- Rare
+    ["shovelclaw"] = 80,     -- Epic
+    ["silkspinner"] = 30,    -- Rare
+    ["stormpulse"] = 80,     -- Epic
+    ["stripeflash"] = 80,    -- Epic
+    ["zebris"] = 30,         -- Rare
 }
 
 local FishDescriptions = {
@@ -811,6 +894,27 @@ local FishDescriptions = {
     ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
     ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
     ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice.",
+    --jungle
+    ["tigerrush"] = "A fierce predator with bold stripes that rule the jungle rivers.",
+    ["leafshade"] = "A stealthy fish camouflaged perfectly among drifting jungle leaves.",
+    ["piranthrax"] = "A small but vicious carnivore known for its razor-sharp teeth.",
+    ["goldripple"] = "A shimmering beauty with golden scales that catch the sunlight.",
+    ["shadowdrake"] = "A mysterious dragon-like fish that lurks in the jungle’s darkest pools.",
+    ["drakefly"] = "A nimble swimmer, flitting like a dragonfly over jungle streams.",
+    ["voltcat"] = "Electrifying predator, it shocks prey with a powerful jolt.",
+    ["gleameel"] = "A translucent eel that glimmers softly in shadowed waters.",
+    ["gratch"] = "A hardy native with a tough exterior and quick reflexes.",
+    ["jadeflare"] = "Radiates a magical jade glow, illuminating murky jungle waters.",
+    ["glowbelly"] = "Its belly glows faintly, guiding its way through dense aquatic foliage.",
+    ["mystiglow"] = "Enigmatic fish said to harness ancient jungle magic in its glow.",
+    ["nightmoth"] = "Flutters silently beneath the water’s surface like a nocturnal moth.",
+    ["runecarp"] = "Ancient markings cover its scales, believed to bring fortune.",
+    ["duneskimmer"] = "Skims swiftly over sandy jungle riverbeds with unmatched grace.",
+    ["shovelclaw"] = "Powerful catfish with broad claws for digging and defense.",
+    ["silkspinner"] = "Spins delicate webs of silk-like threads to catch prey.",
+    ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
+    ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
+    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses.",
 }
 
 local FishSizeRange = {
@@ -965,6 +1069,27 @@ local FishSizeRange = {
     ["snowidol"] = {min = 13, max = 22},        -- Epic
     ["tundrawave"] = {min = 22, max = 34},      -- Legendary
     ["whispergill"] = {min = 10, max = 18},     -- Rare
+    --jungle
+    ["tigerrush"] = {min = 20, max = 35},      -- Legendary
+    ["leafshade"] = {min = 10, max = 18},      -- Rare
+    ["piranthrax"] = {min = 8, max = 14},      -- Rare
+    ["goldripple"] = {min = 12, max = 20},     -- Rare
+    ["shadowdrake"] = {min = 25, max = 40},    -- Legendary
+    ["drakefly"] = {min = 14, max = 22},       -- Rare
+    ["voltcat"] = {min = 22, max = 35},        -- Legendary
+    ["gleameel"] = {min = 15, max = 28},       -- Rare
+    ["gratch"] = {min = 18, max = 30},          -- Legendary
+    ["jadeflare"] = {min = 25, max = 38},      -- Mythical
+    ["glowbelly"] = {min = 12, max = 20},      -- Rare
+    ["mystiglow"] = {min = 28, max = 42},      -- Mythical
+    ["nightmoth"] = {min = 10, max = 18},      -- Rare
+    ["runecarp"] = {min = 16, max = 28},       -- Epic
+    ["duneskimmer"] = {min = 10, max = 18},    -- Rare
+    ["shovelclaw"] = {min = 20, max = 32},     -- Epic
+    ["silkspinner"] = {min = 9, max = 16},     -- Rare
+    ["stormpulse"] = {min = 18, max = 30},     -- Epic
+    ["stripeflash"] = {min = 12, max = 22},    -- Epic
+    ["zebris"] = {min = 8, max = 14},           -- Rare
 }
 
 local FishSpecialAttributes = {
@@ -1118,7 +1243,28 @@ local FishSpecialAttributes = {
     ["silvertang"] = "Its polished scales reflect starlight like polished frost.",
     ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
     ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
-    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice."
+    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice.",
+    --jungle
+    ["tigerrush"] = "A fierce predator with bold stripes that rule the jungle rivers.",
+    ["leafshade"] = "A stealthy fish camouflaged perfectly among drifting jungle leaves.",
+    ["piranthrax"] = "A small but vicious carnivore known for its razor-sharp teeth.",
+    ["goldripple"] = "A shimmering beauty with golden scales that catch the sunlight.",
+    ["shadowdrake"] = "A mysterious dragon-like fish that lurks in the jungle’s darkest pools.",
+    ["drakefly"] = "A nimble swimmer, flitting like a dragonfly over jungle streams.",
+    ["voltcat"] = "Electrifying predator, it shocks prey with a powerful jolt.",
+    ["gleameel"] = "A translucent eel that glimmers softly in shadowed waters.",
+    ["gratch"] = "A hardy native with a tough exterior and quick reflexes.",
+    ["jadeflare"] = "Radiates a magical jade glow, illuminating murky jungle waters.",
+    ["glowbelly"] = "Its belly glows faintly, guiding its way through dense aquatic foliage.",
+    ["mystiglow"] = "Enigmatic fish said to harness ancient jungle magic in its glow.",
+    ["nightmoth"] = "Flutters silently beneath the water’s surface like a nocturnal moth.",
+    ["runecarp"] = "Ancient markings cover its scales, believed to bring fortune.",
+    ["duneskimmer"] = "Skims swiftly over sandy jungle riverbeds with unmatched grace.",
+    ["shovelclaw"] = "Powerful catfish with broad claws for digging and defense.",
+    ["silkspinner"] = "Spins delicate webs of silk-like threads to catch prey.",
+    ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
+    ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
+    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses."
 }
 
 local HookSensitivity = {
@@ -1273,6 +1419,27 @@ local HookSensitivity = {
     ["snowidol"] = 1.3,        -- Epic
     ["tundrawave"] = 1.6,      -- Legendary
     ["whispergill"] = 1.1,     -- Rare
+    --jungle
+    ["tigerrush"] = 1.5,      -- Legendary  
+    ["leafshade"] = 1.1,      -- Rare  
+    ["piranthrax"] = 1.0,     -- Rare  
+    ["goldripple"] = 1.1,     -- Rare  
+    ["shadowdrake"] = 1.6,    -- Legendary  
+    ["drakefly"] = 1.2,       -- Rare  
+    ["voltcat"] = 1.5,        -- Legendary  
+    ["gleameel"] = 1.2,       -- Rare  
+    ["gratch"] = 1.5,         -- Legendary  
+    ["jadeflare"] = 1.8,      -- Mythical  
+    ["glowbelly"] = 1.1,      -- Rare  
+    ["mystiglow"] = 1.9,      -- Mythical  
+    ["nightmoth"] = 1.0,      -- Rare  
+    ["runecarp"] = 1.3,       -- Epic  
+    ["duneskimmer"] = 1.0,    -- Rare  
+    ["shovelclaw"] = 1.4,     -- Epic  
+    ["silkspinner"] = 1.1,    -- Rare  
+    ["stormpulse"] = 1.3,     -- Epic  
+    ["stripeflash"] = 1.3,    -- Epic  
+    ["zebris"] = 1.0,         -- Rare
 }
 
 local FishImage = {
@@ -1427,6 +1594,27 @@ local FishImage = {
     ["snowidol"] = fishTextures[147],
     ["tundrawave"] = fishTextures[148],
     ["whispergill"] = fishTextures[149],
+    --jungle
+    ["drakefly"] = fishTextures[150],
+    ["duneskimmer"] = fishTextures[151],
+    ["gleameel"] = fishTextures[152],
+    ["glowbelly"] = fishTextures[153],
+    ["goldripple"] = fishTextures[154],
+    ["gratch"] = fishTextures[155],
+    ["jadeflare"] = fishTextures[156],
+    ["leafshade"] = fishTextures[157],
+    ["mystiglow"] = fishTextures[158],
+    ["nightmoth"] = fishTextures[159],
+    ["piranthrax"] = fishTextures[160],
+    ["runecarp"] = fishTextures[161],
+    ["shovelclaw"] = fishTextures[162],
+    ["silkspinner"] = fishTextures[163],
+    ["shadowdrake"] = fishTextures[164],
+    ["stormpulse"] = fishTextures[165],
+    ["stripeflash"] = fishTextures[166],
+    ["tigerrush"] = fishTextures[167],
+    ["voltcat"] = fishTextures[168],
+    ["zebris"] = fishTextures[169],
 }
 
 local FishBaits = {
@@ -1581,6 +1769,27 @@ local FishBaits = {
     ["snowidol"] = {"pizza_bait"},
     ["tundrawave"] = {"donut_bait"},
     ["whispergill"] = {"chicken_bait"},
+    --jungle
+    ["tigerrush"] = {"bacon_bait"},
+    ["leafshade"] = {"broccoli_bait"},
+    ["piranthrax"] = {"hotdog_bait"},
+    ["goldripple"] = {"egg_bait"},
+    ["shadowdrake"] = {"steak_bait"},
+    ["drakefly"] = {"pizza_bait"},
+    ["voltcat"] = {"steak_bait"},
+    ["gleameel"] = {"toast_bait"},
+    ["gratch"] = {"shrimp_bait"},
+    ["jadeflare"] = {"donut_bait"},
+    ["glowbelly"] = {"pizza_bait"},
+    ["mystiglow"] = {"donut_bait"},
+    ["nightmoth"] = {"maggot_bait"},
+    ["runecarp"] = {"plastic_bait"},
+    ["duneskimmer"] = {"corn_bait"},
+    ["shovelclaw"] = {"bacon_bait"},
+    ["silkspinner"] = {"maggot_bait"},
+    ["stormpulse"] = {"squid_bait"},
+    ["stripeflash"] = {"bacon_bait"},
+    ["zebris"] = {"chicken_bait"},
 }
 
 local RarityReelResistances = {
@@ -1692,6 +1901,17 @@ fish_keys = {
     "lunawing",
     "rimefang",
     "whispergill",
+    -- Rare
+    "drakefly",
+    "duneskimmer",
+    "gleameel",
+    "glowbelly",
+    "leafshade",
+    "nightmoth",
+    "piranthrax",
+    "silkspinner",
+    "zebris",
+    "goldripple",
 
     -- Epic
     "dolphin",            -- Epic
@@ -1730,6 +1950,11 @@ fish_keys = {
     "moonspine",
     "silvertang",
     "snowidol",
+    -- Jungle Epic
+    "runecarp",
+    "shovelclaw",
+    "stormpulse",
+    "stripeflash",
     
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
@@ -1757,6 +1982,11 @@ fish_keys = {
     "crescentide",
     "shiverfin",
     "tundrawave",
+    -- jungle Legendary
+    "shadowdrake",
+    "tigerrush",
+    "voltcat",
+    "gratch",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1786,6 +2016,9 @@ fish_keys = {
     "brineleaf",
     "frostchar",
     "mythicrest",
+    -- Jungle Mythical
+    "jadeflare",
+    "mystiglow",
 }
 
 -- Create an entry for each fish pulling data from the tables above
