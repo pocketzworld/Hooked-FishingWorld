@@ -249,13 +249,12 @@ function ShowFishPopup(fishID: string, size, rarity, description: string, image:
 end
 
 function ShowPlayerFishWorld(player, fish, size)
-    print(player.character.gameObject.transform:GetChild(3).gameObject.name)
+    --print(player.character.gameObject.transform:GetChild(3).gameObject.name)
     local playerFishQuad = player.character.gameObject.transform:GetChild(3).gameObject.transform:GetChild(0).gameObject
     local playerFishAnimator = playerFishQuad:GetComponent(Animator)
     local playerFishRenderer = player.character.gameObject.transform:GetChild(3).gameObject.transform:GetChild(0):GetComponent(Renderer)
     playerFishRenderer.material:SetTexture("_BaseMap", fishMetaTable[fish].FishImage)
     playerFishAnimator:SetTrigger("ShowFish")
-
 end
 
 --- Initializes the UI scripts on client awake

@@ -84,6 +84,7 @@ function self:ClientAwake()
 
         local _newPlayerWorldFish = GameObject.Instantiate(playerWorldFishPrefab)
         _newPlayerWorldFish.transform.parent = character.gameObject.transform
+        _newPlayerWorldFish.transform.localPosition = Vector3.new(0, 0, 0)
         _newPlayerWorldFish.name = "WorldFish_" .. tostring(player.user.id)
 
         -- Local player score update
