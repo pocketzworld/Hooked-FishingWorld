@@ -24,181 +24,222 @@ Q60xx - Mythical
 
 -- Separated tables for each attribute, keyed by fish ID
 
---[[ Empty FishTable
-local EmptyFishDataTable = {
-    ["black_crappie"] = 1,
-    ["yellow_perch"] = 1,
-    ["blue_gill"] = 1,
-    ["pumpkinseed"] = 1,
-    ["boot_fish"] = 1,
-    ["can_fish"] = 1,
-    ["long_mouth_bass"] = 1,
-    ["salmon"] = 1,
-    ["crystal_fairy_fish"] = 1,
-    ["dragon_fish"] = 1,
-    ["unicorn_fish"] = 1,
-    ["anchovi_fish"] = 1,
-    ["angler_fish"] = 1,
-    ["arowana_fish"] = 1,
-    ["barred_knife_fish"] = 1,
-    ["beach_shark_fish"] = 1,
-    ["begginers_luck_fish"] = 1,
-    ["betta_fish"] = 1,
-    ["black_ghostshark"] = 1,
-    ["black_drum_fish"] = 1,
-    ["blue_whale"] = 1,
-    ["blue_tang"] = 1,
-    ["alley_cat_fish"] = 1,
-    ["catfish"] = 1,
-    ["chum_salmon_fish"] = 1,
-    ["clown_fish"] = 1,
-    ["coho_salmon_fish"] = 1,
-    ["common_carp_fish"] = 1,
-    ["crab"] = 1,
-    ["dolphin"] = 1,
-    ["rasta_drum_fish"] = 1,
-    ["dumbo_octopus"] = 1,
-    ["electric_eel"] = 1,
-    ["flounder_fish"] = 1,
-    ["tourist_fish"] = 1,
-    ["gold_fish"] = 1,
-    ["goliath_tiger_fish"] = 1,
-    ["jelly_fish"] = 1,
-    ["jogger_fish"] = 1,
-    ["killer_whale"] = 1,
-    ["king_catfish"] = 1,
-    ["king_mackerel"] = 1,
-    ["king_salmon"] = 1,
-    ["king_seahorse"] = 1,
-    ["koi_fish_samurai"] = 1,
-    ["koi_fish_large"] = 1,
-    ["large_stripped_bass"] = 1,
-    ["lion_fish"] = 1,
-    ["freindly_local_fish"] = 1,
-    ["mouse_fish"] = 1,
-    ["newborn_salmon"] = 1,
-    ["nomadic_trout"] = 1,
-    ["northern_pike"] = 1,
-    ["octopus"] = 1,
-    ["oil_eater_fish"] = 1,
-    ["omnipotent_squid"] = 1,
-    ["pearl_perch_fish"] = 1,
-    ["peasant_fish"] = 1,
-    ["pink_salmon"] = 1,
-    ["piranha"] = 1,
-    ["red_snapper_fish"] = 1,
-    ["rock_bass_fish"] = 1,
-    ["royal_lake_fish"] = 1,
-    ["salt_trader_fish"] = 1,
-    ["saw_fish"] = 1,
-    ["seahorse"] = 1,
-    ["servant_fish"] = 1,
-    ["small_common_trout"] = 1,
-    ["rainbow_trout"] = 1,
-    ["spotted_bass_fish"] = 1,
-    ["squid"] = 1,
-    ["squirrel_fish"] = 1,
-    ["star_fish"] = 1,
-    ["sting_ray"] = 1,
-    ["sun_fish"] = 1,
-    ["surffer_fish"] = 1,
-    ["sword_fish"] = 1,
-    ["tiger_pistol_shrimp"] = 1,
-    ["transparent_head_fish"] = 1,
-    ["buisness_fish"] = 1,
-    ["derp_fish"] = 1,
-    ["king_fish"] = 1,
-    ["walley_fish"] = 1,
-    ["albino_catfish"] = 1,
-    ["yellow_watchman"] = 1,
-}]]
-
 local FishBiomes = {
-    ["black_crappie"] = {"Lake", "River"},
-    ["yellow_perch"] = {"River", "Lake", "Ice"},
-    ["blue_gill"] = {"River", "Lake"},
-    ["pumpkinseed"] = {"Lake", "River"},
+    ["black_crappie"] = {"Any"},
+    ["yellow_perch"] = {"Any"},
+    ["blue_gill"] = {"Any"},
+    ["pumpkinseed"] = {"Any"},
     ["boot_fish"] = {"Any"},
     ["can_fish"] = {"Any"},
-    ["long_mouth_bass"] = {"River", "Lake", "Ice"},
-    ["salmon"] = {"River", "Waterfall"},
-    ["crystal_fairy_fish"] = {"Ice"},
-    ["dragon_fish"] = {"Ocean", "Waterfall"},
-    ["unicorn_fish"] = {"Lake"},
-    ["anchovi_fish"] = {"Ocean"},
-    ["angler_fish"] = {"Ocean"},
-    ["arowana_fish"] = {"River", "Lake"},
-    ["barred_knife_fish"] = {"River", "Lake"},
-    ["beach_shark_fish"] = {"Ocean"},
+    ["long_mouth_bass"] = {"Any"},
+    ["salmon"] = {"Any"},
+    ["crystal_fairy_fish"] = {"Any"},
+    ["dragon_fish"] = {"Any"},
+    ["unicorn_fish"] = {"Any"},
+    ["anchovi_fish"] = {"Any"},
+    ["angler_fish"] = {"Any"},
+    ["arowana_fish"] = {"Any"},
+    ["barred_knife_fish"] = {"Any"},
+    ["beach_shark_fish"] = {"Any"},
     ["begginers_luck_fish"] = {"Any"},
-    ["betta_fish"] = {"River", "Lake"},
-    ["black_ghostshark"] = {"Ocean"},
-    ["black_drum_fish"] = {"Ocean"},
-    ["blue_whale"] = {"Ocean"},
-    ["blue_tang"] = {"Ocean"},
-    ["alley_cat_fish"] = {"River", "Lake"},
-    ["catfish"] = {"River", "Lake"},
-    ["chum_salmon_fish"] = {"River", "Waterfall"},
-    ["clown_fish"] = {"Ocean"},
-    ["coho_salmon_fish"] = {"River", "Waterfall"},
-    ["common_carp_fish"] = {"River", "Lake"},
-    ["crab"] = {"Ocean"},
-    ["dolphin"] = {"Ocean"},
-    ["rasta_drum_fish"] = {"Ocean"},
-    ["dumbo_octopus"] = {"Ocean"},
-    ["electric_eel"] = {"River", "Lake"},
-    ["flounder_fish"] = {"Ocean"},
+    ["betta_fish"] = {"Any"},
+    ["black_ghostshark"] = {"Any"},
+    ["black_drum_fish"] = {"Any"},
+    ["blue_whale"] = {"Any"},
+    ["blue_tang"] = {"Any"},
+    ["alley_cat_fish"] = {"Any"},
+    ["catfish"] = {"Any"},
+    ["chum_salmon_fish"] = {"Any"},
+    ["clown_fish"] = {"Any"},
+    ["coho_salmon_fish"] = {"Any"},
+    ["common_carp_fish"] = {"Any"},
+    ["crab"] = {"Any"},
+    ["dolphin"] = {"Any"},
+    ["rasta_drum_fish"] = {"Any"},
+    ["dumbo_octopus"] = {"Any"},
+    ["electric_eel"] = {"Any"},
+    ["flounder_fish"] = {"Any"},
     ["tourist_fish"] = {"Any"},
-    ["gold_fish"] = {"River", "Lake"},
-    ["goliath_tiger_fish"] = {"River", "Lake", "Ocean"},
-    ["jelly_fish"] = {"Ocean"},
-    ["jogger_fish"] = {"River", "Lake"},
-    ["killer_whale"] = {"Ocean"},
-    ["king_catfish"] = {"River", "Lake"},
-    ["king_mackerel"] = {"Ocean"},
-    ["king_salmon"] = {"River", "Waterfall"},
-    ["king_seahorse"] = {"Ocean"},
-    ["koi_fish_samurai"] = {"River", "Lake"},
-    ["koi_fish_large"] = {"River", "Lake"},
-    ["large_stripped_bass"] = {"River", "Lake", "Ice"},
-    ["lion_fish"] = {"Ocean"},
+    ["gold_fish"] = {"Any"},
+    ["goliath_tiger_fish"] = {"Any"},
+    ["jelly_fish"] = {"Any"},
+    ["jogger_fish"] = {"Any"},
+    ["killer_whale"] = {"Any"},
+    ["king_catfish"] = {"Any"},
+    ["king_mackerel"] = {"Any"},
+    ["king_salmon"] = {"Any"},
+    ["king_seahorse"] = {"Any"},
+    ["koi_fish_samurai"] = {"Any"},
+    ["koi_fish_large"] = {"Any"},
+    ["large_stripped_bass"] = {"Any"},
+    ["lion_fish"] = {"Any"},
     ["freindly_local_fish"] = {"Any"},
-    ["mouse_fish"] = {"River", "Lake"},
-    ["newborn_salmon"] = {"River", "Waterfall"},
-    ["nomadic_trout"] = {"River", "Lake", "Ice"},
-    ["northern_pike"] = {"Ice"},
-    ["octopus"] = {"Ocean"},
-    ["oil_eater_fish"] = {"Ocean"},
-    ["omnipotent_squid"] = {"Ocean"},
-    ["pearl_perch_fish"] = {"Ocean"},
+    ["mouse_fish"] = {"Any"},
+    ["newborn_salmon"] = {"Any"},
+    ["nomadic_trout"] = {"Any"},
+    ["northern_pike"] = {"Any"},
+    ["octopus"] = {"Any"},
+    ["oil_eater_fish"] = {"Any"},
+    ["omnipotent_squid"] = {"Any"},
+    ["pearl_perch_fish"] = {"Any"},
     ["peasant_fish"] = {"Any"},
-    ["pink_salmon"] = {"River", "Waterfall"},
-    ["piranha"] = {"Lake"},
-    ["red_snapper_fish"] = {"Ocean"},
-    ["rock_bass_fish"] = {"River", "Lake", "Ice"},
-    ["royal_lake_fish"] = {"Lake"},
-    ["salt_trader_fish"] = {"Ocean"},
-    ["saw_fish"] = {"Ocean"},
-    ["seahorse"] = {"Ocean"},
+    ["pink_salmon"] = {"Any"},
+    ["piranha"] = {"Any"},
+    ["red_snapper_fish"] = {"Any"},
+    ["rock_bass_fish"] = {"Any"},
+    ["royal_lake_fish"] = {"Any"},
+    ["salt_trader_fish"] = {"Any"},
+    ["saw_fish"] = {"Any"},
+    ["seahorse"] = {"Any"},
     ["servant_fish"] = {"Any"},
-    ["small_common_trout"] = {"River", "Lake", "Ice"},
-    ["rainbow_trout"] = {"River", "Lake", "Ice"},
-    ["spotted_bass_fish"] = {"River", "Lake", "Ice"},
-    ["squid"] = {"Ocean"},
-    ["squirrel_fish"] = {"River", "Lake"},
-    ["star_fish"] = {"Ocean"},
-    ["sting_ray"] = {"Ocean"},
-    ["sun_fish"] = {"Ocean"},
-    ["surffer_fish"] = {"Ice", "Ocean"},
-    ["sword_fish"] = {"Ocean"},
+    ["small_common_trout"] = {"Any"},
+    ["rainbow_trout"] = {"Any"},
+    ["spotted_bass_fish"] = {"Any"},
+    ["squid"] = {"Any"},
+    ["squirrel_fish"] = {"Any"},
+    ["star_fish"] = {"Any"},
+    ["sting_ray"] = {"Any"},
+    ["sun_fish"] = {"Any"},
+    ["surffer_fish"] = {"Any"},
+    ["sword_fish"] = {"Any"},
     ["tiger_pistol_shrimp"] = {"Any"},
-    ["transparent_head_fish"] = {"Ocean"},
+    ["transparent_head_fish"] = {"Any"},
     ["buisness_fish"] = {"Any"},
     ["derp_fish"] = {"Any"},
     ["king_fish"] = {"Any"},
-    ["walley_fish"] = {"River", "Lake", "Ice"},
-    ["albino_catfish"] = {"River", "Lake"},
-    ["yellow_watchman"] = {"Ocean"},
+    ["walley_fish"] = {"Any"},
+    ["albino_catfish"] = {"Any"},
+    ["yellow_watchman"] = {"Any"},
+    ["bubble_fish"] = {"Any"},
+    ["rainbow_fish"] = {"crystal"},
+    ["garnetfish"] = {"crystal"},
+    ["amethyststream"] = {"crystal"},
+    ["aquaripple"] = {"crystal"},
+    ["diamondblink"] = {"crystal"},
+    ["emeraldfin"] = {"crystal"},
+    ["pearlglow"] = {"crystal"},
+    ["rubyflame"] = {"crystal"},
+    ["peridotglimmer"] = {"crystal"},
+    ["sapphirine"] = {"crystal"},
+    ["opalflare"] = {"crystal"},
+    ["topazflare"] = {"crystal"},
+    ["turquoisewave"] = {"crystal"},
+    ["LouYu"] = {"crystal"},
+    ["Obsidianfin"] = {"crystal"},
+    ["solidGoldFish"] = {"crystal"},
+    ["solidSilverFish"] = {"crystal"},
+    ["tounniFish"] = {"crystal"},
+    ["bubbleGumFish"] = {"crystal"},
+    ["DreamweaverBeta"] = {"crystal"},
+    ["crystalJellyFish"] = {"crystal"},
+    --coral
+    ["amberlure"] = {"coral"},
+    ["ashflare"] = {"coral"},
+    ["azuregill"] = {"coral"},
+    ["blazefin"] = {"coral"},
+    ["charavine"] = {"coral"},
+    ["crownscale"] = {"coral"},
+    ["duskmire"] = {"coral"},
+    ["embercreel"] = {"coral"},
+    ["flutterfin"] = {"coral"},
+    ["gloomgill"] = {"coral"},
+    ["jellyspawn"] = {"coral"},
+    ["mandaglimmer"] = {"coral"},
+    ["moltenfin"] = {"coral"},
+    ["nightdarter"] = {"coral"},
+    ["oarpike"] = {"coral"},
+    ["puffreef"] = {"coral"},
+    ["reefwarden"] = {"coral"},
+    ["regalfin"] = {"coral"},
+    ["skypiercer"] = {"coral"},
+    ["spinebloom"] = {"coral"},
+    ["stellafin"] = {"coral"},
+    ["bettraquon"] = {"coral"},
+    --winter
+    ["brineleaf"] = {"winter"},
+    ["crescentide"] = {"winter"},
+    ["crystalfade"] = {"winter"},
+    ["deepgloom"] = {"winter"},
+    ["dusktide"] = {"winter"},
+    ["frothling"] = {"winter"},
+    ["frostchar"] = {"winter"},
+    ["frostqueen"] = {"winter"},
+    ["frostscale"] = {"winter"},
+    ["glimmerscale"] = {"winter"},
+    ["glacierrun"] = {"winter"},
+    ["lunawing"] = {"winter"},
+    ["moonspine"] = {"winter"},
+    ["mythicrest"] = {"winter"},
+    ["rimefang"] = {"winter"},
+    ["shiverfin"] = {"winter"},
+    ["silvertang"] = {"winter"},
+    ["snowidol"] = {"winter"},
+    ["tundrawave"] = {"winter"},
+    ["whispergill"] = {"winter"},
+    -- jungle
+    ["tigerrush"] = {"jungle"},
+    ["leafshade"] = {"jungle"},
+    ["piranthrax"] = {"jungle"},
+    ["goldripple"] = {"jungle"},
+    ["shadowdrake"] = {"jungle"},
+    ["drakefly"] = {"jungle"},
+    ["voltcat"] = {"jungle"},
+    ["gleameel"] = {"jungle"},
+    ["gratch"] = {"jungle"},
+    ["jadeflare"] = {"jungle"},
+    ["glowbelly"] = {"jungle"},
+    ["mystiglow"] = {"jungle"},
+    ["nightmoth"] = {"jungle"},
+    ["runecarp"] = {"jungle"},
+    ["duneskimmer"] = {"jungle"},
+    ["shovelclaw"] = {"jungle"},
+    ["silkspinner"] = {"jungle"},
+    ["stormpulse"] = {"jungle"},
+    ["stripeflash"] = {"jungle"},
+    ["zebris"] = {"jungle"},
+    --cliffs
+    ["glacierglow"] = {"cliffs"},
+    ["axolume"] = {"cliffs"},
+    ["blueflare"] = {"cliffs"},
+    ["cratefin"] = {"cliffs"},
+    ["mistwhirl"] = {"cliffs"},
+    ["dragonscale"] = {"cliffs"},
+    ["somnifin"] = {"cliffs"},
+    ["faeglimmer"] = {"cliffs"},
+    ["windsprite"] = {"cliffs"},
+    ["ballfin"] = {"cliffs"},
+    ["goldwyrm"] = {"cliffs"},
+    ["skyrider"] = {"cliffs"},
+    ["plumecrest"] = {"cliffs"},
+    ["beakcoil"] = {"cliffs"},
+    ["flareborn"] = {"cliffs"},
+    ["glowcrest"] = {"cliffs"},
+    ["spectralfin"] = {"cliffs"},
+    ["speckledray"] = {"cliffs"},
+    ["stellaroi"] = {"cliffs"},
+    ["striatus"] = {"cliffs"},
+    --tropical
+    ["sunburstfish"] = {"tropical"},
+    ["mudfin"] = {"tropical"},
+    ["clearcap"] = {"tropical"},
+    ["gulpfin"] = {"tropical"},
+    ["tangaclaw"] = {"tropical"},
+    ["neonflare"] = {"tropical"},
+    ["shadefin"] = {"tropical"},
+    ["rainbowbeak"] = {"tropical"},
+    ["peaflare"] = {"tropical"},
+    ["streamglow"] = {"tropical"},
+    ["reefshadow"] = {"tropical"},
+    ["stoneblenny"] = {"tropical"},
+    ["rustbarb"] = {"tropical"},
+    ["koisamurai"] = {"tropical"},
+    ["shellback"] = {"tropical"},
+    ["stardustfin"] = {"tropical"},
+    ["dawnsnapper"] = {"tropical"},
+    ["dusksnapper"] = {"tropical"},
+    ["venomfang"] = {"tropical"},
+    ["voidwing"] = {"tropical"},
+
 }
 
 local FishNames = {
@@ -287,6 +328,136 @@ local FishNames = {
     ["walley_fish"] = "Walleye",
     ["albino_catfish"] = "Albino Catfish",
     ["yellow_watchman"] = "Yellow Watchman",
+    ["bubble_fish"] = "Bubble Fish",
+    ["rainbow_fish"] = "Rainbow Fish",
+    ["garnetfish"] = "Garnetfish",
+    ["amethyststream"] = "Amethyststream",
+    ["aquaripple"] = "Aquaripple",
+    ["diamondblink"] = "Diamondblink",
+    ["emeraldfin"] = "Emeraldfin",
+    ["pearlglow"] = "Pearlglow",
+    ["rubyflame"] = "Rubyflame",
+    ["peridotglimmer"] = "Peridotglimmer",
+    ["sapphirine"] = "Sapphirine",
+    ["opalflare"] = "Opalflare",
+    ["topazflare"] = "Topazflare",
+    ["turquoisewave"] = "Turquoisewave",
+    ["LouYu"] = "Lou Yu",
+    ["Obsidianfin"] = "Obsidianfin",
+    ["solidGoldFish"] = "Midas Fin",
+    ["solidSilverFish"] = "Sterling Fish",
+    ["tounniFish"] = "Glimmergill",
+    ["bubbleGumFish"] = "Bubblegum Fish",
+    ["DreamweaverBeta"] = "Dreamweaver Beta",
+    ["crystalJellyFish"] = "Iridesceus",
+    --coral
+    ["amberlure"] = "Amber Lure",
+    ["ashflare"] = "Ash Flare",
+    ["azuregill"] = "Azure Gill",
+    ["blazefin"] = "Blaze Fin",
+    ["charavine"] = "Charavine",
+    ["crownscale"] = "Crown Scale",
+    ["duskmire"] = "Duskmire",
+    ["embercreel"] = "Ember Creel",
+    ["flutterfin"] = "Flutter Fin",
+    ["gloomgill"] = "Gloom Gill",
+    ["jellyspawn"] = "Jellyspawn",
+    ["mandaglimmer"] = "Mandaglimmer",
+    ["moltenfin"] = "Molten Fin",
+    ["nightdarter"] = "Night Darter",
+    ["oarpike"] = "Oarpike",
+    ["puffreef"] = "Puff Reef",
+    ["reefwarden"] = "Reef Warden",
+    ["regalfin"] = "Regal Fin",
+    ["skypiercer"] = "Sky Piercer",
+    ["spinebloom"] = "Spine Bloom",
+    ["stellafin"] = "Stella Fin",
+    ["bettraquon"] = "Bettraquon",
+    --winter
+    ["brineleaf"] = "Brineleaf",
+    ["crescentide"] = "Crescentide",
+    ["crystalfade"] = "Crystalfade",
+    ["deepgloom"] = "Deepgloom",
+    ["dusktide"] = "Dusktide",
+    ["frothling"] = "Frothling",
+    ["frostchar"] = "Frostchar",
+    ["frostqueen"] = "Frostqueen",
+    ["frostscale"] = "Frostscale",
+    ["glimmerscale"] = "Glimmerscale",
+    ["glacierrun"] = "Glacierrun",
+    ["lunawing"] = "Lunawing",
+    ["moonspine"] = "Moonspine",
+    ["mythicrest"] = "Mythicrest",
+    ["rimefang"] = "Rimefang",
+    ["shiverfin"] = "Shiverfin",
+    ["silvertang"] = "Silvertang",
+    ["snowidol"] = "Snowidol",
+    ["tundrawave"] = "Tundrawave",
+    ["whispergill"] = "Whispergill",
+    -- jungle
+    ["tigerrush"] = "Tigerrush",
+    ["leafshade"] = "Leafshade",
+    ["piranthrax"] = "Piranthrax",
+    ["goldripple"] = "Goldripple",
+    ["shadowdrake"] = "Shadowdrake",
+    ["drakefly"] = "Drakefly",
+    ["voltcat"] = "Voltcat",
+    ["gleameel"] = "Gleameel",
+    ["gratch"] = "Gratch",
+    ["jadeflare"] = "Jadeflare",
+    ["glowbelly"] = "Glowbelly",
+    ["mystiglow"] = "Mystiglow",
+    ["nightmoth"] = "Nightmoth",
+    ["runecarp"] = "Runecarp",
+    ["duneskimmer"] = "Duneskimmer",
+    ["shovelclaw"] = "Shovelclaw",
+    ["silkspinner"] = "Silkspinner",
+    ["stormpulse"] = "Stormpulse",
+    ["stripeflash"] = "Stripeflash",
+    ["zebris"] = "Zebris",
+    --cliffs
+    ["axolume"] = "Axolume",
+    ["ballfin"] = "Ballfin",
+    ["beakcoil"] = "Beakcoil",
+    ["blueflare"] = "Blueflare",
+    ["cratefin"] = "Cratefin",
+    ["dragonscale"] = "Dragonscale",
+    ["faeglimmer"] = "Faeglimmer",
+    ["flareborn"] = "Flareborn",
+    ["glacierglow"] = "Glacierglow",
+    ["glowcrest"] = "Glowcrest",
+    ["goldwyrm"] = "Goldwyrm",
+    ["mistwhirl"] = "Mistwhirl",
+    ["plumecrest"] = "Plumecrest",
+    ["skyrider"] = "Skyrider",
+    ["somnifin"] = "Somnifin",
+    ["spectralfin"] = "Spectralfin",
+    ["speckledray"] = "Speckledray",
+    ["stellaroi"] = "Stellaroi",
+    ["striatus"] = "Striatus",
+    ["windsprite"] = "Windsprite",
+    --tropical
+    ["sunburstfish"] = "Sunburstfish",
+    ["mudfin"] = "mudfin",
+    ["clearcap"] = "Clearcap",
+    ["gulpfin"] = "Gulpfin",
+    ["tangaclaw"] = "Tangaclaw",
+    ["neonflare"] = "Neonflare",
+    ["shadefin"] = "Shadefin",
+    ["rainbowbeak"] = "Rainbowbeak",
+    ["peaflare"] = "Peaflare",
+    ["streamglow"] = "Streamglow",
+    ["reefshadow"] = "Reefshadow",
+    ["stoneblenny"] = "Stoneblenny",
+    ["rustbarb"] = "Rustbarb",
+    ["koisamurai"] = "Koisamurai",
+    ["shellback"] = "Shellback",
+    ["stardustfin"] = "Stardustfin",
+    ["dawnsnapper"] = "Dawnsnapper",
+    ["dusksnapper"] = "Dusksnapper",
+    ["venomfang"] = "Venomfang",
+    ["voidwing"] = "Voidwing",
+
 }
 
 local FishRarity = {
@@ -375,13 +546,143 @@ local FishRarity = {
     ["walley_fish"] = "Uncommon",
     ["albino_catfish"] = "Rare",
     ["yellow_watchman"] = "Mythical",
+    ["bubble_fish"] = "Legendary",
+    ["rainbow_fish"] = "Mythical",
+    ["garnetfish"] = "Epic",
+    ["amethyststream"] = "Epic",
+    ["aquaripple"] = "Epic",
+    ["diamondblink"] = "Epic",
+    ["emeraldfin"] = "Epic",
+    ["pearlglow"] = "Epic",
+    ["rubyflame"] = "Epic",
+    ["peridotglimmer"] = "Epic",
+    ["sapphirine"] = "Epic",
+    ["opalflare"] = "Epic",
+    ["topazflare"] = "Epic",
+    ["turquoisewave"] = "Epic",
+    ["LouYu"] = "Rare",
+    ["Obsidianfin"] = "Rare",
+    ["solidGoldFish"] = "Rare",
+    ["solidSilverFish"] = "Rare",
+    ["tounniFish"] = "Rare",
+    ["bubbleGumFish"] = "Legendary",
+    ["DreamweaverBeta"] = "Legendary",
+    ["crystalJellyFish"] = "Mythical",
+    --coral
+    ["amberlure"] = "Rare",
+    ["ashflare"] = "Epic",
+    ["azuregill"] = "Epic",
+    ["blazefin"] = "Legendary",
+    ["charavine"] = "Epic",
+    ["crownscale"] = "Epic",
+    ["duskmire"] = "Rare",
+    ["embercreel"] = "Rare",
+    ["flutterfin"] = "Rare",
+    ["gloomgill"] = "Rare",
+    ["jellyspawn"] = "Legendary",
+    ["mandaglimmer"] = "Legendary",
+    ["moltenfin"] = "Mythical",
+    ["nightdarter"] = "Legendary",
+    ["oarpike"] = "Rare",
+    ["puffreef"] = "Epic",
+    ["reefwarden"] = "Rare",
+    ["regalfin"] = "Mythical",
+    ["skypiercer"] = "Rare",
+    ["spinebloom"] = "Rare",
+    ["stellafin"] = "Rare",
+    ["bettraquon"] = "Epic",
+    --winter
+    ["brineleaf"] = "Mythical",
+    ["crescentide"] = "Legendary",
+    ["crystalfade"] = "Epic",
+    ["deepgloom"] = "Rare",
+    ["dusktide"] = "Epic",
+    ["frothling"] = "Rare",
+    ["frostchar"] = "Mythical",
+    ["frostqueen"] = "Rare",
+    ["frostscale"] = "Rare",
+    ["glimmerscale"] = "Rare",
+    ["glacierrun"] = "Rare",
+    ["lunawing"] = "Rare",
+    ["moonspine"] = "Epic",
+    ["mythicrest"] = "Mythical",
+    ["rimefang"] = "Rare",
+    ["shiverfin"] = "Legendary",
+    ["silvertang"] = "Epic",
+    ["snowidol"] = "Epic",
+    ["tundrawave"] = "Legendary",
+    ["whispergill"] = "Rare",
+    --jungle
+    ["tigerrush"] = "Rare",
+    ["leafshade"] = "Rare",
+    ["piranthrax"] = "Rare",
+    ["goldripple"] = "Rare",
+    ["shadowdrake"] = "Legendary",
+    ["drakefly"] = "Rare",
+    ["voltcat"] = "Legendary",
+    ["gleameel"] = "Rare",
+    ["gratch"] = "Legendary",
+    ["jadeflare"] = "Mythical",
+    ["glowbelly"] = "Rare",
+    ["mystiglow"] = "Mythical",
+    ["nightmoth"] = "Rare",
+    ["runecarp"] = "Epic",
+    ["duneskimmer"] = "Rare",
+    ["shovelclaw"] = "Epic",
+    ["silkspinner"] = "Rare",
+    ["stormpulse"] = "Epic",
+    ["stripeflash"] = "Epic",
+    ["zebris"] = "Rare",
+    --cliffs
+    ["glacierglow"] = "Epic",
+    ["axolume"] = "Rare",
+    ["blueflare"] = "Epic",
+    ["cratefin"] = "Rare",
+    ["mistwhirl"] = "Mythical",
+    ["dragonscale"] = "Rare",
+    ["somnifin"] = "Legendary",
+    ["faeglimmer"] = "Epic",
+    ["windsprite"] = "Legendary",
+    ["ballfin"] = "Rare",
+    ["goldwyrm"] = "Mythical",
+    ["skyrider"] = "Rare",
+    ["plumecrest"] = "Epic",
+    ["beakcoil"] = "Rare",
+    ["flareborn"] = "Legendary",
+    ["glowcrest"] = "Legendary",
+    ["spectralfin"] = "Rare",
+    ["speckledray"] = "Rare",
+    ["stellaroi"] = "Rare",
+    ["striatus"] = "Rare",
+    --tropical
+    ["sunburstfish"] = "Legendary",
+    ["mudfin"] = "Rare",
+    ["clearcap"] = "Epic",
+    ["gulpfin"] = "Epic",
+    ["tangaclaw"] = "Epic",
+    ["neonflare"] = "Rare",
+    ["shadefin"] = "Epic",
+    ["rainbowbeak"] = "Legendary",
+    ["peaflare"] = "Rare",
+    ["streamglow"] = "Mythical",
+    ["reefshadow"] = "Epic",
+    ["stoneblenny"] = "Rare",
+    ["rustbarb"] = "Rare",
+    ["koisamurai"] = "Mythical",
+    ["shellback"] = "Rare",
+    ["stardustfin"] = "Rare",
+    ["dawnsnapper"] = "Rare",
+    ["dusksnapper"] = "Rare",
+    ["venomfang"] = "Legendary",
+    ["voidwing"] = "Rare",
+
 }
 
 local FishWorth = {
-    ["black_crappie"] = 7,
-    ["yellow_perch"] = 5,
-    ["blue_gill"] = 7,
-    ["pumpkinseed"] = 5,
+    ["black_crappie"] = 20,
+    ["yellow_perch"] = 15,
+    ["blue_gill"] = 20,
+    ["pumpkinseed"] = 15,
     ["boot_fish"] = 0,
     ["can_fish"] = 0,
     ["long_mouth_bass"] = 15,
@@ -389,7 +690,7 @@ local FishWorth = {
     ["crystal_fairy_fish"] = 200,
     ["dragon_fish"] = 2500,
     ["unicorn_fish"] = 2000,
-    ["anchovi_fish"] = 5,
+    ["anchovi_fish"] = 15,
     ["angler_fish"] = 100,
     ["arowana_fish"] = 20,
     ["barred_knife_fish"] = 30,
@@ -403,20 +704,20 @@ local FishWorth = {
     ["alley_cat_fish"] = 20,
     ["catfish"] = 25,
     ["chum_salmon_fish"] = 30,
-    ["clown_fish"] = 7,
+    ["clown_fish"] = 20,
     ["coho_salmon_fish"] = 15,
-    ["common_carp_fish"] = 7,
+    ["common_carp_fish"] = 20,
     ["crab"] = 10,
     ["dolphin"] = 100,
     ["rasta_drum_fish"] = 100,
     ["dumbo_octopus"] = 30,
     ["electric_eel"] = 20,
-    ["flounder_fish"] = 5,
+    ["flounder_fish"] = 15,
     ["tourist_fish"] = 150,
     ["gold_fish"] = 50,
     ["goliath_tiger_fish"] = 15,
     ["jelly_fish"] = 100,
-    ["jogger_fish"] = 5,
+    ["jogger_fish"] = 15,
     ["killer_whale"] = 100,
     ["king_catfish"] = 150,
     ["king_mackerel"] = 100,
@@ -434,25 +735,25 @@ local FishWorth = {
     ["octopus"] = 750,
     ["oil_eater_fish"] = 30,
     ["omnipotent_squid"] = 500,
-    ["pearl_perch_fish"] = 5,
+    ["pearl_perch_fish"] = 15,
     ["peasant_fish"] = 1100,
     ["pink_salmon"] = 20,
     ["piranha"] = 150,
     ["red_snapper_fish"] = 30,
-    ["rock_bass_fish"] = 5,
+    ["rock_bass_fish"] = 15,
     ["royal_lake_fish"] = 100,
     ["salt_trader_fish"] = 500,
     ["saw_fish"] = 30,
     ["seahorse"] = 30,
     ["servant_fish"] = 15,
-    ["small_common_trout"] = 5,
+    ["small_common_trout"] = 15,
     ["rainbow_trout"] = 30,
     ["spotted_bass_fish"] = 15,
     ["squid"] = 100,
     ["squirrel_fish"] = 30,
     ["star_fish"] = 500,
     ["sting_ray"] = 30,
-    ["sun_fish"] = 7,
+    ["sun_fish"] = 20,
     ["surffer_fish"] = 100,
     ["sword_fish"] = 500,
     ["tiger_pistol_shrimp"] = 150,
@@ -463,94 +764,144 @@ local FishWorth = {
     ["walley_fish"] = 15,
     ["albino_catfish"] = 30,
     ["yellow_watchman"] = 500,
-}
+    ["bubble_fish"] = 250,
+    ["rainbow_fish"] = 800,
 
-local FishQuestID = {
-    ["black_crappie"] = "Q2001",
-    ["yellow_perch"] = "Q2002",
-    ["blue_gill"] = "Q2003",
-    ["pumpkinseed"] = "Q2004",
-    ["boot_fish"] = "Q2005",
-    ["can_fish"] = "Q2006",
-    ["long_mouth_bass"] = "Q3001",
-    ["salmon"] = "Q3002",
-    ["crystal_fairy_fish"] = "Q5001",
-    ["dragon_fish"] = "Q6001",
-    ["unicorn_fish"] = "Q6002",
-    ["anchovi_fish"] = "Q2007",
-    ["angler_fish"] = "Q5002",
-    ["arowana_fish"] = "Q3003",
-    ["barred_knife_fish"] = "Q4002",
-    ["beach_shark_fish"] = "Q5003",
-    ["begginers_luck_fish"] = "Q5004",
-    ["betta_fish"] = "Q4003",
-    ["black_ghostshark"] = "Q6003",
-    ["black_drum_fish"] = "Q3004",
-    ["blue_whale"] = "Q6004",
-    ["blue_tang"] = "Q4004",
-    ["alley_cat_fish"] = "Q3005",
-    ["catfish"] = "Q2008",
-    ["chum_salmon_fish"] = "Q4005",
-    ["clown_fish"] = "Q2009",
-    ["coho_salmon_fish"] = "Q3006",
-    ["common_carp_fish"] = "Q2010",
-    ["crab"] = "Q2011",
-    ["dolphin"] = "Q5005",
-    ["rasta_drum_fish"] = "Q6005",
-    ["dumbo_octopus"] = "Q4006",
-    ["electric_eel"] = "Q3007",
-    ["flounder_fish"] = "Q2012",
-    ["tourist_fish"] = "Q5006",
-    ["gold_fish"] = "Q4007",
-    ["goliath_tiger_fish"] = "Q3008",
-    ["jelly_fish"] = "Q6006",
-    ["jogger_fish"] = "Q2013",
-    ["killer_whale"] = "Q5007",
-    ["king_catfish"] = "Q5008",
-    ["king_mackerel"] = "Q5009",
-    ["king_salmon"] = "Q5010",
-    ["king_seahorse"] = "Q5011",
-    ["koi_fish_samurai"] = "Q6007",
-    ["koi_fish_large"] = "Q4008",
-    ["large_stripped_bass"] = "Q3009",
-    ["lion_fish"] = "Q6008",
-    ["freindly_local_fish"] = "Q5012",
-    ["mouse_fish"] = "Q4009",
-    ["newborn_salmon"] = "Q4010",
-    ["nomadic_trout"] = "Q5013",
-    ["northern_pike"] = "Q3010",
-    ["octopus"] = "Q6010",
-    ["oil_eater_fish"] = "Q4011",
-    ["omnipotent_squid"] = "Q6011",
-    ["pearl_perch_fish"] = "Q2014",
-    ["peasant_fish"] = "Q6012",
-    ["pink_salmon"] = "Q3011",
-    ["piranha"] = "Q5014",
-    ["red_snapper_fish"] = "Q4012",
-    ["rock_bass_fish"] = "Q2015",
-    ["royal_lake_fish"] = "Q5015",
-    ["salt_trader_fish"] = "Q6013",
-    ["saw_fish"] = "Q4013",
-    ["seahorse"] = "Q4014",
-    ["servant_fish"] = "Q3012",
-    ["small_common_trout"] = "Q2016",
-    ["rainbow_trout"] = "Q4015",
-    ["spotted_bass_fish"] = "Q3013",
-    ["squid"] = "Q5016",
-    ["squirrel_fish"] = "Q3014",
-    ["star_fish"] = "Q6014",
-    ["sting_ray"] = "Q4016",
-    ["sun_fish"] = "Q2017",
-    ["surffer_fish"] = "Q5017",
-    ["sword_fish"] = "Q6015",
-    ["tiger_pistol_shrimp"] = "Q5018",
-    ["transparent_head_fish"] = "Q6016",
-    ["buisness_fish"] = "Q5019",
-    ["derp_fish"] = "Q4017",
-    ["king_fish"] = "Q5020",
-    ["walley_fish"] = "Q3015",
-    ["albino_catfish"] = "Q4018",
-    ["yellow_watchman"] = "Q6017",
+    -- Crystal biome fish
+    ["garnetfish"] = 150,
+    ["amethyststream"] = 150,
+    ["aquaripple"] = 150,
+    ["diamondblink"] = 150,
+    ["emeraldfin"] = 150,
+    ["pearlglow"] = 150,
+    ["rubyflame"] = 150,
+    ["peridotglimmer"] = 150,
+    ["sapphirine"] = 150,
+    ["opalflare"] = 150,
+    ["topazflare"] = 150,
+    ["turquoisewave"] = 150,
+
+    ["LouYu"] = 50,
+    ["Obsidianfin"] = 50,
+    ["solidGoldFish"] = 50,
+    ["solidSilverFish"] = 50,
+    ["tounniFish"] = 50,
+    ["bubbleGumFish"] = 125,
+    ["DreamweaverBeta"] = 150,
+    ["crystalJellyFish"] = 1000,
+
+    --coral
+    ["amberlure"] = 30,
+    ["ashflare"] = 80,
+    ["azuregill"] = 80,
+    ["blazefin"] = 150,
+    ["charavine"] = 80,
+    ["crownscale"] = 80,
+    ["duskmire"] = 30,
+    ["embercreel"] = 30,
+    ["flutterfin"] = 30,
+    ["gloomgill"] = 30,
+    ["jellyspawn"] = 150,
+    ["mandaglimmer"] = 150,
+    ["moltenfin"] = 500,
+    ["nightdarter"] = 150,
+    ["oarpike"] = 30,
+    ["puffreef"] = 80,
+    ["reefwarden"] = 30,
+    ["regalfin"] = 500,
+    ["skypiercer"] = 30,
+    ["spinebloom"] = 30,
+    ["stellafin"] = 30,
+    ["bettraquon"] = 80,
+
+    --winter
+    ["brineleaf"] = 510,      -- Mythical
+    ["crescentide"] = 150,    -- Legendary
+    ["crystalfade"] = 80,     -- Epic
+    ["deepgloom"] = 30,       -- Rare
+    ["dusktide"] = 90,        -- Epic
+    ["frothling"] = 40,       -- Rare
+    ["frostchar"] = 500,      -- Mythical
+    ["frostqueen"] = 20,      -- Rare
+    ["frostscale"] = 30,      -- Rare
+    ["glimmerscale"] = 40,    -- Rare
+    ["glacierrun"] = 20,      -- Rare
+    ["lunawing"] = 30,        -- Rare
+    ["moonspine"] = 70,       -- Epic
+    ["mythicrest"] = 490,     -- Mythical
+    ["rimefang"] = 30,        -- Rare
+    ["shiverfin"] = 160,      -- Legendary
+    ["silvertang"] = 80,      -- Epic
+    ["snowidol"] = 90,        -- Epic
+    ["tundrawave"] = 140,     -- Legendary
+    ["whispergill"] = 30,     -- Rare
+
+    --jungle
+    ["tigerrush"] = 30,      -- Rare
+    ["leafshade"] = 30,      -- Rare
+    ["piranthrax"] = 30,     -- Rare
+    ["goldripple"] = 30,     -- Rare
+    ["shadowdrake"] = 150,   -- Legendary
+    ["drakefly"] = 30,       -- Rare
+    ["voltcat"] = 150,       -- Legendary
+    ["gleameel"] = 30,       -- Rare
+    ["gratch"] = 150,        -- Legendary
+    ["jadeflare"] = 500,     -- Mythical
+    ["glowbelly"] = 30,      -- Rare
+    ["mystiglow"] = 500,     -- Mythical
+    ["nightmoth"] = 30,      -- Rare
+    ["runecarp"] = 80,       -- Epic
+    ["duneskimmer"] = 30,    -- Rare
+    ["shovelclaw"] = 80,     -- Epic
+    ["silkspinner"] = 30,    -- Rare
+    ["stormpulse"] = 80,     -- Epic
+    ["stripeflash"] = 80,    -- Epic
+    ["zebris"] = 30,         -- Rare
+
+    --cliff
+    ["axolume"] = 30,          -- Rare
+    ["ballfin"] = 30,          -- Rare
+    ["beakcoil"] = 30,         -- Rare
+    ["blueflare"] = 80,        -- Epic
+    ["cratefin"] = 30,         -- Rare
+    ["dragonscale"] = 30,      -- Rare
+    ["faeglimmer"] = 80,       -- Epic
+    ["flareborn"] = 150,       -- Legendary
+    ["glacierglow"] = 80,      -- Epic
+    ["glowcrest"] = 150,       -- Legendary
+    ["goldwyrm"] = 500,        -- Mythical
+    ["mistwhirl"] = 500,       -- Mythical
+    ["plumecrest"] = 80,       -- Epic
+    ["skyrider"] = 30,         -- Rare
+    ["somnifin"] = 150,        -- Legendary
+    ["spectralfin"] = 30,      -- Rare
+    ["speckledray"] = 30,      -- Rare
+    ["stellaroi"] = 30,        -- Rare
+    ["striatus"] = 30,         -- Rare
+    ["windsprite"] = 150,      -- Legendary
+
+    --tropical
+    ["sunburstfish"] = 150,      -- Legendary
+    ["mudfin"] = 30,          -- Rare
+    ["clearcap"] = 80,        -- Epic
+    ["gulpfin"] = 80,         -- Epic
+    ["tangaclaw"] = 80,       -- Epic
+    ["neonflare"] = 30,       -- Rare
+    ["shadefin"] = 80,        -- Epic
+    ["rainbowbeak"] = 150,    -- Legendary
+    ["peaflare"] = 30,        -- Rare
+    ["streamglow"] = 500,     -- Mythical
+    ["reefshadow"] = 80,      -- Epic
+    ["stoneblenny"] = 30,     -- Rare
+    ["rustbarb"] = 30,        -- Rare
+    ["koisamurai"] = 500,     -- Mythical
+    ["shellback"] = 30,       -- Rare
+    ["stardustfin"] = 30,     -- Rare
+    ["dawnsnapper"] = 30,     -- Rare
+    ["dusksnapper"] = 30,     -- Rare
+    ["venomfang"] = 150,      -- Legendary
+    ["voidwing"] = 30,        -- Rare
+
 }
 
 local FishDescriptions = {
@@ -639,6 +990,148 @@ local FishDescriptions = {
     ["walley_fish"] = "The oceans stealthy stalker, blending in and making every hunt a success!",
     ["albino_catfish"] = "The ocean’s elusive gem, standing out with a pristine, otherworldly shine!",
     ["yellow_watchman"] = "A rare and elusive deep sea fish known for kepping an eye out.",
+    ["bubble_fish"] = "A whimsical fish that blows bubbles and spreads joy wherever it swims!",
+    ["rainbow_fish"] = "A vibrant and colorful fish that brings a splash of joy to the ocean!",
+    ["garnetfish"] = "Garnetfish",
+    ["amethyststream"] = "Amethyststream",
+    ["aquaripple"] = "Aquaripple",
+    ["diamondblink"] = "Diamondblink",
+    ["emeraldfin"] = "Emeraldfin",
+    ["pearlglow"] = "Pearlglow",
+    ["rubyflame"] = "Rubyflame",
+    ["peridotglimmer"] = "Peridotglimmer",
+    ["sapphirine"] = "Sapphirine",
+    ["opalflare"] = "Opalflare",
+    ["topazflare"] = "Topazflare",
+    ["turquoisewave"] = "Turquoisewave",
+    ["garnetfish"] = "Radiating a fiery red glow, the Garnetfish blazes through crystal waters like a living ember!",
+    ["amethyststream"] = "A mystical swimmer with sparkling purple scales, the Amethyststream glides like a dream!",
+    ["aquaripple"] = "Dancing through the currents, the Aquaripple leaves behind waves of serene shimmer!",
+    ["diamondblink"] = "With dazzling flashes like lightning in the depths, the Diamondblink is the deep’s precious flicker!",
+    ["emeraldfin"] = "This vibrant green beauty swims with elegant sways, painting the water with nature’s glow!",
+    ["pearlglow"] = "Soft and radiant, the Pearlglow illuminates the dark with its moonlight shimmer!",
+    ["rubyflame"] = "Bold and brilliant, the Rubyflame streaks through the crystal caverns like a comet of passion!",
+    ["peridotglimmer"] = "The Peridotglimmer sparkles with earthy charm, a rare gem among aquatic royalty!",
+    ["sapphirine"] = "Cool as the twilight sky, the Sapphirine brings calm and beauty to every crystalline ripple!",
+    ["opalflare"] = "Flashing every color in the spectrum, the Opalflare is a living firework beneath the waves!",
+    ["topazflare"] = "Golden and proud, the Topazflare swims like the sun itself dipped beneath the surface!",
+    ["turquoisewave"] = "A tranquil tide in fish form, the Turquoisewave flows like a gemstone caught in motion!",
+    ["LouYu"] = "A mysterious fish with ancient scales etched in forgotten symbols.",
+    ["Obsidianfin"] = "This sleek fish glimmers with volcanic glass armor.",
+    ["solidGoldFish"] = "A majestic creature made entirely of gleaming gold.",
+    ["solidSilverFish"] = "Shimmering like moonlight, it glides silently through the water.",
+    ["tounniFish"] = "Wrapped in vibrant silks, this fish is elegance in motion.",
+    ["bubbleGumFish"] = "Bright, stretchy, and sweet-smelling—like a sugary puff underwater!",
+    ["DreamweaverBeta"] = "Glides like a dream, leaving traces of iridescent mist.",
+    ["crystalJellyFish"] = "A radiant jellyfish made of refracting crystal light.",
+    -- coral
+    ["amberlure"] = "A glowing fish known to attract others with its radiant amber shimmer.",
+    ["ashflare"] = "A fiery swimmer that thrives near volcanic vents and glows like embers.",
+    ["azuregill"] = "This sleek fish darts through tropical currents with vibrant blue fins.",
+    ["blazefin"] = "Its blazing trail leaves scorch marks in the water — a rare sight to behold.",
+    ["charavine"] = "Delicate and elegant, this fish weaves through coral like a vine.",
+    ["crownscale"] = "A noble creature with regal scales that shimmer like a jeweled crown.",
+    ["duskmire"] = "Dark and elusive, it drifts in the shadows of deep trenches.",
+    ["embercreel"] = "A warm-toned fish often seen in glowing reefs during twilight.",
+    ["flutterfin"] = "Its fins move like wings, gently pulsing through still waters.",
+    ["gloomgill"] = "A melancholy dweller of underwater caves, nearly invisible in the dark.",
+    ["jellyspawn"] = "A bizarre hybrid of jellyfish and fish, glowing with bioluminescence.",
+    ["mandaglimmer"] = "A radiant, tranquil fish with colors that shift like silk in moonlight.",
+    ["moltenfin"] = "Forged by magma flows, this legendary fish swims through molten tides.",
+    ["nightdarter"] = "Fast and silent, it moves like a shadow, seen only by starlight.",
+    ["oarpike"] = "An ancient species with paddle-like fins and a piercing gaze.",
+    ["puffreef"] = "A buoyant, reef-dwelling fish that inflates when threatened.",
+    ["reefwarden"] = "Guardian of the coral forests, rarely straying from its territory.",
+    ["regalfin"] = "Graceful and powerful, said to bring fortune to those who catch a glimpse.",
+    ["skypiercer"] = "A fast swimmer known to leap above waves, slicing through air and sea.",
+    ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
+    ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
+    ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
+    --winter
+    ["brineleaf"] = "A rare seadragon adorned with icy fronds that drift like kelp in Arctic currents.",
+    ["crescentide"] = "Glows faintly beneath the moon, its shape cutting soft arcs through snowy waters.",
+    ["crystalfade"] = "Shimmers like frost on glass, vanishing in flashes as it darts through icy reefs.",
+    ["deepgloom"] = "Lurks in frozen depths where no light reaches — a true shadow of the abyss.",
+    ["dusktide"] = "Its violet glow pulses like twilight beneath frost-covered waves.",
+    ["frothling"] = "A bubbly, playful fish that rides the crests of stormy northern seas.",
+    ["frostchar"] = "A hardened survivor of glacial lakes, marked by silver stripes and cold resolve.",
+    ["frostqueen"] = "Elegant and commanding, with fins that fan like a royal winter cloak.",
+    ["frostscale"] = "Covered in tiny frost-like scales, it thrives where ice meets open water.",
+    ["glimmerscale"] = "Its pearly body glints like snow under a full moon.",
+    ["glacierrun"] = "Swift and strong, this fish cuts upstream through frigid meltwater streams.",
+    ["lunawing"] = "Graceful and haunting, it circles beneath moonlit ice sheets.",
+    ["moonspine"] = "Lined with glowing fins, it appears only on the coldest, clearest nights.",
+    ["mythicrest"] = "Said to be a guardian spirit of frozen seas, rarely seen, never caught.",
+    ["rimefang"] = "A fierce predator with jagged, ice-crusted teeth and unmatched speed.",
+    ["shiverfin"] = "Trembles as it moves, disturbing water like ripples in a snowdrift.",
+    ["silvertang"] = "Its polished scales reflect starlight like polished frost.",
+    ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
+    ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
+    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice.",
+    --jungle
+    ["tigerrush"] = "A fierce predator with bold stripes that rule the jungle rivers.",
+    ["leafshade"] = "A stealthy fish camouflaged perfectly among drifting jungle leaves.",
+    ["piranthrax"] = "A small but vicious carnivore known for its razor-sharp teeth.",
+    ["goldripple"] = "A shimmering beauty with golden scales that catch the sunlight.",
+    ["shadowdrake"] = "A mysterious dragon-like fish that lurks in the jungle’s darkest pools.",
+    ["drakefly"] = "A nimble swimmer, flitting like a dragonfly over jungle streams.",
+    ["voltcat"] = "Electrifying predator, it shocks prey with a powerful jolt.",
+    ["gleameel"] = "A translucent eel that glimmers softly in shadowed waters.",
+    ["gratch"] = "A hardy native with a tough exterior and quick reflexes.",
+    ["jadeflare"] = "Radiates a magical jade glow, illuminating murky jungle waters.",
+    ["glowbelly"] = "Its belly glows faintly, guiding its way through dense aquatic foliage.",
+    ["mystiglow"] = "Enigmatic fish said to harness ancient jungle magic in its glow.",
+    ["nightmoth"] = "Flutters silently beneath the water’s surface like a nocturnal moth.",
+    ["runecarp"] = "Ancient markings cover its scales, believed to bring fortune.",
+    ["duneskimmer"] = "Skims swiftly over sandy jungle riverbeds with unmatched grace.",
+    ["shovelclaw"] = "Powerful catfish with broad claws for digging and defense.",
+    ["silkspinner"] = "Spins delicate webs of silk-like threads to catch prey.",
+    ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
+    ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
+    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses.",
+    --cliff
+    ["axolume"] = "A glowing amphibian with mysterious powers.",
+    ["ballfin"] = "Compact and sturdy, built for rocky streams.",
+    ["beakcoil"] = "Eel with a sharp, pelican-like beak.",
+    ["blueflare"] = "Bright blue scales that shimmer in sunlight.",
+    ["cratefin"] = "Box-shaped fish with a tough exterior.",
+    ["dragonscale"] = "Dragon-like scales protect this fierce fish.",
+    ["faeglimmer"] = "Delicate fish that sparkles with magic.",
+    ["flareborn"] = "Born from fire, it lights up dark waters.",
+    ["glacierglow"] = "Radiates a cold, icy blue glow.",
+    ["glowcrest"] = "Shines bright atop rocky cliffs.",
+    ["goldwyrm"] = "Legendary fish with golden scales.",
+    ["mistwhirl"] = "Swims through fog with ghostly grace.",
+    ["plumecrest"] = "Vibrant fins like a peacock's plume.",
+    ["skyrider"] = "Soars through water like a hawk in air.",
+    ["somnifin"] = "Dreamy fish that lulls prey to sleep.",
+    ["spectralfin"] = "Elusive fish with a ghostly glow.",
+    ["speckledray"] = "Spotted pattern helps it hide in rocks.",
+    ["stellaroi"] = "Koi with star-like patterns on its scales.",
+    ["striatus"] = "Striped bass that darts swiftly.",
+    ["windsprite"] = "Swift and light, it dances on currents.",
+    --tropical
+    ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
+    ["mudfin"] = "A sturdy bottom dweller with a muddy hue.",
+    ["clearcap"] = "A translucent fish with a crystal-clear head.",
+    ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
+    ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
+    ["neonflare"] = "Small and vibrant, glowing with neon colors.",
+    ["shadefin"] = "A dark, elusive fish that lurks in shadowy reefs.",
+    ["rainbowbeak"] = "Colorful parrotfish with a sharp, curved beak.",
+    ["peaflare"] = "A flashy anthias with vibrant, peacock-like fins.",
+    ["streamglow"] = "A mystical fish that glows softly in fast streams.",
+    ["reefshadow"] = "An octopus-like fish blending into coral shadows.",
+    ["stoneblenny"] = "A tiny fish camouflaged among rocky pools.",
+    ["rustbarb"] = "A rusty-colored barb fish with a fierce attitude.",
+    ["koisamurai"] = "A noble koi known for its fierce spirit.",
+    ["shellback"] = "A snailfish with a sturdy shell-like back.",
+    ["stardustfin"] = "A carp glittering with specks of stardust.",
+    ["dawnsnapper"] = "A snapper that appears at sunrise, vibrant and bright.",
+    ["dusksnapper"] = "A snapper that prowls the reefs at dusk.",
+    ["venomfang"] = "A venomous fish with sharp fangs and swift strikes.",
+    ["voidwing"] = "A manta that glides silently through deep, dark waters.",
+
 }
 
 local FishSizeRange = {
@@ -727,6 +1220,136 @@ local FishSizeRange = {
     ["walley_fish"] = {min = 15, max = 30},
     ["albino_catfish"] = {min = 10, max = 30},
     ["yellow_watchman"] = {min = 20, max = 40},
+    ["bubble_fish"] = {min = 5, max = 10},
+    ["rainbow_fish"] = {min = 10, max = 30},
+    ["garnetfish"] = {min = 10, max = 20},
+    ["amethyststream"] = {min = 8, max = 18},
+    ["aquaripple"] = {min = 7, max = 17},
+    ["diamondblink"] = {min = 9, max = 19},
+    ["emeraldfin"] = {min = 10, max = 20},
+    ["pearlglow"] = {min = 6, max = 15},
+    ["rubyflame"] = {min = 10, max = 20},
+    ["peridotglimmer"] = {min = 8, max = 16},
+    ["sapphirine"] = {min = 9, max = 18},
+    ["opalflare"] = {min = 10, max = 20},
+    ["topazflare"] = {min = 9, max = 19},
+    ["turquoisewave"] = {min = 8, max = 17},
+    ["LouYu"] = {min = 10, max = 20},
+    ["Obsidianfin"] = {min = 10, max = 20},
+    ["solidGoldFish"] = {min = 10, max = 20},
+    ["solidSilverFish"] = {min = 10, max = 20},
+    ["tounniFish"] = {min = 10, max = 20},
+    ["bubbleGumFish"] = {min = 10, max = 20},
+    ["DreamweaverBeta"] = {min = 10, max = 20},
+    ["crystalJellyFish"] = {min = 10, max = 20},
+    --coral
+    ["amberlure"] = {min = 5, max = 15},
+    ["ashflare"] = {min = 12, max = 22},
+    ["azuregill"] = {min = 10, max = 18},
+    ["blazefin"] = {min = 20, max = 35},
+    ["charavine"] = {min = 8, max = 16},
+    ["crownscale"] = {min = 14, max = 25},
+    ["duskmire"] = {min = 6, max = 14},
+    ["embercreel"] = {min = 7, max = 15},
+    ["flutterfin"] = {min = 5, max = 13},
+    ["gloomgill"] = {min = 6, max = 12},
+    ["jellyspawn"] = {min = 15, max = 30},
+    ["mandaglimmer"] = {min = 18, max = 28},
+    ["moltenfin"] = {min = 25, max = 40},
+    ["nightdarter"] = {min = 16, max = 30},
+    ["oarpike"] = {min = 12, max = 20},
+    ["puffreef"] = {min = 10, max = 18},
+    ["reefwarden"] = {min = 9, max = 17},
+    ["regalfin"] = {min = 22, max = 35},
+    ["skypiercer"] = {min = 11, max = 21},
+    ["spinebloom"] = {min = 8, max = 14},
+    ["stellafin"] = {min = 9, max = 16},
+    ["bettraquon"] = {min = 10, max = 18},
+    --winter
+    ["brineleaf"] = {min = 25, max = 40},       -- Mythical
+    ["crescentide"] = {min = 18, max = 30},     -- Legendary
+    ["crystalfade"] = {min = 12, max = 20},     -- Epic
+    ["deepgloom"] = {min = 10, max = 18},       -- Rare
+    ["dusktide"] = {min = 14, max = 22},        -- Epic
+    ["frothling"] = {min = 6, max = 12},        -- Rare
+    ["frostchar"] = {min = 28, max = 42},       -- Mythical
+    ["frostqueen"] = {min = 10, max = 18},      -- Rare
+    ["frostscale"] = {min = 8, max = 16},       -- Rare
+    ["glimmerscale"] = {min = 9, max = 17},     -- Rare
+    ["glacierrun"] = {min = 14, max = 22},      -- Rare
+    ["lunawing"] = {min = 12, max = 20},        -- Rare
+    ["moonspine"] = {min = 15, max = 25},       -- Epic
+    ["mythicrest"] = {min = 30, max = 45},      -- Mythical
+    ["rimefang"] = {min = 16, max = 28},        -- Rare
+    ["shiverfin"] = {min = 20, max = 32},       -- Legendary
+    ["silvertang"] = {min = 14, max = 24},      -- Epic
+    ["snowidol"] = {min = 13, max = 22},        -- Epic
+    ["tundrawave"] = {min = 22, max = 34},      -- Legendary
+    ["whispergill"] = {min = 10, max = 18},     -- Rare
+    --jungle
+    ["tigerrush"] = {min = 20, max = 35},      -- Legendary
+    ["leafshade"] = {min = 10, max = 18},      -- Rare
+    ["piranthrax"] = {min = 8, max = 14},      -- Rare
+    ["goldripple"] = {min = 12, max = 20},     -- Rare
+    ["shadowdrake"] = {min = 25, max = 40},    -- Legendary
+    ["drakefly"] = {min = 14, max = 22},       -- Rare
+    ["voltcat"] = {min = 22, max = 35},        -- Legendary
+    ["gleameel"] = {min = 15, max = 28},       -- Rare
+    ["gratch"] = {min = 18, max = 30},          -- Legendary
+    ["jadeflare"] = {min = 25, max = 38},      -- Mythical
+    ["glowbelly"] = {min = 12, max = 20},      -- Rare
+    ["mystiglow"] = {min = 28, max = 42},      -- Mythical
+    ["nightmoth"] = {min = 10, max = 18},      -- Rare
+    ["runecarp"] = {min = 16, max = 28},       -- Epic
+    ["duneskimmer"] = {min = 10, max = 18},    -- Rare
+    ["shovelclaw"] = {min = 20, max = 32},     -- Epic
+    ["silkspinner"] = {min = 9, max = 16},     -- Rare
+    ["stormpulse"] = {min = 18, max = 30},     -- Epic
+    ["stripeflash"] = {min = 12, max = 22},    -- Epic
+    ["zebris"] = {min = 8, max = 14},           -- Rare
+    --cliff
+    ["axolume"] = {min = 10, max = 18},
+    ["ballfin"] = {min = 12, max = 20},
+    ["beakcoil"] = {min = 15, max = 25},
+    ["blueflare"] = {min = 14, max = 24},
+    ["cratefin"] = {min = 10, max = 18},
+    ["dragonscale"] = {min = 20, max = 35},
+    ["faeglimmer"] = {min = 12, max = 22},
+    ["flareborn"] = {min = 25, max = 40},
+    ["glacierglow"] = {min = 18, max = 30},
+    ["glowcrest"] = {min = 22, max = 34},
+    ["goldwyrm"] = {min = 28, max = 45},
+    ["mistwhirl"] = {min = 30, max = 48},
+    ["plumecrest"] = {min = 14, max = 26},
+    ["skyrider"] = {min = 16, max = 28},
+    ["somnifin"] = {min = 20, max = 34},
+    ["spectralfin"] = {min = 10, max = 18},
+    ["speckledray"] = {min = 12, max = 22},
+    ["stellaroi"] = {min = 14, max = 24},
+    ["striatus"] = {min = 18, max = 30},
+    ["windsprite"] = {min = 22, max = 36},
+    --tropical
+    ["sunburstfish"] = {min = 20, max = 35},
+    ["mudfin"] = {min = 15, max = 25},
+    ["clearcap"] = {min = 10, max = 18},
+    ["gulpfin"] = {min = 18, max = 30},
+    ["tangaclaw"] = {min = 12, max = 22},
+    ["neonflare"] = {min = 6, max = 12},
+    ["shadefin"] = {min = 14, max = 24},
+    ["rainbowbeak"] = {min = 15, max = 28},
+    ["peaflare"] = {min = 8, max = 15},
+    ["streamglow"] = {min = 22, max = 36},
+    ["reefshadow"] = {min = 16, max = 26},
+    ["stoneblenny"] = {min = 7, max = 13},
+    ["rustbarb"] = {min = 12, max = 20},
+    ["koisamurai"] = {min = 25, max = 40},
+    ["shellback"] = {min = 10, max = 18},
+    ["stardustfin"] = {min = 15, max = 25},
+    ["dawnsnapper"] = {min = 16, max = 26},
+    ["dusksnapper"] = {min = 16, max = 26},
+    ["venomfang"] = {min = 18, max = 30},
+    ["voidwing"] = {min = 25, max = 40},
+
 }
 
 local FishSpecialAttributes = {
@@ -815,6 +1438,136 @@ local FishSpecialAttributes = {
     ["walley_fish"] = "Strong and difficult to catch.",
     ["albino_catfish"] = "Hard to catch.",
     ["yellow_watchman"] = "Hard to find, gives luck bonus.",
+    ["bubble_fish"] = "Blows bubbles that can distract other fish.",
+    ["rainbow_fish"] = "A vibrant fish that brings a splash of joy to the ocean.",
+    ["garnetfish"] = "Hard to catch, glows faintly in deep waters.",
+    ["amethyststream"] = "Rare spawn, boosts lure attraction for a short time.",
+    ["aquaripple"] = "Quick and agile, leaves a shimmer trail.",
+    ["diamondblink"] = "Hard to find, gives luck bonus.",
+    ["emeraldfin"] = "Quick and agile, blends with crystal kelp.",
+    ["pearlglow"] = "Rare spawn, glows softly to light up nearby fish.",
+    ["rubyflame"] = "Emits short bursts of light, hard to catch.",
+    ["peridotglimmer"] = "Hard to catch, attracts nearby small fish.",
+    ["sapphirine"] = "Rare spawn, increases nearby fish spawn chance temporarily.",
+    ["opalflare"] = "Hard to find, gives luck bonus.",
+    ["topazflare"] = "Rare spawn, glows brighter during daytime.",
+    ["turquoisewave"] = "Quick and agile, sometimes stuns small prey fish.",
+    ["LouYu"] = "A mysterious fish with ancient scales etched in forgotten symbols.",
+    ["Obsidianfin"] = "Tough scales make it difficult to catch.",
+    ["solidGoldFish"] = "Rare spawn, shines bright when hooked.",
+    ["solidSilverFish"] = "Slippery and fast, but worth the chase.",
+    ["tounniFish"] = "Quick and agile, dances near bait.",
+    ["bubbleGumFish"] = "Can inflate and bounce off hooks.",
+    ["DreamweaverBeta"] = "Leaves a glowing trail.",
+    ["crystalJellyFish"] = "Rarest jelly fish in the sea!",
+    --coral
+    ["amberlure"] = "A glowing fish known to attract others with its radiant amber shimmer.",
+    ["ashflare"] = "A fiery swimmer that thrives near volcanic vents and glows like embers.",
+    ["azuregill"] = "This sleek fish darts through tropical currents with vibrant blue fins.",
+    ["blazefin"] = "Its blazing trail leaves scorch marks in the water — a rare sight to behold.",
+    ["charavine"] = "Delicate and elegant, this fish weaves through coral like a vine.",
+    ["crownscale"] = "A noble creature with regal scales that shimmer like a jeweled crown.",
+    ["duskmire"] = "Dark and elusive, it drifts in the shadows of deep trenches.",
+    ["embercreel"] = "A warm-toned fish often seen in glowing reefs during twilight.",
+    ["flutterfin"] = "Its fins move like wings, gently pulsing through still waters.",
+    ["gloomgill"] = "A melancholy dweller of underwater caves, nearly invisible in the dark.",
+    ["jellyspawn"] = "A bizarre hybrid of jellyfish and fish, glowing with bioluminescence.",
+    ["mandaglimmer"] = "A radiant, tranquil fish with colors that shift like silk in moonlight.",
+    ["moltenfin"] = "Forged by magma flows, this legendary fish swims through molten tides.",
+    ["nightdarter"] = "Fast and silent, it moves like a shadow, seen only by starlight.",
+    ["oarpike"] = "An ancient species with paddle-like fins and a piercing gaze.",
+    ["puffreef"] = "A buoyant, reef-dwelling fish that inflates when threatened.",
+    ["reefwarden"] = "Guardian of the coral forests, rarely straying from its territory.",
+    ["regalfin"] = "Graceful and powerful, said to bring fortune to those who catch a glimpse.",
+    ["skypiercer"] = "A fast swimmer known to leap above waves, slicing through air and sea.",
+    ["spinebloom"] = "Beautiful but dangerous, its barbed fins can sting like a thorn.",
+    ["stellafin"] = "Dotted like the stars, it glows faintly in deep ocean midnight.",
+    ["bettraquon"] = "An exotic and spirited fighter fish, shimmering with layered hues.",
+    --winter
+    ["brineleaf"] = "A rare seadragon adorned with icy fronds that drift like kelp in Arctic currents.",
+    ["crescentide"] = "Glows faintly beneath the moon, its shape cutting soft arcs through snowy waters.",
+    ["crystalfade"] = "Shimmers like frost on glass, vanishing in flashes as it darts through icy reefs.",
+    ["deepgloom"] = "Lurks in frozen depths where no light reaches — a true shadow of the abyss.",
+    ["dusktide"] = "Its violet glow pulses like twilight beneath frost-covered waves.",
+    ["frothling"] = "A bubbly, playful fish that rides the crests of stormy northern seas.",
+    ["frostchar"] = "A hardened survivor of glacial lakes, marked by silver stripes and cold resolve.",
+    ["frostqueen"] = "Elegant and commanding, with fins that fan like a royal winter cloak.",
+    ["frostscale"] = "Covered in tiny frost-like scales, it thrives where ice meets open water.",
+    ["glimmerscale"] = "Its pearly body glints like snow under a full moon.",
+    ["glacierrun"] = "Swift and strong, this fish cuts upstream through frigid meltwater streams.",
+    ["lunawing"] = "Graceful and haunting, it circles beneath moonlit ice sheets.",
+    ["moonspine"] = "Lined with glowing fins, it appears only on the coldest, clearest nights.",
+    ["mythicrest"] = "Said to be a guardian spirit of frozen seas, rarely seen, never caught.",
+    ["rimefang"] = "A fierce predator with jagged, ice-crusted teeth and unmatched speed.",
+    ["shiverfin"] = "Trembles as it moves, disturbing water like ripples in a snowdrift.",
+    ["silvertang"] = "Its polished scales reflect starlight like polished frost.",
+    ["snowidol"] = "Regal and revered, this fish is thought to bring good fortune in deep winter.",
+    ["tundrawave"] = "Surges with icy power, crashing like winter surf through frozen coves.",
+    ["whispergill"] = "Its presence is known only by a shimmer — silent and spectral beneath the ice.",
+    --jungle
+    ["tigerrush"] = "A fierce predator with bold stripes that rule the jungle rivers.",
+    ["leafshade"] = "A stealthy fish camouflaged perfectly among drifting jungle leaves.",
+    ["piranthrax"] = "A small but vicious carnivore known for its razor-sharp teeth.",
+    ["goldripple"] = "A shimmering beauty with golden scales that catch the sunlight.",
+    ["shadowdrake"] = "A mysterious dragon-like fish that lurks in the jungle’s darkest pools.",
+    ["drakefly"] = "A nimble swimmer, flitting like a dragonfly over jungle streams.",
+    ["voltcat"] = "Electrifying predator, it shocks prey with a powerful jolt.",
+    ["gleameel"] = "A translucent eel that glimmers softly in shadowed waters.",
+    ["gratch"] = "A hardy native with a tough exterior and quick reflexes.",
+    ["jadeflare"] = "Radiates a magical jade glow, illuminating murky jungle waters.",
+    ["glowbelly"] = "Its belly glows faintly, guiding its way through dense aquatic foliage.",
+    ["mystiglow"] = "Enigmatic fish said to harness ancient jungle magic in its glow.",
+    ["nightmoth"] = "Flutters silently beneath the water’s surface like a nocturnal moth.",
+    ["runecarp"] = "Ancient markings cover its scales, believed to bring fortune.",
+    ["duneskimmer"] = "Skims swiftly over sandy jungle riverbeds with unmatched grace.",
+    ["shovelclaw"] = "Powerful catfish with broad claws for digging and defense.",
+    ["silkspinner"] = "Spins delicate webs of silk-like threads to catch prey.",
+    ["stormpulse"] = "Pulses with energy, stirring the jungle waters during storms.",
+    ["stripeflash"] = "Quick and colorful, flashing stripes confuse its foes.",
+    ["zebris"] = "Small but vibrant, it zigzags through underwater jungle grasses.",
+    --cliff
+    ["axolume"] = "A glowing amphibian with mysterious powers.",
+    ["ballfin"] = "Compact and sturdy, built for rocky streams.",
+    ["beakcoil"] = "Eel with a sharp, pelican-like beak.",
+    ["blueflare"] = "Bright blue scales that shimmer in sunlight.",
+    ["cratefin"] = "Box-shaped fish with a tough exterior.",
+    ["dragonscale"] = "Dragon-like scales protect this fierce fish.",
+    ["faeglimmer"] = "Delicate fish that sparkles with magic.",
+    ["flareborn"] = "Born from fire, it lights up dark waters.",
+    ["glacierglow"] = "Radiates a cold, icy blue glow.",
+    ["glowcrest"] = "Shines bright atop rocky cliffs.",
+    ["goldwyrm"] = "Legendary fish with golden scales.",
+    ["mistwhirl"] = "Swims through fog with ghostly grace.",
+    ["plumecrest"] = "Vibrant fins like a peacock's plume.",
+    ["skyrider"] = "Soars through water like a hawk in air.",
+    ["somnifin"] = "Dreamy fish that lulls prey to sleep.",
+    ["spectralfin"] = "Elusive fish with a ghostly glow.",
+    ["speckledray"] = "Spotted pattern helps it hide in rocks.",
+    ["stellaroi"] = "Koi with star-like patterns on its scales.",
+    ["striatus"] = "Striped bass that darts swiftly.",
+    ["windsprite"] = "Swift and light, it dances on currents.",
+    --tropical
+    ["sunburstfish"] = "A bright fish that shines like a tropical sunrise.",
+    ["mudfin"] = "A sturdy bottom dweller with a muddy hue.",
+    ["clearcap"] = "A translucent fish with a crystal-clear head.",
+    ["gulpfin"] = "Deep-water eel with a huge mouth for swallowing prey.",
+    ["tangaclaw"] = "A fierce cichlid with sharp claws from Lake Tanganyika.",
+    ["neonflare"] = "Small and vibrant, glowing with neon colors.",
+    ["shadefin"] = "A dark, elusive fish that lurks in shadowy reefs.",
+    ["rainbowbeak"] = "Colorful parrotfish with a sharp, curved beak.",
+    ["peaflare"] = "A flashy anthias with vibrant, peacock-like fins.",
+    ["streamglow"] = "A mystical fish that glows softly in fast streams.",
+    ["reefshadow"] = "An octopus-like fish blending into coral shadows.",
+    ["stoneblenny"] = "A tiny fish camouflaged among rocky pools.",
+    ["rustbarb"] = "A rusty-colored barb fish with a fierce attitude.",
+    ["koisamurai"] = "A noble koi known for its fierce spirit.",
+    ["shellback"] = "A snailfish with a sturdy shell-like back.",
+    ["stardustfin"] = "A carp glittering with specks of stardust.",
+    ["dawnsnapper"] = "A snapper that appears at sunrise, vibrant and bright.",
+    ["dusksnapper"] = "A snapper that prowls the reefs at dusk.",
+    ["venomfang"] = "A venomous fish with sharp fangs and swift strikes.",
+    ["voidwing"] = "A manta that glides silently through deep, dark waters.",
+
 }
 
 local HookSensitivity = {
@@ -903,6 +1656,136 @@ local HookSensitivity = {
     ["walley_fish"] = 1.5,
     ["albino_catfish"] = 1.5,
     ["yellow_watchman"] = 2.5,
+    ["bubble_fish"] = 1.5,
+    ["rainbow_fish"] = 1.2,
+    ["garnetfish"] = 1.5,
+    ["amethyststream"] = 1.5,
+    ["aquaripple"] = 1,
+    ["diamondblink"] = 1.5,
+    ["emeraldfin"] = 1,
+    ["pearlglow"] = 1.5,
+    ["rubyflame"] = 1.5,
+    ["peridotglimmer"] = 1,
+    ["sapphirine"] = 1.5,
+    ["opalflare"] = 1,
+    ["topazflare"] = 1.5,
+    ["turquoisewave"] = 1,
+    ["LouYu"] = 1.2,
+    ["Obsidianfin"] = 1.2,
+    ["solidGoldFish"] = 1.2,
+    ["solidSilverFish"] = 1.2,
+    ["tounniFish"] = 1.2,
+    ["bubbleGumFish"] = 1.5,
+    ["DreamweaverBeta"] = 1.5,
+    ["crystalJellyFish"] = 2,
+    --coral
+    ["amberlure"] = 1.1,
+    ["ashflare"] = 1.4,
+    ["azuregill"] = 1.3,
+    ["blazefin"] = 1.5,
+    ["charavine"] = 1.3,
+    ["crownscale"] = 1.4,
+    ["duskmire"] = 1.0,
+    ["embercreel"] = 1.1,
+    ["flutterfin"] = 1.0,
+    ["gloomgill"] = 1.1,
+    ["jellyspawn"] = 1.6,
+    ["mandaglimmer"] = 1.5,
+    ["moltenfin"] = 1.9,
+    ["nightdarter"] = 1.6,
+    ["oarpike"] = 1.0,
+    ["puffreef"] = 1.3,
+    ["reefwarden"] = 1.1,
+    ["regalfin"] = 2.0,
+    ["skypiercer"] = 1.2,
+    ["spinebloom"] = 1.0,
+    ["stellafin"] = 1.1,
+    ["bettraquon"] = 1.3,
+    --winter
+    ["brineleaf"] = 1.9,       -- Mythical
+    ["crescentide"] = 1.5,     -- Legendary
+    ["crystalfade"] = 1.3,     -- Epic
+    ["deepgloom"] = 1.0,       -- Rare
+    ["dusktide"] = 1.4,        -- Epic
+    ["frothling"] = 1.1,       -- Rare
+    ["frostchar"] = 2.0,       -- Mythical
+    ["frostqueen"] = 1.2,      -- Rare
+    ["frostscale"] = 1.2,      -- Rare
+    ["glimmerscale"] = 1.1,    -- Rare
+    ["glacierrun"] = 1.2,      -- Rare
+    ["lunawing"] = 1.2,        -- Rare
+    ["moonspine"] = 1.3,       -- Epic
+    ["mythicrest"] = 1.8,      -- Mythical
+    ["rimefang"] = 1.3,        -- Rare
+    ["shiverfin"] = 1.5,       -- Legendary
+    ["silvertang"] = 1.4,      -- Epic
+    ["snowidol"] = 1.3,        -- Epic
+    ["tundrawave"] = 1.6,      -- Legendary
+    ["whispergill"] = 1.1,     -- Rare
+    --jungle
+    ["tigerrush"] = 1.5,      -- Legendary  
+    ["leafshade"] = 1.1,      -- Rare  
+    ["piranthrax"] = 1.0,     -- Rare  
+    ["goldripple"] = 1.1,     -- Rare  
+    ["shadowdrake"] = 1.6,    -- Legendary  
+    ["drakefly"] = 1.2,       -- Rare  
+    ["voltcat"] = 1.5,        -- Legendary  
+    ["gleameel"] = 1.2,       -- Rare  
+    ["gratch"] = 1.5,         -- Legendary  
+    ["jadeflare"] = 1.8,      -- Mythical  
+    ["glowbelly"] = 1.1,      -- Rare  
+    ["mystiglow"] = 1.9,      -- Mythical  
+    ["nightmoth"] = 1.0,      -- Rare  
+    ["runecarp"] = 1.3,       -- Epic  
+    ["duneskimmer"] = 1.0,    -- Rare  
+    ["shovelclaw"] = 1.4,     -- Epic  
+    ["silkspinner"] = 1.1,    -- Rare  
+    ["stormpulse"] = 1.3,     -- Epic  
+    ["stripeflash"] = 1.3,    -- Epic  
+    ["zebris"] = 1.0,         -- Rare
+    --cliff
+    ["axolume"] = 1.1,      -- Rare
+    ["ballfin"] = 1.1,      -- Rare
+    ["beakcoil"] = 1.2,     -- Rare
+    ["blueflare"] = 1.3,    -- Epic
+    ["cratefin"] = 1.1,     -- Rare
+    ["dragonscale"] = 1.4,  -- Rare (tougher fish)
+    ["faeglimmer"] = 1.3,   -- Epic
+    ["flareborn"] = 1.5,    -- Legendary
+    ["glacierglow"] = 1.3,  -- Epic
+    ["glowcrest"] = 1.5,    -- Legendary
+    ["goldwyrm"] = 1.9,     -- Mythical
+    ["mistwhirl"] = 1.9,    -- Mythical
+    ["plumecrest"] = 1.3,   -- Epic
+    ["skyrider"] = 1.2,     -- Rare
+    ["somnifin"] = 1.5,     -- Legendary
+    ["spectralfin"] = 1.1,  -- Rare
+    ["speckledray"] = 1.1,  -- Rare
+    ["stellaroi"] = 1.1,    -- Rare
+    ["striatus"] = 1.2,     -- Rare
+    ["windsprite"] = 1.5,   -- Legendary
+    --tropical
+    ["mudfin"] = 1.0,          -- Rare
+    ["clearcap"] = 1.3,        -- Epic
+    ["dawnsnapper"] = 1.1,     -- Rare
+    ["dusksnapper"] = 1.1,     -- Rare
+    ["gulpfin"] = 1.4,         -- Epic
+    ["tangaclaw"] = 1.2,       -- Rare
+    ["koisamurai"] = 1.8,      -- Mythical
+    ["neonflare"] = 1.0,       -- Rare
+    ["peaflare"] = 1.2,        -- Rare
+    ["rainbowbeak"] = 1.5,     -- Legendary
+    ["reefshadow"] = 1.5,      -- Epic
+    ["rustbarb"] = 1.2,        -- Rare
+    ["shadefin"] = 1.3,        -- Epic
+    ["shellback"] = 1.1,       -- Rare
+    ["stoneblenny"] = 1.0,     -- Rare
+    ["stardustfin"] = 1.1,     -- Rare
+    ["sunburstfish"] = 1.5,    -- Legendary
+    ["streamglow"] = 1.9,      -- Mythical
+    ["venomfang"] = 1.5,       -- Legendary
+    ["voidwing"] = 1.2,        -- Rare
+
 }
 
 local FishImage = {
@@ -991,6 +1874,135 @@ local FishImage = {
     ["walley_fish"] = fishTextures[83],
     ["albino_catfish"] = fishTextures[84],
     ["yellow_watchman"] = fishTextures[85],
+    ["bubble_fish"] = fishTextures[86],
+    ["rainbow_fish"] = fishTextures[87],
+    ["garnetfish"] = fishTextures[88],
+    ["amethyststream"] = fishTextures[89],
+    ["aquaripple"] = fishTextures[90],
+    ["diamondblink"] = fishTextures[91],
+    ["emeraldfin"] = fishTextures[92],
+    ["pearlglow"] = fishTextures[93],
+    ["rubyflame"] = fishTextures[94],
+    ["peridotglimmer"] = fishTextures[95],
+    ["sapphirine"] = fishTextures[96],
+    ["opalflare"] = fishTextures[97],
+    ["topazflare"] = fishTextures[98],
+    ["turquoisewave"] = fishTextures[99],
+    ["LouYu"] = fishTextures[100],
+    ["Obsidianfin"] = fishTextures[101],
+    ["solidGoldFish"] = fishTextures[102],
+    ["solidSilverFish"] = fishTextures[103],
+    ["tounniFish"] = fishTextures[104],
+    ["bubbleGumFish"] = fishTextures[105],
+    ["DreamweaverBeta"] = fishTextures[106],
+    ["crystalJellyFish"] = fishTextures[107],
+    --coral
+    ["amberlure"] = fishTextures[108],
+    ["ashflare"] = fishTextures[109],
+    ["azuregill"] = fishTextures[110],
+    ["bettraquon"] = fishTextures[111],
+    ["blazefin"] = fishTextures[112],
+    ["charavine"] = fishTextures[113],
+    ["crownscale"] = fishTextures[114],
+    ["duskmire"] = fishTextures[115],
+    ["embercreel"] = fishTextures[116],
+    ["flutterfin"] = fishTextures[117],
+    ["gloomgill"] = fishTextures[118],
+    ["jellyspawn"] = fishTextures[119],
+    ["mandaglimmer"] = fishTextures[120],
+    ["moltenfin"] = fishTextures[121],
+    ["nightdarter"] = fishTextures[122],
+    ["oarpike"] = fishTextures[123],
+    ["puffreef"] = fishTextures[124],
+    ["reefwarden"] = fishTextures[125],
+    ["regalfin"] = fishTextures[126],
+    ["skypiercer"] = fishTextures[127],
+    ["spinebloom"] = fishTextures[128],
+    ["stellafin"] = fishTextures[129],
+    --winter
+    ["brineleaf"] = fishTextures[130],
+    ["crescentide"] = fishTextures[131],
+    ["crystalfade"] = fishTextures[132],
+    ["deepgloom"] = fishTextures[133],
+    ["dusktide"] = fishTextures[134],
+    ["frothling"] = fishTextures[135],
+    ["frostchar"] = fishTextures[136],
+    ["frostqueen"] = fishTextures[137],
+    ["frostscale"] = fishTextures[138],
+    ["glacierrun"] = fishTextures[139],
+    ["glimmerscale"] = fishTextures[140],
+    ["lunawing"] = fishTextures[141],
+    ["moonspine"] = fishTextures[142],
+    ["mythicrest"] = fishTextures[143],
+    ["rimefang"] = fishTextures[144],
+    ["shiverfin"] = fishTextures[145],
+    ["silvertang"] = fishTextures[146],
+    ["snowidol"] = fishTextures[147],
+    ["tundrawave"] = fishTextures[148],
+    ["whispergill"] = fishTextures[149],
+    --jungle
+    ["drakefly"] = fishTextures[150],
+    ["duneskimmer"] = fishTextures[151],
+    ["gleameel"] = fishTextures[152],
+    ["glowbelly"] = fishTextures[153],
+    ["goldripple"] = fishTextures[154],
+    ["gratch"] = fishTextures[155],
+    ["jadeflare"] = fishTextures[156],
+    ["leafshade"] = fishTextures[157],
+    ["mystiglow"] = fishTextures[158],
+    ["nightmoth"] = fishTextures[159],
+    ["piranthrax"] = fishTextures[160],
+    ["runecarp"] = fishTextures[161],
+    ["shovelclaw"] = fishTextures[162],
+    ["silkspinner"] = fishTextures[163],
+    ["shadowdrake"] = fishTextures[164],
+    ["stormpulse"] = fishTextures[165],
+    ["stripeflash"] = fishTextures[166],
+    ["tigerrush"] = fishTextures[167],
+    ["voltcat"] = fishTextures[168],
+    ["zebris"] = fishTextures[169],
+    --cliff
+    ["axolume"] = fishTextures[170],
+    ["ballfin"] = fishTextures[171],
+    ["beakcoil"] = fishTextures[172],
+    ["blueflare"] = fishTextures[173],
+    ["cratefin"] = fishTextures[174],
+    ["dragonscale"] = fishTextures[175],
+    ["faeglimmer"] = fishTextures[176],
+    ["flareborn"] = fishTextures[177],
+    ["glacierglow"] = fishTextures[178],
+    ["glowcrest"] = fishTextures[179],
+    ["goldwyrm"] = fishTextures[180],
+    ["mistwhirl"] = fishTextures[181],
+    ["plumecrest"] = fishTextures[182],
+    ["skyrider"] = fishTextures[183],
+    ["somnifin"] = fishTextures[184],
+    ["spectralfin"] = fishTextures[185],
+    ["speckledray"] = fishTextures[186],
+    ["stellaroi"] = fishTextures[187],
+    ["striatus"] = fishTextures[188],
+    ["windsprite"] = fishTextures[189],
+    --tropical
+    ["clearcap"] = fishTextures[190],
+    ["dawnsnapper"] = fishTextures[191],
+    ["dusksnapper"] = fishTextures[192],
+    ["gulpfin"] = fishTextures[193],
+    ["koisamurai"] = fishTextures[194],
+    ["mudfin"] = fishTextures[195],
+    ["neonflare"] = fishTextures[196],
+    ["peaflare"] = fishTextures[197],
+    ["rainbowbeak"] = fishTextures[198],
+    ["reefshadow"] = fishTextures[199],
+    ["rustbarb"] = fishTextures[200],
+    ["shadefin"] = fishTextures[201],
+    ["shellback"] = fishTextures[202],
+    ["stardustfin"] = fishTextures[203],
+    ["stoneblenny"] = fishTextures[204],
+    ["streamglow"] = fishTextures[205],
+    ["sunburstfish"] = fishTextures[206],
+    ["tangaclaw"] = fishTextures[207],
+    ["venomfang"] = fishTextures[208],
+    ["voidwing"] = fishTextures[209],
 }
 
 local FishBaits = {
@@ -1079,6 +2091,135 @@ local FishBaits = {
     ["walley_fish"] = {"corn_bait"},
     ["albino_catfish"] = {"bacon_bait"},
     ["yellow_watchman"] = {"donut_bait"},
+    ["bubble_fish"] = {"hotdog_bait"},
+    ["rainbow_fish"] = {"donut_bait"},
+    ["garnetfish"] = {"shrimp_bait"},
+    ["amethyststream"] = {"donut_bait"},
+    ["aquaripple"] = {"toast_bait"},
+    ["diamondblink"] = {"steak_bait"},
+    ["emeraldfin"] = {"broccoli_bait"},
+    ["pearlglow"] = {"egg_bait"},
+    ["rubyflame"] = {"hotdog_bait"},
+    ["peridotglimmer"] = {"plastic_bait"},
+    ["sapphirine"] = {"maggot_bait"},
+    ["opalflare"] = {"pizza_bait"},
+    ["topazflare"] = {"corn_bait"},
+    ["turquoisewave"] = {"bacon_bait"},
+    ["LouYu"] = {"shrimp_bait"},
+    ["Obsidianfin"] = {"steak_bait"},
+    ["solidGoldFish"] = {"donut_bait"},
+    ["solidSilverFish"] = {"toast_bait"},
+    ["tounniFish"] = {"broccoli_bait"},
+    ["bubbleGumFish"] = {"pizza_bait"},
+    ["DreamweaverBeta"] = {"egg_bait"},
+    ["crystalJellyFish"] = {"hotdog_bait"},
+    --coral
+    ["amberlure"] = {"egg_bait"},
+    ["ashflare"] = {"hotdog_bait"},
+    ["azuregill"] = {"broccoli_bait"},
+    ["bettraquon"] = {"bacon_bait"},
+    ["blazefin"] = {"hotdog_bait"},
+    ["charavine"] = {"corn_bait"},
+    ["crownscale"] = {"shrimp_bait"},
+    ["duskmire"] = {"maggot_bait"},
+    ["embercreel"] = {"toast_bait"},
+    ["flutterfin"] = {"Any"},
+    ["gloomgill"] = {"maggot_bait"},
+    ["jellyspawn"] = {"squid_bait"},
+    ["mandaglimmer"] = {"donut_bait"},
+    ["moltenfin"] = {"steak_bait"},
+    ["nightdarter"] = {"shrimp_bait"},
+    ["oarpike"] = {"corn_bait"},
+    ["puffreef"] = {"broccoli_bait"},
+    ["reefwarden"] = {"shrimp_bait"},
+    ["regalfin"] = {"steak_bait"},
+    ["skypiercer"] = {"pizza_bait"},
+    ["spinebloom"] = {"corn_bait"},
+    ["stellafin"] = {"egg_bait"},
+    --winter
+    ["brineleaf"] = {"shrimp_bait"},
+    ["crescentide"] = {"donut_bait"},
+    ["crystalfade"] = {"hotdog_bait"},
+    ["deepgloom"] = {"maggot_bait"},
+    ["dusktide"] = {"bacon_bait"},
+    ["frothling"] = {"broccoli_bait"},
+    ["frostchar"] = {"steak_bait"},
+    ["frostqueen"] = {"corn_bait"},
+    ["frostscale"] = {"toast_bait"},
+    ["glacierrun"] = {"plastic_bait"},
+    ["glimmerscale"] = {"egg_bait"},
+    ["lunawing"] = {"pizza_bait"},
+    ["moonspine"] = {"maggot_bait"},
+    ["mythicrest"] = {"steak_bait"},
+    ["rimefang"] = {"hotdog_bait"},
+    ["shiverfin"] = {"squid_bait"},
+    ["silvertang"] = {"broccoli_bait"},
+    ["snowidol"] = {"pizza_bait"},
+    ["tundrawave"] = {"donut_bait"},
+    ["whispergill"] = {"chicken_bait"},
+    --jungle
+    ["tigerrush"] = {"bacon_bait"},
+    ["leafshade"] = {"broccoli_bait"},
+    ["piranthrax"] = {"hotdog_bait"},
+    ["goldripple"] = {"egg_bait"},
+    ["shadowdrake"] = {"steak_bait"},
+    ["drakefly"] = {"pizza_bait"},
+    ["voltcat"] = {"steak_bait"},
+    ["gleameel"] = {"toast_bait"},
+    ["gratch"] = {"shrimp_bait"},
+    ["jadeflare"] = {"donut_bait"},
+    ["glowbelly"] = {"pizza_bait"},
+    ["mystiglow"] = {"donut_bait"},
+    ["nightmoth"] = {"maggot_bait"},
+    ["runecarp"] = {"plastic_bait"},
+    ["duneskimmer"] = {"corn_bait"},
+    ["shovelclaw"] = {"bacon_bait"},
+    ["silkspinner"] = {"maggot_bait"},
+    ["stormpulse"] = {"squid_bait"},
+    ["stripeflash"] = {"bacon_bait"},
+    ["zebris"] = {"chicken_bait"},
+    --cliff
+    ["axolume"] = {"maggot_bait"},
+    ["ballfin"] = {"hotdog_bait"},
+    ["beakcoil"] = {"toast_bait"},
+    ["blueflare"] = {"bacon_bait"},
+    ["cratefin"] = {"corn_bait"},
+    ["dragonscale"] = {"steak_bait"},
+    ["faeglimmer"] = {"donut_bait"},
+    ["flareborn"] = {"steak_bait"},
+    ["glacierglow"] = {"egg_bait"},
+    ["glowcrest"] = {"steak_bait"},
+    ["goldwyrm"] = {"donut_bait"},
+    ["mistwhirl"] = {"donut_bait"},
+    ["plumecrest"] = {"bacon_bait"},
+    ["skyrider"] = {"chicken_bait"},
+    ["somnifin"] = {"pizza_bait"},
+    ["spectralfin"] = {"maggot_bait"},
+    ["speckledray"] = {"corn_bait"},
+    ["stellaroi"] = {"egg_bait"},
+    ["striatus"] = {"plastic_bait"},
+    ["windsprite"] = {"pizza_bait"},
+    --tropical
+    ["mudfin"] = {"Any"},
+    ["clearcap"] = {"hotdog_bait"},
+    ["dawnsnapper"] = {"corn_bait"},
+    ["dusksnapper"] = {"corn_bait"},
+    ["gulpfin"] = {"pizza_bait"},
+    ["koisamurai"] = {"donut_bait"},
+    ["neonflare"] = {"maggot_bait"},
+    ["peaflare"] = {"shrimp_bait"},
+    ["rainbowbeak"] = {"bacon_bait"},
+    ["reefshadow"] = {"steak_bait"},
+    ["rustbarb"] = {"broccoli_bait"},
+    ["shadefin"] = {"hotdog_bait"},
+    ["shellback"] = {"toast_bait"},
+    ["stoneblenny"] = {"Any"},
+    ["stardustfin"] = {"egg_bait"},
+    ["sunburstfish"] = {"bacon_bait"},
+    ["streamglow"] = {"donut_bait"},
+    ["venomfang"] = {"hotdog_bait"},
+    ["voidwing"] = {"toast_bait"},
+    ["tangaclaw"] = {"shrimp_bait"},
 }
 
 local RarityReelResistances = {
@@ -1163,6 +2304,66 @@ fish_keys = {
     "red_snapper_fish",   -- Rare
     "blue_tang",          -- Rare
     "chum_salmon_fish",   -- Rare
+    "LouYu",            -- Rare
+    "Obsidianfin",      -- Rare
+    "solidGoldFish",    -- Rare
+    "solidSilverFish",  -- Rare
+    "tounniFish",       -- Rare
+
+    -- Coral Rare
+    "amberlure",     -- Rare
+    "duskmire",      -- Rare
+    "embercreel",    -- Rare
+    "flutterfin",    -- Rare
+    "gloomgill",     -- Rare
+    "oarpike",       -- Rare
+    "reefwarden",    -- Rare
+    "skypiercer",    -- Rare
+    "spinebloom",    -- Rare
+    "stellafin",     -- Rare
+    -- Winter Rare
+    "deepgloom",
+    "frothling",
+    "frostqueen",
+    "frostscale",
+    "glimmerscale",
+    "glacierrun",
+    "lunawing",
+    "rimefang",
+    "whispergill",
+    -- Jungel Rare
+    "drakefly",
+    "duneskimmer",
+    "gleameel",
+    "glowbelly",
+    "leafshade",
+    "nightmoth",
+    "piranthrax",
+    "silkspinner",
+    "zebris",
+    "goldripple",
+    -- Cliffs Rare
+    "axolume",
+    "ballfin",
+    "beakcoil",
+    "cratefin",
+    "dragonscale",
+    "skyrider",
+    "spectralfin",
+    "speckledray",
+    "stellaroi",
+    "striatus",
+    --tropical Rare
+    "mudfin",
+    "dawnsnapper",
+    "dusksnapper",
+    "neonflare",
+    "peaflare",
+    "rustbarb",
+    "shellback",
+    "stoneblenny",
+    "stardustfin",
+    "voidwing",
 
     -- Epic
     "dolphin",            -- Epic
@@ -1175,6 +2376,50 @@ fish_keys = {
     "angler_fish",        -- Epic
     "nomadic_trout",      -- Epic
     
+    -- Crystal Epic
+    "garnetfish",
+    "amethyststream",
+    "aquaripple",
+    "diamondblink",
+    "emeraldfin",
+    "pearlglow",
+    "rubyflame",
+    "peridotglimmer",
+    "sapphirine",
+    "opalflare",
+    "topazflare",
+    "turquoisewave",
+    -- Coral Epic
+    "ashflare",      -- Epic
+    "azuregill",     -- Epic
+    "bettraquon",    -- Epic
+    "charavine",     -- Epic
+    "crownscale",    -- Epic
+    "puffreef",      -- Epic
+    -- Winter Epic
+    "crystalfade",
+    "dusktide",
+    "moonspine",
+    "silvertang",
+    "snowidol",
+    -- Jungle Epic
+    "runecarp",
+    "shovelclaw",
+    "stormpulse",
+    "stripeflash",
+    -- Cliffs Epic
+    "blueflare",
+    "faeglimmer",
+    "glacierglow",
+    "glowcrest",
+    "plumecrest",
+    -- Tropical Epic
+    "clearcap",
+    "gulpfin",
+    "shadefin",
+    "reefshadow",
+    "tangaclaw",
+
     -- Legendary
     "tiger_pistol_shrimp",-- Legendary
     "surffer_fish",       -- Legendary
@@ -1187,6 +2432,33 @@ fish_keys = {
     "royal_lake_fish",    -- Legendary
     "squid",              -- Legendary
     "king_seahorse",      -- Legendary
+    "bubble_fish",       -- Legendary
+
+    -- Crystal Legendary
+    "bubbleGumFish",    -- leg
+    "DreamweaverBeta",  -- leg
+    -- Coral Legendary
+    "blazefin",      -- Legendary
+    "jellyspawn",    -- Legendary
+    "mandaglimmer",  -- Legendary
+    "nightdarter",   -- Legendary
+    -- Winter Legendary
+    "crescentide",
+    "shiverfin",
+    "tundrawave",
+    -- jungle Legendary
+    "shadowdrake",
+    "tigerrush",
+    "voltcat",
+    "gratch",
+    -- Cliffs Legendary
+    "flareborn",
+    "somnifin",
+    "windsprite",
+    -- Tropical Legendary
+    "rainbowbeak",
+    "sunburstfish",
+    "venomfang",
 
     -- Mythical
     "dragon_fish",        -- Mythical
@@ -1204,7 +2476,27 @@ fish_keys = {
     "omnipotent_squid",   -- Mythical
     "blue_whale",         -- Mythical
     "koi_fish_samurai",   -- Mythical
-    "salt_trader_fish"   -- Mythical
+    "salt_trader_fish",   -- Mythical
+    "rainbow_fish",       -- Mythical
+
+    -- Crystal Mythical
+    "crystalJellyFish",   -- Mythical
+    -- Coral Mythical
+    "moltenfin",     -- Mythical
+    "regalfin",      -- Mythical
+    -- Winter Mythical
+    "brineleaf",
+    "frostchar",
+    "mythicrest",
+    -- Jungle Mythical
+    "jadeflare",
+    "mystiglow",
+    -- Cliffs Mythical
+    "goldwyrm",
+    "mistwhirl",
+    -- Tropical Mythical
+    "koisamurai",
+    "streamglow",
 }
 
 -- Create an entry for each fish pulling data from the tables above
@@ -1219,7 +2511,7 @@ for _, fishKey in ipairs(fish_keys) do
         HookSensitivity = HookSensitivity[fishKey],
         FishImage = FishImage[fishKey],
         Worth = FishWorth[fishKey],
-        Quest_ID = FishQuestID[fishKey],
+        Quest_ID = "nil",
         SizeRange = FishSizeRange[fishKey],
         Special_Attribute = FishSpecialAttributes[fishKey]
     }
@@ -1320,6 +2612,7 @@ local function CheckBait(fishName, Bait)
 end
 
 function GetRandomFish(Biome, Bait, MaxRarity)
+
     math.randomseed(os.time())
     Biome = Biome or "Any"
     Bait = Bait or "none"
@@ -1335,8 +2628,10 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     for fishName, fishData in fish_metadata do
         if fishData.Rarity == chosenRarity and CheckBiome(fishName, Biome) then
             table.insert(fishList, fishName)
+            --print("Found fish: " .. fishName .. " with rarity: " .. fishData.Rarity .. " in Biome: " .. Biome)
             -- if the fish matches the chosen bait add it in the table again to increase its odds
             if CheckBait(fishName, Bait) then
+                table.insert(fishList, fishName)
                 table.insert(fishList, fishName)
             end
         end
@@ -1367,6 +2662,7 @@ function GetRandomFish(Biome, Bait, MaxRarity)
     local randomFish = fishList[math.random(1, #fishList)]
     --print("Selected a fish: " .. randomFish .. "with rarity: " .. fish_metadata[randomFish].Rarity .. " and Biome: " .. Biome .. " and Bait: " .. Bait)
     return randomFish
+
 end
 
 

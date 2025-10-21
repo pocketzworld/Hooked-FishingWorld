@@ -1,6 +1,6 @@
 /*
 
-    Copyright (c) 2024 Pocketz World. All rights reserved.
+    Copyright (c) 2025 Pocketz World. All rights reserved.
 
     This is a generated file, do not edit!
 
@@ -15,6 +15,7 @@ using UnityEngine;
 using Highrise.Client;
 using Highrise.Studio;
 using Highrise.Lua;
+using UnityEditor;
 
 namespace Highrise.Lua.Generated
 {
@@ -25,6 +26,7 @@ namespace Highrise.Lua.Generated
         private const string s_scriptGUID = "47e001ed31bbe2642bfa500f8850dacb";
         public override string ScriptGUID => s_scriptGUID;
 
+        [SerializeField] public UnityEngine.GameObject m_playerWorldFishPrefab = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -33,8 +35,17 @@ namespace Highrise.Lua.Generated
 
             return new SerializedPropertyValue[]
             {
+                CreateSerializedProperty(_script.GetPropertyAt(0), m_playerWorldFishPrefab),
             };
         }
+        
+#if HR_STUDIO
+        [MenuItem("CONTEXT/PlayerTracker/Edit Script")]
+        private static void EditScript()
+        {
+            VisualStudioCodeOpener.OpenPath(AssetDatabase.GUIDToAssetPath(s_scriptGUID));
+        }
+#endif
     }
 }
 

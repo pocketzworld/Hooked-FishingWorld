@@ -1,5 +1,8 @@
 --!Type(Module)
 
+--!SerializeField
+local playerWorldFishPrefab : GameObject = nil
+
 local clientJoinRequets = Event.new("ClientJoinRequest")
 
 local ServerLeaderboard = TableValue.new("ServerLeaderboard")
@@ -78,6 +81,11 @@ function self:ClientAwake()
     function OnCharacterInstantiate(playerinfo)
         local player = playerinfo.player
         local character = player.character
+
+        local _newPlayerWorldFish = GameObject.Instantiate(playerWorldFishPrefab)
+        _newPlayerWorldFish.transform.parent = character.gameObject.transform
+        _newPlayerWorldFish.transform.localPosition = Vector3.new(0, 0, 0)
+        _newPlayerWorldFish.name = "WorldFish_" .. tostring(player.user.id)
 
         -- Local player score update
         playerinfo.Score.Changed:Connect(function(score, oldVal)
@@ -475,7 +483,9 @@ end
 -- Function to award XP to the player
 function AwardXP(player, xpAmount)
     local playerInfo = players[player]
-    
+
+    --xpAmount = xpAmount * 1.5 -- Apply XP modifier (1.5x for now, can be adjusted based on player pole prestige)
+
     -- Add the XP to the player's current XP
     playerInfo.playerXP.value = playerInfo.playerXP.value + xpAmount
     print(player.name .. " has been awarded " .. tostring(xpAmount) .. " XP!")

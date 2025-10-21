@@ -51,6 +51,9 @@ function self:ClientAwake()
 
                 updateRecordReq:FireServer(item, fishSize)
             end
+
+            -- Display the fish for all players
+            uiManager.playerDisplayFishRequest:FireServer(item, fishSize)
         end
 
     end)

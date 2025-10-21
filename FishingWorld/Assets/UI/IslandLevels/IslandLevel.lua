@@ -1,7 +1,7 @@
 --!Type(UI)
 
 --!Bind
-local level_label : Label = nil
+local level_label : Image = nil
 
 -- Tween Position
 local fromP = self.transform.position
@@ -12,7 +12,6 @@ self.transform:TweenPosition(fromP, toP)
     :Loop()
     :Play();
 
-function SetText(value)
-    local text = tostring(value)
-    level_label.text = text
+function SetTexture(value)
+    level_label.image = value
 end

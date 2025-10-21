@@ -415,7 +415,9 @@ local function HandleTap(tap : TapEvent)
 	if hit.collider.gameObject.tag == "Water" then
 		
 		-- Check if the player is close enough to the water
-		local distFromAvatar = Vector3.Distance(character.transform.position, hit.point)
+		local _player2DLocation = character.transform.position
+		_player2DLocation.y = hit.point.y
+		local distFromAvatar = Vector3.Distance(_player2DLocation, hit.point)
 		if distFromAvatar > 8 then
 			LocalMoveTo(character, hit.point, -1, 0, nil, function() 
 				gameManager.MovedToWater(hit.point, hit.collider.gameObject)

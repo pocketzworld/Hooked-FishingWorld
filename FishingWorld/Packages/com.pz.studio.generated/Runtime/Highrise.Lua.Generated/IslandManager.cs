@@ -1,6 +1,6 @@
 /*
 
-    Copyright (c) 2024 Pocketz World. All rights reserved.
+    Copyright (c) 2025 Pocketz World. All rights reserved.
 
     This is a generated file, do not edit!
 
@@ -15,6 +15,7 @@ using UnityEngine;
 using Highrise.Client;
 using Highrise.Studio;
 using Highrise.Lua;
+using UnityEditor;
 
 namespace Highrise.Lua.Generated
 {
@@ -26,7 +27,7 @@ namespace Highrise.Lua.Generated
         public override string ScriptGUID => s_scriptGUID;
 
         [SerializeField] public System.Collections.Generic.List<UnityEngine.GameObject> m_IslandPoints = default;
-        [SerializeField] public System.Collections.Generic.List<System.Double> m_IslandLevelReqs = default;
+        [SerializeField] public System.Collections.Generic.List<UnityEngine.Texture> m_IslandLevelReqs = default;
 
         protected override SerializedPropertyValue[] SerializeProperties()
         {
@@ -39,6 +40,14 @@ namespace Highrise.Lua.Generated
                 CreateSerializedProperty(_script.GetPropertyAt(1), m_IslandLevelReqs),
             };
         }
+        
+#if HR_STUDIO
+        [MenuItem("CONTEXT/IslandManager/Edit Script")]
+        private static void EditScript()
+        {
+            VisualStudioCodeOpener.OpenPath(AssetDatabase.GUIDToAssetPath(s_scriptGUID));
+        }
+#endif
     }
 }
 
